@@ -7,16 +7,19 @@
 
 	<div class="output">
 		@foreach (var entry in Entries)
-		{
-            <div class="chat_entry">
-                @if (entry.steamid > 0)
-                {
-                    <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
-                }
-				<div class="author">@entry.author</div>
-				<div class="message">@entry.message</div>
-			</div>
-		}
+        {
+            @if (entry.timeSinceAdded < 10f || (InputBox != null && InputBox.HasFocus))
+            {
+                <div class="chat_entry">
+                    @if (entry.steamid > 0)
+                    {
+                        <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
+                    }
+                    <div class="author">@entry.author</div>
+                    <div class="message">@entry.message</div>
+                </div>
+            }
+        }
 	</div>
 
 	<div class="input">
@@ -28,6 +31,7 @@
 @code
 {
     TextEntry InputBox;
+    int ChatOffset { get; set; } = 0;
 
     public record Entry( ulong steamid, string author, string message, RealTimeSince timeSinceAdded );
     List<Entry> Entries = new();
@@ -44,7 +48,8 @@
             InputBox.Focus();
         }
 
-        if ( Entries.RemoveAll( x => x.timeSinceAdded > 30.0f ) > 0 )
+        // Set entries to not be new after 30 seconds. This is so we can fade them out.
+        foreach (var entry in Entries.Where(e => e.timeSinceAdded > 10.0f))
         {
             StateHasChanged();
         }
@@ -76,6 +81,10 @@
 
 		Log.Info($"{author}: {message}");
 
+        if (Entries.Count > 9)
+        {
+            Entries.RemoveAt(0);
+        }
         Entries.Add(new Entry(steamid, author, message, 0.0f));
 		StateHasChanged();
 	}

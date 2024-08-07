@@ -1,11 +1,9 @@
 Chat {
 	position: absolute;
-	top: 100px;
+	bottom: 300px;
 	left: 100px;
-	bottom: 200px;
 	width: 600px;
 	justify-content: center;
-	align-items: center;
 	font-weight: bold;
 	border-radius: 20px;
 	flex-direction: column;
@@ -18,8 +16,9 @@ Chat {
 		flex-grow: 1;
 		flex-direction: column;
 		justify-content: flex-end;
-		align-items: stretch;
 		gap: 5px;
+		padding: 3px;
+		height: calc(32px * 8);
 
 		.chat_entry {
 			//background-color: #222d;
@@ -27,6 +26,7 @@ Chat {
 			gap: 10px;
 			text-shadow: 2px 2px 2px #000a;
 			align-items: center;
+			height: 32px;
 
 			.avatar {
 				width: 32px;
@@ -53,8 +53,12 @@ Chat {
 	}
 
 	&.open {
+		pointer-events: all;
 		.input {
 			// color: #fff, color: #ffffffaa, color: rgba( red, 0.5 )
+			background-color: #73737370;
+		}
+		.output {
 			background-color: #73737370;
 		}
 	}
