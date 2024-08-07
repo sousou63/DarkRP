@@ -7,16 +7,20 @@
 
 	<div class="output">
 		@foreach (var entry in Entries)
-		{
-            <div class="chat_entry">
-                @if (entry.steamid > 0)
-                {
-                    <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
-                }
-				<div class="author">@entry.author</div>
-				<div class="message">@entry.message</div>
-			</div>
-		}
+        {
+            // Only show the messages from the last 10 seconds, or all if the input box is focused
+            @if (entry.timeSinceAdded < 10f || ChatOpen)
+            {
+                <div class="chat_entry">
+                    @if (entry.steamid > 0)
+                    {
+                        <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
+                    }
+                    <div class="author">@entry.author</div>
+                    <div class="message">@entry.message</div>
+                </div>
+            }
+        }
 	</div>
 
 	<div class="input">
@@ -28,8 +32,11 @@
 @code
 {
     TextEntry InputBox;
-
-    public record Entry( ulong steamid, string author, string message, RealTimeSince timeSinceAdded );
+    bool ChatOpen = false;
+    public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
+    {
+        public bool IsNew { get; set; } = true;
+    }
     List<Entry> Entries = new();
 
     protected override void OnUpdate()
@@ -41,19 +48,31 @@
 
         if ( Input.Pressed( "chat" ) )
         {
-            InputBox.Focus();
+            ToggleChat(true);
         }
 
-        if ( Entries.RemoveAll( x => x.timeSinceAdded > 30.0f ) > 0 )
+        // Clear the "new" flag after 10 seconds. This is to make sure we don't update chat state every frame
+        foreach (var entry in Entries.Where(e => e.IsNew && e.timeSinceAdded > 10.0f))
         {
+            entry.IsNew = false;
             StateHasChanged();
         }
+    }
 
-        SetClass( "open", InputBox.HasFocus );
+    void ToggleChat(bool open)
+    {
+        ChatOpen = open;
+        if (ChatOpen)
+        {
+            InputBox.Focus();
+        }
+        SetClass( "open", open );
+        StateHasChanged();
     }
 
     void ChatFinished()
     {
+        ToggleChat(false);
         var text = InputBox.Text;
         InputBox.Text = "";
 
@@ -76,6 +95,10 @@
 
 		Log.Info($"{author}: {message}");
 
+        if (Entries.Count > 9)
+        {
+            Entries.RemoveAt(0);
+        }
         Entries.Add(new Entry(steamid, author, message, 0.0f));
 		StateHasChanged();
 	}
