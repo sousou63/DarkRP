@@ -1,0 +1,1046 @@
+{
+  "RootObject": {
+    "__guid": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+    "Flags": 0,
+    "Name": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+        "BodyGroups": 341,
+        "CreateBoneObjects": false,
+        "Model": "models/citizen/citizen.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      },
+      {
+        "__type": "Sandbox.CharacterController",
+        "__guid": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
+        "Acceleration": 10,
+        "Bounciness": 0.3,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "",
+        "Radius": 16,
+        "StepHeight": 18,
+        "UseCollisionRules": false
+      },
+      {
+        "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+        "__guid": "bfcf4839-806e-4912-822d-e881edc46062",
+        "BodyWeight": 1,
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "PlayerController",
+        "__guid": "4acf56a3-b4f7-47aa-920b-02e20f101ae9",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "CharacterController": {
+          "_type": "component",
+          "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CharacterController"
+        },
+        "CrouchMoveSpeed": 80,
+        "RunMoveSpeed": 175,
+        "SprintMoveSpeed": 300,
+        "WalkMoveSpeed": 175
+      },
+      {
+        "__type": "PlayerFootsteps",
+        "__guid": "bfd6360d-27f1-4541-9523-abfdc05ef85c",
+        "Source": {
+          "_type": "component",
+          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "PlayerPusher",
+        "__guid": "1a2f088d-0f98-4d5a-903b-2ae54f035714",
+        "Radius": 70
+      },
+      {
+        "__type": "Sandbox.Voice",
+        "__guid": "ec6c78ca-d23a-4cc2-987f-408d2efe9f23",
+        "Loopback": false,
+        "Mode": "PushToTalk",
+        "MorphScale": 3,
+        "MorphSmoothTime": 0.1,
+        "PushToTalkInput": "voice",
+        "Renderer": {
+          "_type": "component",
+          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Volume": 2,
+        "WorldspacePlayback": true
+      },
+      {
+        "__type": "Softsplit.PlayerOutfitter",
+        "__guid": "34c102fd-fc4d-43a6-91e8-cbe01318da2a"
+      },
+      {
+        "__type": "PlayerStats",
+        "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
+        "BaseSalaryTimer": 3000,
+        "FirstSalaryTimer": 3000,
+        "FoodBase": 100,
+        "HealthBase": 100,
+        "MoneyBase": 500,
+        "OnComponentFixedUpdate": {
+          "__version": 7,
+          "__guid": "78bb95f9-5f59-4c1f-8ca7-00f435fd3a87",
+          "UserData": {
+            "Title": "On Component Fixed Update",
+            "ReferencedComponentTypes": [
+              "PlayerStats"
+            ]
+          },
+          "Variables": [],
+          "Nodes": [
+            {
+              "Id": 0,
+              "Type": "input",
+              "UserData": {
+                "Position": "-2304,-48"
+              }
+            },
+            {
+              "Id": 1,
+              "Type": "property",
+              "Properties": {
+                "_type": "PlayerStats",
+                "_name": "MoneyBase"
+              },
+              "UserData": {
+                "Position": "368,160"
+              }
+            },
+            {
+              "Id": 2,
+              "Type": "op.add",
+              "UserData": {
+                "Position": "624,176"
+              }
+            },
+            {
+              "Id": 3,
+              "Type": "property",
+              "Properties": {
+                "_name": "MoneyBase",
+                "_type": "PlayerStats"
+              },
+              "UserData": {
+                "Position": "720,-16"
+              }
+            },
+            {
+              "Id": 4,
+              "Type": "scene.get",
+              "Properties": {
+                "T": "PlayerStats"
+              },
+              "UserData": {
+                "Position": "160,96"
+              }
+            },
+            {
+              "Id": 36,
+              "Type": "op.lessthanorequal",
+              "UserData": {
+                "Position": "-960,80"
+              }
+            },
+            {
+              "Id": 39,
+              "Type": "if",
+              "UserData": {
+                "Position": "-864,-48"
+              }
+            },
+            {
+              "Id": 40,
+              "Type": "scene.get",
+              "Properties": {
+                "T": "PlayerStats"
+              },
+              "UserData": {
+                "Position": "-1952,0"
+              }
+            },
+            {
+              "Id": 42,
+              "Type": "scene.get",
+              "Properties": {
+                "T": "PlayerStats"
+              },
+              "UserData": {
+                "Position": "-672,16"
+              }
+            },
+            {
+              "Id": 47,
+              "Type": "op.subtract",
+              "UserData": {
+                "Position": "-1488,32"
+              }
+            },
+            {
+              "Id": 50,
+              "Type": "comment",
+              "UserData": {
+                "Position": "-1984,-128",
+                "Size": "892,306",
+                "Title": "Decrement the timer",
+                "Layer": 2
+              }
+            },
+            {
+              "Id": 55,
+              "Type": "comment",
+              "UserData": {
+                "Position": "-688,-96",
+                "Size": "720,274",
+                "Title": "Reset the Timer",
+                "Layer": 1
+              }
+            },
+            {
+              "Id": 56,
+              "Type": "property",
+              "Properties": {
+                "_type": "PlayerStats",
+                "_name": "FirstSalaryTimer"
+              },
+              "UserData": {
+                "Position": "-1776,80"
+              }
+            },
+            {
+              "Id": 57,
+              "Type": "property",
+              "Properties": {
+                "_name": "FirstSalaryTimer",
+                "_type": "PlayerStats"
+              },
+              "UserData": {
+                "Position": "-1376,-64"
+              }
+            },
+            {
+              "Id": 58,
+              "Type": "property",
+              "Properties": {
+                "_type": "PlayerStats",
+                "_name": "FirstSalaryTimer"
+              },
+              "UserData": {
+                "Position": "-272,-16"
+              }
+            },
+            {
+              "Id": 59,
+              "Type": "property",
+              "Properties": {
+                "_type": "PlayerStats",
+                "_name": "BaseSalaryTimer"
+              },
+              "UserData": {
+                "Position": "-512,64"
+              }
+            },
+            {
+              "Id": 62,
+              "Type": "property",
+              "Properties": {
+                "_type": "PlayerStats",
+                "_name": "SalaryAmmount"
+              },
+              "UserData": {
+                "Position": "368,256"
+              }
+            },
+            {
+              "Id": 63,
+              "Type": "comment",
+              "UserData": {
+                "Position": "128,-96",
+                "Size": "844,434",
+                "Title": "Add Salary Ammount to the Base Money "
+              }
+            },
+            {
+              "Id": 66,
+              "Type": "sound.play",
+              "UserData": {
+                "Position": "1120,-16"
+              }
+            }
+          ],
+          "Links": [
+            {
+              "SrcId": 4,
+              "SrcName": "_result",
+              "DstId": 1,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 1,
+              "SrcName": "_result",
+              "DstId": 2,
+              "DstName": "a"
+            },
+            {
+              "SrcId": 62,
+              "SrcName": "_result",
+              "DstId": 2,
+              "DstName": "b"
+            },
+            {
+              "SrcId": 58,
+              "SrcName": "_signal",
+              "DstId": 3,
+              "DstName": "_signal"
+            },
+            {
+              "SrcId": 4,
+              "SrcName": "_result",
+              "DstId": 3,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 2,
+              "SrcName": "_result",
+              "DstId": 3,
+              "DstName": "_value"
+            },
+            {
+              "SrcId": 0,
+              "SrcName": "_target",
+              "DstId": 4,
+              "DstName": "_this"
+            },
+            {
+              "SrcId": 56,
+              "SrcName": "_result",
+              "DstId": 36,
+              "DstName": "a"
+            },
+            {
+              "Value": {
+                "$type": "Simple",
+                "Type": "System.Single",
+                "Value": 0
+              },
+              "DstId": 36,
+              "DstName": "b"
+            },
+            {
+              "SrcId": 57,
+              "SrcName": "_signal",
+              "DstId": 39,
+              "DstName": "_signal"
+            },
+            {
+              "SrcId": 36,
+              "SrcName": "_result",
+              "DstId": 39,
+              "DstName": "condition"
+            },
+            {
+              "SrcId": 0,
+              "SrcName": "_target",
+              "DstId": 40,
+              "DstName": "_this"
+            },
+            {
+              "SrcId": 0,
+              "SrcName": "_target",
+              "DstId": 42,
+              "DstName": "_this"
+            },
+            {
+              "SrcId": 56,
+              "SrcName": "_result",
+              "DstId": 47,
+              "DstName": "a"
+            },
+            {
+              "Value": {
+                "$type": "Simple",
+                "Type": "System.Single",
+                "Value": 1
+              },
+              "DstId": 47,
+              "DstName": "b"
+            },
+            {
+              "SrcId": 40,
+              "SrcName": "_result",
+              "DstId": 56,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 0,
+              "SrcName": "_signal",
+              "DstId": 57,
+              "DstName": "_signal"
+            },
+            {
+              "SrcId": 40,
+              "SrcName": "_result",
+              "DstId": 57,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 47,
+              "SrcName": "_result",
+              "DstId": 57,
+              "DstName": "_value"
+            },
+            {
+              "SrcId": 39,
+              "SrcName": "true",
+              "DstId": 58,
+              "DstName": "_signal"
+            },
+            {
+              "SrcId": 42,
+              "SrcName": "_result",
+              "DstId": 58,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 59,
+              "SrcName": "_result",
+              "DstId": 58,
+              "DstName": "_value"
+            },
+            {
+              "SrcId": 42,
+              "SrcName": "_result",
+              "DstId": 59,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 4,
+              "SrcName": "_result",
+              "DstId": 62,
+              "DstName": "_target"
+            },
+            {
+              "SrcId": 3,
+              "SrcName": "_signal",
+              "DstId": 66,
+              "DstName": "_signal"
+            },
+            {
+              "SrcId": 0,
+              "SrcName": "_target",
+              "DstId": 66,
+              "DstName": "_this"
+            },
+            {
+              "Value": "sounds/kenney/ui/ui.upvote.sound",
+              "DstId": 66,
+              "DstName": "soundEvent"
+            }
+          ]
+        },
+        "SalaryAmmount": 50
+      },
+      {
+        "__type": "Sandbox.CapsuleCollider",
+        "__guid": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
+        "End": "0,0,10",
+        "IsTrigger": false,
+        "Radius": 10,
+        "Start": "0,0,0",
+        "Static": false
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8",
+        "Flags": 0,
+        "Name": "Screen",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ScreenPanel",
+            "__guid": "53b84b42-dc6a-49dc-aaeb-f9a86b9092c5",
+            "AutoScreenScale": true,
+            "OnComponentFixedUpdate": {
+              "__version": 7,
+              "__guid": "c56d28f3-33ce-4f1f-8c8b-c5904cd8255a",
+              "UserData": {
+                "Title": "On Component Fixed Update",
+                "ReferencedComponentTypes": [
+                  "TabMenu",
+                  "BasicMenu"
+                ]
+              },
+              "Variables": [],
+              "Nodes": [
+                {
+                  "Id": 0,
+                  "Type": "input"
+                },
+                {
+                  "Id": 1,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "240,0"
+                  }
+                },
+                {
+                  "Id": 2,
+                  "Type": "input.down",
+                  "UserData": {
+                    "Position": "-32,64"
+                  }
+                },
+                {
+                  "Id": 3,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
+                  },
+                  "UserData": {
+                    "Position": "480,-64"
+                  }
+                },
+                {
+                  "Id": 4,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
+                  },
+                  "UserData": {
+                    "Position": "480,128"
+                  }
+                },
+                {
+                  "Id": 5,
+                  "Type": "scene.get",
+                  "Properties": {
+                    "T": "TabMenu"
+                  },
+                  "UserData": {
+                    "Position": "224,96"
+                  }
+                },
+                {
+                  "Id": 6,
+                  "Type": "property",
+                  "Properties": {
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
+                  },
+                  "UserData": {
+                    "Position": "704,-64"
+                  }
+                },
+                {
+                  "Id": 7,
+                  "Type": "property",
+                  "Properties": {
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
+                  },
+                  "UserData": {
+                    "Position": "720,128"
+                  }
+                },
+                {
+                  "Id": 8,
+                  "Type": "scene.get",
+                  "Properties": {
+                    "T": "BasicMenu"
+                  },
+                  "UserData": {
+                    "Position": "496,32"
+                  }
+                }
+              ],
+              "Links": [
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 1,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 2,
+                  "SrcName": "_result",
+                  "DstId": 1,
+                  "DstName": "condition"
+                },
+                {
+                  "Value": "Score",
+                  "DstId": 2,
+                  "DstName": "action"
+                },
+                {
+                  "SrcId": 1,
+                  "SrcName": "true",
+                  "DstId": 3,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 5,
+                  "SrcName": "_result",
+                  "DstId": 3,
+                  "DstName": "_target"
+                },
+                {
+                  "Value": true,
+                  "DstId": 3,
+                  "DstName": "_value"
+                },
+                {
+                  "SrcId": 1,
+                  "SrcName": "false",
+                  "DstId": 4,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 5,
+                  "SrcName": "_result",
+                  "DstId": 4,
+                  "DstName": "_target"
+                },
+                {
+                  "Value": false,
+                  "DstId": 4,
+                  "DstName": "_value"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 5,
+                  "DstName": "_this"
+                },
+                {
+                  "SrcId": 3,
+                  "SrcName": "_signal",
+                  "DstId": 6,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 8,
+                  "SrcName": "_result",
+                  "DstId": 6,
+                  "DstName": "_target"
+                },
+                {
+                  "Value": true,
+                  "DstId": 6,
+                  "DstName": "_value"
+                },
+                {
+                  "SrcId": 4,
+                  "SrcName": "_signal",
+                  "DstId": 7,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 8,
+                  "SrcName": "_result",
+                  "DstId": 7,
+                  "DstName": "_target"
+                },
+                {
+                  "Value": false,
+                  "DstId": 7,
+                  "DstName": "_value"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 8,
+                  "DstName": "_this"
+                }
+              ]
+            },
+            "OnComponentStart": {
+              "__version": 7,
+              "__guid": "66e36109-b932-4366-bccb-5ccfa0d61af1",
+              "UserData": {
+                "Title": "On Component Start",
+                "ReferencedComponentTypes": [
+                  "BasicMenu",
+                  "PlayerHUD",
+                  "TabMenu"
+                ]
+              },
+              "Variables": [],
+              "Nodes": [
+                {
+                  "Id": 0,
+                  "Type": "input",
+                  "UserData": {
+                    "Position": "-432,0"
+                  }
+                },
+                {
+                  "Id": 1,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
+                  },
+                  "UserData": {
+                    "Position": "-192,80"
+                  }
+                },
+                {
+                  "Id": 3,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "288,0"
+                  }
+                },
+                {
+                  "Id": 4,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
+                    "_isStatic": false
+                  },
+                  "UserData": {
+                    "Position": "1104,32"
+                  }
+                },
+                {
+                  "Id": 6,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": {
+                      "$type": "Nested",
+                      "DeclaringType": "Sandbox.GameObject",
+                      "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsProxy"
+                  },
+                  "UserData": {
+                    "Position": "16,80"
+                  }
+                },
+                {
+                  "Id": 7,
+                  "Type": "scene.get",
+                  "Properties": {
+                    "T": "BasicMenu"
+                  },
+                  "UserData": {
+                    "Position": "528,-32"
+                  }
+                },
+                {
+                  "Id": 8,
+                  "Type": "scene.get",
+                  "Properties": {
+                    "T": "PlayerHUD"
+                  },
+                  "UserData": {
+                    "Position": "704,-32"
+                  }
+                },
+                {
+                  "Id": 9,
+                  "Type": "scene.get",
+                  "Properties": {
+                    "T": "TabMenu"
+                  },
+                  "UserData": {
+                    "Position": "896,-32"
+                  }
+                },
+                {
+                  "Id": 11,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Destroy",
+                    "_isStatic": false
+                  },
+                  "UserData": {
+                    "Position": "528,32"
+                  }
+                },
+                {
+                  "Id": 12,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Destroy",
+                    "_isStatic": false
+                  },
+                  "UserData": {
+                    "Position": "720,32"
+                  }
+                },
+                {
+                  "Id": 13,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Destroy",
+                    "_isStatic": false
+                  },
+                  "UserData": {
+                    "Position": "896,32"
+                  }
+                },
+                {
+                  "Id": 14,
+                  "Type": "comment",
+                  "UserData": {
+                    "Position": "-224,-96",
+                    "Size": "1500,274",
+                    "Title": "Destroy all the UI Stuff not related to us ( In the newtork )"
+                  }
+                }
+              ],
+              "Links": [
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 1,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 3,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 6,
+                  "SrcName": "_result",
+                  "DstId": 3,
+                  "DstName": "condition"
+                },
+                {
+                  "SrcId": 13,
+                  "SrcName": "_signal",
+                  "DstId": 4,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 4,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 1,
+                  "SrcName": "_result",
+                  "DstId": 6,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 7,
+                  "DstName": "_this"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 8,
+                  "DstName": "_this"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 9,
+                  "DstName": "_this"
+                },
+                {
+                  "SrcId": 3,
+                  "SrcName": "true",
+                  "DstId": 11,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 7,
+                  "SrcName": "_result",
+                  "DstId": 11,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 11,
+                  "SrcName": "_signal",
+                  "DstId": 12,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 8,
+                  "SrcName": "_result",
+                  "DstId": 12,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 12,
+                  "SrcName": "_signal",
+                  "DstId": 13,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 9,
+                  "SrcName": "_result",
+                  "DstId": 13,
+                  "DstName": "_target"
+                }
+              ]
+            },
+            "Opacity": 1,
+            "Scale": 1,
+            "ZIndex": 100
+          },
+          {
+            "__type": "PlayerHUD",
+            "__guid": "c37f901d-9dcc-4287-ac82-22e6b6bf1ceb",
+            "MyStringValue": "Press \u0022TAB\u0022 to open the MENU",
+            "MyStringValue3": "Citizen",
+            "PlayerPrefab": {
+              "_type": "gameobject",
+              "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678"
+            }
+          },
+          {
+            "__type": "TabMenu",
+            "__guid": "2464ac35-0183-4750-9dd0-6e8ca4ee4834",
+            "OnComponentDisabled": {
+              "__version": 7,
+              "__guid": "0dca5a89-0b6c-4b0f-a126-aa13cf82499d",
+              "UserData": {
+                "Title": "On Component Disabled",
+                "ReferencedComponentTypes": []
+              },
+              "Variables": [],
+              "Nodes": [
+                {
+                  "Id": 0,
+                  "Type": "input"
+                },
+                {
+                  "Id": 1,
+                  "Type": "sound.play",
+                  "UserData": {
+                    "Position": "224,0"
+                  }
+                }
+              ],
+              "Links": [
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 1,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 1,
+                  "DstName": "_this"
+                },
+                {
+                  "Value": "sounds/kenney/ui/ui.navigate.back.sound",
+                  "DstId": 1,
+                  "DstName": "soundEvent"
+                }
+              ]
+            },
+            "OnComponentEnabled": {
+              "__version": 7,
+              "__guid": "3391af4d-3767-41a2-b926-e9020783e5c2",
+              "UserData": {
+                "Title": "On Component Enabled",
+                "ReferencedComponentTypes": []
+              },
+              "Variables": [],
+              "Nodes": [
+                {
+                  "Id": 0,
+                  "Type": "input"
+                },
+                {
+                  "Id": 1,
+                  "Type": "sound.play",
+                  "UserData": {
+                    "Position": "224,0"
+                  }
+                }
+              ],
+              "Links": [
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 1,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 1,
+                  "DstName": "_this"
+                },
+                {
+                  "Value": "sounds/kenney/ui/ui.navigate.forward.sound",
+                  "DstId": 1,
+                  "DstName": "soundEvent"
+                }
+              ]
+            }
+          },
+          {
+            "__type": "BasicMenu",
+            "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
+            "Bronze": "0.08837,0.03093,0,1",
+            "BronzePrinterPrefab": {
+              "_type": "gameobject",
+              "prefab": "prefab/printer.prefab"
+            },
+            "Diamond": "0,0.93333,1,1",
+            "Gold": "0.92093,0.82884,0,1",
+            "MyStringValue": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer Spawning",
+            "MyStringValue2": " Health | Stamina | Food | Jobs | Printer Logic | Housing | Weapons | Persistence | Etc...",
+            "MyStringValue3": "Everything that you see here is subject to change and placeholders. Additionally, this game mode will probably become open-source so that everyone can contribute to it. I work professionally with Unreal Engine, so I do all of this in my spare time! If you want to contact me, my Discord is: sousoup_",
+            "Silver": "111.12,111.12,111.12,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

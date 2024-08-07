@@ -1,0 +1,208 @@
+{
+  "__guid": "97427aec-c255-4bf8-9957-eae407ca3234",
+  "GameObjects": [
+    {
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "-267.452,-379.653,297.7903",
+      "Rotation": "-0.1448582,0.2860239,0.4279631,0.8450171",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "Sandbox.Bloom",
+          "__guid": "d73ef723-c888-41d4-802e-f797c79318be",
+          "BloomColor": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 1,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "BloomCurve": [
+            {
+              "y": 0.5
+            },
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "Mode": "Additive",
+          "Strength": 0.5,
+          "Threshold": 0.5,
+          "ThresholdWidth": 0.5
+        },
+        {
+          "__type": "Sandbox.Tonemapping",
+          "__guid": "9d76f362-7227-40eb-a189-69353c780c46",
+          "__version": 1,
+          "ExposureBias": 2,
+          "ExposureCompensation": 0,
+          "ExposureMethod": "RGB",
+          "MaximumExposure": 2,
+          "MinimumExposure": 1,
+          "Mode": "Legacy",
+          "Rate": 1
+        },
+        {
+          "__type": "Sandbox.Sharpen",
+          "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
+          "Scale": 0.2
+        }
+      ]
+    },
+    {
+      "__guid": "7a63f673-6998-43a4-80de-532550116c66",
+      "Flags": 0,
+      "Name": "Network Manager",
+      "Position": "0,0,136.2419",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "7a015147-d27b-44b1-a3a5-81d364b2e76b",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefab/player.prefab"
+          },
+          "SpawnPoints": [],
+          "StartServer": true
+        }
+      ]
+    },
+    {
+      "__guid": "c1e45c98-13da-49ff-bf9f-15509f84c5bc",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "-126.4292,-187.5311,204.951",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "a0c28225-84d9-4928-bc21-0dab5c9798eb",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "421ffe6b-d384-4688-a1eb-5b9b88115e4b",
+          "Flags": 0,
+          "Name": "Chat",
+          "Position": "0,0,0",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "Components": [
+            {
+              "__type": "Chat",
+              "__guid": "8123a00c-4e46-4e56-bdd8-050cd2785186"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "5927208e-97d3-47ce-86eb-a9b4a2937017",
+      "Flags": 0,
+      "Name": "Ambient Sound",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SoundPointComponent",
+          "__guid": "670b706f-e550-415c-a260-f61a9274a464",
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Force2d": true,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": true,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "audio/cityambient.sound",
+          "SoundOverride": true,
+          "StopOnNew": false,
+          "TargetMixer": {
+            "Name": "master",
+            "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
+          },
+          "Volume": 0.07
+        }
+      ]
+    },
+    {
+      "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
+      "Flags": 0,
+      "Name": "Construct Map",
+      "Position": "-126.4292,-187.5311,115.5769",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "facepunch.flatgrass",
+          "NoOrigin": false,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "NetworkInterpolation": true,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "minimal",
+  "Description": "",
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

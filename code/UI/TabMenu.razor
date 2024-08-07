@@ -1,0 +1,33 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+
+    <div class="title">  <strong>MENU</strong> </div>
+
+    <div class="buttoncontainer"> 
+        
+        <div class="button" onclick="@InfoClick"> INFO </div>
+        <div class="button" onclick="@JobClick"> JOBS </div>
+        <div class="button" onclick="@DarkWebClick"> DARK WEB </div>
+        <div class="button" onclick="@AdminClick"> ADMIN </div>
+    
+
+    </div>
+</root>
+
+@code
+{
+
+    public Panel JobMenu { get; set; }
+
+    void InfoClick() { Log.Info("Click"); } // Log.Info("Click");
+
+    void JobClick() { Log.Info("Click"); } // Log.Info("Click");
+
+    void DarkWebClick() { Log.Info("Click"); } // Log.Info("Click");
+
+    void AdminClick() { Log.Info("Click"); } // Log.Info("Click");
+}
+

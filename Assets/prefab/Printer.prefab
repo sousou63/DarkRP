@@ -1,0 +1,73 @@
+{
+  "RootObject": {
+    "__guid": "d9722984-8e27-467c-bf69-0aed3358f138",
+    "Flags": 0,
+    "Name": "printer",
+    "Scale": "0.5,0.7,0.4",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "5c087b61-794a-43fc-8423-1ac87bbdbc01",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/dev/box.vmdl",
+        "RenderType": "On",
+        "Tint": "0.04186,0.02775,0.00156,1"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "3de3e14d-166d-4e9b-b4e9-9cf4f05c9e60",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "50,50,50",
+        "Static": false
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "e18c4834-4606-489e-b986-b64aedbad9bb",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.SoundPointComponent",
+        "__guid": "419ee3ac-e54c-45f6-91ec-ba30e3111c66",
+        "DistanceAttenuation": false,
+        "DistanceAttenuationOverride": false,
+        "Force2d": false,
+        "MaxRepeatTime": 1,
+        "MinRepeatTime": 1,
+        "Occlusion": false,
+        "OcclusionOverride": false,
+        "OcclusionRadius": 32,
+        "Pitch": 1,
+        "PlayOnStart": true,
+        "ReflectionOverride": false,
+        "Reflections": false,
+        "Repeat": false,
+        "SoundEvent": "audio/printer.sound",
+        "SoundOverride": false,
+        "StopOnNew": false,
+        "TargetMixer": {
+          "Name": "master",
+          "Id": "3bcc4717-e97f-4fe9-8ccc-f8ee9be3f467"
+        },
+        "Volume": 1
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

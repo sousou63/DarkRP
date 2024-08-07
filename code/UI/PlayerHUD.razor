@@ -1,0 +1,25 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="title">@MyStringValue</div>
+    <div class="money">@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase) $</div>
+    <div class="healthbar"><div class="background"><div class="inner"><div class="fill" style="width: 100%"></div>
+    <div class="foodbar"><div class="background"><div class="inner"><div class="fill" style="width: 100%"></div>
+    <div class="Job">@MyStringValue3 </div>
+</root>
+
+@code
+{
+    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab // code to acces my component : @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase)
+
+	[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
+    [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
+
+
+	/// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<PlayerStats>().MoneyBase);
+}

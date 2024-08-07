@@ -1,0 +1,43 @@
+TabMenu {
+	pointer-events: all; // Show the mouse cursor
+	position: absolute;
+	top: 125;
+	left: 500;
+	right: 500;
+	bottom: 730;
+	background-color: #006cd5;
+	justify-content: center;
+	//align-items: center;
+	font-weight: bold;
+	border-radius: 20px;
+
+		.title {
+			justify-content: center;
+			position: absolute;
+			align-items: center;
+			flex-wrap: wrap;
+			color: #ffffff;
+			font-size: 125px;
+		}
+
+		.buttoncontainer {
+			flex-direction: row;
+			position: absolute;
+			margin-top: 14vh;
+			margin-left: 1vh;
+			margin-right: 1vh;
+			border: 1px solid white;
+
+			.button {
+				color: white;
+				margin-left: 4.5vh;
+				margin-right: 4.5vh;
+				background-color: deepskyblue;
+				font-size: 35px;
+
+				&:hover {
+					transform: scale(1.2 1.2);
+				}
+			}
+		}
+	}

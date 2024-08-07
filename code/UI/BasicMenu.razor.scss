@@ -1,0 +1,83 @@
+BasicMenu {
+	pointer-events: all; // Show the mouse cursor
+	position: absolute;
+	top: 360;
+	left: 500;
+	right: 500;
+	bottom: 125;
+	background-color: #006cd5;
+	justify-content: center;
+	font-weight: bold;
+	overflow: scroll;
+	flex-wrap: wrap;
+
+	.darkweb1 {
+		border: 1px solid white;
+		flex-direction: row;
+		margin-top: 1vh;
+		margin-left: 1vh;
+		margin-right: 1vh;
+		margin-bottom: 1vh;
+		justify-content: center;
+		align-items: center;
+
+		.button {
+			margin-top: 3vh;
+			margin-left: 3vh;
+			margin-right: 3vh;
+			margin-bottom: 3vh;
+			background-color: gray;
+			justify-content: center;
+			align-items: center;
+			color: white;
+
+			&:hover {
+				transform: scale(1.2 1.2);
+			}
+		}
+	}
+
+	.Job1 {
+		border: 1px solid white;
+		flex-direction: row;
+		margin-top: 1vh;
+		margin-left: 1vh;
+		margin-right: 1vh;
+		margin-bottom: 1vh;
+		justify-content: center;
+		align-items: center;
+
+		.button {
+			margin-top: 3vh;
+			margin-left: 3vh;
+			margin-right: 3vh;
+			margin-bottom: 3vh;
+			background-color: gray;
+			justify-content: center;
+			align-items: center;
+			color: white;
+
+			&:hover {
+				transform: scale(1.2 1.2);
+			}
+		}
+	}
+
+	.info1 {
+		flex-wrap: wrap;
+		border: 1px solid white;
+		margin-top: 1vh;
+		margin-left: 1vh;
+		margin-right: 1vh;
+		margin-bottom: 1vh;
+
+		.info2 {
+			//margin-top: 15vh;
+			flex-direction: column;
+			align-items: center;
+			margin-left: 1vh;
+			margin-right: 1vh;
+			margin-bottom: 1vh;
+		}
+	}
+}
