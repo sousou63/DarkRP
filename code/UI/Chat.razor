@@ -8,7 +8,8 @@
 	<div class="output">
 		@foreach (var entry in Entries)
         {
-            @if (entry.timeSinceAdded < 10f || (InputBox != null && InputBox.HasFocus))
+            // Only show the messages from the last 10 seconds, or all if the input box is focused
+            @if (entry.timeSinceAdded < 10f || ChatOpen)
             {
                 <div class="chat_entry">
                     @if (entry.steamid > 0)
@@ -31,9 +32,11 @@
 @code
 {
     TextEntry InputBox;
-    int ChatOffset { get; set; } = 0;
-
-    public record Entry( ulong steamid, string author, string message, RealTimeSince timeSinceAdded );
+    bool ChatOpen = false;
+    public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
+    {
+        public bool IsNew { get; set; } = true;
+    }
     List<Entry> Entries = new();
 
     protected override void OnUpdate()
@@ -45,20 +48,31 @@
 
         if ( Input.Pressed( "chat" ) )
         {
-            InputBox.Focus();
+            ToggleChat(true);
         }
 
-        // Set entries to not be new after 30 seconds. This is so we can fade them out.
-        foreach (var entry in Entries.Where(e => e.timeSinceAdded > 10.0f))
+        // Clear the "new" flag after 10 seconds. This is to make sure we don't update chat state every frame
+        foreach (var entry in Entries.Where(e => e.IsNew && e.timeSinceAdded > 10.0f))
         {
+            entry.IsNew = false;
             StateHasChanged();
         }
+    }
 
-        SetClass( "open", InputBox.HasFocus );
+    void ToggleChat(bool open)
+    {
+        ChatOpen = open;
+        if (ChatOpen)
+        {
+            InputBox.Focus();
+        }
+        SetClass( "open", open );
+        StateHasChanged();
     }
 
     void ChatFinished()
     {
+        ToggleChat(false);
         var text = InputBox.Text;
         InputBox.Text = "";
 
