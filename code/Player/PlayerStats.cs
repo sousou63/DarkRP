@@ -6,30 +6,32 @@ public sealed class PlayerStats : Component
 
 	// BASE PLAYER PROPERTYS
 
-	[Property]
-	public float MoneyBase { get; set; } = 500f;
+	[Property] public float MoneyBase { get; set; } = 500f;
 
-	[Property]
-	public float HealthBase { get; set; } = 100f;
+	[Property] public float HealthBase { get; set; } = 100f;
 
-	[Property]
-	public float FoodBase { get; set; } = 100f;
+	[Property] public float FoodBase { get; set; } = 100f;
 
 
-	// MISC PROPERTYS
+	// TIMER PROPERTYS
 
-	[Property]
-	public float FirstSalaryTimer { get; set; } = 3000f; // SalaryTimer = ( Fixed Update Frequency * Desired time in seconds )
+	[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
 
-	[Property]
-	public float BaseSalaryTimer { get; set; } = 3000f; // SalaryTimer = ( Fixed Update Frequency * Desired time in seconds )
-
-	[Property]
-	public float SalaryAmmount { get; set; } = 50f; 
+	[Property] public float SalaryAmmount { get; set; } = 50f;
 
 
-	protected override void OnUpdate()
+	TimeSince lastUsed = 0; // Set the timer
+
+	protected override void OnFixedUpdate()
 	{
+
+		if ( lastUsed >= SalaryTimer )
+		{
+			MoneyBase += SalaryAmmount; // add Salary to the player Money
+			Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
+			lastUsed = 0; // reset the timer
+		}
 
 	}
 }
+

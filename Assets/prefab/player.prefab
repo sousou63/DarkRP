@@ -100,8 +100,6 @@
       {
         "__type": "PlayerStats",
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
-        "BaseSalaryTimer": 3000,
-        "FirstSalaryTimer": 3000,
         "FoodBase": 100,
         "HealthBase": 100,
         "MoneyBase": 500,
@@ -110,9 +108,7 @@
           "__guid": "78bb95f9-5f59-4c1f-8ca7-00f435fd3a87",
           "UserData": {
             "Title": "On Component Fixed Update",
-            "ReferencedComponentTypes": [
-              "PlayerStats"
-            ]
+            "ReferencedComponentTypes": []
           },
           "Variables": [],
           "Nodes": [
@@ -124,334 +120,14 @@
               }
             },
             {
-              "Id": 1,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "MoneyBase"
-              },
-              "UserData": {
-                "Position": "368,160"
-              }
-            },
-            {
-              "Id": 2,
-              "Type": "op.add",
-              "UserData": {
-                "Position": "624,176"
-              }
-            },
-            {
-              "Id": 3,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "MoneyBase"
-              },
-              "UserData": {
-                "Position": "720,-16"
-              }
-            },
-            {
-              "Id": 4,
-              "Type": "scene.get",
-              "Properties": {
-                "T": "PlayerStats"
-              },
-              "UserData": {
-                "Position": "160,96"
-              }
-            },
-            {
-              "Id": 36,
-              "Type": "op.lessthanorequal",
-              "UserData": {
-                "Position": "-960,80"
-              }
-            },
-            {
-              "Id": 39,
-              "Type": "if",
-              "UserData": {
-                "Position": "-864,-48"
-              }
-            },
-            {
-              "Id": 40,
-              "Type": "scene.get",
-              "Properties": {
-                "T": "PlayerStats"
-              },
-              "UserData": {
-                "Position": "-1952,0"
-              }
-            },
-            {
-              "Id": 42,
-              "Type": "scene.get",
-              "Properties": {
-                "T": "PlayerStats"
-              },
-              "UserData": {
-                "Position": "-672,16"
-              }
-            },
-            {
-              "Id": 47,
-              "Type": "op.subtract",
-              "UserData": {
-                "Position": "-1488,32"
-              }
-            },
-            {
-              "Id": 50,
-              "Type": "comment",
-              "UserData": {
-                "Position": "-1984,-128",
-                "Size": "892,306",
-                "Title": "Decrement the timer",
-                "Layer": 2
-              }
-            },
-            {
-              "Id": 55,
-              "Type": "comment",
-              "UserData": {
-                "Position": "-688,-96",
-                "Size": "720,274",
-                "Title": "Reset the Timer",
-                "Layer": 1
-              }
-            },
-            {
-              "Id": 56,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "FirstSalaryTimer"
-              },
-              "UserData": {
-                "Position": "-1776,80"
-              }
-            },
-            {
-              "Id": 57,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "FirstSalaryTimer"
-              },
-              "UserData": {
-                "Position": "-1376,-64"
-              }
-            },
-            {
-              "Id": 58,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "FirstSalaryTimer"
-              },
-              "UserData": {
-                "Position": "-272,-16"
-              }
-            },
-            {
-              "Id": 59,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "BaseSalaryTimer"
-              },
-              "UserData": {
-                "Position": "-512,64"
-              }
-            },
-            {
-              "Id": 62,
-              "Type": "property",
-              "Properties": {
-                "_type": "PlayerStats",
-                "_name": "SalaryAmmount"
-              },
-              "UserData": {
-                "Position": "368,256"
-              }
-            },
-            {
-              "Id": 63,
-              "Type": "comment",
-              "UserData": {
-                "Position": "128,-96",
-                "Size": "844,434",
-                "Title": "Add Salary Ammount to the Base Money "
-              }
-            },
-            {
               "Id": 66,
               "Type": "sound.play",
               "UserData": {
-                "Position": "1120,-16"
+                "Position": "-2144,80"
               }
             }
           ],
           "Links": [
-            {
-              "SrcId": 4,
-              "SrcName": "_result",
-              "DstId": 1,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 1,
-              "SrcName": "_result",
-              "DstId": 2,
-              "DstName": "a"
-            },
-            {
-              "SrcId": 62,
-              "SrcName": "_result",
-              "DstId": 2,
-              "DstName": "b"
-            },
-            {
-              "SrcId": 58,
-              "SrcName": "_signal",
-              "DstId": 3,
-              "DstName": "_signal"
-            },
-            {
-              "SrcId": 4,
-              "SrcName": "_result",
-              "DstId": 3,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 2,
-              "SrcName": "_result",
-              "DstId": 3,
-              "DstName": "_value"
-            },
-            {
-              "SrcId": 0,
-              "SrcName": "_target",
-              "DstId": 4,
-              "DstName": "_this"
-            },
-            {
-              "SrcId": 56,
-              "SrcName": "_result",
-              "DstId": 36,
-              "DstName": "a"
-            },
-            {
-              "Value": {
-                "$type": "Simple",
-                "Type": "System.Single",
-                "Value": 0
-              },
-              "DstId": 36,
-              "DstName": "b"
-            },
-            {
-              "SrcId": 57,
-              "SrcName": "_signal",
-              "DstId": 39,
-              "DstName": "_signal"
-            },
-            {
-              "SrcId": 36,
-              "SrcName": "_result",
-              "DstId": 39,
-              "DstName": "condition"
-            },
-            {
-              "SrcId": 0,
-              "SrcName": "_target",
-              "DstId": 40,
-              "DstName": "_this"
-            },
-            {
-              "SrcId": 0,
-              "SrcName": "_target",
-              "DstId": 42,
-              "DstName": "_this"
-            },
-            {
-              "SrcId": 56,
-              "SrcName": "_result",
-              "DstId": 47,
-              "DstName": "a"
-            },
-            {
-              "Value": {
-                "$type": "Simple",
-                "Type": "System.Single",
-                "Value": 1
-              },
-              "DstId": 47,
-              "DstName": "b"
-            },
-            {
-              "SrcId": 40,
-              "SrcName": "_result",
-              "DstId": 56,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 0,
-              "SrcName": "_signal",
-              "DstId": 57,
-              "DstName": "_signal"
-            },
-            {
-              "SrcId": 40,
-              "SrcName": "_result",
-              "DstId": 57,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 47,
-              "SrcName": "_result",
-              "DstId": 57,
-              "DstName": "_value"
-            },
-            {
-              "SrcId": 39,
-              "SrcName": "true",
-              "DstId": 58,
-              "DstName": "_signal"
-            },
-            {
-              "SrcId": 42,
-              "SrcName": "_result",
-              "DstId": 58,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 59,
-              "SrcName": "_result",
-              "DstId": 58,
-              "DstName": "_value"
-            },
-            {
-              "SrcId": 42,
-              "SrcName": "_result",
-              "DstId": 59,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 4,
-              "SrcName": "_result",
-              "DstId": 62,
-              "DstName": "_target"
-            },
-            {
-              "SrcId": 3,
-              "SrcName": "_signal",
-              "DstId": 66,
-              "DstName": "_signal"
-            },
             {
               "SrcId": 0,
               "SrcName": "_target",
@@ -465,7 +141,8 @@
             }
           ]
         },
-        "SalaryAmmount": 50
+        "SalaryAmmount": 50,
+        "SalaryTimer": 60
       },
       {
         "__type": "Sandbox.CapsuleCollider",
@@ -522,8 +199,8 @@
                   "Id": 3,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "480,-64"
@@ -533,8 +210,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "480,128"
@@ -554,8 +231,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -565,8 +242,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,128"
@@ -688,11 +365,7 @@
               "__guid": "66e36109-b932-4366-bccb-5ccfa0d61af1",
               "UserData": {
                 "Title": "On Component Start",
-                "ReferencedComponentTypes": [
-                  "BasicMenu",
-                  "PlayerHUD",
-                  "TabMenu"
-                ]
+                "ReferencedComponentTypes": []
               },
               "Variables": [],
               "Nodes": [
@@ -700,25 +373,25 @@
                   "Id": 0,
                   "Type": "input",
                   "UserData": {
-                    "Position": "-432,0"
+                    "Position": "-448,32"
                   }
                 },
                 {
                   "Id": 1,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Network"
+                    "_name": "Network",
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
-                    "Position": "-192,80"
+                    "Position": "-192,144"
                   }
                 },
                 {
                   "Id": 3,
                   "Type": "if",
                   "UserData": {
-                    "Position": "288,0"
+                    "Position": "288,64"
                   }
                 },
                 {
@@ -726,101 +399,105 @@
                   "Type": "call",
                   "Properties": {
                     "_isStatic": false,
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
-                    "Position": "1104,32"
+                    "Position": "832,64"
                   }
                 },
                 {
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
+                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    },
-                    "_name": "IsProxy"
+                    }
                   },
                   "UserData": {
-                    "Position": "16,80"
-                  }
-                },
-                {
-                  "Id": 7,
-                  "Type": "scene.get",
-                  "Properties": {
-                    "T": "BasicMenu"
-                  },
-                  "UserData": {
-                    "Position": "528,-32"
-                  }
-                },
-                {
-                  "Id": 8,
-                  "Type": "scene.get",
-                  "Properties": {
-                    "T": "PlayerHUD"
-                  },
-                  "UserData": {
-                    "Position": "704,-32"
-                  }
-                },
-                {
-                  "Id": 9,
-                  "Type": "scene.get",
-                  "Properties": {
-                    "T": "TabMenu"
-                  },
-                  "UserData": {
-                    "Position": "896,-32"
-                  }
-                },
-                {
-                  "Id": 11,
-                  "Type": "call",
-                  "Properties": {
-                    "_isStatic": false,
-                    "_type": "Sandbox.Component",
-                    "_name": "Destroy"
-                  },
-                  "UserData": {
-                    "Position": "528,32"
-                  }
-                },
-                {
-                  "Id": 12,
-                  "Type": "call",
-                  "Properties": {
-                    "_isStatic": false,
-                    "_type": "Sandbox.Component",
-                    "_name": "Destroy"
-                  },
-                  "UserData": {
-                    "Position": "720,32"
-                  }
-                },
-                {
-                  "Id": 13,
-                  "Type": "call",
-                  "Properties": {
-                    "_isStatic": false,
-                    "_type": "Sandbox.Component",
-                    "_name": "Destroy"
-                  },
-                  "UserData": {
-                    "Position": "896,32"
+                    "Position": "16,144"
                   }
                 },
                 {
                   "Id": 14,
                   "Type": "comment",
                   "UserData": {
-                    "Position": "-224,-96",
+                    "Position": "-224,-32",
                     "Size": "1500,274",
-                    "Title": "Destroy all the UI Stuff not related to us ( In the newtork ) | This is not perfect as it add some bugs when a player connect but for now it work"
+                    "Title": "Destroy all the UI Stuff not related to us ( In the newtork )",
+                    "Layer": 1
+                  }
+                },
+                {
+                  "Id": 16,
+                  "Type": "input.value",
+                  "Properties": {
+                    "_name": "_target"
+                  },
+                  "UserData": {
+                    "Position": "-432,128"
+                  }
+                },
+                {
+                  "Id": 17,
+                  "Type": "input.value",
+                  "Properties": {
+                    "_name": "_target"
+                  },
+                  "UserData": {
+                    "Position": "288,160"
+                  }
+                },
+                {
+                  "Id": 20,
+                  "Type": "property",
+                  "Properties": {
+                    "_name": "Children",
+                    "_type": "Sandbox.GameObject"
+                  },
+                  "UserData": {
+                    "Position": "432,160"
+                  }
+                },
+                {
+                  "Id": 21,
+                  "Type": "call",
+                  "Properties": {
+                    "_isStatic": false,
+                    "_name": "ForEach",
+                    "_type": "System.Collections.Generic.List\u00601"
+                  },
+                  "UserData": {
+                    "Position": "656,96"
+                  }
+                },
+                {
+                  "Id": 23,
+                  "Type": "op.isnotnull",
+                  "UserData": {
+                    "Position": "800,192"
+                  }
+                },
+                {
+                  "Id": 24,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "912,160"
+                  }
+                },
+                {
+                  "Id": 26,
+                  "Type": "call",
+                  "Properties": {
+                    "_isStatic": false,
+                    "_name": "Destroy",
+                    "_type": "Sandbox.GameObject"
+                  },
+                  "UserData": {
+                    "Position": "1072,112"
                   }
                 }
               ],
@@ -844,7 +521,7 @@
                   "DstName": "condition"
                 },
                 {
-                  "SrcId": 13,
+                  "SrcId": 21,
                   "SrcName": "_signal",
                   "DstId": 4,
                   "DstName": "_signal"
@@ -862,57 +539,51 @@
                   "DstName": "_target"
                 },
                 {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 7,
-                  "DstName": "_this"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 8,
-                  "DstName": "_this"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 9,
-                  "DstName": "_this"
+                  "SrcId": 17,
+                  "SrcName": "_result",
+                  "DstId": 20,
+                  "DstName": "_target"
                 },
                 {
                   "SrcId": 3,
                   "SrcName": "true",
-                  "DstId": 11,
+                  "DstId": 21,
                   "DstName": "_signal"
                 },
                 {
-                  "SrcId": 7,
+                  "SrcId": 20,
                   "SrcName": "_result",
-                  "DstId": 11,
+                  "DstId": 21,
                   "DstName": "_target"
                 },
                 {
-                  "SrcId": 11,
-                  "SrcName": "_signal",
-                  "DstId": 12,
+                  "SrcId": 21,
+                  "SrcName": "action.obj",
+                  "DstId": 23,
+                  "DstName": "input"
+                },
+                {
+                  "SrcId": 21,
+                  "SrcName": "action",
+                  "DstId": 24,
                   "DstName": "_signal"
                 },
                 {
-                  "SrcId": 8,
+                  "SrcId": 23,
                   "SrcName": "_result",
-                  "DstId": 12,
-                  "DstName": "_target"
+                  "DstId": 24,
+                  "DstName": "condition"
                 },
                 {
-                  "SrcId": 12,
-                  "SrcName": "_signal",
-                  "DstId": 13,
+                  "SrcId": 24,
+                  "SrcName": "true",
+                  "DstId": 26,
                   "DstName": "_signal"
                 },
                 {
-                  "SrcId": 9,
-                  "SrcName": "_result",
-                  "DstId": 13,
+                  "SrcId": 21,
+                  "SrcName": "action.obj",
+                  "DstId": 26,
                   "DstName": "_target"
                 }
               ]

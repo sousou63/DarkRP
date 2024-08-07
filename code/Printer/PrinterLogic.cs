@@ -21,7 +21,7 @@ public sealed class PrinterLogic : Component
 
 	// Printer Timer Setup
 
-	[Property] public float PrinterCurrentMoney { get; set; } = 0f;
+	[Property, Sync,] public float PrinterCurrentMoney { get; set; } = 0f;
 
 
 	[Property] public float PrinterTimer { get; set; } = 60f; // Printer Timer to get the money ( in seconds )
