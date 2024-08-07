@@ -145,8 +145,8 @@
               "Id": 3,
               "Type": "property",
               "Properties": {
-                "_name": "MoneyBase",
-                "_type": "PlayerStats"
+                "_type": "PlayerStats",
+                "_name": "MoneyBase"
               },
               "UserData": {
                 "Position": "720,-16"
@@ -238,8 +238,8 @@
               "Id": 57,
               "Type": "property",
               "Properties": {
-                "_name": "FirstSalaryTimer",
-                "_type": "PlayerStats"
+                "_type": "PlayerStats",
+                "_name": "FirstSalaryTimer"
               },
               "UserData": {
                 "Position": "-1376,-64"
@@ -554,8 +554,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -565,8 +565,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,128"
@@ -725,9 +725,9 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1104,32"
@@ -782,9 +782,9 @@
                   "Id": 11,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.Component",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "528,32"
@@ -794,9 +794,9 @@
                   "Id": 12,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.Component",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "720,32"
@@ -806,9 +806,9 @@
                   "Id": 13,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.Component",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "896,32"
@@ -1020,17 +1020,13 @@
           {
             "__type": "BasicMenu",
             "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
-            "Bronze": "0.08837,0.03093,0,1",
-            "BronzePrinterPrefab": {
-              "_type": "gameobject",
-              "prefab": "prefab/printer.prefab"
-            },
-            "Diamond": "0,0.93333,1,1",
-            "Gold": "0.92093,0.82884,0,1",
             "MyStringValue": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer Spawning",
             "MyStringValue2": " Health | Stamina | Food | Jobs | Printer Logic | Housing | Weapons | Persistence | Etc...",
-            "MyStringValue3": "Everything that you see here is subject to change and placeholders. Additionally, this game mode will probably become open-source so that everyone can contribute to it. I work professionally with Unreal Engine, so I do all of this in my spare time! If you want to contact me, my Discord is: sousoup_",
-            "Silver": "111.12,111.12,111.12,1"
+            "MyStringValue3": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ). I work professionally with unreal engine, so I do all of this in my spare time! If you want to contact me, my Discord is: sousoup_",
+            "PrinterPrefab": {
+              "_type": "gameobject",
+              "prefab": "prefab/printer.prefab"
+            }
           }
         ]
       }

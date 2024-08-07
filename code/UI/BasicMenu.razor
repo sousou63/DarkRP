@@ -40,21 +40,14 @@
 @code
 {
 
-    [Property] GameObject BronzePrinterPrefab { get; set; }
+    [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Ref
 
     [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue2 { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
 
-    [Property] Color Bronze { get; set; }
-    [Property] Color Silver { get; set; }
-    [Property] Color Gold { get; set; }
-    [Property] Color Diamond { get; set; }
-
     int MaxPrinter = 2;
     int CurrentPrinter = 0;
-
-
 
 
     void BuyBronzePrinter() {
@@ -64,11 +57,10 @@
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
             Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = BronzePrinterPrefab.Clone(PlayerPos); // It Spawn Locally ( around the player )
-            Printer.Components.Get<ModelRenderer>().Tint = Bronze;
+            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
+            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Bronze;
             Printer.NetworkSpawn();  // It spawn on all clients
             CurrentPrinter++;
-            Log.Info((GameObject.Parent.Transform.World.Forward) * 10);
         }
                             }
 
@@ -80,8 +72,8 @@
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
             Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = BronzePrinterPrefab.Clone(PlayerPos); // It Spawn Locally ( around the player )
-            Printer.Components.Get<ModelRenderer>().Tint = Silver;
+            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
+            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Silver;
             Printer.NetworkSpawn();  // It spawn on all clients
             CurrentPrinter++;
         }
@@ -95,8 +87,8 @@
             {
                 Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
                 Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-                GameObject Printer = BronzePrinterPrefab.Clone(PlayerPos); // It Spawn Locally ( around the player )
-                Printer.Components.Get<ModelRenderer>().Tint = Gold;
+                GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
+                Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Gold;
                 Printer.NetworkSpawn();  // It spawn on all clients
                 CurrentPrinter++;
             }
@@ -109,8 +101,8 @@
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
             Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = BronzePrinterPrefab.Clone(PlayerPos); // It Spawn Locally ( around the player )
-            Printer.Components.Get<ModelRenderer>().Tint = Diamond;
+            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
+            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Diamond;
             Printer.NetworkSpawn();  // It spawn on all clients
             CurrentPrinter++;
         }

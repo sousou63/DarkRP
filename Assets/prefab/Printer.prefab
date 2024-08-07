@@ -5,7 +5,6 @@
     "Name": "printer",
     "Scale": "0.5,0.7,0.4",
     "Enabled": true,
-    "NetworkMode": 1,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
@@ -59,6 +58,14 @@
           "Id": "3bcc4717-e97f-4fe9-8ccc-f8ee9be3f467"
         },
         "Volume": 1
+      },
+      {
+        "__type": "PrinterLogic",
+        "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
+        "Bronze": "0.14419,0.06572,0.02347,1",
+        "Diamond": "0,0.53178,0.65116,1",
+        "Gold": "1,0.75,0,1",
+        "Silver": "65.35,65.35,65.35,1"
       }
     ],
     "Children": [],
