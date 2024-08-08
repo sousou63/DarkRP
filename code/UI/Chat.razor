@@ -5,7 +5,12 @@
 @implements Component.INetworkListener
 
 <root>
-
+    @if (ChatOpen == true)
+    {
+        <div class="header">
+            Chat
+        </div>
+    }
 	<div class="output">
 		@foreach (var entry in Entries)
         {

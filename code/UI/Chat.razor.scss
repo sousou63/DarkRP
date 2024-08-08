@@ -10,7 +10,14 @@ Chat {
 	flex-direction: column;
 	font-size: 17px;
 	font-family: Poppins;
-	gap: 10px;
+	text-shadow: 2px 2px 2px #000a;
+
+	.header {
+		color: white;
+		padding: 5px;
+		height: auto;
+		border-bottom: 2px solid rgb(148, 148, 148);
+	}
 
 	.output {
 		display: flex;
@@ -26,7 +33,6 @@ Chat {
 			//background-color: #222d;
 			padding: 2px;
 			gap: 10px;
-			text-shadow: 2px 2px 2px #000a;
 			min-height: 32px;
 			height: auto;
 			flex-shrink: 0;
@@ -67,11 +73,7 @@ Chat {
 
 	&.open {
 		pointer-events: all;
-		.input {
-			// color: #fff, color: #ffffffaa, color: rgba( red, 0.5 )
-			background-color: #73737370;
-		}
-		.output {
+		.output,.header,.input{
 			background-color: #73737370;
 		}
 	}
