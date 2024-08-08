@@ -89,13 +89,13 @@
         if (string.IsNullOrWhiteSpace(text))
             return;
 
+        if ( CheckCommand(text) == true) return;
         AddText( text );
     }
 
     [Broadcast]
     public void AddText( string message )
     {
-        if ( CheckCommand(message) == true) return;
         message = message.Truncate( 300 );
 
         if (string.IsNullOrWhiteSpace(message))
