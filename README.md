@@ -15,4 +15,4 @@ I recommend using the Github Desktop application, which greatly simplifies the w
 ## CREDITS 
 
 - Sousou : ( Base GameMode + Github Management )
-- QueenPM : ( Chat Improvement )
+- QueenPM : ( Chat Improvement + Tab Menu UI Rework )
