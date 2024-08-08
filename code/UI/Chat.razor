@@ -5,7 +5,12 @@
 @implements Component.INetworkListener
 
 <root>
-
+    @if (ChatOpen == true)
+    {
+        <div class="header">
+            Chat
+        </div>
+    }
 	<div class="output">
 		@foreach (var entry in Entries)
         {
@@ -19,16 +24,15 @@
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                     }
                     <div class="author">@entry.author</div>
-                    <div class="message">@entry.message</div>
+                    <text class="message">@entry.message</text>
                 </div>
             }
         }
 	</div>
 
-	<div class="input">
-		<TextEntry @ref="InputBox" onsubmit="@ChatFinished"></TextEntry>
-	</div>
-	
+    <div class="input">
+        <TextEntry style="width:100%;" MaxLength=@(150) @ref="InputBox" onsubmit="@ChatFinished"></TextEntry>
+    </div>
 </root>
 
 @code
@@ -68,6 +72,9 @@
         if (ChatOpen)
         {
             InputBox.Focus();
+            InputBox.Placeholder = "Type /help for commands";
+        }else {
+            InputBox.Placeholder = "";
         }
         SetClass( "open", open );
         StateHasChanged();
@@ -82,6 +89,7 @@
         if (string.IsNullOrWhiteSpace(text))
             return;
 
+        if ( CheckCommand(text) == true) return;
         AddText( text );
     }
 
@@ -131,4 +139,54 @@
 
 		AddSystemText( $"{channel.DisplayName} has left the game" );
 	}
+
+    // Super basic commands for now. Expand later for more.
+    // TODO Move this to a separate class & make it more extensible
+    public bool CheckCommand(string message)
+    {
+        if (message.StartsWith("/"))
+        {
+            var parts = message.Split(" ");
+            var command = parts[0].Substring(1).ToLower();
+            var args = parts.Skip(1).ToArray();
+
+            switch (command)
+            {
+                case "help":
+                    AddSystemText("Available commands: /help, /clear, /lorem [count]");
+                    return true;
+                case "clear":
+                    Entries.Clear();
+                    AddSystemText("Chat has been cleared");
+                    return true;
+                case "lorem":
+                    // Loop X times for args 1
+                    var count = 1;
+                    if (args.Length > 0)
+                    {
+                        if (!int.TryParse(args[0], out count))
+                        {
+                            AddText("Invalid argument: " + args[0]);
+                            return true;
+                        }
+                    }
+                    if (count > 10)
+                    {
+                        AddSystemText("You can only generate up to 10 lorem ipsum messages at a time");
+                        return true;
+                    }
+
+                    for (var i = 0; i < count; i++)
+                    {
+                        AddText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+                    }
+                    return true;
+                default:
+                    AddSystemText($"Unknown command: {command}");
+                    return true;
+            }
+        }
+
+        return false;
+    }
 }
