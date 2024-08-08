@@ -1,5 +1,6 @@
 ﻿@using Sandbox;
 @using Sandbox.UI;
+@using System;
 @inherits PanelComponent
 @implements Component.INetworkListener
 
@@ -12,6 +13,7 @@
             @if (entry.timeSinceAdded < 10f || ChatOpen)
             {
                 <div class="chat_entry">
+                    <div class="timestamp">@entry.timestamp</div>
                     @if (entry.steamid > 0)
                     {
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
@@ -36,6 +38,7 @@
     public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
     {
         public bool IsNew { get; set; } = true;
+        public string timestamp { get; set; } = DateTime.Now.ToString("HH:mm:ss");
     }
     List<Entry> Entries = new();
 

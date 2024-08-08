@@ -33,6 +33,12 @@ Chat {
 			flex-shrink: 0;
 			overflow: hidden;
 
+			.timestamp {
+				color: #f3f3f3;
+				flex-shrink: 0;
+				font-family: 'Times New Roman', serif;
+			}
+
 			.avatar {
 				width: 32px;
 				height: 32px;
