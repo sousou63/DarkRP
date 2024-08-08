@@ -205,8 +205,8 @@
                   "Id": 3,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,-64"
@@ -216,8 +216,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,128"
@@ -237,8 +237,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -248,8 +248,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,128"
@@ -386,8 +386,8 @@
                   "Id": 1,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-192,144"
@@ -404,9 +404,9 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "832,64"
@@ -416,12 +416,12 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "16,144"
@@ -451,8 +451,8 @@
                   "Id": 20,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Children",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Children"
                   },
                   "UserData": {
                     "Position": "432,160"
@@ -462,9 +462,9 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
-                    "_name": "ForEach",
                     "_type": "System.Collections.Generic.List\u00601",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "ForEach"
                   },
                   "UserData": {
                     "Position": "656,96"
@@ -488,9 +488,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1072,112"

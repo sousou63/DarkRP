@@ -8,44 +8,46 @@ public sealed class PlayerInteraction : Component
 
 	[Property] public bool DrawDebugInteract { get; set; } = false;
 
+	[Property] public string InteractTag { get; set; } = "Interact"; // Interact tag to add to desired interactable objects
+
 	SceneTraceResult tr;
 
 	protected override void OnFixedUpdate()
 	{
+
 		Interact();
 
 		// Draw the debug information if the boolean is true
 		if ( DrawDebugInteract )
 		{
-			Interact();
 			DrawDebug();
 		}
 	}
 
 	void Interact()
 	{
-		// Get the main camera (I think this is not optimized, but anyway, I stole it from Facepunch ^^)
-		var camera = Scene.GetAllComponents<CameraComponent>().Where( x => x.IsMainCamera ).FirstOrDefault();
 
-		// Starting position of the line (camera position)
-		Vector3 start = camera.Transform.World.Position;
+			// Get the main camera 
+			var camera = Gizmo.CameraTransform;      
 
-		// Direction of the line (the direction the camera is facing)
-		Vector3 direction = camera.Transform.World.Forward;
+			// Starting position of the line (camera position)
+			Vector3 start = camera.Position;
 
-		// Calculate the end position based on direction and Interact range
-		Vector3 end = start + direction * InteractRange;
+			// Direction of the line (the direction the camera is facing)
+			Vector3 direction = camera.Forward;
 
-		// Line Trace
-		tr = Scene.Trace.Ray( start, end ).Run();
+			// Calculate the end position based on direction and Interact range
+			Vector3 end = start + direction * InteractRange;
 
-		// Check for the "interact" Tag and do some logic assiocated to it 
-		if ( tr.GameObject.Tags.Has("Interact"))
-		{
-			// to finish, at best I would like to draw an UI on the screen " Press [Use Input] to Interact " --> then do an action assiocated with this tag
-			DrawDebug();
-		}
+			// Line Trace
+			tr = Scene.Trace.Ray( start, end ).Run();
 
+			// Check for the "interact" Tag and do some logic assiocated to it 
+			if ( (tr.GameObject != null) && tr.GameObject.Tags.Has(InteractTag))
+			{
+				// to finish, at best I would like to draw an UI on the screen " Press [Use Input] to Interact " --> then do an action assiocated with this tag
+				DrawDebug();
+			}
 	}
 
 	void DrawDebug()
