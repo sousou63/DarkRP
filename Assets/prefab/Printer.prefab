@@ -4,6 +4,7 @@
     "Flags": 0,
     "Name": "printer",
     "Scale": "0.5,0.7,0.4",
+    "Tags": "interact",
     "Enabled": true,
     "Components": [
       {
