@@ -16,11 +16,11 @@ Chat {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		gap: 5px;
 		padding: 3px;
+		gap: 10px;
 		height: calc(32px * 8);
 		overflow-y: scroll;
-		overflow-x: visible;
+		overflow-x: hidden;
 
 		.chat_entry {
 			//background-color: #222d;
@@ -28,8 +28,8 @@ Chat {
 			gap: 10px;
 			text-shadow: 2px 2px 2px #000a;
 			min-height: 32px;
-			display: flex;
-			overflow: hidden;
+			height: auto;
+			flex-shrink: 0;
 
 			.timestamp {
 				color: #f3f3f3;
@@ -50,9 +50,7 @@ Chat {
 
 			.author {
 				color: #2d95ce;
-				white-space: nowrap;
 				flex-shrink: 0;
-				width: 100px;
 			}
 
 			.message {
@@ -61,10 +59,11 @@ Chat {
 			}
 		}
 	}
-
 	.input {
 		color: white;
+		padding: 5px;
 	}
+
 
 	&.open {
 		pointer-events: all;
