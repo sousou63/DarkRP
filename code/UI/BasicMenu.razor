@@ -62,7 +62,7 @@
     <div class="section">
         <div class="section-title">Information</div>
         <div class="section-contents">
-            <div class="info" style="color: green;">
+            <div class="info" style="color: limegreen;">
                 <h1>Completed</h1>
                 <p>@InfoDone</p>
             </div>
@@ -73,6 +73,10 @@
             <div class="info" style="color: yellow;">
                 <h1>Notes</h1>
                 <p>@InfoNotes</p>
+            </div>
+            <div class="info" style="color: white;">
+                <h1>Credits</h1>
+                <p>@InfoCredits</p>
             </div>
         </div>
     </div>
@@ -86,6 +90,7 @@
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
+    [Property, TextArea] public string InfoCredits { get; set; } = "Hello World!";
 
     int MaxPrinter = 2;
     int CurrentPrinter = 0;
