@@ -4,27 +4,27 @@ TabMenu {
 	top: 125;
 	left: 500;
 	bottom: 100;
+	right: 500;
 	background-color: #252830;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	padding: 10px;
-	width: 250px;
 	font-family: 'Times New Roman', serif;
-
 		.title {
 			color: #ffffff;
 			font-size: 25px;
-			font-weight: bold;
 			margin-bottom: 10px;
+			font-weight: 400;
+			justify-content: center;
+			width: 100%;
 		}
 
 		.buttoncontainer {
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
-			width: 100%;
+			width: 250px;
 			.button {
 				color: white;
 				font-size: 35px;

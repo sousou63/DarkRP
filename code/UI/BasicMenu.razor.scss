@@ -1,8 +1,8 @@
 BasicMenu {
 	pointer-events: all;
 	position: absolute;
-	top: 125;
-	left: 780;
+	top: 180;
+	left: 750;
 	right: 500;
 	bottom: 100;
 	background-color: #1e1e27;
@@ -15,6 +15,7 @@ BasicMenu {
 	gap:10px;
 	padding: 20px;
 	font-family: 'Times New Roman', serif;
+	font-weight: 400;
 
 	.section-title {
 		width: 100%;
