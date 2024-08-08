@@ -1,83 +1,96 @@
 BasicMenu {
-	pointer-events: all; // Show the mouse cursor
+	pointer-events: all;
 	position: absolute;
-	top: 360;
-	left: 500;
+	top: 179;
+	left: 750;
 	right: 500;
-	bottom: 125;
-	background-color: #006cd5;
+	bottom: 100;
+	background-color: #1e1e27;
 	justify-content: center;
 	font-weight: bold;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: visible;
 	flex-wrap: wrap;
+	gap:10px;
+	padding: 20px;
+	font-family: 'Times New Roman', serif;
+	font-weight: 400;
 
-	.darkweb1 {
-		border: 1px solid white;
-		flex-direction: row;
-		margin-top: 1vh;
-		margin-left: 1vh;
-		margin-right: 1vh;
-		margin-bottom: 1vh;
-		justify-content: center;
-		align-items: center;
-
-		.button {
-			margin-top: 3vh;
-			margin-left: 3vh;
-			margin-right: 3vh;
-			margin-bottom: 3vh;
-			background-color: gray;
-			justify-content: center;
-			align-items: center;
-			color: white;
-
-			&:hover {
-				transform: scale(1.2 1.2);
-			}
-		}
+	.section-title {
+		width: 100%;
+		padding: 10px;
+		font-size: 25px;
+		color: white;
+		background-color: #252830;
+		border-radius: 15px 15px 0 0;
 	}
 
-	.Job1 {
-		border: 1px solid white;
-		flex-direction: row;
-		margin-top: 1vh;
-		margin-left: 1vh;
-		margin-right: 1vh;
-		margin-bottom: 1vh;
-		justify-content: center;
-		align-items: center;
-
-		.button {
-			margin-top: 3vh;
-			margin-left: 3vh;
-			margin-right: 3vh;
-			margin-bottom: 3vh;
-			background-color: gray;
-			justify-content: center;
-			align-items: center;
-			color: white;
-
-			&:hover {
-				transform: scale(1.2 1.2);
-			}
-		}
+	.section {
+		background-color: #22222b;
+		border-radius: 15px 15px 0 0;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 
-	.info1 {
+	.section-contents {
+		display: flex;
 		flex-wrap: wrap;
-		border: 1px solid white;
-		margin-top: 1vh;
-		margin-left: 1vh;
-		margin-right: 1vh;
-		margin-bottom: 1vh;
+		gap: 10px;
+		padding: 10px;
+	}
 
-		.info2 {
-			//margin-top: 15vh;
+	.button {
+		border-color: #37343e;
+		border-width: 2px;
+		border-radius: 5px;
+		background-color: #25282e;
+		padding: 10px;
+		cursor: pointer;
+
+		.label-container {
+			display: flex;
 			flex-direction: column;
-			align-items: center;
-			margin-left: 1vh;
-			margin-right: 1vh;
-			margin-bottom: 1vh;
+			color: white;
 		}
+
+		.icon {
+			width: 50px;
+			height: 50px;
+			margin-right: 15px;
+			background-color: #a7a7a7;
+			border-radius: 50%;
+		}
+
+		.label {
+
+		}
+
+		.description {
+			font-weight: 400;
+			color: #888b91;
+		}
+
+		.price {
+			color: #75a774;
+		}
+
+		&:hover {
+			border-color: rgb(50,125,179);
+		}	
+	}
+
+	.info {
+		display: flex;
+		flex-direction: column;
+		 h1 {
+			font-size: 30px;
+			font-weight: bold;
+		 }
+
+		 p {
+			font-size: 20px;
+			font-weight: 400;
+		 }
 	}
 }

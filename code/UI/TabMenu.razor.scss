@@ -3,40 +3,54 @@ TabMenu {
 	position: absolute;
 	top: 125;
 	left: 500;
+	bottom: 100;
 	right: 500;
-	bottom: 730;
-	background-color: #006cd5;
-	justify-content: center;
-	//align-items: center;
-	font-weight: bold;
-	border-radius: 20px;
-
+	background-color: #252830;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	font-family: 'Times New Roman', serif;
 		.title {
-			justify-content: center;
-			position: absolute;
-			align-items: center;
-			flex-wrap: wrap;
 			color: #ffffff;
-			font-size: 125px;
+			font-size: 25px;
+			margin-bottom: 10px;
+			font-weight: 400;
+			justify-content: center;
+			width: 100%;
 		}
 
 		.buttoncontainer {
-			flex-direction: row;
-			position: absolute;
-			margin-top: 14vh;
-			margin-left: 1vh;
-			margin-right: 1vh;
-			border: 1px solid white;
-
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			width: 250px;
 			.button {
 				color: white;
-				margin-left: 4.5vh;
-				margin-right: 4.5vh;
-				background-color: deepskyblue;
 				font-size: 35px;
+				padding: 5px;
+				padding-left: 10px;
+				border-radius: 10px 0 0 10px;
+				width: 100%;
+				cursor: pointer;
 
 				&:hover {
-					transform: scale(1.2 1.2);
+					background: rgb(50,125,179);
+					background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);
+				}
+
+				.button-label-container {
+					display: flex;
+					flex-direction: column;
+				}
+
+				.button-label {
+					font-weight: lighter;
+				}
+
+				.button-description {
+					font-size: 20px;
+					color: #888b91;
 				}
 			}
 		}

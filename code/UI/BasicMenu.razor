@@ -3,38 +3,79 @@
 @inherits PanelComponent
 
 <root>
-
-<div class="darkweb1">
-
-    <div class="button" onclick=@BuyBronzePrinter> BRONZE PRINTER </div>
-    <div class="button" onclick=@BuySilverPrinter> SILVER PRINTER </div>
-    <div class="button" onclick=@BuyGoldPrinter> GOLD PRINTER </div>
-    <div class="button" onclick=@BuyDiamondPrinter> DIAMOND PRINTER </div>
-
-</div>
-
-    <div class="Job1">
-
-    <div class="button" onclick=""> JOB 1 </div>
-    <div class="button" onclick=""> JOB 2 </div>
-    <div class="button" onclick=""> JOB 3 </div>
-    <div class="button" onclick=""> JOB 4 </div>
-    <div class="button" onclick=""> JOB 5 </div>
-    <div class="button" onclick=""> JOB 6 </div>
-
-</div>
-
-    <div class= "info1"> <div class="info2">
-
-        <h1  style =  " margin-top: 2vh;   color: #00ff00; font-size:50px;">   <strong>DONE</strong></h1>
-        <h1  style =  " margin-top: 5vh;   color: #00ff00; font-size:22px;">   <strong>@MyStringValue</strong></h1>
-        <h1  style =  " margin-top: 5vh;   color: #ff3300; font-size:50px;">   <strong>TODO</strong></h1>
-        <h1  style =  " margin-top: 3vh;   color: #ff3300; font-size:22px;">   <strong>@MyStringValue2</strong></h1>
-        <h1  style =  " margin-top: 5vh;   color: #ffff00; font-size:50px;">   <strong>NOTE</strong></h1>
-        <h1  style =  " margin-top: 3vh;   color: #ffff00; font-size:22px;">   <strong>@MyStringValue3</strong></h1>
-
+    <!-- This needs to be dynamic. Hard coded for now -->
+    <div class="section">
+        <div class="section-title">Dark Web</div>
+        <div class="section-contents">
+            <div class="button" onclick=@BuyBronzePrinter>
+                <div class="icon"></div>
+                <div class="label-container">
+                    <div class="label">Bronze Printer</div>
+                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <div class="price">$200</div>
+                </div>
+            </div>
+            <div class="button" onclick=@BuySilverPrinter>
+                <div class="icon"></div>
+                <div class="label-container">
+                    <div class="label">Silver Printer</div>
+                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <div class="price">$200</div>
+                </div>
+            </div>  
+            <div class="button" onclick=@BuyGoldPrinter>
+                <div class="icon"></div>
+                <div class="label-container">
+                    <div class="label">Gold Printer</div>
+                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <div class="price">$200</div>
+                </div>
+            </div>
+            <div class="button" onclick=@BuyDiamondPrinter>
+                <div class="icon"></div>
+                <div class="label-container">
+                    <div class="label">Diamond Printer</div>
+                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <div class="price">$200</div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- This needs to be dynamic. Hard coded for now -->
+    <div class="section">
+        <div class="section-title">Jobs</div>
+        <div class="section-contents">
+            @foreach (var job in new int[] {1, 2, 3, 4, 5, 6, 7, 8})
+            {
+                <div class="button">
+                    <div class="icon"></div>
+                    <div class="label-container">
+                        <div class="label">Job @job</div>
+                        <div class="description">Job @job description</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Information</div>
+        <div class="section-contents">
+            <div class="info" style="color: green;">
+                <h1>Completed</h1>
+                <p>@InfoDone</p>
+            </div>
+            <div class="info" style="color: red;">
+                <h1>TODO</h1>
+                <p>@InfoTodo</p>
+            </div>
+            <div class="info" style="color: yellow;">
+                <h1>Notes</h1>
+                <p>@InfoNotes</p>
+            </div>
+        </div>
+    </div>
 </root>
 
 @code
@@ -42,9 +83,9 @@
 
     [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Ref
 
-    [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
-    [Property, TextArea] public string MyStringValue2 { get; set; } = "Hello World!";
-    [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
+    [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
+    [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
+    [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
 
     int MaxPrinter = 2;
     int CurrentPrinter = 0;
@@ -52,7 +93,7 @@
 
     void BuyBronzePrinter() {
 
-        if (CurrentPrinter <= MaxPrinter)
+        if (CurrentPrinter < MaxPrinter)
 
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
@@ -67,7 +108,7 @@
 
     void BuySilverPrinter() {
 
-        if (CurrentPrinter <= MaxPrinter)
+        if (CurrentPrinter < MaxPrinter)
 
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
@@ -82,7 +123,7 @@
 
     void BuyGoldPrinter() {
 
-            if (CurrentPrinter <= MaxPrinter)
+            if (CurrentPrinter < MaxPrinter)
 
             {
                 Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
@@ -96,7 +137,7 @@
 
      void BuyDiamondPrinter() {
 
-        if (CurrentPrinter <= MaxPrinter)
+        if (CurrentPrinter < MaxPrinter)
 
         {
             Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
@@ -111,5 +152,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue2, MyStringValue3);
+    protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes);
 }

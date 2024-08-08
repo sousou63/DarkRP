@@ -4,10 +4,25 @@
 
 <root>
 	<div class="title">@MyStringValue</div>
-    <div class="money">@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase) $</div>
-    <div class="healthbar"><div class="background"><div class="inner"><div class="fill" style="width: 100%"></div>
-    <div class="foodbar"><div class="background"><div class="inner"><div class="fill" style="width: 100%"></div>
-    <div class="Job">@MyStringValue3 </div>
+
+    <div class="player-card">
+        <div class="title">
+            <div class="name">@Rpc.Caller.DisplayName</div>
+            <div class="job">@MyStringValue3</div>
+        </div>
+        <div class="wallet">
+            <div class="label">Wallet</div>
+            <div class="money">@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase) $</div>
+        </div>
+        <div class="bars">
+            <div class="bar">
+                <div class="fill" style="width:100%; background-color: rgb(180, 71, 71);"></div>
+            </div>
+            <div class="bar">
+                <div class="fill" style="width:100%; background-color: rgb(219, 157, 42);"></div>
+            </div>
+        </div>
+    </div>
 </root>
 
 @code
