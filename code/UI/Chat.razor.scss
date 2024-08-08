@@ -6,19 +6,21 @@ Chat {
 	justify-content: center;
 	font-weight: bold;
 	border-radius: 20px;
+	display: flex;
 	flex-direction: column;
-	align-items: stretch;
 	font-size: 17px;
 	font-family: Poppins;
 	gap: 10px;
 
 	.output {
-		flex-grow: 1;
+		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		gap: 5px;
 		padding: 3px;
 		height: calc(32px * 8);
+		overflow-y: scroll;
+		overflow-x: visible;
 
 		.chat_entry {
 			//background-color: #222d;
@@ -27,6 +29,9 @@ Chat {
 			text-shadow: 2px 2px 2px #000a;
 			align-items: center;
 			height: 32px;
+			display: flex;
+			flex-shrink: 0;
+			overflow: hidden;
 
 			.avatar {
 				width: 32px;
