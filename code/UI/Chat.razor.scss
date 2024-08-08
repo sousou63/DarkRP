@@ -27,21 +27,22 @@ Chat {
 			padding: 2px;
 			gap: 10px;
 			text-shadow: 2px 2px 2px #000a;
-			align-items: center;
-			height: 32px;
+			min-height: 32px;
 			display: flex;
-			flex-shrink: 0;
 			overflow: hidden;
 
 			.timestamp {
 				color: #f3f3f3;
 				flex-shrink: 0;
 				font-family: 'Times New Roman', serif;
+				width: 70px;
 			}
 
 			.avatar {
-				width: 32px;
+				width: 50px;
 				height: 32px;
+				margin-left: 5px;
+				margin-right: 5px;
 				background-position: center;
 				background-size: cover;
 				border-radius: 100px;
@@ -51,10 +52,12 @@ Chat {
 				color: #2d95ce;
 				white-space: nowrap;
 				flex-shrink: 0;
+				width: 100px;
 			}
 
 			.message {
 				color: #fff;
+				width: 100%;
 			}
 		}
 	}
