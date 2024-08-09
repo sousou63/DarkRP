@@ -3,50 +3,50 @@
 @inherits PanelComponent
 
 <root>
-    <!-- This needs to be dynamic. Hard coded for now -->
+    <!-- Dark Web Section -->
     <div class="section">
         <div class="section-title">Dark Web</div>
         <div class="section-contents">
-            <div class="button" onclick=@BuyBronzePrinter>
+            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
                 <div class="icon"></div>
                 <div class="label-container">
                     <div class="label">Bronze Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <div class="price">$200</div>
+                    <div class="price">$500</div>
                 </div>
             </div>
-            <div class="button" onclick=@BuySilverPrinter>
+            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
                 <div class="icon"></div>
                 <div class="label-container">
                     <div class="label">Silver Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <div class="price">$200</div>
+                    <div class="price">$1200</div>
                 </div>
-            </div>  
-            <div class="button" onclick=@BuyGoldPrinter>
+            </div>
+            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
                 <div class="icon"></div>
                 <div class="label-container">
                     <div class="label">Gold Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <div class="price">$200</div>
+                    <div class="price">$2600</div>
                 </div>
             </div>
-            <div class="button" onclick=@BuyDiamondPrinter>
+            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
                 <div class="icon"></div>
                 <div class="label-container">
                     <div class="label">Diamond Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <div class="price">$200</div>
+                    <div class="price">$4200</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- This needs to be dynamic. Hard coded for now -->
+    <!-- Jobs Section -->
     <div class="section">
         <div class="section-title">Jobs</div>
         <div class="section-contents">
-            @foreach (var job in new int[] {1, 2, 3, 4, 5, 6, 7, 8})
+            @foreach (var job in new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
             {
                 <div class="button">
                     <div class="icon"></div>
@@ -59,6 +59,7 @@
         </div>
     </div>
 
+    <!-- Information Section -->
     <div class="section">
         <div class="section-title">Information</div>
         <div class="section-contents">
@@ -84,8 +85,8 @@
 
 @code
 {
-
-    [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Ref
+    [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Reference
+    [Property] GameObject PlayerPrefab { get; set; } // Player Prefab Reference
 
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
@@ -95,67 +96,63 @@
     int MaxPrinter = 2;
     int CurrentPrinter = 0;
 
+    // Enum to represent different types of printers
+    enum PrinterType {Bronze,Silver,Gold,Diamond}
 
-    void BuyBronzePrinter() {
-
+    // Generic method to purchase a printer
+    void BuyPrinter(PrinterType type, float price)
+    {
+        // Check if we can add another printer
         if (CurrentPrinter < MaxPrinter)
-
         {
-            Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
-            Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
-            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Bronze;
-            Printer.NetworkSpawn();  // It spawn on all clients
-            CurrentPrinter++;
-        }
-                            }
+            // Try to remove money first ( RemoveMoney() is a function in the PlayerStats Component )
+            bool hasEnoughMoney = PlayerPrefab.Components.Get<PlayerStats>().RemoveMoney(price);
 
-
-    void BuySilverPrinter() {
-
-        if (CurrentPrinter < MaxPrinter)
-
-        {
-            Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
-            Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
-            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Silver;
-            Printer.NetworkSpawn();  // It spawn on all clients
-            CurrentPrinter++;
-        }
-
-                            } 
-
-    void BuyGoldPrinter() {
-
-            if (CurrentPrinter < MaxPrinter)
-
+            if (hasEnoughMoney)
             {
-                Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
-                Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-                GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
-                Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Gold;
-                Printer.NetworkSpawn();  // It spawn on all clients
+                Vector3 Offset = GameObject.Parent.Transform.Local.Forward;
+                Vector3 PlayerPos = GameObject.Parent.Transform.World.Position + Offset * 50;
+                GameObject Printer = PrinterPrefab.Clone(PlayerPos);
+
+                // Get PrinterLogic component
+                var printerLogic = Printer.Components.Get<PrinterLogic>();
+
+                // Assign the color based on the printer type
+                switch (type)
+                {
+                    case PrinterType.Bronze:
+                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Bronze);
+                        break;
+                    case PrinterType.Silver:
+                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Silver);
+                        break;
+                    case PrinterType.Gold:
+                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Gold);
+                        break;
+                    case PrinterType.Diamond:
+                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Diamond);
+                        break;
+                }
+
+                Printer.NetworkSpawn();  // It spawns on all clients
                 CurrentPrinter++;
             }
-                         }
-
-     void BuyDiamondPrinter() {
-
-        if (CurrentPrinter < MaxPrinter)
-
-        {
-            Vector3 Offset = (GameObject.Parent.Transform.Local.Forward);
-            Vector3 PlayerPos = (GameObject.Parent.Transform.World.Position) + (Offset * 50);
-            GameObject Printer = PrinterPrefab.Clone(PlayerPos); // It Spawn Locally
-            Printer.Components.Get<ModelRenderer>().Tint = Printer.Components.Get<PrinterLogic>().Diamond;
-            Printer.NetworkSpawn();  // It spawn on all clients
-            CurrentPrinter++;
+            else
+            {
+                // Not enough money
+                Sound.Play("error.sound");
+            }
         }
-                             }
+        else
+        {
+            // Max printers reached
+            Sound.Play("error.sound");
+        }
+    }
 
     /// <summary>
-    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// The BuildHash method determines if the system should be rebuilt.
+    /// If it changes, the system will be rebuilt.
     /// </summary>
     protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes);
 }

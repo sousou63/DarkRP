@@ -1,4 +1,5 @@
 using Sandbox;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Drawing;
 
@@ -15,7 +16,7 @@ public sealed class PlayerInteraction : Component
 	protected override void OnFixedUpdate()
 	{
 
-		Interact();
+		Interact(); 
 
 		// Draw the debug information if the boolean is true
 		if ( DrawDebugInteract )
@@ -27,27 +28,36 @@ public sealed class PlayerInteraction : Component
 	void Interact()
 	{
 
-			// Get the main camera 
-			var camera = Gizmo.CameraTransform;      
+		// Get the main camera 
+		var camera = Gizmo.CameraTransform;
 
-			// Starting position of the line (camera position)
-			Vector3 start = camera.Position;
+		// Starting position of the line (camera position)
+		Vector3 start = camera.Position;
 
-			// Direction of the line (the direction the camera is facing)
-			Vector3 direction = camera.Forward;
+		// Direction of the line (the direction the camera is facing)
+		Vector3 direction = camera.Forward;
 
-			// Calculate the end position based on direction and Interact range
-			Vector3 end = start + direction * InteractRange;
+		// Calculate the end position based on direction and Interact range
+		Vector3 end = start + direction * InteractRange;
 
-			// Line Trace
-			tr = Scene.Trace.Ray( start, end ).Run();
+		// Line Trace
+		tr = Scene.Trace.Ray( start, end ).Run();
 
-			// Check for the "interact" Tag and do some logic assiocated to it 
-			if ( (tr.GameObject != null) && tr.GameObject.Tags.Has(InteractTag))
+		// Check for the "interact" Tag and do some logic assiocated to it 
+		if ( (tr.GameObject != null) && tr.GameObject.Tags.Has( InteractTag ) )
+		{
+			// Check for the printer tag + the "USE" input pressed + the printer money > 0
+			if ( (tr.GameObject != null) && (tr.GameObject.Tags.Has( "Printer" )) && (Input.Pressed( "Use" )) && (tr.GameObject.Components.Get<PrinterLogic>().PrinterCurrentMoney > 0) )
 			{
-				// to finish, at best I would like to draw an UI on the screen " Press [Use Input] to Interact " --> then do an action assiocated with this tag
-				DrawDebug();
+				// Add the printer money to the player money then set the printer money to 0 ( Very early, need a verification bool in the future )
+				GameObject.Components.Get<PlayerStats>().AddMoney( tr.GameObject.Components.Get<PrinterLogic>().PrinterCurrentMoney );
+				tr.GameObject.Components.Get<PrinterLogic>().ResetPrinterMoney();
+				Sound.Play( "audio/money.sound" );
 			}
+
+			// to finish, at best I would like to draw an UI on the screen " Press [Use Input] to Interact " --> then do an action assiocated with this tag
+			DrawDebug();
+		}
 	}
 
 	void DrawDebug()
@@ -57,5 +67,36 @@ public sealed class PlayerInteraction : Component
 
 		// Show the Trace Ray Info on the console
 		Log.Info( $"Hit: {tr.GameObject} at {tr.EndPosition}" );
+	}
+
+	public Vector3 ForwardLineTrace()
+
+	{
+
+		// Get the main camera 
+		var camera = Gizmo.CameraTransform;
+
+		// Starting position of the line (camera position)
+		Vector3 start = camera.Position;
+
+		// Direction of the line (the direction the camera is facing)
+		Vector3 direction = camera.Forward;
+
+		// Calculate the end position based on direction and Interact range
+		Vector3 end = start + direction * InteractRange;
+
+		// Line Trace
+		tr = Scene.Trace.Ray( start, end ).Run();
+
+		// Check If the Hit is valid 
+		if ( (tr.GameObject != null) && tr.Hit )
+		{
+			// return the Hit Position
+			return (tr.EndPosition);
+		}
+
+		// Return a default value if no hit was detected
+		return Vector3.Zero;
+
 	}
 }

@@ -1,4 +1,5 @@
 using Sandbox;
+using System;
 
 public sealed class PlayerStats : Component
 {
@@ -32,6 +33,26 @@ public sealed class PlayerStats : Component
 			lastUsed = 0; // reset the timer
 		}
 
+	}
+
+	public bool RemoveMoney (float Ammount)
+	{
+		if ( MoneyBase < Ammount )
+		{
+			return false; // Not enough money 
+		}
+
+		else if ( MoneyBase >= Ammount )
+		{
+			MoneyBase -= Ammount;
+			return true; // Successfully removed money
+		}
+		return false;
+	}
+
+	public void AddMoney(float Ammount)
+	{
+		MoneyBase += Ammount;
 	}
 }
 

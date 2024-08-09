@@ -4,8 +4,9 @@
     "Flags": 0,
     "Name": "printer",
     "Scale": "0.5,0.7,0.4",
-    "Tags": "interact",
+    "Tags": "printer,interact",
     "Enabled": true,
+    "NetworkMode": 1,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
@@ -65,17 +66,21 @@
       {
         "__type": "PrinterLogic",
         "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
-        "Bronze": "0.14419,0.06572,0.02347,1",
-        "BronzePrice": 350,
-        "Diamond": "0,0.53178,0.65116,1",
-        "DiamondPrice": 2000,
-        "Gold": "1,0.75,0,1",
-        "GoldPrice": 1200,
+        "Bronze": "0.33953,0.07922,0,1",
+        "BronzePrice": 500,
+        "BronzeTimer": 45,
+        "Diamond": "0,0.85,1,1",
+        "DiamondPrice": 4800,
+        "DiamondTimer": 8,
+        "Gold": "1,0.9,0,1",
+        "GoldPrice": 2600,
+        "GoldTimer": 15,
         "PrinterCurrentMoney": 0,
-        "PrinterTimer": 15,
+        "PrinterMaxMoney": 8000,
         "PrinterTimerMoney": 25,
-        "Silver": "65.35,65.35,65.35,1",
-        "SilverPrice": 600
+        "Silver": "28.58,28.58,28.58,1",
+        "SilverPrice": 1200,
+        "SilverTimer": 30
       }
     ],
     "Children": [
@@ -101,87 +106,6 @@
           {
             "__type": "Printer",
             "__guid": "047b0e57-8490-4d4e-9107-4837e18ec6bd",
-            "OnComponentEnabled": {
-              "__version": 7,
-              "__guid": "d2fc1ded-9a32-459d-b61e-5c97e926170b",
-              "UserData": {
-                "Title": "On Component Enabled",
-                "ReferencedComponentTypes": []
-              },
-              "Variables": [],
-              "Nodes": [
-                {
-                  "Id": 0,
-                  "Type": "input"
-                },
-                {
-                  "Id": 3,
-                  "Type": "property",
-                  "Properties": {
-                    "_name": "Parent",
-                    "_type": "Sandbox.GameObject"
-                  },
-                  "UserData": {
-                    "Position": "32,80"
-                  }
-                },
-                {
-                  "Id": 4,
-                  "Type": "log.info",
-                  "UserData": {
-                    "Position": "240,16"
-                  }
-                },
-                {
-                  "Id": 5,
-                  "Type": "input.value",
-                  "Properties": {
-                    "_name": "_target"
-                  },
-                  "UserData": {
-                    "Position": "-48,208"
-                  }
-                },
-                {
-                  "Id": 6,
-                  "Type": "property",
-                  "Properties": {
-                    "_name": "Parent",
-                    "_type": "Sandbox.GameObject"
-                  },
-                  "UserData": {
-                    "Position": "144,208"
-                  }
-                }
-              ],
-              "Links": [
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 3,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_signal",
-                  "DstId": 4,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 3,
-                  "SrcName": "_result",
-                  "DstId": 4,
-                  "DstName": "args",
-                  "DstIndex": 0
-                },
-                {
-                  "SrcId": 5,
-                  "SrcName": "_result",
-                  "DstId": 6,
-                  "DstName": "_target"
-                }
-              ]
-            },
             "PrinterPrefab": {
               "_type": "gameobject",
               "go": "d9722984-8e27-467c-bf69-0aed3358f138"
