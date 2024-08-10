@@ -16,7 +16,7 @@ public sealed class PlayerInteraction : Component
 	protected override void OnFixedUpdate()
 	{
 
-		Interact(); 
+		Interact();
 
 		// Draw the debug information if the boolean is true
 		if ( DrawDebugInteract )
@@ -45,19 +45,16 @@ public sealed class PlayerInteraction : Component
 		// Check for the "interact" Tag and do some logic associated to it 
 		if ( tr.GameObject != null && tr.GameObject.Tags.Has( InteractTag ) )
 		{
-			var printerLogic = tr.GameObject.Components.Get<PrinterLogic>();
-			if ( printerLogic != null && tr.GameObject.Tags.Has( "Printer" ) && Input.Pressed( "Use" ) && printerLogic.PrinterCurrentMoney > 0 )
+			// When the "Use" key is pressed
+			if ( Input.Pressed( "Use" ) )
 			{
-				var playerStats = GameObject.Components.Get<PlayerStats>();
-				if ( playerStats != null )
+				// Get the IInteractable component from the hit object and call the Interact method
+				try
 				{
-					playerStats.AddMoney( printerLogic.PrinterCurrentMoney );
-					printerLogic.ResetPrinterMoney();
-					Sound.Play( "audio/money.sound" );
-				}
-				else
+					tr.GameObject.Components.Get<IInteractable>()?.Interact( tr, GameObject );
+				}catch ( System.Exception e )
 				{
-					Log.Warning( "PlayerStats component is missing." );
+					Log.Error( e );
 				}
 			}
 			DrawDebug();
