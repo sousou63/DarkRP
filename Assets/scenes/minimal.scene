@@ -75,6 +75,13 @@
       ]
     },
     {
+      "__guid": "014dc5c7-62d1-42fc-ace7-5b83dc337bc1",
+      "Flags": 0,
+      "Name": "Game Controller",
+      "Position": "-61.63499,-460.2009,426.7711",
+      "Enabled": true
+    },
+    {
       "__guid": "7a63f673-6998-43a4-80de-532550116c66",
       "Flags": 0,
       "Name": "Network Manager",

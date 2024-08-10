@@ -1,6 +1,7 @@
-﻿@using Sandbox;
+﻿﻿@using Sandbox;
 @using Sandbox.UI;
 @using System;
+@using Commands;
 @inherits PanelComponent
 @implements Component.INetworkListener
 
@@ -12,7 +13,7 @@
         </div>
     }
 	<div class="output">
-		@foreach (var entry in Entries)
+		@foreach (var entry in Messages)
         {
             // Only show the messages from the last 10 seconds, or all if the input box is focused
             @if (entry.timeSinceAdded < 10f || ChatOpen)
@@ -42,16 +43,60 @@
     public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
     {
         public bool IsNew { get; set; } = true;
-        public string timestamp { get; set; } = DateTime.Now.ToString("HH:mm:ss");
+        public string timestamp { get; } = DateTime.Now.ToString("HH:mm:ss");
     }
-    List<Entry> Entries = new();
+    List<Entry> Messages = new();
+
+    // ConfigManager is a helper class that allows us to register commands and other things
+    ConfigManager ConfigManager;
+    protected override void OnStart()
+    {
+        /// Get the ConfigManager from the scene
+        ConfigManager = ConfigManagerHelper.GetConfigManager(Scene);
+        if (ConfigManager is null)
+        {
+            Log.Error( "Config Manager not found" );
+            return;
+        }
+
+        // Register the chat commands
+        ConfigManager.Commands.RegisterCommand(new Command(
+            name: "clear",
+            description: "Clears the chat",
+            permissionLevel: 0,
+            commandFunction: (args) =>
+            {
+                Messages.Clear();
+                NewSystemMessage("Chat has been cleared", true);
+                return true;
+            }
+        ));
+
+        ConfigManager.Commands.RegisterCommand(new Command(
+            name: "lorem",
+            description: "Spams the chat with lorem ipsum X times.",
+            permissionLevel: 0,
+            commandFunction: (args) =>
+            {
+                if (args.Length == 0 || !int.TryParse(args[0], out int count))
+                {
+                    NewSystemMessage("Invalid argument. Usage: lorem <count>", true);
+                    return false;
+                }
+
+                for (int i = 0; i < count; i++)
+                {
+                    NewUserMessage("Lorem ipsum dolor sit amet.", true);
+                }
+                return true;
+            }
+        ));
+    }
 
     protected override void OnUpdate()
     {
         if (InputBox is null)
             return;
-
-        Panel.AcceptsFocus = false;
 
         if ( Input.Pressed( "chat" ) )
         {
@@ -59,13 +104,16 @@
         }
 
         // Clear the "new" flag after 10 seconds. This is to make sure we don't update chat state every frame
-        foreach (var entry in Entries.Where(e => e.IsNew && e.timeSinceAdded > 10.0f))
+        foreach (var entry in Messages.Where(e => e.IsNew && e.timeSinceAdded > 10.0f))
         {
             entry.IsNew = false;
             StateHasChanged();
         }
     }
 
+    /// <summary>
+    /// Opens and closes the Chat UI state.
+    /// </summary>
     void ToggleChat(bool open)
     {
         ChatOpen = open;
@@ -80,6 +128,9 @@
         StateHasChanged();
     }
 
+    /// <summary>
+    /// Called when the user has finished typing a message in the chat
+    /// </summary>
     void ChatFinished()
     {
         ToggleChat(false);
@@ -90,100 +141,85 @@
             return;
 
         if ( CheckCommand(text) == true) return;
-        AddText( text );
+        NewUserMessage( text );
     }
 
+    /// <summary>
+    /// Sends a new message to broadcast to all clients
+    /// </summary>
     [Broadcast]
-    public void AddText( string message )
+    public void SendMessage( string message, bool system = false, bool clientOnly = false)
     {
-        message = message.Truncate( 300 );
+        // Return if it's a client-only message and the caller isn't the local client
+        if (clientOnly && Rpc.Caller != Connection.Local) return;
 
+        // Return if the message is empty
         if (string.IsNullOrWhiteSpace(message))
             return;
 
-        var author = Rpc.Caller.DisplayName;
-        var steamid = Rpc.Caller.SteamId;
 
-		Log.Info($"{author}: {message}");
+        var author = system ? "ℹ️" : Rpc.Caller.DisplayName;
+        var steamid = system ? 0 : Rpc.Caller.SteamId;
 
-        if (Entries.Count > 30)
+        // If there are 30 messages, remove the oldest one
+        if (Messages.Count > 30)
         {
-            Entries.RemoveAt(0);
+            Messages.RemoveAt(0);
         }
-        Entries.Add(new Entry(steamid, author, message, 0.0f));
-		StateHasChanged();
+
+        // Add the message to the chat
+        Messages.Add(new Entry(steamid, author, message, 0.0f));
+        StateHasChanged();
+    }
+
+    /// <summary>
+    /// Sends a new message from a user to broadcast to all clients
+    /// </summary>
+    public void NewUserMessage( string message, bool clientOnly = false )
+    {
+        SendMessage( message, false, clientOnly );
 	}
 
-    [Broadcast] // todo: only from host/owner
-    public void AddSystemText(string message)
+    /// <summary>
+    /// Sends a new system message to broadcast to all clients
+    /// </summary>
+    public void NewSystemMessage( string message, bool clientOnly = false)
     {
-        message = message.Truncate(300);
-
-        if (string.IsNullOrWhiteSpace(message))
-            return;
-
-        Entries.Add(new Entry(0, "ℹ️", message, 0.0f));
-        StateHasChanged();
+        SendMessage( message, true, clientOnly );
     }
 
 	void Component.INetworkListener.OnConnected( Connection channel )
 	{
 		if ( IsProxy ) return;
 
-		AddSystemText( $"{channel.DisplayName} has joined the game" );
+		NewSystemMessage( $"{channel.DisplayName} has joined the game" );
 	}
 
 	void Component.INetworkListener.OnDisconnected( Connection channel )
 	{
 		if ( IsProxy ) return;
 
-		AddSystemText( $"{channel.DisplayName} has left the game" );
+		NewSystemMessage( $"{channel.DisplayName} has left the game" );
 	}
 
     // Super basic commands for now. Expand later for more.
     // TODO Move this to a separate class & make it more extensible
     public bool CheckCommand(string message)
     {
+        if (ConfigManager is null) return false;
         if (message.StartsWith("/"))
         {
             var parts = message.Split(" ");
             var command = parts[0].Substring(1).ToLower();
             var args = parts.Skip(1).ToArray();
-
-            switch (command)
+            try
             {
-                case "help":
-                    AddSystemText("Available commands: /help, /clear, /lorem [count]");
-                    return true;
-                case "clear":
-                    Entries.Clear();
-                    AddSystemText("Chat has been cleared");
-                    return true;
-                case "lorem":
-                    // Loop X times for args 1
-                    var count = 1;
-                    if (args.Length > 0)
-                    {
-                        if (!int.TryParse(args[0], out count))
-                        {
-                            AddText("Invalid argument: " + args[0]);
-                            return true;
-                        }
-                    }
-                    if (count > 10)
-                    {
-                        AddSystemText("You can only generate up to 10 lorem ipsum messages at a time");
-                        return true;
-                    }
-
-                    for (var i = 0; i < count; i++)
-                    {
-                        AddText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-                    }
-                    return true;
-                default:
-                    AddSystemText($"Unknown command: {command}");
-                    return true;
+                ConfigManager.Commands.ExecuteCommand(command, args);
+                return true;
+            }catch (Exception e)
+            {
+                Log.Error( e.Message );
+                return false;
             }
         }
 
