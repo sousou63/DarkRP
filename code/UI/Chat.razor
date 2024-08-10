@@ -91,6 +91,20 @@
                 return true;
             }
         ));
+
+        // TODO this should be baked into the command system and updated everytime a new command is registered.
+        // Currently done this was cos I have no idea how to send messages from outside of this file :)
+        ConfigManager.Commands.RegisterCommand(new Command(
+            name: "help",
+            description: "List all available commands",
+            permissionLevel: 0,
+            commandFunction: (args) =>
+            {
+                    var commandNames = ConfigManager.Commands.GetCommandNames();
+                    NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}", true);
+                    return true;
+            }
+		));
     }
 
     protected override void OnUpdate()
@@ -203,7 +217,7 @@
 	}
 
     // Super basic commands for now. Expand later for more.
-    // TODO Move this to a separate class & make it more extensible
+    // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
     public bool CheckCommand(string message)
     {
         if (ConfigManager is null) return false;
