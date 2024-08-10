@@ -1,7 +1,7 @@
 using Sandbox;
 using System.Diagnostics;
 
-public sealed class PrinterLogic : Component
+public sealed class PrinterLogic : Component, IInteractable
 {
 	// Define the different types of printers
 	public enum PrinterType { Bronze, Silver, Gold, Diamond };
@@ -31,6 +31,25 @@ public sealed class PrinterLogic : Component
 
 	private TimeSince lastUsed = 0; // Set the timer
 	private PrinterType currentPrinterType; // Store the current printer type
+
+	/// <summary>
+	/// Interact with the printer. This comes from the IInteractable interface inherited from the Interactable class.
+	/// </summary>
+	public void Interact( SceneTraceResult tr, GameObject player )
+	{
+		Log.Info( "Interacting with printer" );
+		if ( PrinterCurrentMoney > 0 )
+		{
+			var playerStats = player.Components.Get<PlayerStats>();
+			Log.Info( playerStats );
+			if ( playerStats != null )
+			{
+				playerStats.AddMoney( PrinterCurrentMoney );
+				ResetPrinterMoney();
+				Sound.Play( "audio/money.sound" );
+			}
+		}
+	}
 
 	protected override void OnFixedUpdate()
 	{
