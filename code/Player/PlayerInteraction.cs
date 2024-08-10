@@ -27,7 +27,6 @@ public sealed class PlayerInteraction : Component
 
 	void Interact()
 	{
-
 		// Get the main camera 
 		var camera = Gizmo.CameraTransform;
 
@@ -43,20 +42,29 @@ public sealed class PlayerInteraction : Component
 		// Line Trace
 		tr = Scene.Trace.Ray( start, end ).Run();
 
-		// Check for the "interact" Tag and do some logic assiocated to it 
-		if ( (tr.GameObject != null) && tr.GameObject.Tags.Has( InteractTag ) )
+		// Check for the "interact" Tag and do some logic associated to it 
+		if ( tr.GameObject != null && tr.GameObject.Tags.Has( InteractTag ) )
 		{
-			// Check for the printer tag + the "USE" input pressed + the printer money > 0
-			if ( (tr.GameObject != null) && (tr.GameObject.Tags.Has( "Printer" )) && (Input.Pressed( "Use" )) && (tr.GameObject.Components.Get<PrinterLogic>().PrinterCurrentMoney > 0) )
+			var printerLogic = tr.GameObject.Components.Get<PrinterLogic>();
+			if ( printerLogic != null && tr.GameObject.Tags.Has( "Printer" ) && Input.Pressed( "Use" ) && printerLogic.PrinterCurrentMoney > 0 )
 			{
-				// Add the printer money to the player money then set the printer money to 0 ( Very early, need a verification bool in the future )
-				GameObject.Components.Get<PlayerStats>().AddMoney( tr.GameObject.Components.Get<PrinterLogic>().PrinterCurrentMoney );
-				tr.GameObject.Components.Get<PrinterLogic>().ResetPrinterMoney();
-				Sound.Play( "audio/money.sound" );
+				var playerStats = GameObject.Components.Get<PlayerStats>();
+				if ( playerStats != null )
+				{
+					playerStats.AddMoney( printerLogic.PrinterCurrentMoney );
+					printerLogic.ResetPrinterMoney();
+					Sound.Play( "audio/money.sound" );
+				}
+				else
+				{
+					Log.Warning( "PlayerStats component is missing." );
+				}
 			}
-
-			// to finish, at best I would like to draw an UI on the screen " Press [Use Input] to Interact " --> then do an action assiocated with this tag
 			DrawDebug();
+		}
+		else
+		{
+			Log.Warning( "Hit object is null or does not have the interact tag." );
 		}
 	}
 

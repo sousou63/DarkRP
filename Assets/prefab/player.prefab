@@ -492,8 +492,8 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
