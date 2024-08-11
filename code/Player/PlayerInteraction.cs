@@ -15,17 +15,21 @@ public sealed class PlayerInteraction : Component
 
 	protected override void OnFixedUpdate()
 	{
-
-		Interact();
-
-		// Draw the debug information if the boolean is true
-		if ( DrawDebugInteract )
+		// here we make sure that the interact function is only firing for the player network owner only ( maybe I can just check for the local player instead idk )
+		if ( Network.IsOwner )
 		{
-			DrawDebug();
+			Interact();
+
+			// Draw the debug information if the boolean is true
+			if ( DrawDebugInteract )
+			{
+				DrawDebug();
+			}
+
 		}
 	}
 
-	void Interact()
+		void Interact()
 	{
 		// Get the main camera 
 		var camera = Gizmo.CameraTransform;
@@ -57,16 +61,16 @@ public sealed class PlayerInteraction : Component
 					Log.Error( e );
 				}
 			}
-			DrawDebug();
 		}
 		else
 		{
-			Log.Warning( "Hit object is null or does not have the interact tag." );
+			//Log.Warning( "Hit object is null or does not have the interact tag." );
 		}
 	}
 
 	void DrawDebug()
 	{
+
 		// Draw the debug sphere at the interaction point
 		Gizmo.Draw.LineSphere( tr.EndPosition, 3, 8 );
 

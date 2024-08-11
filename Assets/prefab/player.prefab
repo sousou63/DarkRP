@@ -102,7 +102,7 @@
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
         "FoodBase": 100,
         "HealthBase": 100,
-        "MoneyBase": 1250,
+        "MoneyBase": 10000,
         "OnComponentFixedUpdate": {
           "__version": 7,
           "__guid": "78bb95f9-5f59-4c1f-8ca7-00f435fd3a87",
@@ -241,8 +241,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -252,8 +252,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,128"
@@ -380,18 +380,11 @@
               "Variables": [],
               "Nodes": [
                 {
-                  "Id": 0,
-                  "Type": "input",
-                  "UserData": {
-                    "Position": "-432,400"
-                  }
-                },
-                {
                   "Id": 1,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-192,144"
@@ -408,9 +401,9 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject",
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "832,64"
@@ -492,9 +485,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
+                    "_type": "Sandbox.GameObject",
                     "_name": "Destroy",
-                    "_isStatic": false,
-                    "_type": "Sandbox.GameObject"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -511,8 +504,8 @@
                   "Id": 28,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-608,528"
@@ -554,15 +547,71 @@
                   "UserData": {
                     "Position": "-96,544"
                   }
+                },
+                {
+                  "Id": 37,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": {
+                      "$type": "Nested",
+                      "DeclaringType": "Sandbox.GameObject",
+                      "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsOwner"
+                  },
+                  "UserData": {
+                    "Position": "-432,928"
+                  }
+                },
+                {
+                  "Id": 38,
+                  "Type": "input",
+                  "UserData": {
+                    "Position": "-464,848"
+                  }
+                },
+                {
+                  "Id": 39,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "-160,848"
+                  }
+                },
+                {
+                  "Id": 40,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
+                    "_isStatic": false
+                  },
+                  "UserData": {
+                    "Position": "32,896"
+                  }
+                },
+                {
+                  "Id": 41,
+                  "Type": "input.value",
+                  "Properties": {
+                    "_name": "_target"
+                  },
+                  "UserData": {
+                    "Position": "-144,944"
+                  }
+                },
+                {
+                  "Id": 42,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
+                  },
+                  "UserData": {
+                    "Position": "-624,928"
+                  }
                 }
               ],
               "Links": [
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 1,
-                  "DstName": "_target"
-                },
                 {
                   "SrcId": 6,
                   "SrcName": "_result",
@@ -574,12 +623,6 @@
                   "SrcName": "_signal",
                   "DstId": 4,
                   "DstName": "_signal"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 4,
-                  "DstName": "_target"
                 },
                 {
                   "SrcId": 1,
@@ -636,22 +679,10 @@
                   "DstName": "_target"
                 },
                 {
-                  "SrcId": 0,
-                  "SrcName": "_signal",
-                  "DstId": 27,
-                  "DstName": "_signal"
-                },
-                {
                   "SrcId": 29,
                   "SrcName": "_result",
                   "DstId": 27,
                   "DstName": "condition"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 28,
-                  "DstName": "_target"
                 },
                 {
                   "SrcId": 28,
@@ -669,6 +700,42 @@
                   "SrcId": 34,
                   "SrcName": "_result",
                   "DstId": 30,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 42,
+                  "SrcName": "_result",
+                  "DstId": 37,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 38,
+                  "SrcName": "_signal",
+                  "DstId": 39,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 37,
+                  "SrcName": "_result",
+                  "DstId": 39,
+                  "DstName": "condition"
+                },
+                {
+                  "SrcId": 39,
+                  "SrcName": "false",
+                  "DstId": 40,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 41,
+                  "SrcName": "_result",
+                  "DstId": 40,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 38,
+                  "SrcName": "_target",
+                  "DstId": 42,
                   "DstName": "_target"
                 }
               ]
@@ -707,7 +774,7 @@
                   "Id": 1,
                   "Type": "sound.play",
                   "UserData": {
-                    "Position": "256,0"
+                    "Position": "672,32"
                   }
                 },
                 {
@@ -720,12 +787,45 @@
                   "UserData": {
                     "Position": "-224,96"
                   }
+                },
+                {
+                  "Id": 5,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": {
+                      "$type": "Nested",
+                      "DeclaringType": "Sandbox.GameObject",
+                      "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsOwner"
+                  },
+                  "UserData": {
+                    "Position": "16,80"
+                  }
+                },
+                {
+                  "Id": 6,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "288,-0"
+                  }
+                },
+                {
+                  "Id": 7,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
+                  },
+                  "UserData": {
+                    "Position": "-176,80"
+                  }
                 }
               ],
               "Links": [
                 {
-                  "SrcId": 0,
-                  "SrcName": "_signal",
+                  "SrcId": 6,
+                  "SrcName": "true",
                   "DstId": 1,
                   "DstName": "_signal"
                 },
@@ -744,6 +844,30 @@
                   "SrcId": 0,
                   "SrcName": "_target",
                   "DstId": 3,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 7,
+                  "SrcName": "_result",
+                  "DstId": 5,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 6,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 5,
+                  "SrcName": "_result",
+                  "DstId": 6,
+                  "DstName": "condition"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 7,
                   "DstName": "_target"
                 }
               ]
@@ -768,14 +892,47 @@
                   "Id": 1,
                   "Type": "sound.play",
                   "UserData": {
-                    "Position": "-16,0"
+                    "Position": "240,64"
+                  }
+                },
+                {
+                  "Id": 3,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": {
+                      "$type": "Nested",
+                      "DeclaringType": "Sandbox.GameObject",
+                      "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsOwner"
+                  },
+                  "UserData": {
+                    "Position": "-240,80"
+                  }
+                },
+                {
+                  "Id": 4,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "32,-0"
+                  }
+                },
+                {
+                  "Id": 5,
+                  "Type": "property",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
+                  },
+                  "UserData": {
+                    "Position": "-432,80"
                   }
                 }
               ],
               "Links": [
                 {
-                  "SrcId": 0,
-                  "SrcName": "_signal",
+                  "SrcId": 4,
+                  "SrcName": "true",
                   "DstId": 1,
                   "DstName": "_signal"
                 },
@@ -789,6 +946,30 @@
                   "Value": "sounds/kenney/ui/ui.navigate.forward.sound",
                   "DstId": 1,
                   "DstName": "soundEvent"
+                },
+                {
+                  "SrcId": 5,
+                  "SrcName": "_result",
+                  "DstId": 3,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_signal",
+                  "DstId": 4,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 3,
+                  "SrcName": "_result",
+                  "DstId": 4,
+                  "DstName": "condition"
+                },
+                {
+                  "SrcId": 0,
+                  "SrcName": "_target",
+                  "DstId": 5,
+                  "DstName": "_target"
                 }
               ]
             }

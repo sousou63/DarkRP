@@ -26,7 +26,7 @@ public sealed class PlayerStats : Component
 	protected override void OnFixedUpdate()
 	{
 
-		if ( lastUsed >= SalaryTimer )
+		if ( lastUsed >= SalaryTimer && (Network.IsOwner) )
 		{
 			MoneyBase += SalaryAmmount; // add Salary to the player Money
 			Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound

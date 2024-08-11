@@ -25,7 +25,7 @@ public sealed class PrinterLogic : Component, IInteractable
 	[Property] public float DiamondTimer { get; set; } = 8f; // (in seconds)
 
 	// Printer Timer Setup
-	[Property, HostSync, Sync] public float PrinterCurrentMoney { get; set; } = 0f;
+	[Property,  Sync] public float PrinterCurrentMoney { get; set; } = 0f;
 	[Property] public float PrinterTimerMoney { get; set; } = 25f;
 	[Property] public float PrinterMaxMoney { get; set; } = 8000f;
 
@@ -45,6 +45,9 @@ public sealed class PrinterLogic : Component, IInteractable
 			if ( playerStats != null )
 			{
 				playerStats.AddMoney( PrinterCurrentMoney );
+
+				Log.Info( PrinterCurrentMoney );
+
 				ResetPrinterMoney();
 				Sound.Play( "audio/money.sound" );
 			}
@@ -57,7 +60,7 @@ public sealed class PrinterLogic : Component, IInteractable
 		float printerTimer = GetPrinterTimer();
 
 		// If the timer has passed, add money
-		if ( lastUsed >= printerTimer )
+		if ( lastUsed >= printerTimer)
 		{
 			if ( PrinterCurrentMoney < PrinterMaxMoney )
 			{
@@ -117,7 +120,7 @@ public sealed class PrinterLogic : Component, IInteractable
 				break;
 		}
 
-		// Assuming there's a component responsible for rendering the model ( ok I find it lol )
+		// Assuming there's a component responsible for rendering the model
 		this.Components.Get<ModelRenderer>().Tint = newColor;
 	}
 
