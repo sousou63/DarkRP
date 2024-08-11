@@ -1,5 +1,5 @@
 {
-  "__guid": "97427aec-c255-4bf8-9957-eae407ca3234",
+  "__guid": "20d8ec11-950c-4ad8-8301-eef41651ec13",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -79,7 +79,13 @@
       "Flags": 0,
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
-      "Enabled": true
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ConfigManager",
+          "__guid": "4858c8f8-d34c-46cc-b8e6-64e6e557b35f"
+        }
+      ]
     },
     {
       "__guid": "7a63f673-6998-43a4-80de-532550116c66",
