@@ -8,34 +8,38 @@
         <div class="section-title">Dark Web</div>
         <div class="section-contents">
             <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
-                <div class="icon"></div>
+                <div class="icon" style="background-color: #A52A2A"></div>
                 <div class="label-container">
                     <div class="label">Bronze Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <div class="price">$500</div>
+                    <span class="description">slow</span>
+                    <div class="price">$500</div>                    
                 </div>
             </div>
             <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
-                <div class="icon"></div>
+                <div class="icon" style="background-color: #DCDCDC"></div>
                 <div class="label-container">
                     <div class="label">Silver Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <span class="description">average</span>
                     <div class="price">$1200</div>
                 </div>
             </div>
             <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
-                <div class="icon"></div>
+                <div class="icon" style="background-color: #FFD700"></div>
                 <div class="label-container">
                     <div class="label">Gold Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <span class="description">fast</span>
                     <div class="price">$2600</div>
                 </div>
             </div>
             <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
-                <div class="icon"></div>
+                <div class="icon" style="background-color: #40E0D0"></div>
                 <div class="label-container">
                     <div class="label">Diamond Printer</div>
                     <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                    <span class="description">super-fast</span>
                     <div class="price">$4200</div>
                 </div>
             </div>
