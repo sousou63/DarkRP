@@ -69,19 +69,19 @@
         "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
         "Bronze": "0.33953,0.07922,0,1",
         "BronzePrice": 500,
-        "BronzeTimer": 45,
+        "BronzeTimer": 20,
         "Diamond": "0,0.85,1,1",
         "DiamondPrice": 4800,
-        "DiamondTimer": 8,
+        "DiamondTimer": 5,
         "Gold": "1,0.9,0,1",
         "GoldPrice": 2600,
-        "GoldTimer": 15,
+        "GoldTimer": 10,
         "PrinterCurrentMoney": 0,
         "PrinterMaxMoney": 8000,
         "PrinterTimerMoney": 25,
         "Silver": "28.58,28.58,28.58,1",
         "SilverPrice": 1200,
-        "SilverTimer": 30
+        "SilverTimer": 15
       }
     ],
     "Children": [

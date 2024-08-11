@@ -102,7 +102,7 @@
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
         "FoodBase": 100,
         "HealthBase": 100,
-        "MoneyBase": 10000,
+        "MoneyBase": 1250,
         "OnComponentFixedUpdate": {
           "__version": 7,
           "__guid": "78bb95f9-5f59-4c1f-8ca7-00f435fd3a87",
@@ -448,8 +448,8 @@
                   "Id": 20,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Children",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Children"
                   },
                   "UserData": {
                     "Position": "432,160"
@@ -485,9 +485,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -531,8 +531,8 @@
                   "Type": "call",
                   "Properties": {
                     "_isStatic": false,
-                    "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "80,432"
