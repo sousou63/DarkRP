@@ -1,5 +1,5 @@
 {
-  "__guid": "20d8ec11-950c-4ad8-8301-eef41651ec13",
+  "__guid": "672821ee-3fad-4b69-9840-c14e0ef6ee9f",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -80,10 +80,37 @@
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
       "Components": [
         {
           "__type": "ConfigManager",
           "__guid": "4858c8f8-d34c-46cc-b8e6-64e6e557b35f"
+        },
+        {
+          "__type": "GameController",
+          "__guid": "6bed7b0a-efa3-4aa7-b4d2-d73ea155f305"
+        }
+      ]
+    },
+    {
+      "__guid": "c5b6dd1e-b549-4cdf-ab5c-517881564f24",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "-269.9525,-301.8099,256.4023",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "d82b0d00-ba87-418d-857f-c4d7bb080583",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Chat",
+          "__guid": "d44a2652-d727-454b-afb0-6637c4caff57"
         }
       ]
     },
@@ -93,6 +120,7 @@
       "Name": "Network Manager",
       "Position": "0,0,136.2419",
       "Enabled": true,
+      "NetworkOrphaned": 1,
       "Components": [
         {
           "__type": "Sandbox.NetworkHelper",
@@ -103,39 +131,6 @@
           },
           "SpawnPoints": [],
           "StartServer": true
-        }
-      ]
-    },
-    {
-      "__guid": "c1e45c98-13da-49ff-bf9f-15509f84c5bc",
-      "Flags": 0,
-      "Name": "Screen",
-      "Position": "-126.4292,-187.5311,204.951",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "a0c28225-84d9-4928-bc21-0dab5c9798eb",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ZIndex": 100
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "421ffe6b-d384-4688-a1eb-5b9b88115e4b",
-          "Flags": 0,
-          "Name": "Chat",
-          "Position": "0,0,0",
-          "Enabled": true,
-          "NetworkMode": 1,
-          "Components": [
-            {
-              "__type": "Chat",
-              "__guid": "8123a00c-4e46-4e56-bdd8-050cd2785186"
-            }
-          ]
         }
       ]
     },
@@ -190,6 +185,19 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "869de3f0-c08f-4f24-be06-c23f2c80516c",
+      "Flags": 0,
+      "Name": "door",
+      "Position": "-172.2314,-322.8228,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {
