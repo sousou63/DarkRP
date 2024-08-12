@@ -62,6 +62,7 @@ public sealed class PlayerStats : Component
 	{
 		if ( MoneyBase < Ammount )
 		{
+			Sound.Play( "audio/error.sound" );
 			return false; // Not enough money 
 		}
 
