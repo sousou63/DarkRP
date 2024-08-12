@@ -70,7 +70,7 @@
                 commandFunction: (args) =>
                 {
                     Messages.Clear();
-                    NewSystemMessage("Chat has been cleared", true);
+                    NewSystemMessage("Chat has been cleared");
                     return true;
                 }
             ));
@@ -83,13 +83,13 @@
                 {
                     if (args.Length == 0 || !int.TryParse(args[0], out int count))
                     {
-                        NewSystemMessage("Invalid argument. Usage: lorem <count>", true);
+                        NewSystemMessage("Invalid argument. Usage: lorem <count>");
                         return false;
                     }
 
                     for (int i = 0; i < count; i++)
                     {
-                        NewUserMessage("Lorem ipsum dolor sit amet.", true);
+                        NewUserMessage("Lorem ipsum dolor sit amet.");
                     }
                     return true;
                 }
@@ -104,7 +104,7 @@
                 commandFunction: (args) =>
                 {
                         var commandNames = ConfigManager.Commands.GetCommandNames();
-                        NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}", true);
+                        NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}");
                         return true;
                 }
             ));
@@ -163,18 +163,15 @@
 
         if ( CheckCommand(text) == true) return;
         NewUserMessage( text );
+        Log.Info(Rpc.Caller.Id);
     }
 
     /// <summary>
     /// Sends a new message to broadcast to all clients
     /// </summary>
     [Broadcast]
-    public void SendMessage( string message, bool system = false, bool clientOnly = false)
+    public void SendMessage( string message, bool system = false)
     {
-        Log.Info( $"Sending message: {message} {Rpc.Caller.Name}");
-        // Return if it's a client-only message and the caller isn't the local client
-        if (clientOnly && Rpc.Caller != Connection.Local) return;
-
         // Return if the message is empty
         if (string.IsNullOrWhiteSpace(message))
             return;
@@ -197,17 +194,17 @@
     /// <summary>
     /// Sends a new message from a user to broadcast to all clients
     /// </summary>
-    public void NewUserMessage( string message, bool clientOnly = false )
+    public void NewUserMessage( string message)
     {
-        SendMessage( message, false, clientOnly );
+        SendMessage( message, false );
 	}
 
     /// <summary>
     /// Sends a new system message to broadcast to all clients
     /// </summary>
-    public void NewSystemMessage( string message, bool clientOnly = false)
+    public void NewSystemMessage( string message)
     {
-        SendMessage( message, true, clientOnly );
+        SendMessage( message, true );
     }
 
 	void Component.INetworkListener.OnConnected( Connection channel )

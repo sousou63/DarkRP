@@ -1,5 +1,5 @@
 {
-  "__guid": "20d8ec11-950c-4ad8-8301-eef41651ec13",
+  "__guid": "672821ee-3fad-4b69-9840-c14e0ef6ee9f",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -89,7 +89,28 @@
         },
         {
           "__type": "GameController",
-          "__guid": "dacb43ce-2064-464e-82fb-959b80292329"
+          "__guid": "6bed7b0a-efa3-4aa7-b4d2-d73ea155f305"
+        }
+      ]
+    },
+    {
+      "__guid": "c5b6dd1e-b549-4cdf-ab5c-517881564f24",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "-269.9525,-301.8099,256.4023",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "d82b0d00-ba87-418d-857f-c4d7bb080583",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Chat",
+          "__guid": "d44a2652-d727-454b-afb0-6637c4caff57"
         }
       ]
     },
@@ -166,35 +187,11 @@
       "Children": []
     },
     {
-      "__guid": "0d3c6985-290a-4400-9505-0d59d586a655",
-      "Flags": 0,
-      "Name": "Door",
-      "Position": "-149.7219,-255.2965,247.41",
-      "Rotation": "0,0,-0.7071067,0.7071068",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "4e50a228-3210-4bc0-b6f0-f779d53e67aa",
+      "__guid": "869de3f0-c08f-4f24-be06-c23f2c80516c",
       "Flags": 0,
       "Name": "door",
-      "Position": "-245.3057,-235.0488,248.5769",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "832d76a1-4660-4137-9ba0-0c3d26a4529a",
-      "Flags": 0,
-      "Name": "door (1)",
-      "Position": "-300.9522,-205.2092,248.5769",
+      "Position": "-172.2314,-322.8228,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
       "Tags": "interact",
       "Enabled": true,
       "NetworkMode": 1,

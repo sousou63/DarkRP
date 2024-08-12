@@ -64,9 +64,9 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		}
 	}
 
-	[Broadcast]
 	public void PurchaseDoor( GameObject player )
 	{
+		Log.Info($"{player.Name} is purchasing the door.");
 		// Get player stats
 		var playerStats = player.Components.Get<PlayerStats>();
 		if ( playerStats == null ) return;
@@ -75,12 +75,26 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		{
 			// Deduct the money
 			playerStats.RemoveMoney( Price );
-			Owner = player;
-			OwnerStats = playerStats;
+			// Update the door owner
+			UpdateDoorOwner( player, playerStats );
 		}
 	}
 
 	[Broadcast]
+	public void UpdateDoorOwner(GameObject player = null, PlayerStats playerStats = null)
+	{
+		if ( player != null )
+		{
+			Owner = player;
+			OwnerStats = playerStats;
+		}
+		else
+		{
+			Owner = null;
+			OwnerStats = null;
+		}
+	}
+
 	public void SellDoor()
 	{
 		if ( Owner == null ) return;
@@ -90,8 +104,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 
 		if (playerStats.SellDoor( GameObject ))
 		{
-			Owner = null;
-			OwnerStats = null;
+			UpdateDoorOwner();
 		}
 	}
 

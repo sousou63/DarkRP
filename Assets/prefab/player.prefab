@@ -995,18 +995,6 @@
             }
           }
         ]
-      },
-      {
-        "__guid": "9c62d2ae-c8d8-4048-a43e-03403daeb56c",
-        "Flags": 0,
-        "Name": "Chat",
-        "Enabled": true,
-        "Components": [
-          {
-            "__type": "Chat",
-            "__guid": "2fa04b1e-162e-4f33-8867-9f2ba4e1bcaf"
-          }
-        ]
       }
     ],
     "__variables": []

@@ -1,27 +1,32 @@
+using System;
 using Sandbox;
 
 public sealed class GameController : Component, Component.INetworkListener
 {
 
-	public class PlayerConnection
+	public class Player
 	{
 		public GameObject GameObject { get; set; }
 		public Connection Connection { get; set; }
 
-		public PlayerConnection( GameObject gameObject, Connection connection )
+		public Player( GameObject gameObject, Connection connection )
 		{
 			GameObject = gameObject;
 			Connection = connection;
 		}
 	}
-	public List<PlayerConnection> Players { get; set; } = new List<PlayerConnection>();
-
+	public List<Player> Players { get; set; } = new List<Player>();
 
 	// This could probably be put in the network controller/helper.
 	public void AddPlayer( GameObject player, Connection connection )
 	{
 		Log.Info( $"Player connected: {connection.Id}" );
-		Players.Add( new PlayerConnection( player, connection ) );
+		Players.Add( new Player( player, connection ) );
+		Log.Info($"Players ({Players.Count}):");
+		foreach(var pp in Players)
+		{
+			Log.Info( $"{pp.Connection.DisplayName} ({pp.Connection.Id})" );
+		}
 	}
 
 	public void RemovePlayer( Connection connection )

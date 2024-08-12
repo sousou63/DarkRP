@@ -22,7 +22,6 @@ public sealed class PlayerStats : Component
 
 	[Property] public float SalaryAmmount { get; set; } = 50f;
 
-	[Property] public GameObject ChatObject { get; set; }
 	private Chat chat { get; set; }
 
 	TimeSince lastUsed = 0; // Set the timer
@@ -34,7 +33,7 @@ public sealed class PlayerStats : Component
 
 	protected override void OnStart()
 	{
-		chat = ChatObject.Components.Get<Chat>();
+		chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 		if ( chat == null ) Log.Error( "Chat component not found" );
 		try
 		{
@@ -143,8 +142,11 @@ public sealed class PlayerStats : Component
 	// TODO this would need to go to its own class. PlayerController or some shit
 	public void SendMessage(string message)
 	{
-		// Send the message
-		chat?.NewSystemMessage(message, true);
+		using ( Rpc.FilterInclude(c => c.Id == Rpc.CallerId))
+		{
+			// Send the message
+			chat?.NewSystemMessage(message);
+		}
 	}
 }
 
