@@ -214,7 +214,7 @@
         },
         {
           "Name": "Use Special",
-          "KeyboardCode": "F2",
+          "KeyboardCode": "R",
           "GamepadCode": "None",
           "GroupName": "Other"
         }
