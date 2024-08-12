@@ -100,10 +100,6 @@
       {
         "__type": "PlayerStats",
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
-        "ChatObject": {
-          "_type": "gameobject",
-          "go": "9c62d2ae-c8d8-4048-a43e-03403daeb56c"
-        },
         "FoodBase": 100,
         "HealthBase": 100,
         "MoneyBase": 1250,
@@ -206,38 +202,6 @@
                   "Type": "input.down",
                   "UserData": {
                     "Position": "-0,64"
-                  }
-                },
-                {
-                  "Id": 3,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
-                  },
-                  "UserData": {
-                    "Position": "480,-64"
-                  }
-                },
-                {
-                  "Id": 4,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
-                  },
-                  "UserData": {
-                    "Position": "480,128"
-                  }
-                },
-                {
-                  "Id": 5,
-                  "Type": "scene.get",
-                  "Properties": {
-                    "T": "TabMenu"
-                  },
-                  "UserData": {
-                    "Position": "224,96"
                   }
                 },
                 {
@@ -382,8 +346,6 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsProxy"
-                    },
-                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "16,144"
@@ -425,9 +387,7 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "System.Collections.Generic.List\u00601",
-                    "_type": "System.Collections.Generic.List\u00601",
                     "_name": "ForEach",
-                    "_isStatic": false
                     "_isStatic": false
                   },
                   "UserData": {
@@ -454,10 +414,7 @@
                   "Properties": {
                     "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -491,8 +448,6 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsProxy"
-                    },
-                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "-400,528"
@@ -504,10 +459,7 @@
                   "Properties": {
                     "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -757,18 +709,7 @@
                   }
                 },
                 {
-                  "Id": 3,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Network"
-                  },
-                  "UserData": {
-                    "Position": "-224,96"
-                  }
-                },
-                {
-                  "Id": 5,
+                  "Id": 2,
                   "Type": "property",
                   "Properties": {
                     "_type": {
