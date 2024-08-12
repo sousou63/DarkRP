@@ -103,9 +103,13 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 
 	private void OpenCloseDoor()
 	{
-		if ( Door == null ) return;
-		IsOpen = !IsOpen;
-		Door.Transform.Rotation = Door.Transform.Rotation == Rotation.From( 0, 90, 0 ) ? Rotation.From( 0, 0, 0 ) : Rotation.From( 0, 90, 0 );
+			if (Door == null) return;
+			IsOpen = !IsOpen;
+	
+			var currentRotation = Door.Transform.Rotation;
+			var rotationIncrement = Rotation.From(0, 90, 0);
+	
+			Door.Transform.Rotation = IsOpen ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse;
 	}
 
 	private void LockDoor()
