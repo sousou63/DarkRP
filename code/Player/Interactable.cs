@@ -13,11 +13,24 @@ public interface IInteractable
   {
 
   }
-
   /// <summary>
-  /// Called when the player uses the special interaction key. Default key is "F2". Action is "Use Sepcial".
+  /// Called when the player uses the special interaction key. Default key is "R". Action is "Use Sepcial".
   /// </summary>
   void InteractSpecial( SceneTraceResult tr, GameObject player )
+  {
+
+  }
+  /// <summary>
+  /// Called when the player uses the Attack 1 interaction key. Default key is "Mouse 1". Action is "attack1".
+  /// </summary>
+  void InteractAttack1( SceneTraceResult tr, GameObject player )
+  {
+
+  }
+  /// <summary>
+  /// Called when the player uses the Attack 2 interaction key. Default key is "Mouse 2". Action is "attack2".
+  /// </summary>
+  void InteractAttack2( SceneTraceResult tr, GameObject player )
   {
 
   }

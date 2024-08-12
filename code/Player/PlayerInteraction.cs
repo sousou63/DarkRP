@@ -1,4 +1,5 @@
 using Sandbox;
+using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Drawing;
@@ -29,7 +30,7 @@ public sealed class PlayerInteraction : Component
 		}
 	}
 
-		void Interact()
+	void Interact()
 	{
 		// Get the main camera 
 		var camera = Gizmo.CameraTransform;
@@ -49,30 +50,22 @@ public sealed class PlayerInteraction : Component
 		// Check for the "interact" Tag and do some logic associated to it 
 		if ( tr.GameObject != null && tr.GameObject.Tags.Has( InteractTag ) )
 		{
-			// When the "Use" key is pressed
+			// Is there a better way to do this?
 			if ( Input.Pressed( "Use" ) )
 			{
-				// Get the IInteractable component from the hit object and call the Interact method
-				try
-				{
-					tr.GameObject.Components.Get<IInteractable>()?.InteractUse( tr, GameObject );
-				}catch ( System.Exception e )
-				{
-					Log.Error( e );
-				}
+				HandleInteraction( "Use" );
 			}
-
-						// When the "Use Special" key is pressed
 			if ( Input.Pressed( "Use Special" ) )
 			{
-				// Get the IInteractable component from the hit object and call the Interact method
-				try
-				{
-					tr.GameObject.Components.Get<IInteractable>()?.InteractSpecial( tr, GameObject );
-				}catch ( System.Exception e )
-				{
-					Log.Error( e );
-				}
+				HandleInteraction( "Use Special" );
+			}
+			if ( Input.Pressed( "attack1" ) )
+			{
+				HandleInteraction( "attack1" );
+			}
+			if ( Input.Pressed( "attack2" ) )
+			{
+				HandleInteraction( "attack2" );
 			}
 		}
 		else
@@ -120,5 +113,36 @@ public sealed class PlayerInteraction : Component
 		// Return a default value if no hit was detected
 		return Vector3.Zero;
 
+	}
+
+	private void HandleInteraction( string inputKey )
+	{
+		try
+		{
+			var interactable = tr.GameObject.Components.Get<IInteractable>();
+			if ( interactable == null ) return;
+
+			switch ( inputKey )
+			{
+				case "Use":
+					interactable.InteractUse( tr, GameObject );
+					break;
+				case "Use Special":
+					interactable.InteractSpecial( tr, GameObject );
+					break;
+				case "attack1":
+					interactable.InteractAttack1( tr, GameObject );
+					break;
+				case "attack2":
+					interactable.InteractAttack2( tr, GameObject );
+					break;
+				default:
+					break;
+			}
+		}
+		catch ( Exception e )
+		{
+			Log.Error( e );
+		}
 	}
 }
