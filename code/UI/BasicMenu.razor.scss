@@ -44,7 +44,8 @@ BasicMenu {
 	
 	.buttoncontainer {
 		flex-direction: column;
-		padding: 20px;		
+		padding: 20px;
+		gap: 10px;
 		.button {
 			display: flex;
 			font-size: 25px;
@@ -70,6 +71,11 @@ BasicMenu {
 				background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);
 				color: white;
 			}
+
+		}
+		.active {
+			background: #343b43;
+			color: white;
 		}
 	}
 

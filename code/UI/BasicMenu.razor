@@ -5,15 +5,16 @@
 <root>
     <div class="title">Tab Menu</div>
 
+    <!-- TODO this should be modularized -->
     <div class="main">
         <div class="side-bar">
             <div class="buttoncontainer">
-                <div class="button" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </div>
-                <div class="button" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </div>
+                <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </button>
+                <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </button>
             </div>
             <div class="buttoncontainer">
-                <div class="button" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </div>
-                <div class="button" onclick="@DisplayInfo"> <i class="icon">info</i> Information </div>
+                <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </button>
+                <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo"> <i class="icon">info</i> Information </button>
             </div>
         </div>
         <div class="main-container">
