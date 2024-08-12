@@ -5,37 +5,45 @@
 <root class="root">
   @if (DoorProperties != null && DoorProperties.Owner == null)
   {
-    <div class="title">For Sale</div>
-    <div class="sub-title">$@(DoorProperties?.Price)</div>
-    <div class="sub-title">Press R to purchase door</div>
+    <div class="container">
+      <div class="title">For Sale</div>
+      <div class="sub-title">$@(DoorProperties?.Price)</div>
+    </div>
+    <div class="container">
+      <div class="sub-title">Press R to purchase</div>
+    </div>
   }
   else
   {
-    <div class="title">Owned by @(DoorProperties.Owner.Name.Replace("Player - ", ""))</div>
-    <div class="sub-title">Press R to sell door</div>
-    <div class="sub-title">Press Mouse1 to close door</div>
-    <div class="sub-title">Press Mouse2 to unlock door</div>
-  }
-  @if (DoorProperties?.IsOpen == true)
-  {
-    <div class="sub-title">Press E to close door</div>
-  }
-  else
-  {
-    <div class="sub-title">Press E to open door</div>
+    <div class="container">
+      <div class="title">Owned by @(DoorProperties.Owner.Name.Replace("Player - ", ""))</div>
+    </div>
+    <div class="container">
+      <div class="sub-title">Press R to sell</div>
+      <div class="sub-title">Press Mouse1 to close</div>
+      <div class="sub-title">Press Mouse2 to unlock</div>
+    </div>
   }
 </root>
 
 <style>
   .root {
-    background-color: #1e1e27e5;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Times New Roman', serif;
     font-weight: 600;
     color: white;
-    text-align: center;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .container {
+    background-color: #1e1e27e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
 
