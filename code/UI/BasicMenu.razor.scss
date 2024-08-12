@@ -2,55 +2,69 @@ BasicMenu {
 	pointer-events: all;
 	position: absolute;
 	top: 100;
-	left: 450;
-	right: 450;
+	left: 200;
+	right: 200;
 	bottom: 100;
-	background-color: #1e1e27;
-	font-weight: bold;
+	background-color: #24292f;
+	color: #c9c9c9;
 	//justify-content: center;
 	flex-direction: column;
-	gap: 10px;
-	padding: 20px;
+	gap: 1rem;
 	font-family: 'Times New Roman', serif;
 	font-weight: 400;
-	border-radius: 30px 30px 30px 30px;
+	border-radius: 5px;
 
-	.title {
-		color: #ffffff;
-		font-size: 60px;
-		margin-bottom: 10px;
-		font-weight: 400;
-		justify-content: center;
-		font-weight: bold;
-		width: 100%;
-	}
-
-	.buttoncontainer {
+	.main {
+		display: flex;
 		flex-direction: row;
-		align-content: center;
 		justify-content: center;
 		align-items: center;
-		padding-top: 30px;
-		padding-bottom: 30px;
+		height: 100%;
+	}
 
+	.title {
+		font-size: 1.5rem;
+		font-weight: 600;
+		justify-content: center;
+		width: 100%;
+		border-radius: 5px 5px 0 0;
+		padding: 5px;
+	}
+
+	.side-bar {
+		flex-direction: column;
+		justify-content: space-between;
+		width: 25rem;
+		height: 100%;
+	}
+	
+	.buttoncontainer {
+		flex-direction: column;
+		padding: 20px;		
 		.button {
-			color: white;
 			display: flex;
-			font-size: 30px;
+			font-size: 25px;
 			align-items: center;
-			border-radius: 10px 10px 10px 10px;
-			background-color: #252830;
-			margin-left: 10px;
-			margin-right: 10px;
-			padding-left: 20px;
-			padding-right: 20px;
+			border-radius: 5px;
+
 			padding-top: 5px;
 			padding-bottom: 5px;
+			width: 100%;
+			height: 3rem;
 			cursor: pointer;
+
+			.icon {
+				width: 50px;
+				height: 50px;
+				text-align: center;
+				justify-content: center;
+				align-items: center;
+			}
 
 			&:hover {
 				background: rgb(50,125,179);
 				background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);
+				color: white;
 			}
 		}
 	}
@@ -58,9 +72,12 @@ BasicMenu {
 
 	.main-container {
 		flex-wrap: wrap;
-		overflow: scroll;
+		overflow-y: scroll;
+		overflow-x: visible;
 		justify-content: center;
-
+		background-color: #1b1b23;
+		padding: 10px;
+		height: 100%;
 
 		.section-title {
 			width: 100%;

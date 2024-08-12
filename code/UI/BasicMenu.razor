@@ -3,127 +3,123 @@
 @inherits PanelComponent
 
 <root>
+    <div class="title">Tab Menu</div>
 
-    <div class="title">MENU</div>
-
-    <div class="buttoncontainer">
-
-        <div class="button" onclick="@DisplayInfo"> Informations </div>
-        <div class="button" onclick="@DisplayJobs"> Jobs </div>
-        <div class="button" onclick="@DisplayDarkWeb"> Dark Web </div>
-        <div class="button" onclick="@DisplayAdmin"> Admin Tools </div>
-
-    </div>
-
-
-
-
-    <div class="main-container">
-
-        <!-- Dark Web Section -->
-        <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
-            <div class="section-title">Dark Web</div>
-            <div class="section-contents">
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
-                    <div class="icon" style="background-color: #A52A2A"></div>
-                    <div class="label-container">
-                        <div class="label">Bronze Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">slow</span>
-                        <div class="price">$500</div>
-                    </div>
-                </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
-                    <div class="icon" style="background-color: #DCDCDC"></div>
-                    <div class="label-container">
-                        <div class="label">Silver Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">average</span>
-                        <div class="price">$1200</div>
-                    </div>
-                </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
-                    <div class="icon" style="background-color: #FFD700"></div>
-                    <div class="label-container">
-                        <div class="label">Gold Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">fast</span>
-                        <div class="price">$2600</div>
-                    </div>
-                </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
-                    <div class="icon" style="background-color: #40E0D0"></div>
-                    <div class="label-container">
-                        <div class="label">Diamond Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">super-fast</span>
-                        <div class="price">$4200</div>
-                    </div>
-                </div>
+    <div class="main">
+        <div class="side-bar">
+            <div class="buttoncontainer">
+                <div class="button" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </div>
+                <div class="button" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </div>
+            </div>
+            <div class="buttoncontainer">
+                <div class="button" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </div>
+                <div class="button" onclick="@DisplayInfo"> <i class="icon">info</i> Information </div>
             </div>
         </div>
+        <div class="main-container">
+            <!-- Dark Web Section -->
+            <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
+                <div class="section-title">Dark Web</div>
+                <div class="section-contents">
 
-        <!-- Jobs Section -->
-        <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
-            <div class="section-title">Jobs</div>
-            <div class="section-contents">
-                @foreach (var job in new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
-                {
-                    <div class="button">
-                        <div class="icon"></div>
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
+                        <div class="icon" style="background-color: #A52A2A"></div>
                         <div class="label-container">
-                            <div class="label">Job @job</div>
-                            <div class="description">Job @job description</div>
+                            <div class="label">Bronze Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">slow</span>
+                            <div class="price">$500</div>
                         </div>
                     </div>
-                }
+
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
+                        <div class="icon" style="background-color: #DCDCDC"></div>
+                        <div class="label-container">
+                            <div class="label">Silver Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">average</span>
+                            <div class="price">$1200</div>
+                        </div>
+                    </div>
+
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
+                        <div class="icon" style="background-color: #FFD700"></div>
+                        <div class="label-container">
+                            <div class="label">Gold Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">fast</span>
+                            <div class="price">$2600</div>
+                        </div>
+                    </div>
+
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
+                        <div class="icon" style="background-color: #40E0D0"></div>
+                        <div class="label-container">
+                            <div class="label">Diamond Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">super-fast</span>
+                            <div class="price">$4200</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Information Section -->
-        <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
-            <div class="section-title">Information</div>
-            <div class="section-contents">
-
-                <div class="info" style="color: limegreen;">
-                    <h1>Completed</h1>
-                    <p>@InfoDone</p>
+            <!-- Jobs Section -->
+            <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
+                <div class="section-title">Jobs</div>
+                <div class="section-contents">
+                    @foreach (var job in new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
+                    {
+                        <div class="button">
+                            <div class="icon"></div>
+                            <div class="label-container">
+                                <div class="label">Job @job</div>
+                                <div class="description">Job @job description</div>
+                            </div>
+                        </div>
+                    }
                 </div>
-
-                <div class="info" style="color: red;">
-                    <h1>TODO</h1>
-                    <p>@InfoTodo</p>
-                </div>
-
-                <div class="info" style="color: yellow;">
-                    <h1>Notes</h1>
-                    <p>@InfoNotes</p>
-                </div>
-
-                <div class="info" style="color: white;">
-                    <h1>Credits</h1>
-                    <p>@InfoCredits</p>
-                </div>
-
             </div>
-        </div>
 
+            <!-- Information Section -->
+            <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
+                <div class="section-title">Information</div>
+                <div class="section-contents">
+
+                    <div class="info" style="color: limegreen;">
+                        <h1>Completed</h1>
+                        <p>@InfoDone</p>
+                    </div>
+
+                    <div class="info" style="color: red;">
+                        <h1>TODO</h1>
+                        <p>@InfoTodo</p>
+                    </div>
+
+                    <div class="info" style="color: yellow;">
+                        <h1>Notes</h1>
+                        <p>@InfoNotes</p>
+                    </div>
+
+                    <div class="info" style="color: white;">
+                        <h1>Credits</h1>
+                        <p>@InfoCredits</p>
+                    </div>
+
+                </div>
+            </div>
         <!-- Admin Section -->
         <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
             <div class="section-title">Admin Tools</div>
             <div class="section-contents">
-
                 <div class="info" style="color: red;">
                     <h1>TODO</h1>
                 </div>
-
-
             </div>
         </div>
+    </div>
+
+
 
     </div>
 </root>
