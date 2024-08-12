@@ -24,7 +24,7 @@ Chat {
 		flex-direction: column;
 		justify-content: flex-end;
 		padding: 3px;
-		gap: 10px;
+		gap: 2px;
 		height: calc(32px * 8);
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -45,8 +45,8 @@ Chat {
 			}
 
 			.avatar {
-				width: 50px;
-				height: 32px;
+				width: 45px;
+				height: 30px;
 				margin-left: 5px;
 				margin-right: 5px;
 				background-position: center;
