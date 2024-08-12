@@ -11,7 +11,6 @@ namespace Commands
 		string Name { get; }
 		string Description { get; }
 		int PermissionLevel { get; }
-		// TODO the command function should also take in the GameObject player parameter to be able to send messages to the player perhaps.
 		bool CommandFunction( GameObject player, Scene scene, string[] args );
 	}
 
