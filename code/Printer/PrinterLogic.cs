@@ -35,7 +35,7 @@ public sealed class PrinterLogic : Component, IInteractable
 	/// <summary>
 	/// Interact with the printer. This comes from the IInteractable interface inherited from the Interactable class.
 	/// </summary>
-	public void InteractUse( SceneTraceResult tr, GameObject player )
+	public void Interact( SceneTraceResult tr, GameObject player )
 	{
 		Log.Info( "Interacting with printer" );
 		if ( PrinterCurrentMoney > 0 )

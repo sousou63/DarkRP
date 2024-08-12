@@ -1,5 +1,4 @@
 using System;
-using Commands;
 
 namespace Commands
 {
@@ -12,7 +11,7 @@ namespace Commands
 		string Description { get; }
 		int PermissionLevel { get; }
 		// TODO the command function should also take in the GameObject player parameter to be able to send messages to the player perhaps.
-		bool CommandFunction( GameObject player, Scene scene, string[] args );
+		bool CommandFunction( string[] args );
 	}
 
 	/// <summary>
@@ -38,7 +37,7 @@ namespace Commands
 		/// <summary>
 		///  The function to execute when the command is called.
 		/// </summary>
-		private readonly Func<GameObject, Scene, string[], bool> commandFunction;
+		private readonly Func<string[], bool> commandFunction;
 
 		/// <summary>
 		/// Initializes a new instance of the Command class.
@@ -50,7 +49,7 @@ namespace Commands
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
 		/// </exception>
-		public Command( string name, string description, int permissionLevel, Func<GameObject,Scene, string[], bool> commandFunction )
+		public Command( string name, string description, int permissionLevel, Func<string[], bool> commandFunction )
 		{
 			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
 			Description = description ?? throw new ArgumentNullException( nameof( description ) );
@@ -61,7 +60,9 @@ namespace Commands
 		/// <summary>
 		/// Executes the command function with the provided arguments.
 		/// </summary>
-		public bool CommandFunction( GameObject player, Scene scene, string[] args = null ) => commandFunction( player, scene, args );
+		/// <param name="args">The arguments to pass to the command function. Can be null.</param>
+		/// <returns>True if the command executed successfully; otherwise, false.</returns>
+		public bool CommandFunction( string[] args = null ) => commandFunction( args );
 	}
 
 	/// <summary>
@@ -69,42 +70,7 @@ namespace Commands
 	/// </summary>
 	public class CommandConfig
 	{
-		private readonly Dictionary<string, ICommandConfig> _commands = new()
-		{
-			{ "clear", new Command(
-						name: "clear",
-						description: "Clears the chat",
-						permissionLevel: 0,
-						commandFunction: (player, scene, args) =>
-						{
-							var playerStats = player.Components.Get<PlayerStats>();
-							if (playerStats == null) return false;
-							
-							// Get the chat
-							var chat = scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
-							if (chat == null) return false;
-
-							chat.ClearChat();
-							
-							playerStats.SendMessage("Chat has been cleared");
-							return true;
-						}
-				)},
-			{ "lorem", new Command(
-						name: "lorem",
-						description: "Spams the chat with lorem ipsum X times.",
-						permissionLevel: 0,
-						commandFunction: (player, scene, args) =>
-						{
-								// Get the player stats
-								var playerStats = player.Components.Get<PlayerStats>();
-								if (playerStats == null) return false;
-
-								playerStats.SendMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-								return true;
-						}
-				)}
-		};
+		private readonly Dictionary<string, ICommandConfig> _commands = new();
 
 		public IReadOnlyCollection<ICommandConfig> Commands => _commands.Values;
 		/// <summary>
@@ -119,7 +85,8 @@ namespace Commands
 				throw new ArgumentNullException( nameof( command ) );
 
 			var commandNameLower = command.Name.ToLowerInvariant();
-			if ( _commands.ContainsKey( commandNameLower ) ) Log.Warning( $"Command with name \"{commandNameLower}\" already exists." );
+			if ( _commands.ContainsKey( commandNameLower ) )
+				throw new InvalidOperationException( $"Command with name \"{commandNameLower}\" already exists." );
 
 			_commands[commandNameLower] = command;
 		}
@@ -130,7 +97,8 @@ namespace Commands
 			if ( string.IsNullOrWhiteSpace( commandName ) )
 				throw new ArgumentException( "Command name cannot be null or whitespace.", nameof( commandName ) );
 
-			if ( !_commands.Remove( commandName ) ) Log.Warning( $"Command with name \"{commandName}\" does not exist." );
+			if ( !_commands.Remove( commandName ) )
+				throw new KeyNotFoundException( $"Command with name \"{commandName}\" does not exist." );
 		}
 
 		public ICommandConfig GetCommand( string commandName )
@@ -148,24 +116,13 @@ namespace Commands
 
 		public string[] GetCommandNames() => _commands.Keys.ToArray();
 
-		public bool ExecuteCommand( string commandName, GameObject player, Scene scene, string[] args )
+		public bool ExecuteCommand( string commandName, string[] args )
 		{
 			try
 			{
-				// Check if its the default "help" command
-				if ( commandName == "help")
-				{
-					var playerStats = player.Components.Get<PlayerStats>();
-					if (playerStats == null) return false;
-
-					var commandNames = string.Join(", ", GetCommandNames().Select(name=> "/" + name));
-
-					playerStats.SendMessage($"Available commands: /help, {commandNames}");
-					return true;
-				}
 				var command = GetCommand( commandName );
 				Log.Info( $"Executing command \"{commandName}\"." );
-				return command.CommandFunction( player, scene, args );
+				return command.CommandFunction( args );
 			}
 			catch ( Exception e )
 			{

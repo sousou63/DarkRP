@@ -211,12 +211,6 @@
           "KeyboardCode": "enter",
           "GamepadCode": "None",
           "GroupName": "Other"
-        },
-        {
-          "Name": "Use Special",
-          "KeyboardCode": "R",
-          "GamepadCode": "None",
-          "GroupName": "Other"
         }
       ],
       "__guid": "7cedfdbc-0fea-49a2-8803-40a706dfe287"
