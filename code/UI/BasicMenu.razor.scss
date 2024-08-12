@@ -27,7 +27,7 @@ BasicMenu {
 	}
 
 	.title {
-		font-size: 1.5rem;
+		font-size: 20px;
 		font-weight: 600;
 		justify-content: center;
 		width: 100%;
@@ -38,7 +38,7 @@ BasicMenu {
 	.side-bar {
 		flex-direction: column;
 		justify-content: space-between;
-		width: 25rem;
+		width: 20vw;
 		height: 100%;
 	}
 	
@@ -47,7 +47,7 @@ BasicMenu {
 		padding: 20px;		
 		.button {
 			display: flex;
-			font-size: 1.25rem;
+			font-size: 25px;
 			align-items: center;
 			border-radius: 5px;
 
