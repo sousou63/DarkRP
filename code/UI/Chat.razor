@@ -45,66 +45,25 @@
         public bool IsNew { get; set; } = true;
         public string timestamp { get; } = DateTime.Now.ToString("HH:mm:ss");
     }
-    List<Entry> Messages = new();
+    public List<Entry> Messages = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
-    ConfigManager ConfigManager;
+    GameObject GameControllerObject = null;
     protected override void OnStart()
     {
-        /// Get the ConfigManager from the scene
-        ConfigManager = ConfigManagerHelper.GetConfigManager(Scene);
-        if (ConfigManager is null)
+        try
         {
-            Log.Error( "Config Manager not found" );
-            return;
+            /// Get the ConfigManager from the scene
+            GameControllerObject = Scene.Directory.FindByName( "Game Controller").First() as GameObject;
+            if (GameControllerObject == null)
+            {
+                Log.Error( "Config Manager not found" );
+                return;
+            }
+        }catch (Exception e)
+        {
+            Log.Error( e.Message );
         }
-
-        // Register the chat commands
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "clear",
-            description: "Clears the chat",
-            permissionLevel: 0,
-            commandFunction: (args) =>
-            {
-                Messages.Clear();
-                NewSystemMessage("Chat has been cleared", true);
-                return true;
-            }
-        ));
-
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "lorem",
-            description: "Spams the chat with lorem ipsum X times.",
-            permissionLevel: 0,
-            commandFunction: (args) =>
-            {
-                if (args.Length == 0 || !int.TryParse(args[0], out int count))
-                {
-                    NewSystemMessage("Invalid argument. Usage: lorem <count>", true);
-                    return false;
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    NewUserMessage("Lorem ipsum dolor sit amet.", true);
-                }
-                return true;
-            }
-        ));
-
-        // TODO this should be baked into the command system and updated everytime a new command is registered.
-        // Currently done this was cos I have no idea how to send messages from outside of this file :)
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "help",
-            description: "List all available commands",
-            permissionLevel: 0,
-            commandFunction: (args) =>
-            {
-                    var commandNames = ConfigManager.Commands.GetCommandNames();
-                    NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}", true);
-                    return true;
-            }
-		));
     }
 
     protected override void OnUpdate()
@@ -154,7 +113,7 @@
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        if ( CheckCommand(text) == true) return;
+        if ( CheckForCommand(text) == true) return;
         NewUserMessage( text );
     }
 
@@ -162,11 +121,8 @@
     /// Sends a new message to broadcast to all clients
     /// </summary>
     [Broadcast]
-    public void SendMessage( string message, bool system = false, bool clientOnly = false)
+    public void SendMessage( string message, bool system = false)
     {
-        // Return if it's a client-only message and the caller isn't the local client
-        if (clientOnly && Rpc.Caller != Connection.Local) return;
-
         // Return if the message is empty
         if (string.IsNullOrWhiteSpace(message))
             return;
@@ -189,17 +145,17 @@
     /// <summary>
     /// Sends a new message from a user to broadcast to all clients
     /// </summary>
-    public void NewUserMessage( string message, bool clientOnly = false )
+    public void NewUserMessage( string message)
     {
-        SendMessage( message, false, clientOnly );
+        SendMessage( message, false );
 	}
 
     /// <summary>
     /// Sends a new system message to broadcast to all clients
     /// </summary>
-    public void NewSystemMessage( string message, bool clientOnly = false)
+    public void NewSystemMessage( string message)
     {
-        SendMessage( message, true, clientOnly );
+        SendMessage( message, true );
     }
 
 	void Component.INetworkListener.OnConnected( Connection channel )
@@ -216,11 +172,17 @@
 		NewSystemMessage( $"{channel.DisplayName} has left the game" );
 	}
 
+    public void ClearChat()
+    {
+        Messages.Clear();
+        StateHasChanged();
+    }
+
     // Super basic commands for now. Expand later for more.
     // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
-    public bool CheckCommand(string message)
+    public bool CheckForCommand(string message)
     {
-        if (ConfigManager is null) return false;
+        if (GameControllerObject == null) return false;
         if (message.StartsWith("/"))
         {
             var parts = message.Split(" ");
@@ -228,7 +190,18 @@
             var args = parts.Skip(1).ToArray();
             try
             {
-                ConfigManager.Commands.ExecuteCommand(command, args);
+                // Get the ConfigManager and GameController components
+                var ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
+                if ( ConfigManager == null ) return false;
+
+                var GameController = GameControllerObject.Components.Get<GameController>();
+                if ( GameController == null ) return false;
+
+                // Find the player executing the command
+                var player = GameController.GetPlayerByConnectionID( Rpc.Caller.Id );
+                if ( player == null ) return false;
+
+                ConfigManager.Commands.ExecuteCommand(command,player.GameObject, Scene, args);
                 return true;
             }catch (Exception e)
             {
