@@ -12,7 +12,7 @@ namespace Commands
 		string Description { get; }
 		int PermissionLevel { get; }
 		// TODO the command function should also take in the GameObject player parameter to be able to send messages to the player perhaps.
-		bool CommandFunction( GameObject player, string[] args );
+		bool CommandFunction( GameObject player, Scene scene, string[] args );
 	}
 
 	/// <summary>
@@ -38,7 +38,7 @@ namespace Commands
 		/// <summary>
 		///  The function to execute when the command is called.
 		/// </summary>
-		private readonly Func<GameObject, string[], bool> commandFunction;
+		private readonly Func<GameObject, Scene, string[], bool> commandFunction;
 
 		/// <summary>
 		/// Initializes a new instance of the Command class.
@@ -50,7 +50,7 @@ namespace Commands
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
 		/// </exception>
-		public Command( string name, string description, int permissionLevel, Func<GameObject, string[], bool> commandFunction )
+		public Command( string name, string description, int permissionLevel, Func<GameObject,Scene, string[], bool> commandFunction )
 		{
 			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
 			Description = description ?? throw new ArgumentNullException( nameof( description ) );
@@ -61,7 +61,7 @@ namespace Commands
 		/// <summary>
 		/// Executes the command function with the provided arguments.
 		/// </summary>
-		public bool CommandFunction( GameObject player, string[] args = null ) => commandFunction( player, args );
+		public bool CommandFunction( GameObject player, Scene scene, string[] args = null ) => commandFunction( player, scene, args );
 	}
 
 	/// <summary>
@@ -75,18 +75,26 @@ namespace Commands
 						name: "clear",
 						description: "Clears the chat",
 						permissionLevel: 0,
-						commandFunction: (player, args) =>
+						commandFunction: (player, scene, args) =>
 						{
-								// Messages.Clear();
-								// NewSystemMessage("Chat has been cleared");
-								return true;
+							var playerStats = player.Components.Get<PlayerStats>();
+							if (playerStats == null) return false;
+							
+							// Get the chat
+							var chat = scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
+							if (chat == null) return false;
+
+							chat.ClearChat();
+							
+							playerStats.SendMessage("Chat has been cleared");
+							return true;
 						}
 				)},
 			{ "lorem", new Command(
 						name: "lorem",
 						description: "Spams the chat with lorem ipsum X times.",
 						permissionLevel: 0,
-						commandFunction: (player, args) =>
+						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
 								var playerStats = player.Components.Get<PlayerStats>();
@@ -140,7 +148,7 @@ namespace Commands
 
 		public string[] GetCommandNames() => _commands.Keys.ToArray();
 
-		public bool ExecuteCommand( string commandName, GameObject player, string[] args )
+		public bool ExecuteCommand( string commandName, GameObject player, Scene scene, string[] args )
 		{
 			try
 			{
@@ -157,7 +165,7 @@ namespace Commands
 				}
 				var command = GetCommand( commandName );
 				Log.Info( $"Executing command \"{commandName}\"." );
-				return command.CommandFunction( player, args );
+				return command.CommandFunction( player, scene, args );
 			}
 			catch ( Exception e )
 			{

@@ -113,7 +113,7 @@
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        if ( CheckCommand(text) == true) return;
+        if ( CheckForCommand(text) == true) return;
         NewUserMessage( text );
         Log.Info(Rpc.Caller.Id);
     }
@@ -173,9 +173,15 @@
 		NewSystemMessage( $"{channel.DisplayName} has left the game" );
 	}
 
+    public void ClearChat()
+    {
+        Messages.Clear();
+        StateHasChanged();
+    }
+
     // Super basic commands for now. Expand later for more.
     // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
-    public bool CheckCommand(string message)
+    public bool CheckForCommand(string message)
     {
         if (GameControllerObject == null) return false;
         if (message.StartsWith("/"))
@@ -196,7 +202,7 @@
                 var player = GameController.GetPlayerByConnectionID( Rpc.Caller.Id );
                 if ( player == null ) return false;
 
-                ConfigManager.Commands.ExecuteCommand(command, player.GameObject, args);
+                ConfigManager.Commands.ExecuteCommand(command,player.GameObject, Scene, args);
                 return true;
             }catch (Exception e)
             {
