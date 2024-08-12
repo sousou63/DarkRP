@@ -94,10 +94,13 @@ public sealed class PlayerStats : Component
 		{
 			Doors.Add(door);
 			doorLogic.PurchaseDoor(GameObject);
+			SendMessage("The door has been purchased.");
 			return true;
+		}else{
+			SendMessage("Can't afford this door.");
+			return false;
 		}
 
-		return false;
 	}
 
 	public bool SellDoor(GameObject door)
@@ -118,6 +121,7 @@ public sealed class PlayerStats : Component
 		// Remove the door from the list
 		Doors.Remove(door);
 		doorLogic.SellDoor();
+		SendMessage("Door has been sold.");
 		return true;
 	}
 
@@ -126,7 +130,18 @@ public sealed class PlayerStats : Component
 		foreach (var door in Doors)
 		{
 			SellDoor(door);
+			SendMessage("All doors have been sold.");
 		}
+	}
+
+	public void SendMessage(string message)
+	{
+		// Get the player's chat component
+		var chat = GameObject.Components.Get<Chat>();
+		if (chat == null) return;
+
+		// Send the message
+		chat.NewSystemMessage(message, true);
 	}
 }
 
