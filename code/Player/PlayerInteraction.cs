@@ -61,6 +61,19 @@ public sealed class PlayerInteraction : Component
 					Log.Error( e );
 				}
 			}
+
+						// When the "Use Special" key is pressed
+			if ( Input.Pressed( "Use Special" ) )
+			{
+				// Get the IInteractable component from the hit object and call the Interact method
+				try
+				{
+					tr.GameObject.Components.Get<IInteractable>()?.InteractSpecial( tr, GameObject );
+				}catch ( System.Exception e )
+				{
+					Log.Error( e );
+				}
+			}
 		}
 		else
 		{
