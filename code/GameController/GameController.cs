@@ -17,8 +17,10 @@ public sealed class GameController : Component, Component.INetworkListener
 	public List<PlayerConnection> Players { get; set; } = new List<PlayerConnection>();
 
 
+	// This could probably be put in the network controller/helper.
 	public void AddPlayer( GameObject player, Connection connection )
 	{
+		Log.Info( $"Player connected: {connection.Id}" );
 		Players.Add( new PlayerConnection( player, connection ) );
 	}
 
@@ -43,6 +45,7 @@ public sealed class GameController : Component, Component.INetworkListener
 
 	void INetworkListener.OnDisconnected( Connection channel )
 	{
+		Log.Info( $"Player disconnected: {channel.Id}" );
 		RemovePlayer( channel );
 	}
 }

@@ -22,14 +22,20 @@ public sealed class PlayerStats : Component
 
 	[Property] public float SalaryAmmount { get; set; } = 50f;
 
+	[Property] public GameObject screen { get; set; }
+	private Chat chat { get; set; }
 
 	TimeSince lastUsed = 0; // Set the timer
 
 	// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 	// For this though, the command functions need to be expanded to pass on the Player gameobject that the command is being called from
 
+	// TODO Chat should not be controlled by this entity but rather call a chat function on the player to send a personal messag
+
 	protected override void OnStart()
 	{
+		chat = screen.Components.Get<Chat>();
+		if ( chat == null ) Log.Error( "Chat component not found" );
 		try
 		{
 			var controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
@@ -134,14 +140,11 @@ public sealed class PlayerStats : Component
 		}
 	}
 
+	// TODO this would need to go to its own class. PlayerController or some shit
 	public void SendMessage(string message)
 	{
-		// Get the player's chat component
-		var chat = GameObject.Components.Get<Chat>();
-		if (chat == null) return;
-
 		// Send the message
-		chat.NewSystemMessage(message, true);
+		chat?.NewSystemMessage(message, true);
 	}
 }
 

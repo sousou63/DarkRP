@@ -142,7 +142,11 @@
           ]
         },
         "SalaryAmmount": 100,
-        "SalaryTimer": 60
+        "SalaryTimer": 60,
+        "screen": {
+          "_type": "gameobject",
+          "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
+        }
       },
       {
         "__type": "Sandbox.CapsuleCollider",
@@ -209,8 +213,8 @@
                   "Id": 3,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,-64"
@@ -220,8 +224,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,128"
@@ -413,12 +417,12 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "16,144"
@@ -459,9 +463,9 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
+                    "_type": "System.Collections.Generic.List\u00601",
                     "_name": "ForEach",
-                    "_type": "System.Collections.Generic.List\u00601"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "656,96"
@@ -485,9 +489,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -515,12 +519,12 @@
                   "Id": 29,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "-400,528"
@@ -530,9 +534,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -781,8 +785,8 @@
                   "Id": 3,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-224,96"
@@ -989,6 +993,10 @@
               "_type": "gameobject",
               "prefab": "prefab/printer.prefab"
             }
+          },
+          {
+            "__type": "Chat",
+            "__guid": "f7eac175-8cd2-4fbf-84bd-fb45c44b64a2"
           }
         ]
       }
