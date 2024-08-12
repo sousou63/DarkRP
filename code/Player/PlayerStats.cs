@@ -3,7 +3,9 @@ using System;
 
 public sealed class PlayerStats : Component
 {
+	// DOORS
 
+	public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
 	// BASE PLAYER PROPERTYS
 
@@ -22,6 +24,22 @@ public sealed class PlayerStats : Component
 
 
 	TimeSince lastUsed = 0; // Set the timer
+
+	// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
+	// For this though, the command functions need to be expanded to pass on the Player gameobject that the command is being called from
+
+	protected override void OnStart()
+	{
+		try
+		{
+			var controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
+			if ( controller == null) return;
+			controller.AddPlayer(GameObject, Rpc.Caller);
+		} catch (Exception e)
+		{
+			Log.Error( $"Failed to add player to GameController: {e.Message}" );
+		}
+	}
 
 	protected override void OnFixedUpdate()
 	{
@@ -53,6 +71,62 @@ public sealed class PlayerStats : Component
 	public void AddMoney(float Ammount)
 	{
 		MoneyBase += Ammount;
+	}
+
+	// DOOR LOGIC. Helps keep track of owned doors.
+
+	public bool PurchaseDoor(float price, GameObject door)
+	{
+		// Check if its a valid door
+		var doorLogic = door.Components.Get<DoorLogic>();
+		if (doorLogic == null)
+		{
+			return false;
+		}
+		// Check if the door is already owned
+		if (Doors.Any(d => d.Id == door.Id))
+		{
+			return false;
+		}
+
+		// If the player can afford it
+		if ( RemoveMoney(price) )
+		{
+			Doors.Add(door);
+			doorLogic.PurchaseDoor(GameObject);
+			return true;
+		}
+
+		return false;
+	}
+
+	public bool SellDoor(GameObject door)
+	{
+		// Check if its a valid door
+		var doorLogic = door.Components.Get<DoorLogic>();
+		if (doorLogic == null)
+		{
+			return false;
+		}
+
+		// Check if the door is owned
+		if (!Doors.Any(d => d.Id == door.Id))
+		{
+			return false;
+		}
+
+		// Remove the door from the list
+		Doors.Remove(door);
+		doorLogic.SellDoor();
+		return true;
+	}
+
+	public void SellAllDoors()
+	{
+		foreach (var door in Doors)
+		{
+			SellDoor(door);
+		}
 	}
 }
 

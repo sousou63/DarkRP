@@ -80,10 +80,16 @@
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
       "Components": [
         {
           "__type": "ConfigManager",
           "__guid": "4858c8f8-d34c-46cc-b8e6-64e6e557b35f"
+        },
+        {
+          "__type": "GameController",
+          "__guid": "dacb43ce-2064-464e-82fb-959b80292329"
         }
       ]
     },
@@ -93,6 +99,7 @@
       "Name": "Network Manager",
       "Position": "0,0,136.2419",
       "Enabled": true,
+      "NetworkOrphaned": 1,
       "Components": [
         {
           "__type": "Sandbox.NetworkHelper",
@@ -199,6 +206,32 @@
       "Rotation": "0,0,-0.7071067,0.7071068",
       "Tags": "interact",
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "4e50a228-3210-4bc0-b6f0-f779d53e67aa",
+      "Flags": 0,
+      "Name": "door",
+      "Position": "-245.3057,-235.0488,248.5769",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "832d76a1-4660-4137-9ba0-0c3d26a4529a",
+      "Flags": 0,
+      "Name": "door (1)",
+      "Position": "-300.9522,-205.2092,248.5769",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
       "__Prefab": "prefab/door.prefab",
       "__PrefabVariables": {}
     }
