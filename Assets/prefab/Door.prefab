@@ -13,6 +13,7 @@
           "_type": "gameobject",
           "go": "0d3c6985-290a-4400-9505-0d59d586a655"
         },
+        "IsOpen": false,
         "IsUnlocked": true,
         "Price": 100
       },
@@ -30,16 +31,45 @@
         "__guid": "244484dd-fb97-4cc3-b1af-8d3adb675e91",
         "Flags": 0,
         "Name": "Door",
-        "Scale": "0.8,0.8,0.8",
+        "Position": "-0.03511548,-18.66354,39.41812",
+        "Scale": "0.02540947,0.7285867,1.587103",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
-            "__guid": "27a04086-37e6-45d3-b7b8-d2693f9a85bc",
+            "__guid": "1f59113c-d475-48d9-a702-548a5e5f361f",
             "BodyGroups": 18446744073709551615,
-            "Model": "models/props/trim_sheets/doors/wooden_doors/wooden_door_01d.vmdl",
+            "Model": "models/dev/box.vmdl",
             "RenderType": "On",
             "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "8b3e3286-3749-4f35-8d43-a58dcea8cb12",
+        "Flags": 0,
+        "Name": "Panel (1)",
+        "Position": "-0.9605581,-18.3967,56.29179",
+        "Rotation": "0,0,1,-0.00000004371139",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "e5a41cfc-bd67-458f-b547-7377c05d1132",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "512,512",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "Door",
+            "__guid": "251cfeb4-92aa-4a1b-8dcb-ae0110711d1c",
+            "DoorPrefab": {
+              "_type": "gameobject",
+              "go": "0d3c6985-290a-4400-9505-0d59d586a655"
+            }
           }
         ]
       },
@@ -77,8 +107,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "ResourceVersion": 1,
-  "__references": [
-    "facepunch.wooden_door_01d"
-  ],
+  "__references": [],
   "__version": 1
 }

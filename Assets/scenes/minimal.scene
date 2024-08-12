@@ -196,6 +196,7 @@
       "Flags": 0,
       "Name": "Door",
       "Position": "-149.7219,-255.2965,247.41",
+      "Rotation": "0,0,-0.7071067,0.7071068",
       "Tags": "interact",
       "Enabled": true,
       "__Prefab": "prefab/door.prefab",
