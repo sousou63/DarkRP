@@ -45,69 +45,21 @@
         public bool IsNew { get; set; } = true;
         public string timestamp { get; } = DateTime.Now.ToString("HH:mm:ss");
     }
-    List<Entry> Messages = new();
+    public List<Entry> Messages = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
-    ConfigManager ConfigManager = null;
+    GameObject GameControllerObject = null;
     protected override void OnStart()
     {
         try
         {
-
             /// Get the ConfigManager from the scene
-            ConfigManager = ConfigManagerHelper.GetConfigManager(Scene);
-            if (ConfigManager == null)
+            GameControllerObject = Scene.Directory.FindByName( "Game Controller").First() as GameObject;
+            if (GameControllerObject == null)
             {
                 Log.Error( "Config Manager not found" );
                 return;
             }
-
-            // Register the chat commands
-            ConfigManager.Commands.RegisterCommand(new Command(
-                name: "clear",
-                description: "Clears the chat",
-                permissionLevel: 0,
-                commandFunction: (args) =>
-                {
-                    Messages.Clear();
-                    NewSystemMessage("Chat has been cleared");
-                    return true;
-                }
-            ));
-
-            ConfigManager.Commands.RegisterCommand(new Command(
-                name: "lorem",
-                description: "Spams the chat with lorem ipsum X times.",
-                permissionLevel: 0,
-                commandFunction: (args) =>
-                {
-                    if (args.Length == 0 || !int.TryParse(args[0], out int count))
-                    {
-                        NewSystemMessage("Invalid argument. Usage: lorem <count>");
-                        return false;
-                    }
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        NewUserMessage("Lorem ipsum dolor sit amet.");
-                    }
-                    return true;
-                }
-            ));
-
-            // TODO this should be baked into the command system and updated everytime a new command is registered.
-            // Currently done this was cos I have no idea how to send messages from outside of this file :)
-            ConfigManager.Commands.RegisterCommand(new Command(
-                name: "help",
-                description: "List all available commands",
-                permissionLevel: 0,
-                commandFunction: (args) =>
-                {
-                        var commandNames = ConfigManager.Commands.GetCommandNames();
-                        NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}");
-                        return true;
-                }
-            ));
         }catch (Exception e)
         {
             Log.Error( e.Message );
@@ -225,7 +177,7 @@
     // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
     public bool CheckCommand(string message)
     {
-        if (ConfigManager == null) return false;
+        if (GameControllerObject == null) return false;
         if (message.StartsWith("/"))
         {
             var parts = message.Split(" ");
@@ -233,7 +185,18 @@
             var args = parts.Skip(1).ToArray();
             try
             {
-                ConfigManager.Commands.ExecuteCommand(command, args);
+                // Get the ConfigManager and GameController components
+                var ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
+                if ( ConfigManager == null ) return false;
+
+                var GameController = GameControllerObject.Components.Get<GameController>();
+                if ( GameController == null ) return false;
+
+                // Find the player executing the command
+                var player = GameController.GetPlayerByConnectionID( Rpc.Caller.Id );
+                if ( player == null ) return false;
+
+                ConfigManager.Commands.ExecuteCommand(command, player.GameObject, args);
                 return true;
             }catch (Exception e)
             {

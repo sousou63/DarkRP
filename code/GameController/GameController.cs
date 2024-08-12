@@ -1,4 +1,5 @@
 using System;
+using Commands;
 using Sandbox;
 
 public sealed class GameController : Component, Component.INetworkListener
@@ -52,5 +53,19 @@ public sealed class GameController : Component, Component.INetworkListener
 	{
 		Log.Info( $"Player disconnected: {channel.Id}" );
 		RemovePlayer( channel );
+	}
+
+	public Player GetPlayerByConnectionID( Guid connection )
+	{
+		// Find players to be removed
+		var player = Players.Find( x => x.Connection.Id == connection );
+		return player;
+	}
+
+	public Player GetPlayerByGameObjectID( Guid gameObject )
+	{
+		// Find players to be removed
+		var player = Players.Find( x => x.GameObject.Id == gameObject );
+		return player;
 	}
 }
