@@ -85,8 +85,7 @@ namespace Commands
 				throw new ArgumentNullException( nameof( command ) );
 
 			var commandNameLower = command.Name.ToLowerInvariant();
-			if ( _commands.ContainsKey( commandNameLower ) )
-				throw new InvalidOperationException( $"Command with name \"{commandNameLower}\" already exists." );
+			if ( _commands.ContainsKey( commandNameLower ) ) Log.Warning( $"Command with name \"{commandNameLower}\" already exists." );
 
 			_commands[commandNameLower] = command;
 		}
@@ -97,8 +96,7 @@ namespace Commands
 			if ( string.IsNullOrWhiteSpace( commandName ) )
 				throw new ArgumentException( "Command name cannot be null or whitespace.", nameof( commandName ) );
 
-			if ( !_commands.Remove( commandName ) )
-				throw new KeyNotFoundException( $"Command with name \"{commandName}\" does not exist." );
+			if ( !_commands.Remove( commandName ) ) Log.Warning( $"Command with name \"{commandName}\" does not exist." );
 		}
 
 		public ICommandConfig GetCommand( string commandName )

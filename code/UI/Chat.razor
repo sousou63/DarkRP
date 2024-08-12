@@ -48,63 +48,70 @@
     List<Entry> Messages = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
-    ConfigManager ConfigManager;
+    ConfigManager ConfigManager = null;
     protected override void OnStart()
     {
-        /// Get the ConfigManager from the scene
-        ConfigManager = ConfigManagerHelper.GetConfigManager(Scene);
-        if (ConfigManager is null)
+        try
         {
-            Log.Error( "Config Manager not found" );
-            return;
-        }
 
-        // Register the chat commands
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "clear",
-            description: "Clears the chat",
-            permissionLevel: 0,
-            commandFunction: (args) =>
+            /// Get the ConfigManager from the scene
+            ConfigManager = ConfigManagerHelper.GetConfigManager(Scene);
+            if (ConfigManager == null)
             {
-                Messages.Clear();
-                NewSystemMessage("Chat has been cleared", true);
-                return true;
+                Log.Error( "Config Manager not found" );
+                return;
             }
-        ));
 
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "lorem",
-            description: "Spams the chat with lorem ipsum X times.",
-            permissionLevel: 0,
-            commandFunction: (args) =>
-            {
-                if (args.Length == 0 || !int.TryParse(args[0], out int count))
+            // Register the chat commands
+            ConfigManager.Commands.RegisterCommand(new Command(
+                name: "clear",
+                description: "Clears the chat",
+                permissionLevel: 0,
+                commandFunction: (args) =>
                 {
-                    NewSystemMessage("Invalid argument. Usage: lorem <count>", true);
-                    return false;
-                }
-
-                for (int i = 0; i < count; i++)
-                {
-                    NewUserMessage("Lorem ipsum dolor sit amet.", true);
-                }
-                return true;
-            }
-        ));
-
-        // TODO this should be baked into the command system and updated everytime a new command is registered.
-        // Currently done this was cos I have no idea how to send messages from outside of this file :)
-        ConfigManager.Commands.RegisterCommand(new Command(
-            name: "help",
-            description: "List all available commands",
-            permissionLevel: 0,
-            commandFunction: (args) =>
-            {
-                    var commandNames = ConfigManager.Commands.GetCommandNames();
-                    NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}", true);
+                    Messages.Clear();
+                    NewSystemMessage("Chat has been cleared", true);
                     return true;
-            }
-		));
+                }
+            ));
+
+            ConfigManager.Commands.RegisterCommand(new Command(
+                name: "lorem",
+                description: "Spams the chat with lorem ipsum X times.",
+                permissionLevel: 0,
+                commandFunction: (args) =>
+                {
+                    if (args.Length == 0 || !int.TryParse(args[0], out int count))
+                    {
+                        NewSystemMessage("Invalid argument. Usage: lorem <count>", true);
+                        return false;
+                    }
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        NewUserMessage("Lorem ipsum dolor sit amet.", true);
+                    }
+                    return true;
+                }
+            ));
+
+            // TODO this should be baked into the command system and updated everytime a new command is registered.
+            // Currently done this was cos I have no idea how to send messages from outside of this file :)
+            ConfigManager.Commands.RegisterCommand(new Command(
+                name: "help",
+                description: "List all available commands",
+                permissionLevel: 0,
+                commandFunction: (args) =>
+                {
+                        var commandNames = ConfigManager.Commands.GetCommandNames();
+                        NewSystemMessage($"Available commands: {string.Join(", ", commandNames)}", true);
+                        return true;
+                }
+            ));
+        }catch (Exception e)
+        {
+            Log.Error( e.Message );
+        }
     }
 
     protected override void OnUpdate()
@@ -220,7 +227,7 @@
     // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
     public bool CheckCommand(string message)
     {
-        if (ConfigManager is null) return false;
+        if (ConfigManager == null) return false;
         if (message.StartsWith("/"))
         {
             var parts = message.Split(" ");
