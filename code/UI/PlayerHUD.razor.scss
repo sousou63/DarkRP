@@ -9,7 +9,7 @@ PlayerHUD {
 		flex-direction: column;
 		width: 20vw;
 		height: auto;
-		margin: 1.5rem;
+		margin: 0.5rem;
 		font-family: 'Times New Roman', serif;
 		padding: 10px;
 
@@ -21,7 +21,7 @@ PlayerHUD {
 			gap: 10px;
 
 			.name {
-				font-size: 2rem;
+				font-size: 35px;
 			}
 
 			.center {
@@ -31,7 +31,7 @@ PlayerHUD {
 			}
 
 			.job {
-				font-size: 1.25rem;
+				font-size: 25px;
 			}
 		}
 
@@ -39,7 +39,7 @@ PlayerHUD {
 		.wallet {
 			display: flex;
 			flex-direction: row;
-			font-size: 1.25rem;
+			font-size: 25px;
 			width: 100%;
 			justify-content: space-between;
 
