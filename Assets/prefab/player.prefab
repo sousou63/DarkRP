@@ -100,6 +100,10 @@
       {
         "__type": "PlayerStats",
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
+        "ChatObject": {
+          "_type": "gameobject",
+          "go": "9c62d2ae-c8d8-4048-a43e-03403daeb56c"
+        },
         "FoodBase": 100,
         "HealthBase": 100,
         "MoneyBase": 1250,
@@ -142,11 +146,7 @@
           ]
         },
         "SalaryAmmount": 100,
-        "SalaryTimer": 60,
-        "screen": {
-          "_type": "gameobject",
-          "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
-        }
+        "SalaryTimer": 60
       },
       {
         "__type": "Sandbox.CapsuleCollider",
@@ -993,10 +993,18 @@
               "_type": "gameobject",
               "prefab": "prefab/printer.prefab"
             }
-          },
+          }
+        ]
+      },
+      {
+        "__guid": "9c62d2ae-c8d8-4048-a43e-03403daeb56c",
+        "Flags": 0,
+        "Name": "Chat",
+        "Enabled": true,
+        "Components": [
           {
             "__type": "Chat",
-            "__guid": "f7eac175-8cd2-4fbf-84bd-fb45c44b64a2"
+            "__guid": "2fa04b1e-162e-4f33-8867-9f2ba4e1bcaf"
           }
         ]
       }

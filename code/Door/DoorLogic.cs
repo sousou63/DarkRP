@@ -1,32 +1,21 @@
 using System;
-using Commands;
-using Sandbox;
 
 public sealed class DoorLogic : Component, IInteractable, Component.INetworkListener
 {
 	[Property]
 	public GameObject Door { get; set; }
-	[Property]
+	[Property, Sync]
 	public bool IsUnlocked { get; set; } = true;
-	[Property]
+	[Property, Sync]
 	public bool IsOpen { get; set; } = false;
-	[Property]
+	[Property, Sync]
 	public GameObject Owner { get; set; } = null;
-	[Property]
+	public PlayerStats OwnerStats { get; set; }
+	[Property, Sync]
 	public int Price { get; set; } = 100;
-
-
-	private Chat chat { get; set; }
-
-	protected override void OnStart()
-	{
-		chat = Scene.Directory.FindComponentByGuid( new Guid( "8123a00c-4e46-4e56-bdd8-050cd2785186" ) ) as Chat;
-		if ( chat == null ) Log.Error( "Chat component not found" );
-	}
 
 	public void InteractUse( SceneTraceResult tr, GameObject player )
 	{
-		Log.Info( "Interacting with door" );
 		// Dont interact with the door if it is locked
 		if ( IsUnlocked == false ) return;
 
@@ -38,7 +27,6 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	{
 		if ( Owner == null )
 		{
-			Log.Info( "Purchasing" );
 			PurchaseDoor( player );
 		}
 		else
@@ -76,31 +64,38 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		}
 	}
 
-	private void PurchaseDoor( GameObject player )
+	[Broadcast]
+	public void PurchaseDoor( GameObject player )
 	{
 		// Get player stats
 		var playerStats = player.Components.Get<PlayerStats>();
 		if ( playerStats == null ) return;
 
-		// Check if they can afford the door
-		if ( playerStats.MoneyBase < Price )
+		if ( playerStats.PurchaseDoor( Price, GameObject))
 		{
-			chat?.NewSystemMessage( "You can't afford this door", true );
-			return;
+			// Deduct the money
+			playerStats.RemoveMoney( Price );
+			Owner = player;
+			OwnerStats = playerStats;
 		}
-
-		// Deduct the money
-		playerStats.RemoveMoney( Price );
-		Owner = player;
-		chat?.NewSystemMessage( "Door has been purchased for $" + Price.ToString(), true );
 	}
 
-	private void SellDoor()
+	[Broadcast]
+	public void SellDoor()
 	{
-		Owner = null;
-		chat?.NewSystemMessage( "Door has been sold.", true );
+		if ( Owner == null ) return;
+		// Get player stats
+		var playerStats = Owner.Components.Get<PlayerStats>();
+		if ( playerStats == null ) return;
+
+		if (playerStats.SellDoor( GameObject ))
+		{
+			Owner = null;
+			OwnerStats = null;
+		}
 	}
 
+	[Broadcast]
 	private void OpenCloseDoor()
 	{
 			if (Door == null) return;
@@ -112,23 +107,17 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 			Door.Transform.Rotation = IsOpen ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse;
 	}
 
+	[Broadcast]
 	private void LockDoor()
 	{
 		IsUnlocked = false;
-		chat?.NewSystemMessage( "Door has been locked.", true );
+		OwnerStats?.SendMessage( "Door has been locked." );
 	}
 
+	[Broadcast]
 	private void UnlockDoor()
 	{
 		IsUnlocked = true;
-		chat?.NewSystemMessage( "Door has been unlocked.", true );
-	}
-
-	// TODO this should be moved to a game controller and sells all doors owned by them. Doors should not listen to this event individually.
-	void Component.INetworkListener.OnDisconnected( Connection channel )
-	{
-		if ( IsProxy ) return;
-		if ( Owner == null ) return;
-		SellDoor();
+		OwnerStats?.SendMessage( "Door has been unlocked." );
 	}
 }

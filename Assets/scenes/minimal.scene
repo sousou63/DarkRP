@@ -114,39 +114,6 @@
       ]
     },
     {
-      "__guid": "c1e45c98-13da-49ff-bf9f-15509f84c5bc",
-      "Flags": 0,
-      "Name": "Screen",
-      "Position": "-126.4292,-187.5311,204.951",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "a0c28225-84d9-4928-bc21-0dab5c9798eb",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ZIndex": 100
-        }
-      ],
-      "Children": [
-        {
-          "__guid": "421ffe6b-d384-4688-a1eb-5b9b88115e4b",
-          "Flags": 0,
-          "Name": "Chat",
-          "Position": "0,0,0",
-          "Enabled": true,
-          "NetworkMode": 1,
-          "Components": [
-            {
-              "__type": "Chat",
-              "__guid": "8123a00c-4e46-4e56-bdd8-050cd2785186"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "__guid": "5927208e-97d3-47ce-86eb-a9b4a2937017",
       "Flags": 0,
       "Name": "Ambient Sound",

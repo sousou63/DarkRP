@@ -171,6 +171,7 @@
     [Broadcast]
     public void SendMessage( string message, bool system = false, bool clientOnly = false)
     {
+        Log.Info( $"Sending message: {message} {Rpc.Caller.Name}");
         // Return if it's a client-only message and the caller isn't the local client
         if (clientOnly && Rpc.Caller != Connection.Local) return;
 

@@ -22,7 +22,7 @@ public sealed class PlayerStats : Component
 
 	[Property] public float SalaryAmmount { get; set; } = 50f;
 
-	[Property] public GameObject screen { get; set; }
+	[Property] public GameObject ChatObject { get; set; }
 	private Chat chat { get; set; }
 
 	TimeSince lastUsed = 0; // Set the timer
@@ -34,7 +34,7 @@ public sealed class PlayerStats : Component
 
 	protected override void OnStart()
 	{
-		chat = screen.Components.Get<Chat>();
+		chat = ChatObject.Components.Get<Chat>();
 		if ( chat == null ) Log.Error( "Chat component not found" );
 		try
 		{
