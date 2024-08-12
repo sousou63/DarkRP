@@ -190,6 +190,16 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "0d3c6985-290a-4400-9505-0d59d586a655",
+      "Flags": 0,
+      "Name": "Door",
+      "Position": "-149.7219,-255.2965,247.41",
+      "Tags": "interact",
+      "Enabled": true,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

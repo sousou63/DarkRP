@@ -1,0 +1,54 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root class="root">
+    @if (DoorProperties != null || DoorProperties.Owner == null)
+    {
+      <div class="title">For Sale</div>
+      <div class="sub-title">Press F2 to purchase door</div>
+    }
+    else
+    {
+      <div class="title">Owned by @(DoorProperties.Owner.Name)</div>
+      <div class="sub-title">Press F2 to sell door</div>
+    }
+</root>
+
+<style>
+  .root {
+    background-color: #1e1e27e5;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', serif;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
+  .title {
+    font-size: 35px;
+  }
+
+  .sub-title {
+    font-size: 20px;
+  }
+</style>
+@code
+{
+    DoorLogic DoorProperties { get; set; }
+    [Property]
+    public GameObject DoorPrefab { get; set; }
+
+    protected override void OnStart()
+    {
+        DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
+    }
+
+
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(DoorProperties?.Owner);
+}
