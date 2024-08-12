@@ -3,28 +3,11 @@
     "__guid": "d9722984-8e27-467c-bf69-0aed3358f138",
     "Flags": 0,
     "Name": "printer",
-    "Scale": "0.5,0.7,0.4",
-    "Tags": "printer,interact",
+    "Tags": "interact,printer",
     "Enabled": true,
     "NetworkMode": 1,
     "OwnerTransfer": 0,
     "Components": [
-      {
-        "__type": "Sandbox.ModelRenderer",
-        "__guid": "5c087b61-794a-43fc-8423-1ac87bbdbc01",
-        "BodyGroups": 18446744073709551615,
-        "Model": "models/dev/box.vmdl",
-        "RenderType": "On",
-        "Tint": "0.04186,0.02775,0.00156,1"
-      },
-      {
-        "__type": "Sandbox.BoxCollider",
-        "__guid": "3de3e14d-166d-4e9b-b4e9-9cf4f05c9e60",
-        "Center": "0,0,0",
-        "IsTrigger": false,
-        "Scale": "50,50,50",
-        "Static": false
-      },
       {
         "__type": "Sandbox.Rigidbody",
         "__guid": "e18c4834-4606-489e-b986-b64aedbad9bb",
@@ -82,6 +65,24 @@
         "Silver": "28.58,28.58,28.58,1",
         "SilverPrice": 1200,
         "SilverTimer": 15
+      },
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "8fbc36f6-c4a2-4338-8f69-eee46201651b",
+        "BodyGroups": 18446744073709551615,
+        "MaterialOverride": "materials/dev/dev_measuregeneric01b.vmat",
+        "Model": "model/printer.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "d9246d7c-60a1-4680-9bac-d3a25ec8f36b",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "35,35,10",
+        "Static": false,
+        "Surface": "surfaces/plastic.surface"
       }
     ],
     "Children": [
@@ -89,8 +90,8 @@
         "__guid": "a5cd5a30-2083-43c0-a2d7-a09c3e78d29d",
         "Flags": 0,
         "Name": "World",
-        "Position": "0.2549524,0,25.1883",
-        "Rotation": "0,-0.7071067,0,0.7071068",
+        "Position": "0.0000002915604,17.55421,0",
+        "Rotation": "0,0,0.7071068,0.7071067",
         "Enabled": true,
         "NetworkMode": 1,
         "Components": [
@@ -100,8 +101,8 @@
             "HorizontalAlign": "Center",
             "InteractionRange": 1000,
             "LookAtCamera": false,
-            "PanelSize": "800,800",
-            "RenderScale": 2,
+            "PanelSize": "600,150",
+            "RenderScale": 1,
             "VerticalAlign": "Center"
           },
           {

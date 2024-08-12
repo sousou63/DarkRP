@@ -19,3 +19,4 @@ I recommend using the Github Desktop application, which greatly simplifies the w
 
 - Sousou : ( Base gamemode + github management )
 - QueenPM : ( Chat improvement + tab menu UI rework + some code cleaning )
+- HankKitts : ( Money 3D Models )

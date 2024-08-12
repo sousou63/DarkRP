@@ -182,7 +182,6 @@
               "UserData": {
                 "Title": "On Component Fixed Update",
                 "ReferencedComponentTypes": [
-                  "TabMenu",
                   "BasicMenu"
                 ]
               },
@@ -295,46 +294,6 @@
                 {
                   "SrcId": 1,
                   "SrcName": "true",
-                  "DstId": 3,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 5,
-                  "SrcName": "_result",
-                  "DstId": 3,
-                  "DstName": "_target"
-                },
-                {
-                  "Value": true,
-                  "DstId": 3,
-                  "DstName": "_value"
-                },
-                {
-                  "SrcId": 1,
-                  "SrcName": "false",
-                  "DstId": 4,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 5,
-                  "SrcName": "_result",
-                  "DstId": 4,
-                  "DstName": "_target"
-                },
-                {
-                  "Value": false,
-                  "DstId": 4,
-                  "DstName": "_value"
-                },
-                {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 5,
-                  "DstName": "_this"
-                },
-                {
-                  "SrcId": 3,
-                  "SrcName": "_signal",
                   "DstId": 6,
                   "DstName": "_signal"
                 },
@@ -350,8 +309,8 @@
                   "DstName": "_value"
                 },
                 {
-                  "SrcId": 4,
-                  "SrcName": "_signal",
+                  "SrcId": 1,
+                  "SrcName": "false",
                   "DstId": 7,
                   "DstName": "_signal"
                 },
@@ -423,6 +382,8 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsProxy"
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "16,144"
@@ -464,7 +425,9 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "System.Collections.Generic.List\u00601",
+                    "_type": "System.Collections.Generic.List\u00601",
                     "_name": "ForEach",
+                    "_isStatic": false
                     "_isStatic": false
                   },
                   "UserData": {
@@ -490,6 +453,8 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
+                    "_isStatic": false
                     "_name": "Destroy",
                     "_isStatic": false
                   },
@@ -525,6 +490,8 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsProxy"
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "-400,528"
@@ -535,6 +502,8 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
+                    "_isStatic": false
                     "_name": "Destroy",
                     "_isStatic": false
                   },
@@ -759,11 +728,15 @@
             }
           },
           {
-            "__type": "TabMenu",
-            "__guid": "2464ac35-0183-4750-9dd0-6e8ca4ee4834",
+            "__type": "BasicMenu",
+            "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
+            "InfoCredits": "Sousou : ( Base GameMode \u002B Github Management ) | QueenPM : ( Chat Improvement \u002B Tab Menu UI Rework )",
+            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System ",
+            "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ). I work professionally with unreal engine, so I do all of this in my spare time! If you want to contact me, my Discord is: sousoup_",
+            "InfoTodo": " Health | Stamina | Food | Jobs | Housing | Weapons | Persistence | Etc...",
             "OnComponentDisabled": {
               "__version": 7,
-              "__guid": "0dca5a89-0b6c-4b0f-a126-aa13cf82499d",
+              "__guid": "86ae15ed-598d-40f6-8392-45ff34f3d151",
               "UserData": {
                 "Title": "On Component Disabled",
                 "ReferencedComponentTypes": []
@@ -778,7 +751,7 @@
                   "Id": 1,
                   "Type": "sound.play",
                   "UserData": {
-                    "Position": "672,32"
+                    "Position": "480,64"
                   }
                 },
                 {
@@ -804,31 +777,31 @@
                     "_name": "IsOwner"
                   },
                   "UserData": {
-                    "Position": "16,80"
+                    "Position": "-16,80"
                   }
                 },
                 {
-                  "Id": 6,
+                  "Id": 3,
                   "Type": "if",
                   "UserData": {
-                    "Position": "288,-0"
+                    "Position": "256,0"
                   }
                 },
                 {
-                  "Id": 7,
+                  "Id": 4,
                   "Type": "property",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
                   "UserData": {
-                    "Position": "-176,80"
+                    "Position": "-208,80"
                   }
                 }
               ],
               "Links": [
                 {
-                  "SrcId": 6,
+                  "SrcId": 3,
                   "SrcName": "true",
                   "DstId": 1,
                   "DstName": "_signal"
@@ -845,40 +818,34 @@
                   "DstName": "soundEvent"
                 },
                 {
-                  "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 3,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 7,
+                  "SrcId": 4,
                   "SrcName": "_result",
-                  "DstId": 5,
+                  "DstId": 2,
                   "DstName": "_target"
                 },
                 {
                   "SrcId": 0,
                   "SrcName": "_signal",
-                  "DstId": 6,
+                  "DstId": 3,
                   "DstName": "_signal"
                 },
                 {
-                  "SrcId": 5,
+                  "SrcId": 2,
                   "SrcName": "_result",
-                  "DstId": 6,
+                  "DstId": 3,
                   "DstName": "condition"
                 },
                 {
                   "SrcId": 0,
                   "SrcName": "_target",
-                  "DstId": 7,
+                  "DstId": 4,
                   "DstName": "_target"
                 }
               ]
             },
             "OnComponentEnabled": {
               "__version": 7,
-              "__guid": "3391af4d-3767-41a2-b926-e9020783e5c2",
+              "__guid": "77d47dbb-f4ce-44f1-94d3-54578333f7ec",
               "UserData": {
                 "Title": "On Component Enabled",
                 "ReferencedComponentTypes": []
@@ -887,20 +854,17 @@
               "Nodes": [
                 {
                   "Id": 0,
-                  "Type": "input",
-                  "UserData": {
-                    "Position": "-256,-0"
-                  }
+                  "Type": "input"
                 },
                 {
                   "Id": 1,
                   "Type": "sound.play",
                   "UserData": {
-                    "Position": "240,64"
+                    "Position": "464,64"
                   }
                 },
                 {
-                  "Id": 3,
+                  "Id": 2,
                   "Type": "property",
                   "Properties": {
                     "_type": {
@@ -911,31 +875,31 @@
                     "_name": "IsOwner"
                   },
                   "UserData": {
-                    "Position": "-240,80"
+                    "Position": "-16,80"
+                  }
+                },
+                {
+                  "Id": 3,
+                  "Type": "if",
+                  "UserData": {
+                    "Position": "256,-0"
                   }
                 },
                 {
                   "Id": 4,
-                  "Type": "if",
-                  "UserData": {
-                    "Position": "32,-0"
-                  }
-                },
-                {
-                  "Id": 5,
                   "Type": "property",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
                   "UserData": {
-                    "Position": "-432,80"
+                    "Position": "-208,80"
                   }
                 }
               ],
               "Links": [
                 {
-                  "SrcId": 4,
+                  "SrcId": 3,
                   "SrcName": "true",
                   "DstId": 1,
                   "DstName": "_signal"
@@ -952,39 +916,31 @@
                   "DstName": "soundEvent"
                 },
                 {
-                  "SrcId": 5,
+                  "SrcId": 4,
                   "SrcName": "_result",
-                  "DstId": 3,
+                  "DstId": 2,
                   "DstName": "_target"
                 },
                 {
                   "SrcId": 0,
                   "SrcName": "_signal",
-                  "DstId": 4,
+                  "DstId": 3,
                   "DstName": "_signal"
                 },
                 {
-                  "SrcId": 3,
+                  "SrcId": 2,
                   "SrcName": "_result",
-                  "DstId": 4,
+                  "DstId": 3,
                   "DstName": "condition"
                 },
                 {
                   "SrcId": 0,
                   "SrcName": "_target",
-                  "DstId": 5,
+                  "DstId": 4,
                   "DstName": "_target"
                 }
               ]
-            }
-          },
-          {
-            "__type": "BasicMenu",
-            "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
-            "InfoCredits": "Sousou : ( Base GameMode \u002B Github Management ) | QueenPM : ( Chat Improvement \u002B Tab Menu UI Rework )",
-            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System ",
-            "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ). I work professionally with unreal engine, so I do all of this in my spare time! If you want to contact me, my Discord is: sousoup_",
-            "InfoTodo": " Health | Stamina | Food | Jobs | Housing | Weapons | Persistence | Etc...",
+            },
             "PlayerPrefab": {
               "_type": "gameobject",
               "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678"

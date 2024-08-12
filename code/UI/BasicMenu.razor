@@ -3,87 +3,128 @@
 @inherits PanelComponent
 
 <root>
-    <!-- Dark Web Section -->
-    <div class="section">
-        <div class="section-title">Dark Web</div>
-        <div class="section-contents">
-            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
-                <div class="icon" style="background-color: #A52A2A"></div>
-                <div class="label-container">
-                    <div class="label">Bronze Printer</div>
-                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <span class="description">slow</span>
-                    <div class="price">$500</div>                    
-                </div>
-            </div>
-            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
-                <div class="icon" style="background-color: #DCDCDC"></div>
-                <div class="label-container">
-                    <div class="label">Silver Printer</div>
-                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <span class="description">average</span>
-                    <div class="price">$1200</div>
-                </div>
-            </div>
-            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
-                <div class="icon" style="background-color: #FFD700"></div>
-                <div class="label-container">
-                    <div class="label">Gold Printer</div>
-                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <span class="description">fast</span>
-                    <div class="price">$2600</div>
-                </div>
-            </div>
-            <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
-                <div class="icon" style="background-color: #40E0D0"></div>
-                <div class="label-container">
-                    <div class="label">Diamond Printer</div>
-                    <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                    <span class="description">super-fast</span>
-                    <div class="price">$4200</div>
-                </div>
-            </div>
-        </div>
+
+    <div class="title">MENU</div>
+
+    <div class="buttoncontainer">
+
+        <div class="button" onclick="@DisplayInfo"> Informations </div>
+        <div class="button" onclick="@DisplayJobs"> Jobs </div>
+        <div class="button" onclick="@DisplayDarkWeb"> Dark Web </div>
+        <div class="button" onclick="@DisplayAdmin"> Admin Tools </div>
+
     </div>
 
-    <!-- Jobs Section -->
-    <div class="section">
-        <div class="section-title">Jobs</div>
-        <div class="section-contents">
-            @foreach (var job in new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
-            {
-                <div class="button">
-                    <div class="icon"></div>
+
+
+
+    <div class="main-container">
+
+        <!-- Dark Web Section -->
+        <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
+            <div class="section-title">Dark Web</div>
+            <div class="section-contents">
+
+                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
+                    <div class="icon" style="background-color: #A52A2A"></div>
                     <div class="label-container">
-                        <div class="label">Job @job</div>
-                        <div class="description">Job @job description</div>
+                        <div class="label">Bronze Printer</div>
+                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                        <span class="description">slow</span>
+                        <div class="price">$500</div>
                     </div>
                 </div>
-            }
-        </div>
-    </div>
 
-    <!-- Information Section -->
-    <div class="section">
-        <div class="section-title">Information</div>
-        <div class="section-contents">
-            <div class="info" style="color: limegreen;">
-                <h1>Completed</h1>
-                <p>@InfoDone</p>
-            </div>
-            <div class="info" style="color: red;">
-                <h1>TODO</h1>
-                <p>@InfoTodo</p>
-            </div>
-            <div class="info" style="color: yellow;">
-                <h1>Notes</h1>
-                <p>@InfoNotes</p>
-            </div>
-            <div class="info" style="color: white;">
-                <h1>Credits</h1>
-                <p>@InfoCredits</p>
+                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
+                    <div class="icon" style="background-color: #DCDCDC"></div>
+                    <div class="label-container">
+                        <div class="label">Silver Printer</div>
+                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                        <span class="description">average</span>
+                        <div class="price">$1200</div>
+                    </div>
+                </div>
+
+                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
+                    <div class="icon" style="background-color: #FFD700"></div>
+                    <div class="label-container">
+                        <div class="label">Gold Printer</div>
+                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                        <span class="description">fast</span>
+                        <div class="price">$2600</div>
+                    </div>
+                </div>
+
+                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
+                    <div class="icon" style="background-color: #40E0D0"></div>
+                    <div class="label-container">
+                        <div class="label">Diamond Printer</div>
+                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                        <span class="description">super-fast</span>
+                        <div class="price">$4200</div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Jobs Section -->
+        <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
+            <div class="section-title">Jobs</div>
+            <div class="section-contents">
+                @foreach (var job in new int[] { 1, 2, 3, 4, 5, 6, 7, 8 })
+                {
+                    <div class="button">
+                        <div class="icon"></div>
+                        <div class="label-container">
+                            <div class="label">Job @job</div>
+                            <div class="description">Job @job description</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
+            <div class="section-title">Information</div>
+            <div class="section-contents">
+
+                <div class="info" style="color: limegreen;">
+                    <h1>Completed</h1>
+                    <p>@InfoDone</p>
+                </div>
+
+                <div class="info" style="color: red;">
+                    <h1>TODO</h1>
+                    <p>@InfoTodo</p>
+                </div>
+
+                <div class="info" style="color: yellow;">
+                    <h1>Notes</h1>
+                    <p>@InfoNotes</p>
+                </div>
+
+                <div class="info" style="color: white;">
+                    <h1>Credits</h1>
+                    <p>@InfoCredits</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Admin Section -->
+        <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
+            <div class="section-title">Admin Tools</div>
+            <div class="section-contents">
+
+                <div class="info" style="color: red;">
+                    <h1>TODO</h1>
+                </div>
+
+
+            </div>
+        </div>
+
     </div>
 </root>
 
@@ -99,6 +140,9 @@
 
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
+
+    // Boolean properties to control visibility
+    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false;
 
     // Enum to represent different types of printers
     enum PrinterType {Bronze,Silver,Gold,Diamond}
@@ -153,6 +197,12 @@
             Sound.Play("audio/error.sound");
         }
     }
+
+    // Display methods for each section
+    void DisplayDarkWeb() { IsDarkWebVisible = true; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayJobs() { IsDarkWebVisible = false; IsJobsVisible = true; IsInfoVisible = false; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayInfo() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = true; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayAdmin() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = true; Sound.Play("audio/select.sound"); }
 
     /// <summary>
     /// The BuildHash method determines if the system should be rebuilt.
