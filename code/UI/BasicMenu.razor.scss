@@ -2,8 +2,8 @@ BasicMenu {
 	pointer-events: all;
 	position: absolute;
 	top: 100;
-	left: 200;
-	right: 200;
+	left: 310;
+	right: 310;
 	bottom: 100;
 	background-color: #24292f;
 	color: #c9c9c9;
@@ -34,7 +34,7 @@ BasicMenu {
 	.side-bar {
 		flex-direction: column;
 		justify-content: space-between;
-		width: 25rem;
+		width: 13rem;
 		height: 100%;
 	}
 	

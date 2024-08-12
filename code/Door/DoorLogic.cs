@@ -77,6 +77,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 			playerStats.RemoveMoney( Price );
 			// Update the door owner
 			UpdateDoorOwner( player, playerStats );
+			Sound.Play( "audio/notification.sound" );
 		}
 	}
 
@@ -105,6 +106,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		if (playerStats.SellDoor( GameObject ))
 		{
 			UpdateDoorOwner();
+			Sound.Play( "audio/notification.sound" );
 		}
 	}
 
@@ -118,6 +120,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 			var rotationIncrement = Rotation.From(0, 90, 0);
 	
 			Door.Transform.Rotation = IsOpen ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse;
+			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
 	}
 
 	[Broadcast]
@@ -125,6 +128,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	{
 		IsUnlocked = false;
 		OwnerStats?.SendMessage( "Door has been locked." );
+		Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 	}
 
 	[Broadcast]
@@ -132,5 +136,6 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	{
 		IsUnlocked = true;
 		OwnerStats?.SendMessage( "Door has been unlocked." );
+		Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 	}
 }
