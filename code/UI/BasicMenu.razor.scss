@@ -1,10 +1,10 @@
 BasicMenu {
 	pointer-events: all;
 	position: absolute;
-	top: 100;
-	left: 200;
-	right: 200;
-	bottom: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	background-color: #24292f;
 	color: #c9c9c9;
 	//justify-content: center;
@@ -13,6 +13,10 @@ BasicMenu {
 	font-family: 'Times New Roman', serif;
 	font-weight: 400;
 	border-radius: 5px;
+	margin-left: 10rem;
+	margin-right: 10rem;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
 
 	.main {
 		display: flex;
@@ -28,7 +32,7 @@ BasicMenu {
 		justify-content: center;
 		width: 100%;
 		border-radius: 5px 5px 0 0;
-		padding: 5px;
+		padding: 0.5rem;
 	}
 
 	.side-bar {
@@ -43,7 +47,7 @@ BasicMenu {
 		padding: 20px;		
 		.button {
 			display: flex;
-			font-size: 25px;
+			font-size: 1.25rem;
 			align-items: center;
 			border-radius: 5px;
 
