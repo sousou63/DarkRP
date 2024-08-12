@@ -55,7 +55,7 @@ public sealed class PlayerInteraction : Component
 				// Get the IInteractable component from the hit object and call the Interact method
 				try
 				{
-					tr.GameObject.Components.Get<IInteractable>()?.Interact( tr, GameObject );
+					tr.GameObject.Components.Get<IInteractable>()?.InteractUse( tr, GameObject );
 				}catch ( System.Exception e )
 				{
 					Log.Error( e );

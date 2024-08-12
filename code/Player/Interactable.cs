@@ -9,7 +9,7 @@ public interface IInteractable
   /// <summary>
   /// Called when the player uses the default interaction key. Default key is "E". Action is "Use".
   /// </summary>
-  void Interact( SceneTraceResult tr, GameObject player )
+  void InteractUse( SceneTraceResult tr, GameObject player )
   {
 
   }
@@ -25,7 +25,7 @@ public interface IInteractable
 
 public class Interactable : Component, IInteractable
 {
-  public virtual void Interact( SceneTraceResult hit, GameObject player )
+  public virtual void InteractUse( SceneTraceResult hit, GameObject player )
   {
     // Default interaction behavior
     Log.Info( "Interacted with " + player.Name );
