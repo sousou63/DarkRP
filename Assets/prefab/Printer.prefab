@@ -71,7 +71,7 @@
         "__guid": "8fbc36f6-c4a2-4338-8f69-eee46201651b",
         "BodyGroups": 18446744073709551615,
         "MaterialOverride": "materials/dev/dev_measuregeneric01b.vmat",
-        "Model": "model/printer.vmdl",
+        "Model": "models/darkrp_main/printer.vmdl",
         "RenderType": "On",
         "Tint": "1,1,1,1"
       },
