@@ -124,13 +124,19 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	private void LockDoor()
 	{
 		IsUnlocked = false;
-		OwnerStats?.SendMessage( "Door has been locked." );
+		using ( Rpc.FilterInclude( c=> c.Id == Rpc.CallerId))
+		{
+			OwnerStats?.SendMessage( "Door has been locked." );
+		}
 	}
 
 	[Broadcast]
 	private void UnlockDoor()
 	{
 		IsUnlocked = true;
-		OwnerStats?.SendMessage( "Door has been unlocked." );
+		using ( Rpc.FilterInclude( c=> c.Id == Rpc.CallerId))
+		{
+			OwnerStats?.SendMessage( "Door has been unlocked." );
+		}
 	}
 }
