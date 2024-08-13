@@ -1,4 +1,6 @@
 using System;
+using PlayerDetails;
+using System.Security.Cryptography.X509Certificates;
 using Commands;
 
 namespace Commands
@@ -103,6 +105,90 @@ namespace Commands
 								playerStats.SendMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 								return true;
 						}
+				)},
+				{ "givemoney", new Command(
+						name: "givemoney",
+						description: "Gives the player money",
+						permissionLevel: 0, // TODO make it admin
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<PlayerStats>();
+								if (playerStats == null) return false;
+
+								// Get the 2nd parameter for player
+								if (args.Length < 2)
+								{
+									playerStats.SendMessage("Usage: /givemoney <player> <amount>");
+									return false;
+								}
+
+								var amount = 0;
+								if (!int.TryParse(args[1], out amount))
+								{
+									playerStats.SendMessage("Invalid amount");
+									return false;
+								}
+
+								var GameController = ConfigManagerHelper.GetGameController(scene);
+								if (GameController == null) return false;
+
+								var foundPlayer = GameController.PlayerLookup(args[0]);
+
+								if (foundPlayer == null)
+								{
+									playerStats.SendMessage($"Player {args[0]} not found");
+									return false;
+								}
+
+								foundPlayer.GameObject.Components.Get<PlayerStats>()?.AddMoney(amount);
+
+								foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"You were given ${amount} money.");
+								playerStats.SendMessage($"Gave {args[0]} ${amount} money");
+								return true;
+						}
+				)},
+				{ "setmoney", new Command(
+						name: "setmoney",
+						description: "Set a player's money",
+						permissionLevel: 0, // TODO make it admin
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<PlayerStats>();
+								if (playerStats == null) return false;
+
+								// Get the 2nd parameter for player
+								if (args.Length < 2)
+								{
+									playerStats.SendMessage("Usage: /setmoney <player> <amount>");
+									return false;
+								}
+
+								var amount = 0;
+								if (!int.TryParse(args[1], out amount))
+								{
+									playerStats.SendMessage("Invalid amount");
+									return false;
+								}
+
+								var GameController = ConfigManagerHelper.GetGameController(scene);
+								if (GameController == null) return false;
+
+								var foundPlayer = GameController.PlayerLookup(args[0]);
+
+								if (foundPlayer == null)
+								{
+									playerStats.SendMessage($"Player {args[0]} not found");
+									return false;
+								}
+
+								foundPlayer.GameObject.Components.Get<PlayerStats>()?.AddMoney(amount);
+
+								foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your money has been set to ${amount}.");
+								playerStats.SendMessage($"Set {args[0]} money to ${amount}");
+								return true;
+						}
 				)}
 		};
 
@@ -165,7 +251,15 @@ namespace Commands
 				}
 				var command = GetCommand( commandName );
 				Log.Info( $"Executing command \"{commandName}\"." );
-				return command.CommandFunction( player, scene, args );
+				if ( command.CommandFunction( player, scene, args )  == false)
+				{
+					Log.Error( $"Failed to execute command \"{commandName}\"." );
+					var playerStats = player.Components.Get<PlayerStats>();
+					if (playerStats == null) return false;
+					playerStats.SendMessage($"Failed to execute command \"{commandName}\".");
+					return false;
+				}
+				return true;
 			}
 			catch ( Exception e )
 			{
@@ -176,22 +270,24 @@ namespace Commands
 	}
 }
 
+
+// TODO move and refactor this to a better place. It should be more generic and used to cache and fetch all GameController components for easy lookups for other components.
 public static class ConfigManagerHelper
 {
-	public static GameObject GameController { get; set; } = null;
+	public static GameObject GameControllerObject { get; set; } = null;
 	public static ConfigManager ConfigManager { get; set; } = null;
-
+	public static GameController GameController { get; set; } = null;
 	private static GameObject FetchCacheGameController( Scene scene )
 	{
 		try
 		{
-			if ( GameController != null ) return GameController;
-			GameController = scene.Directory.FindByName( "Game Controller" )?.First();
-			if ( GameController == null )
+			if ( GameControllerObject != null ) return GameControllerObject;
+			GameControllerObject = scene.Directory.FindByName( "Game Controller" )?.First();
+			if ( GameControllerObject == null )
 			{
 				Log.Error( "Game Controller not found" );
 			}
-			return GameController;
+			return GameControllerObject;
 		}
 		catch ( Exception e )
 		{
@@ -200,22 +296,22 @@ public static class ConfigManagerHelper
 		}
 	}
 
-	private static ConfigManager FetchCacheConfigManager( Scene scene )
+	private static bool FetchCacheComponents( Scene scene )
 	{
 		try
 		{
-			if ( ConfigManager != null ) return ConfigManager;
-			ConfigManager = FetchCacheGameController( scene )?.Components.Get<ConfigManager>();
-			if ( ConfigManager == null )
-			{
-				Log.Error( "Config Manager not found" );
-			}
-			return ConfigManager;
+			if ( ConfigManager != null && GameController != null ) return true;
+			var controller = FetchCacheGameController( scene );
+			if ( controller == null ) return false;
+			ConfigManager = controller.Components.Get<ConfigManager>();
+			if ( ConfigManager == null ) Log.Error( "Config Manager not found" );
+			GameController = controller.Components.Get<GameController>();
+			return true;
 		}
 		catch ( Exception e )
 		{
 			Log.Error( $"Failed to fetch Config Manager: {e.Message}" );
-			return null; // Ensure a value is returned
+			return false;
 		}
 	}
 
@@ -223,12 +319,33 @@ public static class ConfigManagerHelper
 	{
 		try
 		{
-			return FetchCacheConfigManager( scene );
+			if ( FetchCacheComponents( scene ) )
+			{
+				return ConfigManager;
+			}
+			return null;
 		}
 		catch ( Exception e )
 		{
 			Log.Error( $"Failed to get Config Manager: {e.Message}" );
-			return null; // Ensure a value is returned
+			return null;
+		}
+	}
+
+	public static GameController GetGameController( Scene scene )
+	{
+		try
+		{
+			if ( FetchCacheComponents( scene ) )
+			{
+				return GameController;
+			}
+			return null;
+		}
+		catch ( Exception e )
+		{
+			Log.Error( $"Failed to get Game Controller: {e.Message}" );
+			return null;
 		}
 	}
 }
