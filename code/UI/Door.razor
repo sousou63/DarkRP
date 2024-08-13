@@ -17,7 +17,7 @@
   {
     <div class="container">
       <div class="title">Owned by</div>
-      <div class="title">@(DoorProperties.Owner.Name.Replace("Player - ", ""))</div>
+      <div class="title">@(DoorProperties.Owner.Name.Replace("Player - ", "").Truncate(13))</div>
     </div>
     <div class="container">
       <div class="sub-title">Press R to sell</div>
