@@ -15,6 +15,7 @@
             <div class="buttoncontainer">
                 <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </button>
                 <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo"> <i class="icon">info</i> Information </button>
+                <button class="button" onclick=@GitHubLink style="color:#4078c0;"> <i class="icon">web</i> @GitHub </button>
                 <button class="button" onclick=@DiscordLink style="color:#7289da;"> <i class="icon">discord</i> @Discord </button>
             </div>
         </div>
@@ -140,6 +141,7 @@
     int CurrentPrinter = 0;
 
     string Discord = "Discord";
+    string GitHub = "GitHub";
 
     // Boolean properties to control visibility
     bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false;
@@ -209,6 +211,19 @@
             Discord = "Discord - Copied!";
             await Task.Delay(1500);
             Discord = "Discord";
+            StateHasChanged();
+        }catch{
+            Log.Error("Failed to copy to clipboard");
+        }
+    }
+
+    async void GitHubLink() { 
+        Sound.Play("audio/select.sound");
+        try{
+            Clipboard.SetText("https://github.com/sousou63/DarkRP");
+            GitHub = "GitHub - Copied!";
+            await Task.Delay(1500);
+            GitHub = "GitHub";
             StateHasChanged();
         }catch{
             Log.Error("Failed to copy to clipboard");
