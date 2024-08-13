@@ -18,5 +18,6 @@ I recommend using the Github Desktop application, which greatly simplifies the w
 ## CREDITS 
 
 - Sousou : ( Base gamemode + github management )
-- QueenPM : ( Chat improvement + tab menu UI rework + some code cleaning )
-- HankKitts : ( Money 3D Models )
+- QueenPM : ( Chat improvement + general UI work + doors + code optimization )
+- HankKitts : ( Money 3d models )
+- dancore : ( Entity system + code optimization )
