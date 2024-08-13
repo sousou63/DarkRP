@@ -13,39 +13,39 @@ public sealed class GameController : Component, Component.INetworkListener
 		}
 		_instance = this;
 	}
-	
+
 	public static GameController Instance => _instance;
 
-
-	public List<Player> Players { get; set; } = new List<Player>();
+	[HostSync] public NetList<Player> Players { get; set; } = new NetList<Player>();
 
 	// This could probably be put in the network controller/helper.
 	public void AddPlayer( GameObject player, Connection connection )
 	{
-		Log.Info( $"Player connected: {connection.Id}" );
+		Log.Info( $"Adding player: {connection.Id} {connection.DisplayName}" );
 		Players.Add( new Player( player, connection ) );
-		Log.Info( $"Players ({Players.Count}):" );
-		foreach ( var pp in Players )
-		{
-			Log.Info( $"{pp.Connection.DisplayName} ({pp.Connection.Id})" );
-		}
 	}
 
 	public void RemovePlayer( Connection connection )
 	{
-		// Find players to be removed
-		var playersToRemove = Players.Where( x => x.Connection.Id == connection.Id ).ToList();
-
-		// Run clean-up function on each player
-		foreach ( var player in playersToRemove )
+		try
 		{
-			var playerStats = player.GameObject.Components.Get<PlayerStats>();
-			if ( playerStats == null ) continue; // Use continue instead of return to ensure all players are cleaned up
-			playerStats.SellAllDoors();
-		}
+			// Find the player in the list
+			var playerToRemove = Players.Single( x => x.Connection.Id == connection.Id );
 
-		// Remove players from the list
-		Players.RemoveAll( x => x.Connection.Id == connection.Id );
+			if ( playerToRemove == null ) {
+				Log.Error( $"Player not found in the list: {connection.Id}" );
+				return;
+			}
+
+			// Perform clean up functions
+			var playerStats = playerToRemove.GameObject.Components.Get<PlayerStats>();
+			playerStats?.SellAllDoors();
+
+			// Remove the player from the list
+			Players.Remove( playerToRemove );
+		} catch ( Exception e ) {
+			Log.Error( e );
+		}
 	}
 
 	void INetworkListener.OnDisconnected( Connection channel )
@@ -56,25 +56,25 @@ public sealed class GameController : Component, Component.INetworkListener
 
 	public Player GetPlayerByConnectionID( Guid connection )
 	{
-		return Players.Find( x => x.Connection.Id == connection );
+		return Players.Single( x => x.Connection.Id == connection );
 	}
 
 	public Player GetPlayerByGameObjectID( Guid gameObject )
 	{
-		return Players.Find( x => x.GameObject.Id == gameObject );
+		return Players.Single( x => x.GameObject.Id == gameObject );
 	}
 
 	public Player GetPlayerByName( string name )
 	{
-		return Players.Find( x => x.Connection.DisplayName.StartsWith( name, StringComparison.OrdinalIgnoreCase ) );
+		return Players.Single( x => x.Connection.DisplayName.StartsWith( name, StringComparison.OrdinalIgnoreCase ) );
 	}
 
 	public Player GetPlayerBySteamID( ulong steamID )
 	{
-		return Players.Find( x => x.Connection.SteamId == steamID );
+		return Players.Single( x => x.Connection.SteamId == steamID );
 	}
 
-	public List<Player> GetAllPlayers()
+	public NetList<Player> GetAllPlayers()
 	{
 		return Players;
 	}
