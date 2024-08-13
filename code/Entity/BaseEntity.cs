@@ -6,7 +6,7 @@ using PlayerDetails;
 /// for various types of interactable entities such as dropped money, printers, food, etc.
 /// </summary>
 [Library("base_entity", Title = "Base Entity")]
-public partial class BaseEntity : Component, Component.IDamageable, Component.ICollisionListener
+public partial class BaseEntity : Component, Component.IDamageable, Component.ICollisionListener, IInteractable
 {
     /// <summary>
     /// Gets or sets the health of the entity.
@@ -152,5 +152,45 @@ public partial class BaseEntity : Component, Component.IDamageable, Component.IC
     private void ApplyPhysicsMovement()
     {
         // Implement physics movement logic here
+    }
+
+    /// <summary>
+    /// Called when the player uses the default interaction key (default is "E").
+    /// </summary>
+    /// <param name="tr">The scene trace result.</param>
+    /// <param name="player">The player interacting with the entity.</param>
+    public void InteractUse(SceneTraceResult tr, GameObject player)
+    {
+        Log.Info($"{player} used {EntityName} with the default interaction.");
+    }
+
+    /// <summary>
+    /// Called when the player uses the special interaction key (default is "R").
+    /// </summary>
+    /// <param name="tr">The scene trace result.</param>
+    /// <param name="player">The player interacting with the entity.</param>
+    public void InteractSpecial(SceneTraceResult tr, GameObject player)
+    {
+        Log.Info($"{player} used {EntityName} with a special interaction.");
+    }
+
+    /// <summary>
+    /// Called when the player uses the Attack 1 interaction key (default is "Mouse 1").
+    /// </summary>
+    /// <param name="tr">The scene trace result.</param>
+    /// <param name="player">The player interacting with the entity.</param>
+    public void InteractAttack1(SceneTraceResult tr, GameObject player)
+    {
+        Log.Info($"{player} used {EntityName} with an Attack 1 interaction.");
+    }
+
+    /// <summary>
+    /// Called when the player uses the Attack 2 interaction key (default is "Mouse 2").
+    /// </summary>
+    /// <param name="tr">The scene trace result.</param>
+    /// <param name="player">The player interacting with the entity.</param>
+    public void InteractAttack2(SceneTraceResult tr, GameObject player)
+    {
+        Log.Info($"{player} used {EntityName} with an Attack 2 interaction.");
     }
 }
