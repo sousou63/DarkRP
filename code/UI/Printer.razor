@@ -3,7 +3,7 @@
 @inherits PanelComponent
 
 <root>
-    <div class="title">@(PrinterPrefab.Components.Get<PrinterLogic>().PrinterCurrentMoney) $</div>
+    <div class="title">$ @(PrinterPrefab.Components.Get<PrinterLogic>().PrinterCurrentMoney.ToString("N0"))</div>
 </root>
 
 @code
