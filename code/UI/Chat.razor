@@ -31,8 +31,43 @@
         }
 	</div>
 
-    <div class="input">
-        <TextEntry style="width:100%;" MaxLength=@(150) @ref="InputBox" onsubmit="@ChatFinished"></TextEntry>
+    <div class="input-container">
+        @if (CommandSuggestions.Count > 0)
+        {
+            <div class="command-suggestions">
+                @foreach (var command in CommandSuggestions)
+                {
+                    <div class="command">
+                        @if (InputBox?.Value.Length > 1)
+                        {
+                            string inputValue = InputBox.Value.Substring(1).Split(' ')[0];
+                    
+                            if (inputValue.Length <= command.Length)
+                            {
+                                string remainingCommand = command.Substring(inputValue.Length);
+                                <span style="color: white;">/@inputValue</span>
+                                @if (remainingCommand.Length > 0)
+                                {
+                                    <span>@remainingCommand</span>
+                                }
+                            }
+                            else
+                            {
+                                <span style="color: white;">/@(command)</span>
+                            }
+                        }
+                        else
+                        {
+                            <span style="color: yellow;">/@(command)</span>
+                        }
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="input">
+            <TextEntry style="width:100%;" MaxLength=@(150) @ref="InputBox" onchange="@ChatChanged" onsubmit="@ChatFinished"></TextEntry>
+        </div>
     </div>
 </root>
 
@@ -46,6 +81,8 @@
         public string timestamp { get; } = DateTime.Now.ToString("HH:mm:ss");
     }
     public List<Entry> Messages = new();
+    private ConfigManager ConfigManager;
+    public List<string> CommandSuggestions = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
     GameObject GameControllerObject = null;
@@ -60,6 +97,10 @@
                 Log.Error( "Config Manager not found" );
                 return;
             }
+
+            ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
+            if ( ConfigManager == null ) return;
+            
         }catch (Exception e)
         {
             Log.Error( e.Message );
@@ -101,12 +142,31 @@
         StateHasChanged();
     }
 
+    void ChatChanged()
+    {
+        var text = InputBox.Text;
+        // If chat starts with /, show command suggestions
+        if (ConfigManager != null && text.StartsWith("/"))
+        {
+            var firstWord = text.Split(' ')[0];
+            // Start suggesting commands
+            CommandSuggestions = ConfigManager.Commands.GetCommandNames().Where( c => c.StartsWith( firstWord.Substring(1) ) ).ToList();
+            StateHasChanged();
+        }
+        else
+        {
+            CommandSuggestions.Clear();
+            StateHasChanged();
+        }
+    }
+
     /// <summary>
     /// Called when the user has finished typing a message in the chat
     /// </summary>
     void ChatFinished()
     {
         ToggleChat(false);
+        CommandSuggestions.Clear();
         var text = InputBox.Text;
         InputBox.Text = "";
 
@@ -183,6 +243,7 @@
     public bool CheckForCommand(string message)
     {
         if (GameControllerObject == null) return false;
+        if (ConfigManager == null) return false;
         if (message.StartsWith("/"))
         {
             var parts = message.Split(" ");
@@ -190,10 +251,6 @@
             var args = parts.Skip(1).ToArray();
             try
             {
-                // Get the ConfigManager and GameController components
-                var ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
-                if ( ConfigManager == null ) return false;
-
                 var GameController = GameControllerObject.Components.Get<GameController>();
                 if ( GameController == null ) return false;
 

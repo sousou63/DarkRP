@@ -7,12 +7,14 @@
 
     <div class="player-card">
         <div class="title">
-            <div class="name">@Rpc.Caller.DisplayName</div>
-            <div class="job">@MyStringValue3</div>
+            <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
+            <div class="center">
+                <div class="job">@MyStringValue3</div>
+            </div>
         </div>
         <div class="wallet">
             <div class="label">Wallet</div>
-            <div class="money">@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase) $</div>
+            <div class="money">$ @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div>
         </div>
         <div class="bars">
             <div class="bar">

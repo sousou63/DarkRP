@@ -7,7 +7,7 @@
   {
     <div class="container">
       <div class="title">For Sale</div>
-      <div class="sub-title">$@(DoorProperties?.Price)</div>
+      <div class="sub-title">$@(DoorProperties?.Price.ToString("N0"))</div>
     </div>
     <div class="container">
       <div class="sub-title">Press R to purchase</div>
@@ -16,11 +16,12 @@
   else
   {
     <div class="container">
-      <div class="title">Owned by @(DoorProperties.Owner.Name.Replace("Player - ", ""))</div>
+      <div class="title">Owned by</div>
+      <div class="title">@(DoorProperties.Owner.Name.Replace("Player - ", "").Truncate(13))</div>
     </div>
     <div class="container">
       <div class="sub-title">Press R to sell</div>
-      <div class="sub-title">Press Mouse1 to close</div>
+      <div class="sub-title">Press Mouse1 to lock</div>
       <div class="sub-title">Press Mouse2 to unlock</div>
     </div>
   }

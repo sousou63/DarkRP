@@ -27,9 +27,6 @@ public sealed class PlayerStats : Component
 	TimeSince lastUsed = 0; // Set the timer
 
 	// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
-	// For this though, the command functions need to be expanded to pass on the Player gameobject that the command is being called from
-
-	// TODO Chat should not be controlled by this entity but rather call a chat function on the player to send a personal messag
 
 	protected override void OnStart()
 	{
@@ -38,9 +35,10 @@ public sealed class PlayerStats : Component
 		try
 		{
 			var controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
-			if ( controller == null) return;
-			controller.AddPlayer(GameObject, Rpc.Caller);
-		} catch (Exception e)
+			if ( controller == null ) return;
+			controller.AddPlayer( GameObject, Rpc.Caller );
+		}
+		catch ( Exception e )
 		{
 			Log.Error( $"Failed to add player to GameController: {e.Message}" );
 		}
@@ -58,7 +56,7 @@ public sealed class PlayerStats : Component
 
 	}
 
-	public bool RemoveMoney (float Ammount)
+	public bool RemoveMoney( float Ammount )
 	{
 		if ( MoneyBase < Ammount )
 		{
@@ -74,79 +72,86 @@ public sealed class PlayerStats : Component
 		return false;
 	}
 
-	public void AddMoney(float Ammount)
+	public void AddMoney( float Ammount )
 	{
 		MoneyBase += Ammount;
 	}
 
+	public void SetMoney( float Ammount )
+	{
+		MoneyBase = Ammount;
+	}
+
 	// DOOR LOGIC. Helps keep track of owned doors.
 
-	public bool PurchaseDoor(float price, GameObject door)
+	public bool PurchaseDoor( float price, GameObject door )
 	{
 		// Check if its a valid door
 		var doorLogic = door.Components.Get<DoorLogic>();
-		if (doorLogic == null)
+		if ( doorLogic == null )
 		{
 			return false;
 		}
 		// Check if the door is already owned
-		if (Doors.Any(d => d.Id == door.Id))
+		if ( Doors.Any( d => d.Id == door.Id ) )
 		{
 			return false;
 		}
 
 		// If the player can afford it
-		if ( RemoveMoney(price) )
+		if ( RemoveMoney( price ) )
 		{
-			Doors.Add(door);
-			doorLogic.PurchaseDoor(GameObject);
-			SendMessage("The door has been purchased.");
+			Doors.Add( door );
+			doorLogic.PurchaseDoor( GameObject );
+			SendMessage( "The door has been purchased." );
 			return true;
-		}else{
-			SendMessage("Can't afford this door.");
+		}
+		else
+		{
+			SendMessage( "Can't afford this door." );
 			return false;
 		}
 
 	}
 
-	public bool SellDoor(GameObject door)
+	public bool SellDoor( GameObject door )
 	{
 		// Check if its a valid door
 		var doorLogic = door.Components.Get<DoorLogic>();
-		if (doorLogic == null)
+		if ( doorLogic == null )
 		{
 			return false;
 		}
 
 		// Check if the door is owned
-		if (!Doors.Any(d => d.Id == door.Id))
+		if ( !Doors.Any( d => d.Id == door.Id ) )
 		{
 			return false;
 		}
 
 		// Remove the door from the list
-		Doors.Remove(door);
+		Doors.Remove( door );
 		doorLogic.SellDoor();
-		SendMessage("Door has been sold.");
+		SendMessage( "Door has been sold." );
 		return true;
 	}
 
 	public void SellAllDoors()
 	{
-		foreach (var door in Doors)
+		foreach ( var door in Doors )
 		{
-			SellDoor(door);
-			SendMessage("All doors have been sold.");
+			SellDoor( door );
+			SendMessage( "All doors have been sold." );
 		}
 	}
 
 	// TODO this would need to go to its own class. PlayerController or some shit
-	public void SendMessage(string message)
+	public void SendMessage( string message )
 	{
-		using ( Rpc.FilterInclude(c => c.Id == Rpc.CallerId))
+		using ( Rpc.FilterInclude( c => c.Id == Rpc.CallerId ) )
 		{
 			// Send the message
-			chat?.NewSystemMessage(message);
+			chat?.NewSystemMessage( message );
 		}
 	}
 }
