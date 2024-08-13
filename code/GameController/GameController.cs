@@ -14,6 +14,8 @@ public sealed class GameController : Component, Component.INetworkListener
 		_instance = this;
 	}
 
+	public static GameController Instance => _instance;
+
 	[HostSync] public NetList<Player> Players { get; set; } = new NetList<Player>();
 
 	// This could probably be put in the network controller/helper.
