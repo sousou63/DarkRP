@@ -15,6 +15,7 @@
             <div class="buttoncontainer">
                 <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </button>
                 <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo"> <i class="icon">info</i> Information </button>
+                <button class="button" onclick=@DiscordLink style="color:#7289da;"> <i class="icon">discord</i> @Discord </button>
             </div>
         </div>
         <div class="main-container">
@@ -138,6 +139,8 @@
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
 
+    string Discord = "Discord";
+
     // Boolean properties to control visibility
     bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false;
 
@@ -199,7 +202,18 @@
     void DisplayJobs() { IsDarkWebVisible = false; IsJobsVisible = true; IsInfoVisible = false; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
     void DisplayInfo() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = true; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
     void DisplayAdmin() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = true; Sound.Play("audio/select.sound"); }
-
+    async void DiscordLink() { 
+        Sound.Play("audio/select.sound");
+        try{
+            Clipboard.SetText("https://discord.gg/GuZ8R3Td");
+            Discord = "Discord - Copied!";
+            await Task.Delay(1500);
+            Discord = "Discord";
+            StateHasChanged();
+        }catch{
+            Log.Error("Failed to copy to clipboard");
+        }
+    }
     /// <summary>
     /// The BuildHash method determines if the system should be rebuilt.
     /// If it changes, the system will be rebuilt.
