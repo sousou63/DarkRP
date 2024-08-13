@@ -1,6 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
-@inherits PanelComponent
+@inherits PanelComponent;
 
 <root>
     <div class="title">Tab Menu</div>
@@ -11,6 +11,7 @@
             <div class="buttoncontainer">
                 <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </button>
                 <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </button>
+                <button class="button @(IsPropsVisible ? "active" : "")" onclick="@DisplayProps"> <i class="icon">folder</i> Props </button> 
             </div>
             <div class="buttoncontainer">
                 <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </button>
@@ -84,6 +85,16 @@
                 </div>
             </div>
 
+            <!-- Props Section -->
+            <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");">
+                <div class="section-title">Props</div>
+                <div class="section-contents">
+                    <div class="info" style="color: red;">
+                        <h1>WIP</h1>
+                    </div>
+                </div>
+            </div>
+
             <!-- Information Section -->
             <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
                 <div class="section-title">Information</div>
@@ -111,6 +122,7 @@
 
                 </div>
             </div>
+
         <!-- Admin Section -->
         <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
             <div class="section-title">Admin Tools</div>
@@ -121,9 +133,6 @@
             </div>
         </div>
     </div>
-
-
-
     </div>
 </root>
 
@@ -144,7 +153,7 @@
     string GitHub = "GitHub";
 
     // Boolean properties to control visibility
-    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false;
+    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
 
     // Enum to represent different types of printers
     enum PrinterType {Bronze,Silver,Gold,Diamond}
@@ -200,10 +209,12 @@
     }
 
     // Display methods for each section
-    void DisplayDarkWeb() { IsDarkWebVisible = true; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayJobs() { IsDarkWebVisible = false; IsJobsVisible = true; IsInfoVisible = false; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayInfo() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = true; IsAdminVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayAdmin() { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = true; Sound.Play("audio/select.sound"); }
+    void DisplayDarkWeb() { IsDarkWebVisible = true; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayJobs()    { IsDarkWebVisible = false; IsJobsVisible = true; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayInfo()    { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = true; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayAdmin()   { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = true; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
+    void DisplayProps()   { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = true; Sound.Play("audio/select.sound"); }
+
     async void DiscordLink() { 
         Sound.Play("audio/select.sound");
         try{

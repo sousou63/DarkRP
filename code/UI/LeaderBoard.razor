@@ -1,0 +1,32 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+@using PlayerDetails;
+@inherits PanelComponent
+
+<root>
+	<div class="TableContainer"
+		<h2 class="TableTitle"> Current Players </h2>
+		<div class="TableRow">
+			<div class="TableHeader">Player Name</div>	
+			<div class="TableHeader">Steam ID</div>
+		</div>
+		@foreach (var player in Players)
+		{
+		    <div class="TableRow">
+		        <div class="TableCell">@player.Connection.DisplayName</div>
+		        <div class="TableCell">@player.Connection.SteamId</div>
+		    </div>
+		}
+    </div>
+</root>
+
+@code
+{
+	[Property] public List<Player> Players = null;
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine(Players.Count);
+}
