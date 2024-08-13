@@ -1,4 +1,5 @@
 using Sandbox;
+using PlayerDetails;
 
 /// <summary>
 /// Represents a generic base entity that provides common functionality 
@@ -82,7 +83,7 @@ public partial class BaseEntity : Prop, IInteractable
     /// <param name="player">The player that touched the entity.</param>
     protected virtual void OnPlayerTouch(Player player)
     {
-        Log.Info($"{EntityName} touched by {player.Name}");
+        Log.Info($"{EntityName} touched by {player.GameObject}");
     }
 
     /// <summary>
@@ -93,7 +94,7 @@ public partial class BaseEntity : Prop, IInteractable
     public void SetOwner(Player player)
     {
         Owner = player;
-        Log.Info($"{EntityName} is now owned by {player.Name}");
+        Log.Info($"{EntityName} is now owned by {player.GameObject}");
     }
 
     /// <summary>
@@ -101,9 +102,9 @@ public partial class BaseEntity : Prop, IInteractable
     /// </summary>
     /// <param name="tr">The result of the scene trace.</param>
     /// <param name="player">The player interacting with the entity.</param>
-    public virtual void InteractUse(SceneTraceResult tr, GameObject player)
+    public virtual void InteractUse(SceneTraceResult tr, Player player)
     {
-        Log.Info($"{player.Name} used {EntityName} with default interaction.");
+        Log.Info($"{player.GameObject} used {EntityName} with default interaction.");
     }
 
     /// <summary>
@@ -111,9 +112,9 @@ public partial class BaseEntity : Prop, IInteractable
     /// </summary>
     /// <param name="tr">The result of the scene trace.</param>
     /// <param name="player">The player interacting with the entity.</param>
-    public virtual void InteractSpecial(SceneTraceResult tr, GameObject player)
+    public virtual void InteractSpecial(SceneTraceResult tr, Player player)
     {
-        Log.Info($"{player.Name} used {EntityName} with special interaction.");
+        Log.Info($"{player.GameObject} used {EntityName} with special interaction.");
     }
 
     /// <summary>
@@ -121,9 +122,9 @@ public partial class BaseEntity : Prop, IInteractable
     /// </summary>
     /// <param name="tr">The result of the scene trace.</param>
     /// <param name="player">The player interacting with the entity.</param>
-    public virtual void InteractAttack1(SceneTraceResult tr, GameObject player)
+    public virtual void InteractAttack1(SceneTraceResult tr, Player player)
     {
-        Log.Info($"{player.Name} used {EntityName} with Attack 1 interaction.");
+        Log.Info($"{player.GameObject} used {EntityName} with Attack 1 interaction.");
     }
 
     /// <summary>
@@ -131,8 +132,8 @@ public partial class BaseEntity : Prop, IInteractable
     /// </summary>
     /// <param name="tr">The result of the scene trace.</param>
     /// <param name="player">The player interacting with the entity.</param>
-    public virtual void InteractAttack2(SceneTraceResult tr, GameObject player)
+    public virtual void InteractAttack2(SceneTraceResult tr, Player player)
     {
-        Log.Info($"{player.Name} used {EntityName} with Attack 2 interaction.");
+        Log.Info($"{player.GameObject} used {EntityName} with Attack 2 interaction.");
     }
 }
