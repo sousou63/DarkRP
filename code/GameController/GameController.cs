@@ -13,7 +13,8 @@ public sealed class GameController : Component, Component.INetworkListener
 		}
 		_instance = this;
 	}
-
+	
+	public static GameController Instance => _instance;
 
 
 	public List<Player> Players { get; set; } = new List<Player>();
