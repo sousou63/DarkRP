@@ -49,7 +49,7 @@ namespace Commands
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
 		/// </exception>
-		public Command( string name, string description, int permissionLevel, Func<GameObject,Scene, string[], bool> commandFunction )
+		public Command( string name, string description, int permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
 		{
 			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
 			Description = description ?? throw new ArgumentNullException( nameof( description ) );
@@ -84,7 +84,7 @@ namespace Commands
 							if (chat == null) return false;
 
 							chat.ClearChat();
-							
+
 							playerStats.SendMessage("Chat has been cleared");
 							return true;
 						}
@@ -145,21 +145,26 @@ namespace Commands
 			throw new KeyNotFoundException( $"Command with name {commandName} does not exist." );
 		}
 
-		public string[] GetCommandNames() => _commands.Keys.ToArray();
+		public string[] GetCommandNames()
+		{
+			var commandNames = _commands.Keys.ToList();
+			commandNames.Add( "help" );
+			return commandNames.ToArray();
+		}
 
 		public bool ExecuteCommand( string commandName, GameObject player, Scene scene, string[] args )
 		{
 			try
 			{
 				// Check if its the default "help" command
-				if ( commandName == "help")
+				if ( commandName == "help" )
 				{
 					var playerStats = player.Components.Get<PlayerStats>();
-					if (playerStats == null) return false;
+					if ( playerStats == null ) return false;
 
-					var commandNames = string.Join(", ", GetCommandNames().Select(name=> "/" + name));
+					var commandNames = string.Join( ", ", GetCommandNames().Select( name => "/" + name ) );
 
-					playerStats.SendMessage($"Available commands: /help, {commandNames}");
+					playerStats.SendMessage( $"Available commands: {commandNames}" );
 					return true;
 				}
 				var command = GetCommand( commandName );
