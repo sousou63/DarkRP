@@ -1,21 +1,10 @@
 using System;
 using Commands;
 using Sandbox;
+using PlayerDetails;
 
 public sealed class GameController : Component, Component.INetworkListener
 {
-
-	public class Player
-	{
-		public GameObject GameObject { get; set; }
-		public Connection Connection { get; set; }
-
-		public Player( GameObject gameObject, Connection connection )
-		{
-			GameObject = gameObject;
-			Connection = connection;
-		}
-	}
 	public List<Player> Players { get; set; } = new List<Player>();
 
 	// This could probably be put in the network controller/helper.
@@ -67,5 +56,44 @@ public sealed class GameController : Component, Component.INetworkListener
 		// Find players to be removed
 		var player = Players.Find( x => x.GameObject.Id == gameObject );
 		return player;
+	}
+
+	public Player GetPlayerByName(string name)
+	{
+			var player = Players.Find(x => x.Connection.DisplayName.StartsWith(name, StringComparison.OrdinalIgnoreCase));
+			return player;
+	}
+
+	public Player GetPlayerBySteamID(ulong steamID)
+	{
+		var player = Players.Find(x => x.Connection.SteamId == steamID);
+		return player;
+	}
+
+	public List<Player> GetAllPlayers()
+	{
+		return Players;
+	}
+
+	/// <summary>
+	/// Attempts to find a Player by SteamID first, then by Name.
+	/// This should be used for user input,
+	/// </summary>
+	/// <param name="input"></param>
+	/// <returns></returns>
+	public Player PlayerLookup( string input )
+	{
+		Player foundPlayer= null;
+		// Find the player
+		// If args[0] can be parsed as ulong, then try to lookup with SteamID first
+		if (ulong.TryParse(input, out var steamID))
+		{
+			foundPlayer = GetPlayerBySteamID(steamID);
+		}
+
+		// If not found by SteamID, try to find by name
+		foundPlayer ??= GetPlayerByName(input);
+
+		return foundPlayer;
 	}
 }
