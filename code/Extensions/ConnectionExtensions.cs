@@ -1,6 +1,6 @@
 public static class ConnectionExtensions
 {
-	// TODO: Sync this value.
+
 	[ConVar( "dev_admin" )]
 	public static bool DevsAreAdmins { get; set; } = true;
 
