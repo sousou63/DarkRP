@@ -21,3 +21,5 @@ I recommend using the Github Desktop application, which greatly simplifies the w
 - QueenPM : ( Chat improvement + general UI work + doors + code optimization )
 - HankKitts : ( Money 3d models )
 - dancore : ( Entity system + code optimization )
+- Bozy : ( Team/Job system base )
+- IRLadderGoat : ( Scoreboard base )
