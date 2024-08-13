@@ -127,10 +127,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	private void LockDoor()
 	{
 		IsUnlocked = false;
-		using ( Rpc.FilterInclude( c=> c.Id == Rpc.CallerId))
-		{
-			OwnerStats?.SendMessage( "Door has been locked." );
-		}
+		OwnerStats?.SendMessage( "Door has been locked." );
 		Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 	}
 
@@ -138,10 +135,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 	private void UnlockDoor()
 	{
 		IsUnlocked = true;
-		using ( Rpc.FilterInclude( c=> c.Id == Rpc.CallerId))
-		{
-			OwnerStats?.SendMessage( "Door has been unlocked." );
-		}
+		OwnerStats?.SendMessage( "Door has been unlocked." );
 		Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 	}
 }
