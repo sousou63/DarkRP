@@ -24,7 +24,7 @@ Chat {
 		flex-direction: column;
 		justify-content: flex-end;
 		padding: 3px;
-		gap: 10px;
+		gap: 2px;
 		height: calc(32px * 8);
 		overflow-y: scroll;
 		overflow-x: hidden;
@@ -45,8 +45,8 @@ Chat {
 			}
 
 			.avatar {
-				width: 50px;
-				height: 32px;
+				width: 45px;
+				height: 30px;
 				margin-left: 5px;
 				margin-right: 5px;
 				background-position: center;
@@ -65,10 +65,6 @@ Chat {
 			}
 		}
 	}
-	.input {
-		color: white;
-		padding: 5px;
-	}
 
 
 	&.open {
@@ -77,4 +73,26 @@ Chat {
 			background-color: #73737370;
 		}
 	}
+
+	.input-container {
+		position: relative;
+
+		.input {
+			color: white;
+			padding: 5px;
+		}
+
+		.command-suggestions {
+			position: absolute;
+			background-color: #1e1e27e7;
+			color: yellow;
+			padding: 5px;
+			bottom: 100%;
+			width: 100%;
+			padding-left: 15px;
+			flex-direction: column;
+		}
+	}
+
+
 }

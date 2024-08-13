@@ -7,8 +7,9 @@ PlayerHUD {
 		color: white;
 		display: flex;
 		flex-direction: column;
-		width: 15vw;
-		margin: 20px;
+		width: 20vw;
+		height: auto;
+		margin: 0.5rem;
 		font-family: 'Times New Roman', serif;
 		padding: 10px;
 
@@ -21,6 +22,12 @@ PlayerHUD {
 
 			.name {
 				font-size: 35px;
+			}
+
+			.center {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
 			}
 
 			.job {
@@ -56,7 +63,7 @@ PlayerHUD {
 
 		.bar {
 			width: 100%;
-			height: 25px;
+			height: 1vh;
 			background-color: #ccc;
 			position: relative;
 		}

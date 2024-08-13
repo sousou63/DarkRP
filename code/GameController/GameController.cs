@@ -6,21 +6,21 @@ public sealed class GameController : Component, Component.INetworkListener
 {
     private static GameController _instance;
 
-    public GameController()
-    {
-        if (_instance != null)
-        {
-            throw new InvalidOperationException("Only one instance of GameController is allowed.");
-        }
-        _instance = this;
-    }
+	public GameController()
+	{
+			if (_instance != null)
+			{
+				Log.Warning("Only one instance of GameController is allowed.");
+			}
+			_instance = this;
+	}
 
-    public class Player
-    {
-        public GameObject GameObject { get; set; }
-        public Connection Connection { get; set; }
+	public class Player
+	{
+		public GameObject GameObject { get; set; }
+		public Connection Connection { get; set; }
 
-        public Player(GameObject gameObject, Connection connection)
+    public Player(GameObject gameObject, Connection connection)
         {
             GameObject = gameObject;
             Connection = connection;

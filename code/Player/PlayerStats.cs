@@ -27,9 +27,6 @@ public sealed class PlayerStats : Component
 	TimeSince lastUsed = 0; // Set the timer
 
 	// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
-	// For this though, the command functions need to be expanded to pass on the Player gameobject that the command is being called from
-
-	// TODO Chat should not be controlled by this entity but rather call a chat function on the player to send a personal messag
 
 	protected override void OnStart()
 	{

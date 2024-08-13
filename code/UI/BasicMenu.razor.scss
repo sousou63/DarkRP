@@ -1,10 +1,10 @@
 BasicMenu {
 	pointer-events: all;
 	position: absolute;
-	top: 100;
-	left: 310;
-	right: 310;
-	bottom: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	background-color: #24292f;
 	color: #c9c9c9;
 	//justify-content: center;
@@ -13,6 +13,10 @@ BasicMenu {
 	font-family: 'Times New Roman', serif;
 	font-weight: 400;
 	border-radius: 5px;
+	margin-left: 10rem;
+	margin-right: 10rem;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
 
 	.main {
 		display: flex;
@@ -23,24 +27,25 @@ BasicMenu {
 	}
 
 	.title {
-		font-size: 1.5rem;
+		font-size: 20px;
 		font-weight: 600;
 		justify-content: center;
 		width: 100%;
 		border-radius: 5px 5px 0 0;
-		padding: 5px;
+		padding: 0.5rem;
 	}
 
 	.side-bar {
 		flex-direction: column;
 		justify-content: space-between;
-		width: 13rem;
+		width: 20vw;
 		height: 100%;
 	}
 	
 	.buttoncontainer {
 		flex-direction: column;
-		padding: 20px;		
+		padding: 20px;
+		gap: 10px;
 		.button {
 			display: flex;
 			font-size: 25px;
@@ -50,7 +55,7 @@ BasicMenu {
 			padding-top: 5px;
 			padding-bottom: 5px;
 			width: 100%;
-			height: 3rem;
+			height: 60px;
 			cursor: pointer;
 
 			.icon {
@@ -66,6 +71,11 @@ BasicMenu {
 				background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);
 				color: white;
 			}
+
+		}
+		.active {
+			background: #343b43;
+			color: white;
 		}
 	}
 
@@ -123,9 +133,6 @@ BasicMenu {
 				margin-right: 15px;
 				background-color: #a7a7a7;
 				border-radius: 50%;
-			}
-
-			.label {
 			}
 
 			.description {
