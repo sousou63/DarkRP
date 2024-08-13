@@ -78,6 +78,11 @@ public sealed class PlayerStats : Component
 		MoneyBase += Ammount;
 	}
 
+	public void SetMoney(float Ammount)
+	{
+		MoneyBase = Ammount;
+	}
+
 	// DOOR LOGIC. Helps keep track of owned doors.
 
 	public bool PurchaseDoor(float price, GameObject door)
