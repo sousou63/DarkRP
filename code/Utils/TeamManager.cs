@@ -1,4 +1,5 @@
-﻿public class Team : Component
+﻿
+public class Team
 {
 	public string Name { get; set; }
 	public string Color { get; set; }
