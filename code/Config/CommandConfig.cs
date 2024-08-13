@@ -143,7 +143,7 @@ namespace Commands
 								foundPlayer.GameObject.Components.Get<PlayerStats>()?.AddMoney(amount);
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"You were given ${amount} money.");
-								playerStats.SendMessage($"Gave {args[0]} ${amount} money");
+								playerStats.SendMessage($"Gave {foundPlayer.Connection.DisplayName} ${amount} money");
 								return true;
 						}
 				)},
@@ -185,7 +185,7 @@ namespace Commands
 								foundPlayer.GameObject.Components.Get<PlayerStats>()?.SetMoney(amount);
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your money has been set to ${amount}.");
-								playerStats.SendMessage($"Set {args[0]} money to ${amount}");
+								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount}");
 								return true;
 						}
 				)}
