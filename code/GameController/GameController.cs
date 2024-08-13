@@ -54,29 +54,6 @@ public sealed class GameController : Component, Component.INetworkListener
 		RemovePlayer( channel );
 	}
 
-	void INetworkListener.OnConnected( Connection channel )
-	{
-		try
-		{
-			Log.Info( $"Player connected: {channel.Id}" );
-			// Find the player gameobject in the scene
-			// TODO this isnt ideal, but it works for now. Might have performance impact with joining players.
-			// TODO consider players having the same name.
-			Log.Info( $"Player - {channel.Name}" );
-			var playerGameObject = Scene.Directory.FindByName( $"Player - {channel.DisplayName}" ).First();
-			if ( playerGameObject == null )
-			{
-				Log.Error( $"New Player's GameObject not found: {channel.Name}" );
-				return;
-			}
-
-			// Add the player to the list
-			AddPlayer( playerGameObject, channel );
-		}catch ( Exception e ) {
-			Log.Error( e );
-		}
-	}
-
 	public Player GetPlayerByConnectionID( Guid connection )
 	{
 		return Players.Single( x => x.Connection.Id == connection );
