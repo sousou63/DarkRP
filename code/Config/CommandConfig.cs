@@ -255,12 +255,12 @@ namespace Commands
 				}
 				var command = GetCommand( commandName );
 				Log.Info( $"Executing command \"{commandName}\"." );
-				if ( command.CommandFunction( player, scene, args )  == false)
+				if ( command.CommandFunction( player, scene, args ) == false )
 				{
 					Log.Error( $"Failed to execute command \"{commandName}\"." );
 					var playerStats = player.Components.Get<PlayerStats>();
-					if (playerStats == null) return false;
-					playerStats.SendMessage($"Failed to execute command \"{commandName}\".");
+					if ( playerStats == null ) return false;
+					playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
 					return false;
 				}
 				return true;
