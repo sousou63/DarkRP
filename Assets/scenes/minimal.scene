@@ -80,7 +80,6 @@
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
       "Enabled": true,
-      "NetworkMode": 1,
       "NetworkOrphaned": 1,
       "Components": [
         {

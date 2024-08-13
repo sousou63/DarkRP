@@ -32,15 +32,15 @@ public sealed class PlayerStats : Component
 	{
 		chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 		if ( chat == null ) Log.Error( "Chat component not found" );
+
 		try
 		{
 			var controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
-			if ( controller == null ) return;
-			controller.AddPlayer( GameObject, Rpc.Caller );
-		}
-		catch ( Exception e )
+			if ( controller == null ) Log.Error( "Game Controller component not found" );
+			controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
+		}catch ( Exception e )
 		{
-			Log.Error( $"Failed to add player to GameController: {e.Message}" );
+			Log.Error( e );
 		}
 	}
 
