@@ -187,16 +187,169 @@
       "Children": []
     },
     {
-      "__guid": "869de3f0-c08f-4f24-be06-c23f2c80516c",
+      "__guid": "3979c2ce-8821-4ac8-a1ce-e0dd4f9839ec",
       "Flags": 0,
-      "Name": "door",
-      "Position": "-172.2314,-322.8228,248.5769",
+      "Name": "door (2)",
+      "Position": "-10.22571,-517.5206,248.5769",
       "Rotation": "0,0,0.7071067,0.7071068",
       "Tags": "interact",
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
       "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "cf734212-9bfb-4e0b-80ec-84d444593cf1",
+      "Flags": 0,
+      "Name": "door (1)",
+      "Position": "99.15402,-517.5207,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "869de3f0-c08f-4f24-be06-c23f2c80516c",
+      "Flags": 0,
+      "Name": "door",
+      "Position": "210.1536,-517.5208,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "-264.7343,-530.8256,261.8934",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "473b76b5-65c1-42e2-802a-908e8f82b6f9",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "0,0,0,1"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "8205bf79-eb56-438c-a15a-e2cda0093dc2",
+          "Center": "0,0,0",
+          "IsTrigger": false,
+          "Scale": "50,50,50",
+          "Static": false
+        }
+      ]
+    },
+    {
+      "__guid": "6cc14c26-5fa0-4700-8abf-2e31500b1b68",
+      "Flags": 0,
+      "Name": "us_money_stack (2)",
+      "Position": "-275.7398,-538.8372,288.1958",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "33244b6d-4c23-44e5-9cc4-41f282acfbc9",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/darkrp_main/us_money_stack.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "fe96b95e-64ea-4fe2-bfcd-ed53374d4184",
+      "Flags": 0,
+      "Name": "us_money_stack (1)",
+      "Position": "-260.6687,-543.4208,288.1958",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "0464505a-99b6-4302-a74f-5e7296f1acd2",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/darkrp_main/us_money_stack.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "d204b25b-6be9-4df1-a53d-1de904c5b33a",
+      "Flags": 0,
+      "Name": "us_money_stack",
+      "Position": "-249.056,-531.9042,288.1958",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "e17d0b7e-53cd-45f6-a954-e3d6e338c58a",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/darkrp_main/us_money_stack.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "02ba7cc6-e6ea-49cf-8c12-d19493128361",
+      "Flags": 0,
+      "Name": "us_money_note",
+      "Position": "-255.4002,-518.6396,287.0029",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "4697214a-f9a0-4649-9a5c-4360bc7deee2",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": true,
+          "Model": "models/darkrp_main/us_money_note.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "dee26a8f-f0f6-4a18-916e-1232afc07ab3",
+      "Flags": 0,
+      "Name": "us_money_note",
+      "Position": "-271.4978,-516.4379,286.9024",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "57d88f5e-8fb6-434c-b4a0-5071d7c20b58",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": true,
+          "Model": "models/darkrp_main/us_money_note.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
+      "Flags": 0,
+      "Name": "printer",
+      "Position": "-387.8854,-523.7152,252.5769",
+      "Tags": "interact,printer",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/printer.prefab",
       "__PrefabVariables": {}
     }
   ],

@@ -5,15 +5,16 @@
 <root>
     <div class="title">Tab Menu</div>
 
+    <!-- TODO this should be modularized -->
     <div class="main">
         <div class="side-bar">
             <div class="buttoncontainer">
-                <div class="button" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </div>
-                <div class="button" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </div>
+                <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </button>
+                <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </button>
             </div>
             <div class="buttoncontainer">
-                <div class="button" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </div>
-                <div class="button" onclick="@DisplayInfo"> <i class="icon">info</i> Information </div>
+                <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin"> <i class="icon">local_police</i> Admin Tools </button>
+                <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo"> <i class="icon">info</i> Information </button>
             </div>
         </div>
         <div class="main-container">
@@ -27,7 +28,7 @@
                         <div class="label-container">
                             <div class="label">Bronze Printer</div>
                             <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">slow</span>
+                            <span class="description">Slow</span>
                             <div class="price">$500</div>
                         </div>
                     </div>
@@ -37,7 +38,7 @@
                         <div class="label-container">
                             <div class="label">Silver Printer</div>
                             <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">average</span>
+                            <span class="description">Average</span>
                             <div class="price">$1200</div>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
                         <div class="label-container">
                             <div class="label">Gold Printer</div>
                             <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">fast</span>
+                            <span class="description">Fast</span>
                             <div class="price">$2600</div>
                         </div>
                     </div>
@@ -57,7 +58,7 @@
                         <div class="label-container">
                             <div class="label">Diamond Printer</div>
                             <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">super-fast</span>
+                            <span class="description">Super-fast</span>
                             <div class="price">$4200</div>
                         </div>
                     </div>
@@ -183,8 +184,7 @@
             }
             else
             {
-                // Not enough money
-                Sound.Play("audio/error.sound");
+                // Not enough money ( the error sound is already handled no need to add one here)
             }
         }
         else
