@@ -156,9 +156,16 @@
       {
         "__type": "PlayerInteraction",
         "__guid": "041d4999-b748-443b-a1b9-a2ef0e00c51c",
+        "holdingArea": {
+          "_type": "gameobject",
+          "go": "21fd671e-27ba-4843-aaea-2a58cdb3f390"
+        },
         "DrawDebugInteract": false,
         "InteractRange": 120,
-        "InteractTag": "Interact"
+        "InteractTag": "Interact",
+        "pickupForce": 150,
+        "throwForce": 500,
+        "throwTorque": 500
       }
     ],
     "Children": [
@@ -901,7 +908,7 @@
               "models/citizen_props/concreteroaddivider01.vmdl",
               "models/citizen_props/recyclingbin01/recyclingbin01gib_lod01.vmdl",
               "models/citizen_props/wheel01.vmdl",
-              "models/citizen_props/trashbag02.vmdl",
+              "models/citizen_props/sodacan01.vmdl",
               "models/citizen_props/cardboardbox01.vmdl"
             ]
           }
@@ -1430,6 +1437,13 @@
             }
           }
         ]
+      },
+      {
+        "__guid": "21fd671e-27ba-4843-aaea-2a58cdb3f390",
+        "Flags": 0,
+        "Name": "HoldingArea",
+        "Position": "151.2375,0.000007153841,92.6333",
+        "Enabled": true
       }
     ],
     "__variables": []

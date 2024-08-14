@@ -12,7 +12,27 @@ public sealed class PlayerInteraction : Component
 
 	[Property] public string InteractTag { get; set; } = "Interact"; // Interact tag to add to desired interactable objects
 
+
+	/// <summary>
+	/// Properties for physics holding props
+	/// </summary>
+	[Property] public GameObject holdingArea;
+	private GameObject heldObject;
+	private Rigidbody heldObjectRigidbody;
+	[Property] public float pickupForce { get; set; } = 150f;
+	[Property] public float throwForce { get; set; } = 500f;
+	[Property] public float throwTorque { get; set; } = 500f;
+
 	SceneTraceResult tr;
+
+	protected override void OnAwake()
+	{
+		// Set the holding area to the player's hand
+		var camera = Scene.GetAllComponents<CameraComponent>().Where( x => x.IsMainCamera ).FirstOrDefault();
+		holdingArea.SetParent( camera.GameObject );
+		// move holdingarea to the forward of the camera with interact range
+		holdingArea.Transform.Position = camera.Transform.Position + camera.Transform.Rotation.Forward * InteractRange;
+	}
 
 	protected override void OnFixedUpdate()
 	{
@@ -26,7 +46,7 @@ public sealed class PlayerInteraction : Component
 			{
 				DrawDebug();
 			}
-
+			MoveHeldObject();
 		}
 	}
 
@@ -48,16 +68,19 @@ public sealed class PlayerInteraction : Component
 		tr = Scene.Trace.Ray( start, end ).Run();
 
 		// Check for the "interact" Tag and do some logic associated to it 
-		if ( tr.GameObject != null && tr.GameObject.Tags.Has( InteractTag ) )
+		if ( tr.GameObject != null  )
 		{
-			// Is there a better way to do this?
-			if ( Input.Pressed( "Use" ) )
+			if (tr.GameObject.Tags.Has( InteractTag ) )
 			{
-				HandleInteraction( "Use" );
-			}
-			if ( Input.Pressed( "Use Special" ) )
-			{
-				HandleInteraction( "Use Special" );
+				// Is there a better way to do this?
+				if ( Input.Pressed( "Use" ) )
+				{
+					HandleInteraction( "Use" );
+				}
+				if ( Input.Pressed( "Use Special" ) )
+				{
+					HandleInteraction( "Use Special" );
+				}
 			}
 			if ( Input.Pressed( "attack1" ) )
 			{
@@ -65,12 +88,21 @@ public sealed class PlayerInteraction : Component
 			}
 			if ( Input.Pressed( "attack2" ) )
 			{
+				if ( tr.GameObject.Tags.Has("Props") && heldObject == null) {
+					HandlePickup(tr.GameObject);
+					return;
+				}
 				HandleInteraction( "attack2" );
 			}
 		}
 		else
 		{
+
 			//Log.Warning( "Hit object is null or does not have the interact tag." );
+		}
+		if (Input.Pressed("attack2") && heldObject != null) {
+			DropPickup();
+			return;
 		}
 	}
 
@@ -113,6 +145,51 @@ public sealed class PlayerInteraction : Component
 		// Return a default value if no hit was detected
 		return Vector3.Zero;
 
+	}
+
+	private void HandlePickup(GameObject pickedUpObject)
+	{
+		if(pickedUpObject.Components.Get<Rigidbody>() != null)
+		{
+			heldObjectRigidbody = pickedUpObject.Components.Get<Rigidbody>();
+			heldObjectRigidbody.Gravity = false;
+			heldObjectRigidbody.ClearForces();
+			heldObjectRigidbody.PhysicsBody.LinearDrag = 100f;
+
+			Log.Info("Picking up object");
+			//heldObjectRigidbody.PhysicsBody.Enabled = false;
+			heldObjectRigidbody.GameObject.SetParent(holdingArea);
+			heldObject = pickedUpObject;
+		}
+	}
+	private void DropPickup()
+	{
+			Log.Info("Dropping object");
+			heldObjectRigidbody.Gravity = true;
+			heldObjectRigidbody.ClearForces();
+			heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
+
+			//heldObjectRigidbody.PhysicsBody.Enabled = false;
+			heldObjectRigidbody.GameObject.SetParent(null);
+			heldObject = null;
+	}
+	private void MoveHeldObject()
+	{
+		if(heldObject != null)
+		{
+			float dist = Vector3.DistanceBetween( heldObject.Transform.Position, holdingArea.Transform.Position );
+			if(dist > 10f)
+			{
+				Log.Info("Moving object");
+				heldObjectRigidbody.ApplyForce( (holdingArea.Transform.Position - heldObject.Transform.Position).Normal * pickupForce );
+			}
+			// Could be extended with rotating an item
+			if(dist > 300f)
+			{
+				Log.Info("Throwing object");
+				DropPickup();
+			}
+		}
 	}
 
 	private void HandleInteraction( string inputKey )
