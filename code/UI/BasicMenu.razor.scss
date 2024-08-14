@@ -37,9 +37,33 @@ BasicMenu {
 
 	.side-bar {
 		flex-direction: column;
-		justify-content: space-between;
 		width: 20vw;
 		height: 100%;
+	}
+
+	.navigation {
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
+
+	.player-container {
+		padding: 20px;
+		height: 20%;
+		flex-direction: column;
+		.name {
+			font-size: 35px;
+		}
+
+		.sub {
+			font-size: 25px;
+			gap: 3px;
+		};
+
+		.wallet {
+			font-size: 25px;
+			color: #556B2F;
+		}
 	}
 	
 	.buttoncontainer {
