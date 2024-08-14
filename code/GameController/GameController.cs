@@ -44,7 +44,7 @@ public sealed class GameController : Component, Component.INetworkListener
 			// Remove the player from the list
 			Players.Remove( playerToRemove );
 		} catch ( Exception e ) {
-			Log.Error( e );
+			Log.Warning( e );
 		}
 	}
 

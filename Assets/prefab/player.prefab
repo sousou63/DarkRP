@@ -329,8 +329,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "832,64"
@@ -387,8 +387,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "ForEach",
-                    "_type": "System.Collections.Generic.List\u00601",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "System.Collections.Generic.List\u00601"
                   },
                   "UserData": {
                     "Position": "656,96"
@@ -413,8 +413,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -458,8 +458,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -509,8 +509,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "32,896"
@@ -897,7 +897,12 @@
               "models/citizen_props/trashcan01.vmdl",
               "models/citizen_props/crate01.vmdl",
               "models/citizen_props/chair04blackleather.vmdl",
-              "models/citizen_props/trashcan01.vmdl"
+              "models/citizen_props/trashcan01.vmdl",
+              "models/citizen_props/concreteroaddivider01.vmdl",
+              "models/citizen_props/recyclingbin01/recyclingbin01gib_lod01.vmdl",
+              "models/citizen_props/wheel01.vmdl",
+              "models/citizen_props/trashbag02.vmdl",
+              "models/citizen_props/cardboardbox01.vmdl"
             ]
           }
         ]
@@ -1136,8 +1141,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "GetAllPlayers",
-                    "_type": "GameController",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "GameController"
                   },
                   "UserData": {
                     "Position": "208,-16"
@@ -1148,8 +1153,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Reset",
-                    "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1355,8 +1360,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "GetAllPlayers",
-                    "_type": "GameController",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "GameController"
                   },
                   "UserData": {
                     "Position": "272,-0"

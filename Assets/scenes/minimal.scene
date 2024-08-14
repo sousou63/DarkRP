@@ -241,7 +241,7 @@
         },
         {
           "__type": "Sandbox.BoxCollider",
-          "__guid": "8205bf79-eb56-438c-a15a-e2cda0093dc2",
+          "__guid": "6cd7b75e-c224-441c-8d15-0dc070879748",
           "Center": "0,0,0",
           "IsTrigger": false,
           "Scale": "50,50,50",

@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using System.Threading.Tasks;
 @inherits PanelComponent;
 
 <root>
@@ -86,15 +87,29 @@
             </div>
 
             <!-- Props Section -->
-            <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");">
+            <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");)">
                 <div class="section-title">Props</div>
                 <div class="section-contents">
-                    <div class="info" style="color: red;">
+                    <div class="info">
+
+                        <span class="description" style="margin-top:10px; margin-bottom:20px;"> WORK IN PROGRESS </span>
+
+                        <span class="description" style="margin-top:10px; margin-bottom:20px;">@CurrentProps / @MaxProps</span>
+
 
                         @foreach (var Model in Props)
                         {
+                            string Propsname = Model.Name;
+                            <div class="button" onclick=@(() => SpawnProps(Propsname))> @Model.Name </div>
+                            // TODO :  add the thumbnail with the props name 
 
-                            <div class="button" onclick=> @Model.Name </div> // I need to get the thumbnail and find a way to acces cloud assets instead of a list
+                        }
+
+                        <!-- this doesn't work yet, it's supposed to show cloud assets but I struggle a bit to understand their API -->
+                        @foreach (var Package in Packages)
+                        {
+
+                            <div class="button" onclick=> @Package.Title </div>
 
                         }
 
@@ -159,18 +174,70 @@
     [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoCredits { get; set; } = "Hello World!";
 
+
+
+
+    // The string used to query for packages 
+    public string Query { get; set; } = "QuerryPlaceholder"; 
+
+    // A list of found packages 
+    List<Package> Packages = new List<Package>();
+
+    // doesn't work yet ( I need to figure out their API to understand how to get a list of cloud Assets)
+    public async Task FindPackage()
+    {
+        var found = await Package.FindAsync(Query);
+        if (found != null)
+        {
+            Packages.AddRange(found.Packages);
+        }
+    }
+
+    protected override async void OnStart()
+    {
+        FindPackage();
+    }
+
+
+    int MaxProps = 10;
+    int CurrentProps = 0;
+
+    // prototyping props spawn system 
+    // TODO : Move the logic in his own class + add clear all props button + a way to interact with props 
+    void SpawnProps(string modelname)
+    {
+        if (CurrentProps >= MaxProps)
+        {
+            Sound.Play("audio/error.sound");
+            return;
+        }
+
+        var obj = new GameObject();
+
+        var ModelRenderer = obj.Components.GetOrCreate<ModelRenderer>();
+        ModelRenderer.Model = Model.Load(modelname);
+
+        var ModelCollider = obj.Components.GetOrCreate<ModelCollider>();
+        ModelCollider.Model = Model.Load(modelname);
+
+        obj.Components.GetOrCreate<Rigidbody>();
+        obj.Tags.Add("Props");
+
+        Vector3 playerPos = GameObject.Parent.Transform.World.Position + GameObject.Parent.Transform.Local.Forward * 50;
+        obj.Clone(playerPos);  
+        obj.NetworkSpawn();
+        obj.Destroy(); // this is to avoid a duplicate version at coordinate (0,0,0)
+        CurrentProps++;
+
+        //Task.Delay(3000);
+
+    }
+
+
     // everything related to printers
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
     enum PrinterType { Bronze, Silver, Gold, Diamond }
-
-    // Discord and Github string
-    string Discord = "Discord";
-    string GitHub = "GitHub";
-
-    // Boolean properties to control visibility
-    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
-
 
     // Generic method to purchase a printer
     void BuyPrinter(PrinterType type, float price)
@@ -197,6 +264,9 @@
         CurrentPrinter++;
     }
 
+
+    // Boolean properties to control visibility
+    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
     
     void DisplaySection(string section)
     {
@@ -215,6 +285,10 @@
     void DisplayAdmin() { DisplaySection("Admin"); }
     void DisplayProps() { DisplaySection("Props"); }
 
+
+    // Discord and Github string
+    string Discord = "Discord";
+    string GitHub = "GitHub";
 
     async void DiscordLink() { 
         Sound.Play("audio/select.sound");
