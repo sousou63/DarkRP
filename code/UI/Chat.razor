@@ -20,6 +20,10 @@
             {
                 <div class="chat_entry">
                     <div class="timestamp">@entry.timestamp</div>
+                    @if (DevSteamIDs.Contains(entry.steamid))
+                    {
+                        <div class="user-group">DEV</div>
+                    }
                     @if (entry.steamid > 0)
                     {
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
@@ -73,6 +77,14 @@
 
 @code
 {
+
+
+    // TODO temporary clout
+    private static ulong[] DevSteamIDs = new ulong[] {
+		76561198844028104, // Sousou
+		76561198137204749, // QueenPM
+	};
+
     TextEntry InputBox;
     bool ChatOpen = false;
     public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
