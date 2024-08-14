@@ -90,7 +90,14 @@
                 <div class="section-title">Props</div>
                 <div class="section-contents">
                     <div class="info" style="color: red;">
-                        <h1>WIP</h1>
+
+                        @foreach (var Model in Props)
+                        {
+
+                            <div class="button" onclick=> @Model.Name </div> // I need to get the thumbnail and find a way to acces cloud assets instead of a list
+
+                        }
+
                     </div>
                 </div>
             </div>
@@ -114,7 +121,6 @@
                         <h1>Notes</h1>
                         <p>@InfoNotes</p>
                     </div>
-                    
                     <div class="info" style="color: #DCDCDC;">
                         <h1>Credits</h1>
                         <p>@InfoCredits</p>
@@ -140,6 +146,7 @@
 {
     [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Reference
     [Property] GameObject PlayerPrefab { get; set; } // Player Prefab Reference
+    [Property] public List<Model> Props { get; set; }
 
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
