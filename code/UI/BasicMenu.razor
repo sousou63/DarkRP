@@ -144,83 +144,77 @@
 
 @code
 {
-    [Property] GameObject PrinterPrefab { get; set; } // Printer Prefab Reference
-    [Property] GameObject PlayerPrefab { get; set; } // Player Prefab Reference
+    // Printer Prefab Reference
+    [Property] GameObject PrinterPrefab { get; set; } 
+
+    // Player Prefab Reference
+    [Property] GameObject PlayerPrefab { get; set; } 
+
+    // List of Props 
     [Property] public List<Model> Props { get; set; }
 
+    // All the text property for the information tab
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoCredits { get; set; } = "Hello World!";
 
+    // everything related to printers
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
+    enum PrinterType { Bronze, Silver, Gold, Diamond }
 
+    // Discord and Github string
     string Discord = "Discord";
     string GitHub = "GitHub";
 
     // Boolean properties to control visibility
     bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
 
-    // Enum to represent different types of printers
-    enum PrinterType {Bronze,Silver,Gold,Diamond}
 
     // Generic method to purchase a printer
     void BuyPrinter(PrinterType type, float price)
     {
-        // Check if we can add another printer
-        if (CurrentPrinter < MaxPrinter)
+        if (CurrentPrinter >= MaxPrinter)
         {
-            // Try to remove money first ( RemoveMoney() is a function in the PlayerStats Component )
-            bool hasEnoughMoney = PlayerPrefab.Components.Get<PlayerStats>().RemoveMoney(price);
-
-            if (hasEnoughMoney)
-            {
-                Vector3 Offset = GameObject.Parent.Transform.Local.Forward;
-                Vector3 PlayerPos = GameObject.Parent.Transform.World.Position + Offset * 50;
-                GameObject Printer = PrinterPrefab.Clone(PlayerPos);
-
-                // Get PrinterLogic component
-                var printerLogic = Printer.Components.Get<PrinterLogic>();
-
-                // Assign the color based on the printer type
-                switch (type)
-                {
-                    case PrinterType.Bronze:
-                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Bronze);
-                        break;
-                    case PrinterType.Silver:
-                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Silver);
-                        break;
-                    case PrinterType.Gold:
-                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Gold);
-                        break;
-                    case PrinterType.Diamond:
-                        printerLogic.SetPrinterType(PrinterLogic.PrinterType.Diamond);
-                        break;
-                }
-
-                Printer.NetworkSpawn();  // It spawns on all clients
-                CurrentPrinter++;
-            }
-            else
-            {
-                // Not enough money ( the error sound is already handled no need to add one here)
-            }
-        }
-        else
-        {
-            // Max printers reached
             Sound.Play("audio/error.sound");
+            return;
         }
+
+        var playerStats = PlayerPrefab.Components.Get<PlayerStats>();
+        if (!playerStats.RemoveMoney(price))
+        {
+            return; // Not enough money, error sound is handled elsewhere
+        }
+
+        Vector3 playerPos = GameObject.Parent.Transform.World.Position + GameObject.Parent.Transform.Local.Forward * 50;
+        GameObject printer = PrinterPrefab.Clone(playerPos);
+
+        // Set the printer type directly using a mapping if needed
+        printer.Components.Get<PrinterLogic>().SetPrinterType((PrinterLogic.PrinterType)type);
+
+        printer.NetworkSpawn(); // It spawns on all clients
+        CurrentPrinter++;
     }
 
-    // Display methods for each section
-    void DisplayDarkWeb() { IsDarkWebVisible = true; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayJobs()    { IsDarkWebVisible = false; IsJobsVisible = true; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayInfo()    { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = true; IsAdminVisible = false; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayAdmin()   { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = true; IsPropsVisible = false; Sound.Play("audio/select.sound"); }
-    void DisplayProps()   { IsDarkWebVisible = false; IsJobsVisible = false; IsInfoVisible = false; IsAdminVisible = false; IsPropsVisible = true; Sound.Play("audio/select.sound"); }
+    
+    void DisplaySection(string section)
+    {
+        IsDarkWebVisible = section == "DarkWeb";
+        IsJobsVisible = section == "Jobs";
+        IsInfoVisible = section == "Info";
+        IsAdminVisible = section == "Admin";
+        IsPropsVisible = section == "Props";
+
+        Sound.Play("audio/select.sound");
+    }
+
+    void DisplayDarkWeb() { DisplaySection("DarkWeb"); }
+    void DisplayJobs() { DisplaySection("Jobs"); }
+    void DisplayInfo() { DisplaySection("Info"); }
+    void DisplayAdmin() { DisplaySection("Admin"); }
+    void DisplayProps() { DisplaySection("Props"); }
+
 
     async void DiscordLink() { 
         Sound.Play("audio/select.sound");
@@ -234,6 +228,7 @@
             Log.Error("Failed to copy to clipboard");
         }
     }
+
 
     async void GitHubLink() { 
         Sound.Play("audio/select.sound");
