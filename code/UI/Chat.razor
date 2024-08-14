@@ -218,20 +218,6 @@
         SendMessage( message, true );
     }
 
-	void Component.INetworkListener.OnConnected( Connection channel )
-	{
-		if ( IsProxy ) return;
-
-		NewSystemMessage( $"{channel.DisplayName} has joined the game" );
-	}
-
-	void Component.INetworkListener.OnDisconnected( Connection channel )
-	{
-		if ( IsProxy ) return;
-
-		NewSystemMessage( $"{channel.DisplayName} has left the game" );
-	}
-
     public void ClearChat()
     {
         Messages.Clear();

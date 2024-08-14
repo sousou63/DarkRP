@@ -15,14 +15,28 @@ public sealed class GameController : Component, Component.INetworkListener
 	}
 
 	public static GameController Instance => _instance;
+	Chat chat { get; set; }
 
 	[HostSync] public NetList<Player> Players { get; set; } = new NetList<Player>();
+
+	protected override void OnStart()
+	{
+		chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
+		if ( chat == null ) Log.Error( "Chat component not found" );
+	}
 
 	// This could probably be put in the network controller/helper.
 	public void AddPlayer( GameObject player, Connection connection )
 	{
 		Log.Info( $"Adding player: {connection.Id} {connection.DisplayName}" );
-		Players.Add( new Player( player, connection ) );
+		try
+		{
+			Players.Add( new Player( player, connection ) );
+			chat?.NewSystemMessage( $"{connection.DisplayName} has joined the game." );
+		}catch ( Exception e )
+		{
+			Log.Warning( e );
+		}
 	}
 
 	public void RemovePlayer( Connection connection )
@@ -43,6 +57,7 @@ public sealed class GameController : Component, Component.INetworkListener
 
 			// Remove the player from the list
 			Players.Remove( playerToRemove );
+			chat?.NewSystemMessage( $"{connection.DisplayName} has left the game." );
 		} catch ( Exception e ) {
 			Log.Warning( e );
 		}
