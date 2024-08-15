@@ -43,7 +43,7 @@ namespace Commands
 		/// </summary>
 		/// <param name="name">The name of the command.</param>
 		/// <param name="description">The description of the command.</param>
-		/// <param name="permissionLevel">The permission level required to execute the command.</param>
+		/// <param name="permissionLevel">The permission level required to execute the command. 0 - User, 1 - Mod, 2 - Admin, 99 - Super Admin, 100 - Developer</param>
 		/// <param name="commandFunction">The function to execute when the command is called.</param>
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
@@ -67,6 +67,8 @@ namespace Commands
 	/// </summary>
 	public class CommandConfig
 	{
+
+		// TODO move this bloat elsewhere.
 		private readonly Dictionary<string, ICommandConfig> _commands = new()
 		{
 			{ "clear", new Command(
@@ -105,7 +107,7 @@ namespace Commands
 				{ "givemoney", new Command(
 						name: "givemoney",
 						description: "Gives the player money",
-						permissionLevel: 0, // TODO make it admin
+						permissionLevel: 2,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -147,7 +149,7 @@ namespace Commands
 				{ "setmoney", new Command(
 						name: "setmoney",
 						description: "Set a player's money",
-						permissionLevel: 0, // TODO make it admin
+						permissionLevel: 2,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -183,6 +185,50 @@ namespace Commands
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your money has been set to ${amount.ToString("N0")}.");
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount.ToString("N0")}");
+								return true;
+						}
+				)},
+				{ "setrank", new Command(
+						name: "setrank",
+						description: "Set a player's rank",
+						permissionLevel: 99,
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<PlayerStats>();
+								if (playerStats == null) return false;
+
+								// Get the 2nd parameter for player
+								if (args.Length < 2)
+								{
+									playerStats.SendMessage("Usage: /setrank <player> <rank>");
+									return false;
+								}
+
+								var GameController = ConfigManagerHelper.GetGameController(scene);
+								if (GameController == null) return false;
+
+								var foundPlayer = GameController.PlayerLookup(args[0]);
+
+								if (foundPlayer == null)
+								{
+									playerStats.SendMessage($"Player {args[0]} not found");
+									return false;
+								}
+
+								// Get the rank
+								var rank = GameController.GetUserGroup(args[1]);
+								if (rank == null)
+								{
+									playerStats.SendMessage("Invalid rank");
+									return false;
+								}
+
+								// Set the rank
+								foundPlayer.SetRank(rank);
+
+								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your rank has been set to {rank.DisplayName}.");
+								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} rank to {rank.DisplayName}");
 								return true;
 						}
 				)}
@@ -237,11 +283,11 @@ namespace Commands
 
 		public bool ExecuteCommand( string commandName, GameObject player, Scene scene, string[] args )
 		{
+			// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
+			var playerStats = player.Components.Get<PlayerStats>();
+			if ( playerStats == null ) return false;
 			try
 			{
-				// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
-				var playerStats = player.Components.Get<PlayerStats>();
-				if ( playerStats == null ) return false;
 
 				// Check if its the default "help" command
 				if ( commandName == "help" )
@@ -267,8 +313,6 @@ namespace Commands
 				Log.Info( $"Executing command \"{commandName}\"." );
 				if ( command.CommandFunction( player, scene, args ) == false )
 				{
-					Log.Error( $"Failed to execute command \"{commandName}\"." );
-					playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
 					return false;
 				}
 				return true;
@@ -276,6 +320,7 @@ namespace Commands
 			catch ( Exception e )
 			{
 				Log.Error( $"Failed to execute command \"{commandName}\": {e.Message}" );
+				playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
 				return false;
 			}
 		}
