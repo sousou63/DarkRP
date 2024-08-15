@@ -56,7 +56,7 @@ public sealed class GameController : Component, Component.INetworkListener
 				userGroups.Add( UserGroups["developer"] );
 			}
 			// If the user is the host, assign the superadmin user group
-			if ( Rpc.Caller.IsHost )
+			if ( connection.IsHost )
 			{
 				userGroups.Add( UserGroups["superadmin"] );
 			}
