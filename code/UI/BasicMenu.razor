@@ -172,6 +172,9 @@
     // Player Prefab Reference
     [Property] GameObject PlayerPrefab { get; set; } 
 
+    // Prop Prefab Reference
+    [Property] GameObject PropPrefab { get; set; } 
+
     // List of Props 
     [Property] public List<Model> Props { get; set; }
 
@@ -205,12 +208,11 @@
         FindPackage();
     }
 
-
     int MaxProps = 10;
     int CurrentProps = 0;
 
-    // prototyping props spawn system 
-    // TODO : Move the logic in his own class + add clear all props button + a way to interact with props 
+
+    // TODO :  add clear all props button + a way to interact with props 
     void SpawnProps(string modelname)
     {
         if (CurrentProps >= MaxProps)
@@ -219,25 +221,20 @@
             return;
         }
 
-        var obj = new GameObject();
-
-        var ModelRenderer = obj.Components.GetOrCreate<ModelRenderer>();
-        ModelRenderer.Model = Model.Load(modelname);
-
-        var ModelCollider = obj.Components.GetOrCreate<ModelCollider>();
-        ModelCollider.Model = Model.Load(modelname);
-
-        obj.Components.GetOrCreate<Rigidbody>();
-        obj.Tags.Add("Props");
-
+        // spawn the prop prefab
         Vector3 playerPos = GameObject.Parent.Transform.World.Position + GameObject.Parent.Transform.Local.Forward * 50;
-        obj.Clone(playerPos);  
-        obj.NetworkSpawn();
-        obj.Destroy(); // this is to avoid a duplicate version at coordinate (0,0,0)
+        GameObject Prop = PropPrefab.Clone(playerPos);
+
+        // Update the prop model
+        Prop.Components.Get<PropLogic>().UpdatePropModel(modelname);
+
+        // Update the prop Collider
+        Prop.Components.Get<PropLogic>().UpdatePropCollider(modelname);
+        
+        // Spawn the prop on all clients
+        Prop.NetworkSpawn();
+
         CurrentProps++;
-
-        //Task.Delay(3000);
-
     }
 
 

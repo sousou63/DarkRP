@@ -1,0 +1,33 @@
+{
+  "RootObject": {
+    "__guid": "48f3c565-3343-41ad-9f4d-7f88b2478712",
+    "Flags": 0,
+    "Name": "prop",
+    "Tags": "prop,interact",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.Prop",
+        "__guid": "ede9d44b-477c-4b65-a7bb-511e7d7d8496",
+        "BodyGroups": 18446744073709551615,
+        "Health": 0,
+        "IsStatic": false,
+        "Model": "models/citizen_props/sodacan01.vmdl",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "PropLogic",
+        "__guid": "20df19f0-fb4e-4399-9c68-afaeea05daeb"
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

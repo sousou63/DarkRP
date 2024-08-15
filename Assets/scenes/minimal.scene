@@ -350,6 +350,39 @@
       "OwnerTransfer": 0,
       "__Prefab": "prefab/printer.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
+      "Flags": 0,
+      "Name": "prop",
+      "Position": "-468.7608,-503.2245,248.5769",
+      "Tags": "prop,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "__Prefab": "prefab/prop.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "bb58b9c8-18d5-4219-a01c-6a5464790caf",
+      "Flags": 0,
+      "Name": "prop (1)",
+      "Position": "-495.69,-513.8541,248.5769",
+      "Tags": "prop,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "__Prefab": "prefab/prop.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "83e07f29-9a65-449d-aae6-b7bb0562f39b",
+      "Flags": 0,
+      "Name": "prop (2)",
+      "Position": "-474.9622,-541.1581,248.5769",
+      "Tags": "prop,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "__Prefab": "prefab/prop.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {
