@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Drawing;
+using Sandbox.Citizen;
+using System.Linq;
 
 public sealed class PlayerInteraction : Component
 {
@@ -16,22 +18,22 @@ public sealed class PlayerInteraction : Component
 	/// <summary>
 	/// Properties for physics holding props
 	/// </summary>
-	[Property] public GameObject holdingArea;
-	private GameObject heldObject;
-	private Rigidbody heldObjectRigidbody;
+	[Property, Sync] public GameObject holdingArea { get; set; }
+	private GameObject m_heldObject;
+	private Rigidbody m_heldObjectRigidbody;
+	private PlayerController m_playerController;
 	[Property] public float pickupForce { get; set; } = 150f;
 	[Property] public float throwForce { get; set; } = 500f;
 	[Property] public float throwTorque { get; set; } = 500f;
 
 	SceneTraceResult tr;
 
+
+
 	protected override void OnAwake()
 	{
-		// Set the holding area to the player's hand
-		var camera = Scene.GetAllComponents<CameraComponent>().Where( x => x.IsMainCamera ).FirstOrDefault();
-		holdingArea.SetParent( camera.GameObject );
-		// move holdingarea to the forward of the camera with interact range
-		holdingArea.Transform.Position = camera.Transform.Position + camera.Transform.Rotation.Forward * InteractRange;
+		// parent the holding area to the players camera
+		m_playerController = GameObject.Components.Get<PlayerController>();
 	}
 
 	protected override void OnFixedUpdate()
@@ -40,6 +42,7 @@ public sealed class PlayerInteraction : Component
 		if ( Network.IsOwner )
 		{
 			Interact();
+			SetHoldingArea();
 
 			// Draw the debug information if the boolean is true
 			if ( DrawDebugInteract )
@@ -88,7 +91,7 @@ public sealed class PlayerInteraction : Component
 			}
 			if ( Input.Pressed( "attack2" ) )
 			{
-				if ( tr.GameObject.Tags.Has("Props") && heldObject == null) {
+				if ( tr.GameObject.Tags.Has("prop") && m_heldObject == null) {
 					HandlePickup(tr.GameObject);
 					return;
 				}
@@ -100,7 +103,7 @@ public sealed class PlayerInteraction : Component
 
 			//Log.Warning( "Hit object is null or does not have the interact tag." );
 		}
-		if (Input.Pressed("attack2") && heldObject != null) {
+		if (Input.Pressed("attack2") && m_heldObject != null) {
 			DropPickup();
 			return;
 		}
@@ -147,44 +150,62 @@ public sealed class PlayerInteraction : Component
 
 	}
 
+	private void SetHoldingArea() {
+		var eyePos = m_playerController.Transform.Position + new Vector3( 0, 0, m_playerController.EyeHeight );
+		var eyeAngles = m_playerController.EyeAngles.Forward;
+		// rotate the target target vector according to the camera rotation from the eye position
+		var targetVec = eyePos + eyeAngles * (InteractRange/2);
+
+		holdingArea.Transform.Position = holdingArea.Transform.Position.LerpTo(targetVec,0.05f);
+	}
 	private void HandlePickup(GameObject pickedUpObject)
 	{
-		if(pickedUpObject.Components.Get<Rigidbody>() != null)
+		Rigidbody rb = pickedUpObject.Components.Get<Rigidbody>();
+		if(rb != null)
 		{
-			heldObjectRigidbody = pickedUpObject.Components.Get<Rigidbody>();
-			heldObjectRigidbody.Gravity = false;
-			heldObjectRigidbody.ClearForces();
-			heldObjectRigidbody.PhysicsBody.LinearDrag = 100f;
+			// remove the earlier parent of the pickedUpObject 
+			// i.e if someone else is holding it, remove it from their hands
+			if(pickedUpObject.Parent != null)
+			{
+				pickedUpObject.SetParent(null);
+				rb.GameObject.SetParent(null);
+			}
+			// maybe some other logic is preferred. Maybe not being able to steal items from others
+
+			m_heldObjectRigidbody = rb;
+			m_heldObjectRigidbody.Gravity = false;
+			m_heldObjectRigidbody.ClearForces();
+			m_heldObjectRigidbody.PhysicsBody.LinearDrag = 100f;
 
 			Log.Info("Picking up object");
 			//heldObjectRigidbody.PhysicsBody.Enabled = false;
-			heldObjectRigidbody.GameObject.SetParent(holdingArea);
-			heldObject = pickedUpObject;
+			m_heldObjectRigidbody.GameObject.SetParent(holdingArea);
+			m_heldObject = pickedUpObject;
 		}
 	}
 	private void DropPickup()
 	{
 			Log.Info("Dropping object");
-			heldObjectRigidbody.Gravity = true;
-			heldObjectRigidbody.ClearForces();
-			heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
+			m_heldObjectRigidbody.Gravity = true;
+			//m_heldObjectRigidbody.ClearForces();
+			m_heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
 
-			//heldObjectRigidbody.PhysicsBody.Enabled = false;
-			heldObjectRigidbody.GameObject.SetParent(null);
-			heldObject = null;
+			m_heldObjectRigidbody.GameObject.SetParent(null);
+			m_heldObject = null;
 	}
 	private void MoveHeldObject()
 	{
-		if(heldObject != null)
+		if(m_heldObject != null)
 		{
-			float dist = Vector3.DistanceBetween( heldObject.Transform.Position, holdingArea.Transform.Position );
-			if(dist > 10f)
+			SetHoldingArea();
+			float dist = Vector3.DistanceBetween(m_heldObject.Transform.Position, holdingArea.Transform.Position );
+			if(dist > 1f)
 			{
 				Log.Info("Moving object");
-				heldObjectRigidbody.ApplyForce( (holdingArea.Transform.Position - heldObject.Transform.Position).Normal * pickupForce );
+				m_heldObjectRigidbody.Transform.LerpTo(holdingArea.Transform.World, 0.05f);
 			}
 			// Could be extended with rotating an item
-			if(dist > 300f)
+			if(dist > InteractRange)
 			{
 				Log.Info("Throwing object");
 				DropPickup();
