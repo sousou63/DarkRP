@@ -5,7 +5,7 @@ public sealed class GameController : Component, Component.INetworkListener
 {
 	private static ulong[] DevSteamIDs = new ulong[] {
 		76561198844028104, // Sousou
-    76561198137204749, // QueenPM
+    // 76561198137204749, // QueenPM
     76561198161573319, // irlladdergoat
     76561198237485902, // Bozy
     76561198040274296, // Stefan
@@ -155,6 +155,18 @@ public sealed class GameController : Component, Component.INetworkListener
 			{
 				return player.Value;
 			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Returns the UserGroup with the specified name.
+	/// </summary>
+	public UserGroup GetUserGroup( string name )
+	{
+		if ( UserGroups.TryGetValue( name, out UserGroup userGroup ) )
+		{
+			return userGroup;
 		}
 		return null;
 	}
