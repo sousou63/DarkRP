@@ -40,11 +40,18 @@ public sealed class PropToolManager : Component
     }
   }
 
+  /// <summary>
+  /// Returns the number of props currently spawned and owned by the player
+  /// </summary>
+  /// <returns></returns>
   public int PropCount()
   {
     return Props.Count;
   }
 
+  /// <summary>
+  /// Removes all props from the player
+  /// </summary>
   public void RemoveAllProps()
   {
     foreach ( var prop in Props )
@@ -54,6 +61,10 @@ public sealed class PropToolManager : Component
     Props.Clear();
   }
 
+  /// <summary>
+  /// Attempts to spawn a prop at the player's forward line trace, else spawns it 50 units in front of the player
+  /// </summary>
+  /// <param name="modelname"></param>
   public void SpawnProp( string modelname )
   {
     if ( Props.Count >= PropLimit )
@@ -67,6 +78,7 @@ public sealed class PropToolManager : Component
     }
 
     // spawn the prop prefab
+    // TODO fix this not working
     Vector3? nullablePlayerPos = GameObject.Components.Get<PlayerInteraction>()?.ForwardLineTrace();
     Vector3 playerPos = nullablePlayerPos ?? Vector3.Zero;
 
@@ -82,6 +94,7 @@ public sealed class PropToolManager : Component
     // Update the prop Collider
     Prop.Components.Get<PropLogic>().UpdatePropCollider( modelname );
 
+    // TODO perhaps encapsulate this whole process in a try catch. If exception, attempt to clean up after itself
     // Spawn the prop on all clients
     Prop.NetworkSpawn();
     Props.Add( Prop );
