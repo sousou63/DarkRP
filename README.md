@@ -33,6 +33,7 @@ To ensure code quality and maintainability, please adhere to the following guide
 - dancore: Entity system, code optimization
 - Bozy: Team/job system foundation
 - IRLadderGoat: Scoreboard foundation
+- Mangro: Money pickup and tweaks
 ## Links
 - S&Box Page: https://sbox.game/sousoup/darkrp
 - Discord: https://discord.com/invite/yBDk9Xr6VB
