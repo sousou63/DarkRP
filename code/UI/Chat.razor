@@ -20,9 +20,9 @@
             {
                 <div class="chat_entry">
                     <div class="timestamp">@entry.timestamp</div>
-                    <div class="user-group">@GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup()?.DisplayName</div>
                     @if (entry.steamid > 0)
                     {
+                        <div class="user-group">@GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup()?.DisplayName</div>
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                     }
                     <div class="author">@entry.author</div>
