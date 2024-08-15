@@ -47,6 +47,10 @@ public sealed class PlayerStats : Component
 		}
 	}
 
+	/// <summary>
+	/// Helper function to find the player's PlayerDetails
+	/// </summary>
+	/// <returns></returns>
 	public Player GetPlayerDetails()
 	{
 		return controller.GetPlayerByGameObjectID(GameObject.Id);
