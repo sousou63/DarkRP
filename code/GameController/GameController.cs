@@ -5,7 +5,7 @@ public sealed class GameController : Component, Component.INetworkListener
 {
 	private static ulong[] DevSteamIDs = new ulong[] {
 		76561198844028104, // Sousou
-    // 76561198137204749, // QueenPM
+    76561198137204749, // QueenPM
     76561198161573319, // irlladdergoat
     76561198237485902, // Bozy
     76561198040274296, // Stefan
