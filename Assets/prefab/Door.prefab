@@ -33,15 +33,14 @@
         "__guid": "244484dd-fb97-4cc3-b1af-8d3adb675e91",
         "Flags": 0,
         "Name": "Door",
-        "Position": "-0.03511548,-18.66354,39.41812",
-        "Scale": "0.02540947,0.7285867,1.587103",
+        "Scale": "0.8059926,0.8059926,0.8059926",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
             "__guid": "1f59113c-d475-48d9-a702-548a5e5f361f",
             "BodyGroups": 18446744073709551615,
-            "Model": "models/dev/box.vmdl",
+            "Model": "models/props/trim_sheets/doors/wooden_doors/wooden_door_01d.vmdl",
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }
@@ -109,6 +108,8 @@
   "MenuPath": null,
   "MenuIcon": null,
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "facepunch.wooden_door_01d"
+  ],
   "__version": 1
 }

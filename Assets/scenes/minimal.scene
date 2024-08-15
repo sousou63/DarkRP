@@ -1,5 +1,5 @@
 {
-  "__guid": "672821ee-3fad-4b69-9840-c14e0ef6ee9f",
+  "__guid": "4606da4c-99e1-4bd3-a8b7-1babdbed1c18",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -23,7 +23,7 @@
           "RenderTags": "",
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
-          "ZFar": 10000,
+          "ZFar": 23253,
           "ZNear": 10
         },
         {
@@ -70,7 +70,11 @@
         {
           "__type": "Sandbox.Sharpen",
           "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
-          "Scale": 0.2
+          "Scale": 0.1
+        },
+        {
+          "__type": "Sandbox.Highlight",
+          "__guid": "591f1b7f-5af6-47fe-be88-6aad78a4322a"
         }
       ]
     },
@@ -225,125 +229,10 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
-      "Flags": 0,
-      "Name": "Cube",
-      "Position": "-264.7343,-530.8256,261.8934",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "473b76b5-65c1-42e2-802a-908e8f82b6f9",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/box.vmdl",
-          "RenderType": "On",
-          "Tint": "0,0,0,1"
-        },
-        {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "6cd7b75e-c224-441c-8d15-0dc070879748",
-          "Center": "0,0,0",
-          "IsTrigger": false,
-          "Scale": "50,50,50",
-          "Static": false
-        }
-      ]
-    },
-    {
-      "__guid": "6cc14c26-5fa0-4700-8abf-2e31500b1b68",
-      "Flags": 0,
-      "Name": "us_money_stack (2)",
-      "Position": "-275.7398,-538.8372,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "33244b6d-4c23-44e5-9cc4-41f282acfbc9",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "fe96b95e-64ea-4fe2-bfcd-ed53374d4184",
-      "Flags": 0,
-      "Name": "us_money_stack (1)",
-      "Position": "-260.6687,-543.4208,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "0464505a-99b6-4302-a74f-5e7296f1acd2",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "d204b25b-6be9-4df1-a53d-1de904c5b33a",
-      "Flags": 0,
-      "Name": "us_money_stack",
-      "Position": "-249.056,-531.9042,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "e17d0b7e-53cd-45f6-a954-e3d6e338c58a",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "02ba7cc6-e6ea-49cf-8c12-d19493128361",
-      "Flags": 0,
-      "Name": "us_money_note",
-      "Position": "-255.4002,-518.6396,287.0029",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "4697214a-f9a0-4649-9a5c-4360bc7deee2",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_main/us_money_note.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "dee26a8f-f0f6-4a18-916e-1232afc07ab3",
-      "Flags": 0,
-      "Name": "us_money_note",
-      "Position": "-271.4978,-516.4379,286.9024",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "57d88f5e-8fb6-434c-b4a0-5071d7c20b58",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_main/us_money_note.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
       "Flags": 0,
       "Name": "printer",
-      "Position": "-387.8854,-523.7152,252.5769",
+      "Position": "-327.3266,-523.7152,252.5769",
       "Tags": "interact,printer",
       "Enabled": true,
       "NetworkMode": 1,
@@ -352,10 +241,106 @@
       "__PrefabVariables": {}
     },
     {
+      "__guid": "c09ddcaf-5b4a-4c5c-be86-1b14a4f132de",
+      "Flags": 0,
+      "Name": "printer (1)",
+      "Position": "-234.1005,-523.7152,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "d90b61ef-5599-4ec9-8896-bf5a708124d6",
+      "Flags": 0,
+      "Name": "printer (2)",
+      "Position": "-238.7348,-523.7152,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "3d3181f5-b362-4a42-991c-d619df7adb8d",
+      "Flags": 0,
+      "Name": "printer (3)",
+      "Position": "-244.2753,-523.7152,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "1fb6dc08-a6ea-4915-8f7d-f9711abcabcc",
+      "Flags": 0,
+      "Name": "printer (4)",
+      "Position": "-249.6388,-523.7152,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "72a9b8ec-2311-43f3-8a39-8feaf6dca2ac",
+      "Flags": 0,
+      "Name": "printer (5)",
+      "Position": "-254.658,-523.7152,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "1efe8194-0c2a-441b-8698-02416945bd1e",
+      "Flags": 0,
+      "Name": "printer (6)",
+      "Position": "-249.3325,-533.9385,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "b90ade4a-7227-4de6-b9b8-c42948062809",
+      "Flags": 0,
+      "Name": "printer (7)",
+      "Position": "-244.0212,-533.9385,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "3e4271c9-6d29-4bab-a744-5c07dbcca490",
+      "Flags": 0,
+      "Name": "printer (8)",
+      "Position": "-237.8671,-533.9385,273.3972",
+      "Tags": "printer,interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
       "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
       "Flags": 0,
       "Name": "prop",
-      "Position": "-468.7608,-503.2245,248.5769",
+      "Position": "-254.7874,-544.9906,272.7356",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
@@ -366,7 +351,8 @@
       "__guid": "bb58b9c8-18d5-4219-a01c-6a5464790caf",
       "Flags": 0,
       "Name": "prop (1)",
-      "Position": "-495.69,-513.8541,248.5769",
+      "Position": "-263.9881,-546.2745,272.5815",
+      "Rotation": "0,0,-0.9238795,0.3826834",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
@@ -377,12 +363,31 @@
       "__guid": "83e07f29-9a65-449d-aae6-b7bb0562f39b",
       "Flags": 0,
       "Name": "prop (2)",
-      "Position": "-474.9622,-541.1581,248.5769",
+      "Position": "-260.4603,-537.1577,272.4928",
+      "Rotation": "0,0,-0.7071067,0.7071068",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
       "__Prefab": "prefab/prop.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "11d5910a-0afb-4759-b15b-d96ce56fbc9b",
+      "Flags": 0,
+      "Name": "coffee table 2",
+      "Position": "-250.9194,-529.9778,247.9774",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "3a404fc6-60c9-4456-8243-9b8e24a3d6a4",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/coffee table 2.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -409,6 +414,8 @@
   "Title": "minimal",
   "Description": "",
   "ResourceVersion": 1,
-  "__references": [],
+  "__references": [
+    "paths.coffeetable2"
+  ],
   "__version": 1
 }
