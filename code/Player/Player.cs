@@ -18,6 +18,7 @@ namespace PlayerInfo
 
     /// <summary>
     /// Checks if the player is part of a UserGroup with the required permission level.
+    /// Returns true if the player has the required permission level.
     /// </summary>
     public bool CheckPermission( int permissionLevel )
     {
