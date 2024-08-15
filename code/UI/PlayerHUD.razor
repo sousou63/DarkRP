@@ -6,15 +6,17 @@
     <div style="font-color:white; font-size: 25px; margin-top: 20px; margin-left: 20px">@MyStringValue</div>
 
     <div class="player-card">
-        <div class="title">
-            <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
-            <div class="center">
-                <div class="job">@MyStringValue3</div>
+        <div class="player-details-container">
+            <div class="container">
+                <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
+                <div class="wallet">
+                    <div class="label">Wallet</div>
+                </div>
             </div>
-        </div>
-        <div class="wallet">
-            <div class="label">Wallet</div>
-            <div class="money">$ @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div>
+            <div class="container">
+                <div class="job">@MyStringValue3</div>
+                <div class="money">$ @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div>
+            </div>
         </div>
         <div class="bars">
             <div class="bar">

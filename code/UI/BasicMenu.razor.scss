@@ -5,7 +5,7 @@ BasicMenu {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #24292f;
+	background-color: #24292ff4;
 	color: #c9c9c9;
 	//justify-content: center;
 	flex-direction: column;
@@ -37,9 +37,34 @@ BasicMenu {
 
 	.side-bar {
 		flex-direction: column;
-		justify-content: space-between;
 		width: 20vw;
 		height: 100%;
+	}
+
+	.navigation {
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
+
+	.player-container {
+		padding: 20px;
+		height: 20%;
+		flex-direction: column;
+		.name {
+			font-size: 35px;
+			margin-bottom: 5px;
+		}
+
+		.sub {
+			font-size: 25px;
+			gap: 3px;
+		};
+
+		.wallet {
+			font-size: 25px;
+			color: #556B2F;
+		}
 	}
 	
 	.buttoncontainer {
@@ -85,7 +110,7 @@ BasicMenu {
 		overflow-y: scroll;
 		overflow-x: visible;
 		justify-content: center;
-		background-color: #1b1b23;
+		background-color: #1b1b2318;
 		padding: 10px;
 		height: 100%;
 
@@ -99,7 +124,7 @@ BasicMenu {
 		}
 
 		.section {
-			background-color: #22222b;
+			background-color: #22222b5e;
 			border-radius: 15px 15px 0 0;
 			width: 100%;
 			display: flex;

@@ -23,4 +23,3 @@ I recommend using the Github Desktop application, which greatly simplifies the w
 - dancore : ( Entity system + code optimization )
 - Bozy : ( Team/Job system base )
 - IRLadderGoat : ( Scoreboard base )
-- Mangro : ( Adding some shit )

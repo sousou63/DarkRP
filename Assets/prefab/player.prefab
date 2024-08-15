@@ -72,11 +72,6 @@
         }
       },
       {
-        "__type": "PlayerPusher",
-        "__guid": "1a2f088d-0f98-4d5a-903b-2ae54f035714",
-        "Radius": 70
-      },
-      {
         "__type": "Sandbox.Voice",
         "__guid": "ec6c78ca-d23a-4cc2-987f-408d2efe9f23",
         "Loopback": false,
@@ -328,9 +323,9 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "832,64"
@@ -386,9 +381,9 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "ForEach",
-                    "_type": "System.Collections.Generic.List\u00601",
-                    "_isStatic": false
+                    "_type": "System.Collections.Generic.List\u00601"
                   },
                   "UserData": {
                     "Position": "656,96"
@@ -412,9 +407,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -457,9 +452,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -508,9 +503,9 @@
                   "Id": 40,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "32,896"
@@ -892,12 +887,21 @@
               "_type": "gameobject",
               "prefab": "prefab/printer.prefab"
             },
+            "PropPrefab": {
+              "_type": "gameobject",
+              "prefab": "prefab/prop.prefab"
+            },
             "Props": [
               "models/citizen_props/chair01.vmdl",
               "models/citizen_props/trashcan01.vmdl",
               "models/citizen_props/crate01.vmdl",
               "models/citizen_props/chair04blackleather.vmdl",
-              "models/citizen_props/trashcan01.vmdl"
+              "models/citizen_props/trashcan01.vmdl",
+              "models/citizen_props/concreteroaddivider01.vmdl",
+              "models/citizen_props/recyclingbin01/recyclingbin01gib_lod01.vmdl",
+              "models/citizen_props/wheel01.vmdl",
+              "models/citizen_props/trashbag02.vmdl",
+              "models/citizen_props/cardboardbox01.vmdl"
             ]
           }
         ]
@@ -1135,9 +1139,9 @@
                   "Id": 18,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "GetAllPlayers",
-                    "_type": "GameController",
-                    "_isStatic": false
+                    "_type": "GameController"
                   },
                   "UserData": {
                     "Position": "208,-16"
@@ -1147,9 +1151,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "Reset",
-                    "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1354,9 +1358,9 @@
                   "Id": 2,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_name": "GetAllPlayers",
-                    "_type": "GameController",
-                    "_isStatic": false
+                    "_type": "GameController"
                   },
                   "UserData": {
                     "Position": "272,-0"
