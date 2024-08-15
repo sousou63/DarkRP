@@ -162,6 +162,10 @@
         "PropPrefab": {
           "_type": "gameobject",
           "prefab": "prefab/prop.prefab"
+        },
+        "Screen": {
+          "_type": "gameobject",
+          "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
         }
       }
     ],
@@ -332,9 +336,9 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "832,64"
@@ -390,9 +394,9 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "ForEach",
-                    "_type": "System.Collections.Generic.List\u00601"
+                    "_type": "System.Collections.Generic.List\u00601",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "656,96"
@@ -512,9 +516,9 @@
                   "Id": 40,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "32,896"
@@ -1144,9 +1148,9 @@
                   "Id": 18,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "GetAllPlayers",
-                    "_type": "GameController"
+                    "_type": "GameController",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "208,-16"
@@ -1363,9 +1367,9 @@
                   "Id": 2,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "GetAllPlayers",
-                    "_type": "GameController"
+                    "_type": "GameController",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "272,-0"

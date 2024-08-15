@@ -30,6 +30,27 @@
 
     <div class="crosshair">
     </div>
+
+    <div class="notifications">
+        @foreach (var notification in Notifications)
+        {
+            <div class="notification">
+                @if (notification.type == NotificationType.Info)
+                {
+                    <i class="icon" style="color:#3273eb;">info</i>
+                }
+                @if (notification.type == NotificationType.Warning)
+                {
+                    <i class="icon" style="color: yellow">warning</i>
+                }
+                @if (notification.type == NotificationType.Error)
+                {
+                    <i class="icon" style="color:red">warning</i>
+                }
+                <div class="message">@notification.message</div>
+            </div>
+        }
+    </div>
 </root>
 
 @code
@@ -39,9 +60,39 @@
 	[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
 
+    public enum NotificationType
+    {
+        Info,
+        Warning,
+        Error
+    }
+    record Notification(NotificationType type, string message, RealTimeSince timeSinceAdded);
+    List<Notification> Notifications { get; set; } = new();
+    public void Notify(NotificationType type, string message)
+    {
+        // TODO play sound from here
+        switch (type)
+        {
+            case NotificationType.Info:
+                Sound.Play( "audio/select.sound" );
+                break;
+            case NotificationType.Warning:
+                Sound.Play( "audio/error.sound" );
+                break;
+            case NotificationType.Error:
+                Sound.Play( "audio/error.sound" );
+                break;
+        }
+        Notifications.Add(new Notification(type, message, 0));
+    }
+
+    protected override void OnFixedUpdate()
+    {
+        Notifications.RemoveAll(x => x.timeSinceAdded > 5);
+    }
 
 	/// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<PlayerStats>().MoneyBase);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<PlayerStats>().MoneyBase, Notifications.Count);
 }

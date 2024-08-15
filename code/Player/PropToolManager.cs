@@ -11,6 +11,7 @@ public interface IUndoable
 public sealed class PropToolManager : Component
 {
   [Property] GameObject PropPrefab { get; set; }
+  [Property] GameObject Screen { get; set; }
   [Property] public int PropLimit { get; set; } = 10;
   ///
   /// PROPS
@@ -21,15 +22,17 @@ public sealed class PropToolManager : Component
   {
     private readonly PropToolManager _propToolManager;
 
-    public PropAction(PropToolManager propToolManager, GameObject prop)
+    public PropAction(PropToolManager propToolManager, GameObject prop, String name)
     {
         _propToolManager = propToolManager;
         Prop = prop;
         Position = prop.Transform.Position;
         Rotation = prop.Transform.Rotation;
+        Name = name;
     }
     
     private GameObject Prop { get; }
+    private string Name { get; }
     private Vector3 Position { get; }
     private Rotation Rotation { get; }
 
@@ -37,6 +40,7 @@ public sealed class PropToolManager : Component
     {
       Prop.Destroy();
       _propToolManager.Props.Remove( Prop );
+      _propToolManager.Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Info,$"Undo prop {Name}" );
     }
   }
 
@@ -58,6 +62,7 @@ public sealed class PropToolManager : Component
     {
       prop.Destroy();
     }
+    Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Info, $"Removed all your props" );
     Props.Clear();
   }
 
@@ -69,12 +74,8 @@ public sealed class PropToolManager : Component
   {
     if ( Props.Count >= PropLimit )
     {
-      Sound.Play( "audio/error.sound" );
+      Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Warning, $"You've reached the Prop Limit ({PropLimit})" );
       return;
-    }else
-    {
-      // TODO change this sound
-      Sound.Play( "audio/select.sound" );
     }
 
     // spawn the prop prefab
@@ -98,7 +99,8 @@ public sealed class PropToolManager : Component
     // Spawn the prop on all clients
     Prop.NetworkSpawn();
     Props.Add( Prop );
-    History.Add( new PropAction( this, Prop ) );
+    History.Add( new PropAction( this, Prop, modelname) );
+    Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Info, $"Spawned prop {modelname} ({Props.Count}/{PropLimit})" );
   }
 
   protected override void OnUpdate()
@@ -125,8 +127,6 @@ public sealed class PropToolManager : Component
   {
     if ( History.Count > 0 )
     {
-      // TODO change this sound
-      Sound.Play( "audio/error.sound" );
       History.Last().Undo();
       History.RemoveAt( History.Count - 1 );
     }

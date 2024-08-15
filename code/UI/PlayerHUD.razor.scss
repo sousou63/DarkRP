@@ -1,4 +1,30 @@
 PlayerHUD {	
+	.notifications {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		flex-direction: column;
+		height: 100%;
+		width: 25vw;
+		gap: 10px;
+		margin: 0.5rem;
+		justify-content: flex-end;
+		overflow-y: hidden;
+		display: flex;
+
+		.notification {
+			background-color: #1e1e27ba;
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+			padding: 10px;
+			gap: 10px;
+			border-radius: 5px;
+			width: auto;
+			align-self: flex-end;
+			flex-shrink: 0;
+		}
+	}
+
 	.crosshair {
 			position: absolute;
 			top: 50%;
