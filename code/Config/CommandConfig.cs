@@ -239,24 +239,35 @@ namespace Commands
 		{
 			try
 			{
+				// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
+				var playerStats = player.Components.Get<PlayerStats>();
+				if ( playerStats == null ) return false;
+
 				// Check if its the default "help" command
 				if ( commandName == "help" )
 				{
-					var playerStats = player.Components.Get<PlayerStats>();
-					if ( playerStats == null ) return false;
-
 					var commandNames = string.Join( ", ", GetCommandNames().Select( name => "/" + name ) );
 
 					playerStats.SendMessage( $"Available commands: {commandNames}" );
 					return true;
 				}
+
+				// Get the player details
+				var details = playerStats.GetPlayerDetails();
+				if ( details == null ) return false;
+
 				var command = GetCommand( commandName );
+
+				if ( !details.CheckPermission(command.PermissionLevel) )
+				{
+					playerStats.SendMessage( "You do not have permission to execute this command." );
+					return false;
+				}
+
 				Log.Info( $"Executing command \"{commandName}\"." );
 				if ( command.CommandFunction( player, scene, args ) == false )
 				{
 					Log.Error( $"Failed to execute command \"{commandName}\"." );
-					var playerStats = player.Components.Get<PlayerStats>();
-					if ( playerStats == null ) return false;
 					playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
 					return false;
 				}
