@@ -383,8 +383,8 @@
                   "Id": 20,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Children",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Children"
                   },
                   "UserData": {
                     "Position": "432,160"
@@ -420,9 +420,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -465,9 +465,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -692,7 +692,7 @@
           {
             "__type": "BasicMenu",
             "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
-            "InfoCredits": "Sousou : ( Base GameMode \u002B Github Management ) | QueenPM : ( Chat Improvement \u002B Tab Menu UI Rework ) | HankKitts : ( Money 3D Models )",
+            "InfoCredits": "Sousou : ( Base GameMode \u002B Github Management ) | QueenPM : ( Chat Improvement \u002B Tab Menu UI Rework ) | HankKitts : ( Money 3D Models ) | Mangro : (Money pickup \u002B tweaks)",
             "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System ",
             "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ) or ( https://discord.gg/yBDk9Xr6VB )",
             "InfoTodo": " Health | Stamina | Food | Jobs | Housing | Weapons | Persistence | Etc...",
@@ -1094,8 +1094,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,-16"
@@ -1160,9 +1160,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Reset",
                     "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Reset"
                   },
                   "UserData": {
                     "Position": "720,112"

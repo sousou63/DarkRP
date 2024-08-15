@@ -188,6 +188,32 @@ namespace Commands
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount.ToString("N0")}");
 								return true;
 						}
+				)},
+				{ "dropmoney", new Command(
+						name: "dropmoney",
+						description: "drop a money",
+						permissionLevel: 0, 
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<PlayerStats>();
+								if (playerStats == null) return false;
+								if (args.Length < 1)
+								{
+									playerStats.SendMessage("Usage: /dropmoney <amount>");
+									return false;
+								}
+								var amount = 0;
+								if (!int.TryParse(args[0], out amount))
+								{
+									playerStats.SendMessage("Invalid amount");
+									return false;
+								}
+
+								//TODO
+								playerStats.SendMessage("TODO: Create this");
+								return true;
+						}
 				)}
 		};
 

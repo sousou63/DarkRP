@@ -30,8 +30,8 @@ PlayerHUD {
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: 2px;
-			height: 2px;
+			width: 0.4vw;
+			height: 0.4vw;
 			background-color: rgb(193, 193, 193);
 			border-radius: 50%;
 			pointer-events: none;
