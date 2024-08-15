@@ -32,6 +32,22 @@ namespace PlayerInfo
       return false;
     }
 
+    public void SetRank( UserGroup userGroup )
+    {
+      UserGroups.Clear();
+      UserGroups.Add( userGroup );
+    }
+
+    public void AddRank( UserGroup userGroup )
+    {
+      UserGroups.Add( userGroup );
+    }
+
+    public void RemoveRank( UserGroup userGroup )
+    {
+      UserGroups.Remove( userGroup );
+    }
+
     public UserGroup GetHighestUserGroup()
     {
       UserGroup highestUserGroup = null;
