@@ -22,7 +22,11 @@
                     <div class="timestamp">@entry.timestamp</div>
                     @if (entry.steamid > 0)
                     {
-                        <div class="user-group">@GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup()?.DisplayName</div>
+                        var userGroup = GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup();
+                        @if ( userGroup is not null)
+                        {
+                            <div class="user-group" style="color: rgb(@(255 * userGroup.Color.r), @(255 * userGroup.Color.g), @(255 * userGroup.Color.b));">@userGroup.DisplayName</div>
+                        }
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                     }
                     <div class="author">@entry.author</div>
