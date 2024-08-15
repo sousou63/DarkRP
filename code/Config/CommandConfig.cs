@@ -224,6 +224,13 @@ namespace Commands
 									return false;
 								}
 
+								// Check if the player has permission to set the rank
+								if ( playerStats.GetPlayerDetails()?.CheckPermission(rank.PermissionLevel) == false )
+								{
+									playerStats.SendMessage("You do not have permission to set this rank.");
+									return false;
+								}
+
 								// Set the rank
 								foundPlayer.SetRank(rank);
 
