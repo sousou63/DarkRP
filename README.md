@@ -1,25 +1,39 @@
-# DarkRP 
+# DarkRP for S&Box
+## Introduction
+This open-source project aims to bring the popular DarkRP gamemode to the S&Box platform. We welcome contributions from developers of all skill levels.
 
-Roleplay Gamemode for S&Box.
+## Getting Involved
+To contribute to the project, please submit Pull Requests adhering to the following guidelines:
+- **Focused Changes:** Each Pull Request should address a single feature, modification, or bug fix.
+- **Clear Descriptions:** Provide a concise summary of the changes introduced in the Pull Request.
+- **Documentation for Core Features:** If your contribution is a fundamental component that other parts of the project will rely on, please include detailed documentation with usage examples.
+- **Code Reusability:** Strive to minimize code duplication by leveraging existing components and functions. Consider creating reusable modules or libraries for shared logic.
+- **Follow Code Guidelines:** Please follow our [Code Guidelines](#code-guidelines).
 
-Many people have offered their help via Discord and other means. I thank you all for that. Consequently, I have decided to open this repository so that together we can accomplish this ambitious project, let's make DarkRP S&Box a thing !
+### Effective Communication
 
-## HOW TO CONTRIBUTE TO THE PROJECT 
+Open communication is essential for a successful project! We encourage you to join our [Discord server](https://discord.com/invite/yBDk9Xr6VB) before contributing. This is a great platform to:
 
-I recommend using the Github Desktop application, which greatly simplifies the work. Then you can submit pull requests to this repository, and I will take care of reviewing them. If you have any game development skills that could help the project, you are welcome here !
+- Discuss your ideas and plans with the development team.
+- Get feedback on potential contributions.
+- Collaborate with other developers on complex features.
+- By fostering open communication, we can ensure efficient development and a more cohesive codebase.
 
-## A FEW SMALL RULES TO FOLLOW
+## Code Guidelines
+To ensure code quality and maintainability, please adhere to the following guidelines:
 
-- If possible, use simple and easy-to-understand code, and make sure to comment it to facilitate the work for everyone.
-- Overall, try to keep the file sizes as small as possible.
-- Please use as much validity and null check to keep the game error rate as low as possible.
-- Feel free to add yourself to the credits; just specify what you contributed to the project.
-
-## CREDITS 
-
-- Sousou : ( Base gamemode + github management )
-- QueenPM : ( Chat improvement + general UI work + doors + code optimization )
-- HankKitts : ( Money 3d models )
-- dancore : ( Entity system + code optimization )
-- Bozy : ( Team/Job system base )
-- IRLadderGoat : ( Scoreboard base )
+- Clarity: Write clean, well-structured code with clear and concise comments.
+- Efficiency: Optimize code for performance and resource usage.
+- Error Handling: Implement error handling to handle exceptions. We prefer to have a low poop rating.
+- Consistency: Follow consistent coding style and formatting conventions. [See](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names)
+## Credits
+- Sousou: Project initiation and management
+- QueenPM: Chat enhancements, UI improvements, door system, code optimization
+- HankKitts: Money 3D models
+- dancore: Entity system, code optimization
+- Bozy: Team/job system foundation
+- IRLadderGoat: Scoreboard foundation
+## Links
+- S&Box Page: https://sbox.game/sousoup/darkrp
+- Discord: https://discord.com/invite/yBDk9Xr6VB
+- GitHub: https://github.com/sousou63/DarkRP 
