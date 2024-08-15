@@ -214,7 +214,13 @@
         },
         {
           "Name": "Use Special",
-          "KeyboardCode": "R",
+          "KeyboardCode": "r",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Undo",
+          "KeyboardCode": "z",
           "GamepadCode": "None",
           "GroupName": "Other"
         }

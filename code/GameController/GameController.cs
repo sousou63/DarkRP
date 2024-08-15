@@ -21,7 +21,7 @@ public sealed class GameController : Component, Component.INetworkListener
 
 	protected override void OnStart()
 	{
-		Log.Info(GameObject.Id);
+		Log.Info( GameObject.Id );
 		chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 		if ( chat == null ) Log.Error( "Chat component not found" );
 	}
@@ -37,7 +37,8 @@ public sealed class GameController : Component, Component.INetworkListener
 			{
 				chat?.NewSystemMessage( $"{connection.DisplayName} has joined the game." );
 			}
-		}catch ( Exception e )
+		}
+		catch ( Exception e )
 		{
 			Log.Warning( e );
 		}
@@ -50,14 +51,18 @@ public sealed class GameController : Component, Component.INetworkListener
 			// Find the player in the list
 			var playerToRemove = Players.Single( x => x.Connection.Id == connection.Id );
 
-			if ( playerToRemove == null ) {
+			if ( playerToRemove == null )
+			{
 				Log.Error( $"Player not found in the list: {connection.Id}" );
 				return;
 			}
 
 			// Perform clean up functions
 			var playerStats = playerToRemove.GameObject.Components.Get<PlayerStats>();
-			playerStats?.SellAllDoors();
+			if ( playerStats != null )
+			{
+				playerStats.SellAllDoors();
+			}
 
 			// Remove the player from the list
 			Players.Remove( playerToRemove );
@@ -65,7 +70,9 @@ public sealed class GameController : Component, Component.INetworkListener
 			{
 				chat?.NewSystemMessage( $"{connection.DisplayName} has left the game." );
 			}
-		} catch ( Exception e ) {
+		}
+		catch ( Exception e )
+		{
 			Log.Warning( e );
 		}
 	}

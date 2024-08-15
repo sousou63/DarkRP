@@ -119,35 +119,38 @@ public sealed class PlayerInteraction : Component
 		Log.Info( $"Hit: {tr.GameObject} at {tr.EndPosition}" );
 	}
 
+
+	/// <summary>
+	/// This function is used to get the forward line trace position from the camera
+	/// </summary>
+	/// <returns></returns>
 	public Vector3 ForwardLineTrace()
-
 	{
-
-		// Get the main camera 
-		var camera = Gizmo.CameraTransform;
-
-		// Starting position of the line (camera position)
-		Vector3 start = camera.Position;
-
-		// Direction of the line (the direction the camera is facing)
-		Vector3 direction = camera.Forward;
-
-		// Calculate the end position based on direction and Interact range
-		Vector3 end = start + direction * InteractRange;
-
-		// Line Trace
-		tr = Scene.Trace.Ray( start, end ).Run();
-
-		// Check If the Hit is valid 
-		if ( (tr.GameObject != null) && tr.Hit )
+		try
 		{
-			// return the Hit Position
-			return (tr.EndPosition);
+			// Get the main camera 
+			var camera = Gizmo.CameraTransform;
+			// Starting position of the line (camera position)
+			Vector3 start = camera.Position;
+			// Direction of the line (the direction the camera is facing)
+			Vector3 direction = camera.Forward;
+			// Calculate the end position based on direction and Interact range
+			Vector3 end = start + direction * InteractRange;
+			// Line Trace
+			tr = Scene.Trace.Ray( start, end ).Run();
+			// Check If the Hit is valid 
+			if ( (tr.GameObject != null) && tr.Hit )
+			{
+				// return the Hit Position
+				return tr.EndPosition;
+			}
+			// Return a default value if no hit was detected
+			return Vector3.Zero;
+		}catch (Exception e)
+		{
+			Log.Error( e );
+			return Vector3.Zero;
 		}
-
-		// Return a default value if no hit was detected
-		return Vector3.Zero;
-
 	}
 
 	private void SetHoldingArea() {

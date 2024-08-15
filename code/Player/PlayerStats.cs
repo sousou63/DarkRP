@@ -138,11 +138,13 @@ public sealed class PlayerStats : Component
 
 	public void SellAllDoors()
 	{
+		Log.Info( "Selling all doors" );
 		foreach ( var door in Doors )
 		{
+			Log.Info( $"Selling door: {door.Id}" );
 			SellDoor( door );
-			SendMessage( "All doors have been sold." );
 		}
+		SendMessage( "All doors have been sold." );
 	}
 
 	// TODO this would need to go to its own class. PlayerController or some shit

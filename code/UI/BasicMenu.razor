@@ -99,9 +99,11 @@
                 <div class="section-contents">
                     <div class="info">
 
-                        <span class="description" style="margin-top:10px; margin-bottom:20px;"> WORK IN PROGRESS </span>
+                        <button class="button" onclick=@RemoveAllProps>Remove all my props</button>
+                        <span class="description" style="margin-top:10px; margin-bottom:20px;"> WORK IN PROGRESS. You can undo with the Z key </span>
 
-                        <span class="description" style="margin-top:10px; margin-bottom:20px;">@CurrentProps / @MaxProps</span>
+                        <span class="description" style="margin-top:10px; margin-bottom:20px;">@PropManager?.PropCount() / @PropManager?.PropLimit</span>
+
 
 
                         @foreach (var Model in Props)
@@ -172,19 +174,15 @@
     // Player Prefab Reference
     [Property] GameObject PlayerPrefab { get; set; } 
 
-    // Prop Prefab Reference
-    [Property] GameObject PropPrefab { get; set; } 
-
     // List of Props 
     [Property] public List<Model> Props { get; set; }
+    PropToolManager PropManager { get; set; }
 
     // All the text property for the information tab
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoCredits { get; set; } = "Hello World!";
-
-
 
 
     // The string used to query for packages 
@@ -206,35 +204,27 @@
     protected override async void OnStart()
     {
         FindPackage();
+        PropManager = GameObject.Parent.Components.Get<PropToolManager>();
     }
 
-    int MaxProps = 10;
-    int CurrentProps = 0;
-
-
-    // TODO :  add clear all props button + a way to interact with props 
     void SpawnProps(string modelname)
     {
-        if (CurrentProps >= MaxProps)
+        if (PropManager == null)
         {
-            Sound.Play("audio/error.sound");
+            Log.Error("PropManager not found");
             return;
         }
+        PropManager.SpawnProp(modelname);
+    }
 
-        // spawn the prop prefab
-        Vector3 playerPos = GameObject.Parent.Transform.World.Position + GameObject.Parent.Transform.Local.Forward * 50;
-        GameObject Prop = PropPrefab.Clone(playerPos);
-
-        // Update the prop model
-        Prop.Components.Get<PropLogic>().UpdatePropModel(modelname);
-
-        // Update the prop Collider
-        Prop.Components.Get<PropLogic>().UpdatePropCollider(modelname);
-        
-        // Spawn the prop on all clients
-        Prop.NetworkSpawn();
-
-        CurrentProps++;
+    void RemoveAllProps()
+    {
+        if (PropManager == null)
+        {
+            Log.Error("PropManager not found");
+            return;
+        }
+        PropManager.RemoveAllProps();
     }
 
 
@@ -324,5 +314,5 @@
     /// The BuildHash method determines if the system should be rebuilt.
     /// If it changes, the system will be rebuilt.
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes);
+    protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes, PropManager?.PropCount());
 }
