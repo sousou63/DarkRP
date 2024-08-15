@@ -154,6 +154,15 @@
         "DrawDebugInteract": false,
         "InteractRange": 120,
         "InteractTag": "Interact"
+      },
+      {
+        "__type": "PropToolManager",
+        "__guid": "4fcf67f7-bda0-423a-a002-3ce20775594b",
+        "PropLimit": 10,
+        "PropPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefab/prop.prefab"
+        }
       }
     ],
     "Children": [
@@ -407,9 +416,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -452,9 +461,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -887,10 +896,6 @@
               "_type": "gameobject",
               "prefab": "prefab/printer.prefab"
             },
-            "PropPrefab": {
-              "_type": "gameobject",
-              "prefab": "prefab/prop.prefab"
-            },
             "Props": [
               "models/citizen_props/chair01.vmdl",
               "models/citizen_props/trashcan01.vmdl",
@@ -1151,9 +1156,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Reset",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "720,112"
