@@ -60,6 +60,10 @@ public sealed class PropToolManager : Component
     {
       Sound.Play( "audio/error.sound" );
       return;
+    }else
+    {
+      // TODO change this sound
+      Sound.Play( "audio/select.sound" );
     }
 
     // spawn the prop prefab
@@ -108,6 +112,8 @@ public sealed class PropToolManager : Component
   {
     if ( History.Count > 0 )
     {
+      // TODO change this sound
+      Sound.Play( "audio/error.sound" );
       History.Last().Undo();
       History.RemoveAt( History.Count - 1 );
     }
