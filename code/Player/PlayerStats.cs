@@ -1,5 +1,7 @@
+using PlayerInfo;
 using Sandbox;
 using System;
+using UserGroups;
 
 public sealed class PlayerStats : Component
 {
@@ -23,6 +25,7 @@ public sealed class PlayerStats : Component
 	[Property] public float SalaryAmmount { get; set; } = 50f;
 
 	private Chat chat { get; set; }
+	private GameController controller { get; set; }
 
 	TimeSince lastUsed = 0; // Set the timer
 
@@ -35,13 +38,18 @@ public sealed class PlayerStats : Component
 
 		try
 		{
-			var controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
+			controller = Scene.Directory.FindByName( "Game Controller" )?.First()?.Components.Get<GameController>();
 			if ( controller == null ) Log.Error( "Game Controller component not found" );
 			controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
 		}catch ( Exception e )
 		{
 			Log.Error( e );
 		}
+	}
+
+	public Player GetPlayerDetails()
+	{
+		return controller.GetPlayerByGameObjectID(GameObject.Id);
 	}
 
 	protected override void OnFixedUpdate()
