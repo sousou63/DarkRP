@@ -20,10 +20,7 @@
             {
                 <div class="chat_entry">
                     <div class="timestamp">@entry.timestamp</div>
-                    @if (DevSteamIDs.Contains(entry.steamid))
-                    {
-                        <div class="user-group">DEV</div>
-                    }
+                    <div class="user-group">@GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup()?.DisplayName</div>
                     @if (entry.steamid > 0)
                     {
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
@@ -77,17 +74,6 @@
 
 @code
 {
-
-    // TODO temporary clout
-    private static ulong[] DevSteamIDs = new ulong[] {
-    76561198844028104, // Sousou
-    76561198137204749, // QueenPM
-    76561198161573319, // irlladdergoat
-    76561198237485902, // Bozy
-    76561198040274296, // Stefan
-    76561198006076880 // dancore
-    };
-
     TextEntry InputBox;
     bool ChatOpen = false;
     public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
@@ -97,6 +83,7 @@
     }
     public List<Entry> Messages = new();
     private ConfigManager ConfigManager;
+    private GameController GameController;
     public List<string> CommandSuggestions = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
@@ -114,7 +101,7 @@
             }
 
             ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
-            if ( ConfigManager == null ) return;
+            GameController = GameControllerObject.Components.Get<GameController>();
             
         }catch (Exception e)
         {
