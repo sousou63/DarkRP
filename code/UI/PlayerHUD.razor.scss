@@ -1,14 +1,14 @@
-PlayerHUD {	
+PlayerHUD {
 	.notifications {
 		position: absolute;
-		bottom: 0;
-		right: 0;
+		top: 80px;
+		right: 100px;
 		flex-direction: column;
-		height: 100%;
-		width: 25vw;
+		height: auto;
+		width: auto;
 		gap: 10px;
-		margin: 0.5rem;
-		justify-content: flex-end;
+		//margin: 0.5rem;
+		//justify-content: flex-end;
 		overflow-y: hidden;
 		display: flex;
 
@@ -19,6 +19,7 @@ PlayerHUD {
 			padding: 10px;
 			gap: 10px;
 			border-radius: 5px;
+			font-size: 13px;
 			width: auto;
 			align-self: flex-end;
 			flex-shrink: 0;
@@ -26,35 +27,32 @@ PlayerHUD {
 	}
 
 	.crosshair {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 2px;
-			height: 2px;
-			background-color: rgb(193, 193, 193);
-			border-radius: 50%;
-			pointer-events: none;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 0.3vw;
+		height: 0.3vw;
+		background-color: rgb(193, 193, 193);
+		border-radius: 50%;
+		pointer-events: none;
 	}
 
 	.player-card {
 		position: absolute;
-		left: 0;
-		bottom: 0;
+		bottom: 25px;
+		left: 25px;
 		// background-color: #1e1e27ba;
 		color: white;
 		text-shadow: 2px 2px 4px #000000;
-		display: flex;
 		flex-direction: column;
-		width: auto;
-		height: auto;
-		margin: 0.5rem;
 		font-family: 'Times New Roman', serif;
 		padding: 10px;
 
 		.player-details-container {
 			width: 100%;
 			gap: 2rem;
+
 			.container {
 				display: flex;
 				flex-direction: column;
@@ -88,7 +86,7 @@ PlayerHUD {
 					flex-direction: row;
 					font-size: 25px;
 					width: 100%;
-		
+
 					.label {
 						margin-right: 100px
 					}
@@ -100,8 +98,6 @@ PlayerHUD {
 			display: flex;
 			flex-direction: column;
 			margin-top: 10px;
-			gap: 10px;
-			height: auto;
 		}
 
 		.bar {
@@ -109,6 +105,8 @@ PlayerHUD {
 			height: 2.5vh;
 			background-color: #ccc;
 			position: relative;
+			box-shadow: 2px 2px 30px 1px #000000;
+			margin-top: 10px;
 		}
 
 		.fill {
