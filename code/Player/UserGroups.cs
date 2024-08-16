@@ -1,6 +1,13 @@
 using System;
 
 namespace UserGroups {
+  public enum PermissionLevel {
+    User,
+    Moderator,
+    Admin,
+    SuperAdmin,
+    Developer
+  }
   public class UserGroup {
     /// <summary>
     /// The name of the user group. This cannot contain spaces or special characters.
@@ -16,11 +23,11 @@ namespace UserGroups {
     /// 100 - Developer
     /// 99 - superadmin
     /// </summary>
-    public int PermissionLevel { get; set; }
+    public PermissionLevel PermissionLevel { get; set; }
 
     public Color Color { get; set; }
 
-    public UserGroup(string name, string displayName, int permissionLevel, Color color) {
+    public UserGroup(string name, string displayName, PermissionLevel permissionLevel, Color color) {
       // No real reason. Just keeps it clean.
       if ( name.Contains(" ") ) {
         throw new ArgumentException("User group name cannot contain spaces.");

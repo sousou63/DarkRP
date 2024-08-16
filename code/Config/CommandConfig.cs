@@ -1,4 +1,5 @@
 using System;
+using UserGroups;
 
 namespace Commands
 {
@@ -9,7 +10,7 @@ namespace Commands
 	{
 		string Name { get; }
 		string Description { get; }
-		int PermissionLevel { get; }
+		PermissionLevel PermissionLevel { get; }
 		bool CommandFunction( GameObject player, Scene scene, string[] args );
 	}
 
@@ -31,7 +32,7 @@ namespace Commands
 		/// <summary>
 		/// Gets the permission level required to execute the command. Currently does nothing.
 		/// </summary>
-		public int PermissionLevel { get; } = 0;
+		public PermissionLevel PermissionLevel { get; } = PermissionLevel.User;
 
 		/// <summary>
 		///  The function to execute when the command is called.
@@ -48,7 +49,7 @@ namespace Commands
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
 		/// </exception>
-		public Command( string name, string description, int permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
+		public Command( string name, string description, PermissionLevel permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
 		{
 			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
 			Description = description ?? throw new ArgumentNullException( nameof( description ) );
@@ -74,7 +75,7 @@ namespace Commands
 			{ "clear", new Command(
 						name: "clear",
 						description: "Clears the chat",
-						permissionLevel: 0,
+						permissionLevel: PermissionLevel.User,
 						commandFunction: (player, scene, args) =>
 						{
 							var playerStats = player.Components.Get<PlayerStats>();
@@ -93,7 +94,7 @@ namespace Commands
 			{ "lorem", new Command(
 						name: "lorem",
 						description: "Spams the chat with lorem ipsum X times.",
-						permissionLevel: 0,
+						permissionLevel: PermissionLevel.User,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -107,7 +108,7 @@ namespace Commands
 				{ "givemoney", new Command(
 						name: "givemoney",
 						description: "Gives the player money",
-						permissionLevel: 2,
+						permissionLevel: PermissionLevel.Admin,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -149,7 +150,7 @@ namespace Commands
 				{ "setmoney", new Command(
 						name: "setmoney",
 						description: "Set a player's money",
-						permissionLevel: 2,
+						permissionLevel: PermissionLevel.Admin,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -191,7 +192,7 @@ namespace Commands
 				{ "setrank", new Command(
 						name: "setrank",
 						description: "Set a player's rank",
-						permissionLevel: 99,
+						permissionLevel: PermissionLevel.SuperAdmin,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats

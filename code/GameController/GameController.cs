@@ -29,11 +29,11 @@ public sealed class GameController : Component, Component.INetworkListener
 	[HostSync]
 	public NetDictionary<string, UserGroup> UserGroups { get; set; } = new NetDictionary<string, UserGroup>()
 	{
-		{ "user", new UserGroup( "user", "User", 0, Color.White ) },
-		{ "moderator", new UserGroup( "moderator", "Moderator", 1, Color.Yellow ) },
-		{ "admin", new UserGroup( "admin", "Admin", 2, Color.Red ) },
-		{ "superadmin", new UserGroup( "superadmin", "Super Admin", 99, Color.Blue ) },
-		{ "developer", new UserGroup( "developer", "Developer", 100, Color.Orange ) }
+		{ "user", new UserGroup( "user", "User", PermissionLevel.User, Color.White ) },
+		{ "moderator", new UserGroup( "moderator", "Moderator", PermissionLevel.Moderator, Color.Yellow ) },
+		{ "admin", new UserGroup( "admin", "Admin", PermissionLevel.Admin, Color.Red ) },
+		{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Blue ) },
+		{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 	};
 
 	protected override void OnStart()
