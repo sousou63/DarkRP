@@ -1,5 +1,5 @@
 {
-  "__guid": "e3650d60-beaf-4f07-bb49-24d3db269149",
+  "__guid": "adda294e-5a8c-441a-9a15-f784a6e0cbda",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -23,8 +23,8 @@
           "RenderTags": "",
           "TargetEye": "None",
           "Viewport": "0,0,1,1",
-          "ZFar": 10000,
-          "ZNear": 10
+          "ZFar": 25000,
+          "ZNear": 1
         },
         {
           "__type": "Sandbox.Bloom",
@@ -70,7 +70,11 @@
         {
           "__type": "Sandbox.Sharpen",
           "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
-          "Scale": 0.2
+          "Scale": 0.1
+        },
+        {
+          "__type": "Sandbox.Highlight",
+          "__guid": "22a24f62-f8ee-47bc-a1ec-8c6627bc8eb3"
         }
       ]
     },
@@ -229,6 +233,7 @@
       "Flags": 0,
       "Name": "Cube",
       "Position": "-264.7343,-530.8256,261.8934",
+      "Scale": "1,1,0.722172",
       "Enabled": true,
       "Components": [
         {
@@ -250,96 +255,6 @@
       ]
     },
     {
-      "__guid": "6cc14c26-5fa0-4700-8abf-2e31500b1b68",
-      "Flags": 0,
-      "Name": "us_money_stack (2)",
-      "Position": "-275.7398,-538.8372,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "33244b6d-4c23-44e5-9cc4-41f282acfbc9",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "fe96b95e-64ea-4fe2-bfcd-ed53374d4184",
-      "Flags": 0,
-      "Name": "us_money_stack (1)",
-      "Position": "-260.6687,-543.4208,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "0464505a-99b6-4302-a74f-5e7296f1acd2",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "d204b25b-6be9-4df1-a53d-1de904c5b33a",
-      "Flags": 0,
-      "Name": "us_money_stack",
-      "Position": "-249.056,-531.9042,288.1958",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "e17d0b7e-53cd-45f6-a954-e3d6e338c58a",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/darkrp_main/us_money_stack.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "02ba7cc6-e6ea-49cf-8c12-d19493128361",
-      "Flags": 0,
-      "Name": "us_money_note",
-      "Position": "-255.4002,-518.6396,287.0029",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "4697214a-f9a0-4649-9a5c-4360bc7deee2",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_main/us_money_note.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "dee26a8f-f0f6-4a18-916e-1232afc07ab3",
-      "Flags": 0,
-      "Name": "us_money_note",
-      "Position": "-271.4978,-516.4379,286.9024",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "57d88f5e-8fb6-434c-b4a0-5071d7c20b58",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_main/us_money_note.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
       "Flags": 0,
       "Name": "printer",
@@ -355,7 +270,7 @@
       "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
       "Flags": 0,
       "Name": "prop",
-      "Position": "-468.7608,-503.2245,248.5769",
+      "Position": "-271.2777,-539.5883,282.4119",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
@@ -366,7 +281,7 @@
       "__guid": "bb58b9c8-18d5-4219-a01c-6a5464790caf",
       "Flags": 0,
       "Name": "prop (1)",
-      "Position": "-495.69,-513.8541,248.5769",
+      "Position": "-281.6791,-540.5905,282.4119",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
@@ -377,12 +292,154 @@
       "__guid": "83e07f29-9a65-449d-aae6-b7bb0562f39b",
       "Flags": 0,
       "Name": "prop (2)",
-      "Position": "-474.9622,-541.1581,248.5769",
+      "Position": "-277.4791,-550.4387,282.4119",
       "Tags": "prop,interact",
       "Enabled": true,
       "NetworkMode": 1,
       "__Prefab": "prefab/prop.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "68a31445-f1c5-4641-85f2-c97cef88fd65",
+      "Flags": 0,
+      "Name": "money",
+      "Position": "-248.1283,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "da81e46a-9c73-4524-8fb6-7a6a04177574",
+      "Flags": 0,
+      "Name": "money (1)",
+      "Position": "-251.654,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "01d071b1-1a8d-4130-8819-1a77574f9bd1",
+      "Flags": 0,
+      "Name": "money (8)",
+      "Position": "-251.654,-535.307,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "a06c7c2a-dd33-4ab5-9e2d-abd4aab01c91",
+      "Flags": 0,
+      "Name": "money (2)",
+      "Position": "-255.1791,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "3d867b9c-2651-4dae-a5d4-d3952674f32a",
+      "Flags": 0,
+      "Name": "money (7)",
+      "Position": "-255.1791,-535.307,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "6c70a1a9-0620-4cf6-a7e1-e38472234507",
+      "Flags": 0,
+      "Name": "money (3)",
+      "Position": "-258.8547,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "f359e953-56c4-490a-96f4-ab9f3a000025",
+      "Flags": 0,
+      "Name": "money (6)",
+      "Position": "-258.8547,-535.307,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "59eac1f0-1b80-469f-9be6-3cd521e29d94",
+      "Flags": 0,
+      "Name": "money (4)",
+      "Position": "-262.8241,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "b7bcd404-92a8-47fe-a432-ca0e104b1f4d",
+      "Flags": 0,
+      "Name": "money (9)",
+      "Position": "-262.8241,-535.307,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "cc9db817-31f9-4098-8910-5ec868000831",
+      "Flags": 0,
+      "Name": "money (5)",
+      "Position": "-266.6486,-528.0125,279.9477",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "9eff0dd0-ee1a-481e-a937-aa53febf2464",
+      "Flags": 0,
+      "Name": "roadcone01",
+      "Position": "-42.05737,232.0449,119.5769",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "2ef41128-f084-44d9-b282-c071c763e77e",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/citizen_props/roadcone01.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "2e6d0d06-33d1-4c97-84ab-caf7b34ebb20",
+      "Flags": 0,
+      "Name": "beachball",
+      "Position": "-269.298,-562.3477,120.1682",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "6e8a501d-da61-46e9-abd8-b9e90bf915ea",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": false,
+          "Model": "models/citizen_props/beachball.vmdl",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "23fbede8-4440-44f2-a463-8d296bc3bcc5",
+      "Flags": 0,
+      "Name": "GameObject",
+      "Enabled": true
     }
   ],
   "SceneProperties": {
