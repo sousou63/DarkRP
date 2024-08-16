@@ -1,7 +1,7 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using System;
-@using PlayerDetails;
+@using GameSystems.Player;
 @inherits PanelComponent
 
 <root>
@@ -23,7 +23,7 @@
 
 @code
 {
-	[Property] public NetList<Player> Players = null;
+	[Property] public NetList<PlayerConnObject> Players = null;
 
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt

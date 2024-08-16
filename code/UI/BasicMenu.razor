@@ -1,6 +1,10 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using GameSystems.Player;
 @using System.Threading.Tasks;
+@using Entity.Interactable.Props;
+@using Entity.Interactable.Printer;
+@using System.Text.RegularExpressions;
 @inherits PanelComponent;
 
 <root>
@@ -11,8 +15,8 @@
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="sub">Salary:<span>$@(PlayerPrefab.Components.Get<PlayerStats>().SalaryAmmount.ToString("N0"))</span></div>
-                <div class="wallet">$@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div
+                <div class="wallet">$@(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div
+                <div class="sub">Salary:<span>$@(PlayerPrefab.Components.Get<Stats>().SalaryAmmount.ToString("N0"))</span></div>
             </div>
             <div class="navigation">
                 <div class="buttoncontainer">
@@ -95,24 +99,31 @@
 
             <!-- Props Section -->
             <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");)">
-                <div class="section-title">Props</div>
+                <div class="section-title">Props  :  @PropManager?.PropCount() / @PropManager?.PropLimit</div>
                 <div class="section-contents">
                     <div class="info">
 
-                        <button class="button" onclick=@RemoveAllProps>Remove all my props</button>
-                        <span class="description" style="margin-top:10px; margin-bottom:20px;"> WORK IN PROGRESS. You can undo with the Z key </span>
+                        <button class="button" style=" justify-content:center; margin-top:10px; margin-bottom:20px; background-color:maroon;" onclick=@RemoveAllProps>Remove all my props ( Press "Z" to undo props )</button>
 
-                        <span class="description" style="margin-top:10px; margin-bottom:20px;">@PropManager?.PropCount() / @PropManager?.PropLimit</span>
-
-
-
-                        @foreach (var Model in Props)
+                        <div style="flex-direction: row; flex-wrap:wrap; ">
+                        @foreach (var Model in Props) // TODO :  add the thumbnail with the props name
                         {
+                            
                             string Propsname = Model.Name;
-                            <div class="button" onclick=@(() => SpawnProps(Propsname))> @Model.Name </div>
-                            // TODO :  add the thumbnail with the props name 
 
+                            // Shitty workaround while I find the real model name ( need the thumbnail too)
+                            var DisplayableName = Model.ResourceName;
+                            DisplayableName = Regex.Replace(DisplayableName, @"0[1-99]", ""); 
+
+
+                            <div style="padding:8px;">
+                               <div class="button" onclick=@(() => SpawnProps(Propsname))>
+                                    <div style="padding:60px;">  @DisplayableName  </div>
+                                </div>
+                            </div>
+                            
                         }
+                        </div>
 
                         <!-- this doesn't work yet, it's supposed to show cloud assets but I struggle a bit to understand their API -->
                         @foreach (var Package in Packages)
@@ -171,7 +182,7 @@
     // Printer Prefab Reference
     [Property] GameObject PrinterPrefab { get; set; } 
 
-    // Player Prefab Reference
+    // PlayerConnObjectConnObject Prefab Reference
     [Property] GameObject PlayerPrefab { get; set; } 
 
     // List of Props 
@@ -242,7 +253,7 @@
             return;
         }
 
-        var playerStats = PlayerPrefab.Components.Get<PlayerStats>();
+        var playerStats = PlayerPrefab.Components.Get<Stats>();
         if (!playerStats.RemoveMoney(price))
         {
             return; // Not enough money, error sound is handled elsewhere
