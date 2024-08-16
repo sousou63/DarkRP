@@ -17,7 +17,7 @@
         },
         "IsOpen": false,
         "IsUnlocked": true,
-        "Price": 101
+        "Price": 100
       },
       {
         "__type": "Sandbox.BoxCollider",

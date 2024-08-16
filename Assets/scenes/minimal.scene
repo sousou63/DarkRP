@@ -400,42 +400,6 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "9eff0dd0-ee1a-481e-a937-aa53febf2464",
-      "Flags": 0,
-      "Name": "roadcone01",
-      "Position": "-42.05737,232.0449,119.5769",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "2ef41128-f084-44d9-b282-c071c763e77e",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/citizen_props/roadcone01.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "2e6d0d06-33d1-4c97-84ab-caf7b34ebb20",
-      "Flags": 0,
-      "Name": "beachball",
-      "Position": "-269.298,-562.3477,120.1682",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "6e8a501d-da61-46e9-abd8-b9e90bf915ea",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": false,
-          "Model": "models/citizen_props/beachball.vmdl",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "__guid": "23fbede8-4440-44f2-a463-8d296bc3bcc5",
       "Flags": 0,
       "Name": "GameObject",
