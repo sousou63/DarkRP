@@ -347,8 +347,8 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
@@ -405,8 +405,8 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "ForEach",
+                    "_isStatic": false,
                     "_type": "System.Collections.Generic.List\u00601"
                   },
                   "UserData": {
@@ -432,8 +432,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -477,8 +477,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -527,8 +527,8 @@
                   "Id": 40,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
@@ -1159,8 +1159,8 @@
                   "Id": 18,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "GetAllPlayers",
+                    "_isStatic": false,
                     "_type": "GameSystems.GameController"
                   },
                   "UserData": {
@@ -1172,8 +1172,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Reset",
-                    "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1289,6 +1289,7 @@
           {
             "__type": "LeaderBoard",
             "__guid": "80d51118-4700-4332-a9cf-a1477564a5b7",
+            "Players": {},
             "OnComponentDisabled": {
               "__version": 7,
               "__guid": "cf158763-d0e7-4e1f-bc44-bfafa1d9161a",
@@ -1377,8 +1378,8 @@
                   "Id": 2,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "GetAllPlayers",
+                    "_isStatic": false,
                     "_type": "GameSystems.GameController"
                   },
                   "UserData": {
