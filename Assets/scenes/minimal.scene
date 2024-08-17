@@ -398,12 +398,6 @@
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
-    },
-    {
-      "__guid": "23fbede8-4440-44f2-a463-8d296bc3bcc5",
-      "Flags": 0,
-      "Name": "GameObject",
-      "Enabled": true
     }
   ],
   "SceneProperties": {
