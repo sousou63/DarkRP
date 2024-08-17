@@ -5,7 +5,7 @@ using GameSystems;
 /// <summary>
 /// Taken from Walker.cs
 /// </summary>
-public sealed class Controller : Component
+public sealed class MovementController : Component
 {
 	[Property] public CharacterController CharacterController { get; set; }
 	[Property] public Collider Collider { get; set; }

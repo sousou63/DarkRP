@@ -200,7 +200,7 @@ namespace GameSystems.Config
 								
 
 								// Get the player controller
-								var controller = targetPlayer.Components.Get<Controller>();
+								var controller = targetPlayer.Components.Get<MovementController>();
 								if (controller == null) return false;
 
 								controller.ToggleNoClip(!controller.IsNoClip);

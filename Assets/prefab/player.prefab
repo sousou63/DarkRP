@@ -153,8 +153,8 @@
         }
       },
       {
-        "__type": "Controller",
-        "__guid": "300cdcda-7941-459a-95b3-301bddc8bd1c",
+        "__type": "MovementController",
+        "__guid": "80152a82-7bc7-4840-b0ab-54df118a57ec",
         "AnimationHelper": {
           "_type": "component",
           "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
@@ -394,8 +394,8 @@
                   "Id": 20,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Children"
+                    "_name": "Children",
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "432,160"
@@ -431,9 +431,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -476,9 +476,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -1105,8 +1105,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,-16"
@@ -1171,9 +1171,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Reset",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "720,112"
