@@ -43,7 +43,7 @@ namespace Entity.Interactable.Printer
 			if ( PrinterCurrentMoney > 0 )
 			{
 				var playerStats = player.Components.Get<Stats>();
-				if ( playerStats != null ) { return; }
+				if ( playerStats == null ) {  return; }
 
 				playerStats.AddMoney( PrinterCurrentMoney );
 				ResetPrinterMoney();
