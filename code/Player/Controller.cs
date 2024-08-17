@@ -3,7 +3,7 @@ using Sandbox.Citizen;
 /// <summary>
 /// Taken from Walker.cs
 /// </summary>
-public sealed class PlayerController : Component
+public sealed class Controller : Component
 {
 	[Property] public CharacterController CharacterController { get; set; }
 	[Property] public float CrouchMoveSpeed { get; set; } = 64.0f;
@@ -19,6 +19,8 @@ public sealed class PlayerController : Component
 	[Sync] public Vector3 WishVelocity { get; set; }
 
   [Sync] public bool IsNoClip { get; set; }
+
+	private Vector3 storedVelocity;
 
 	public bool WishCrouch;
 	public float EyeHeight = 64;
@@ -57,6 +59,15 @@ public sealed class PlayerController : Component
     {
       Log.Info( "Toggling noclip" );
       IsNoClip = !IsNoClip;
+
+			if (IsNoClip)
+			{
+					storedVelocity = CharacterController.Velocity;
+			}
+			else
+			{
+					CharacterController.Velocity = storedVelocity;
+			}
     }
   }
 
@@ -66,7 +77,7 @@ public sealed class PlayerController : Component
 		{
 			if ( Crouching ) return CrouchMoveSpeed;
       if ( IsNoClip ) {
-        if ( Input.Down( "run" ) ) return NoClipSpeed * 2;
+        if ( Input.Down( "run" ) ) return NoClipSpeed * 2.5f;
         return NoClipSpeed;
       }
 			if ( Input.Down( "run" ) ) return SprintMoveSpeed;
@@ -111,10 +122,10 @@ public sealed class PlayerController : Component
           // Add upward movement if jump is pressed
           if (Input.Down("jump"))
           {
-              WishVelocity += up;
+              WishVelocity += Vector3.Up;
           }else if (Input.Down("duck"))
           {
-              WishVelocity -= up;
+              WishVelocity -= Vector3.Up;
           }
   
           WishVelocity = WishVelocity.ClampLength(1);

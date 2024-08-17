@@ -28,27 +28,6 @@
         "UseCollisionRules": false
       },
       {
-        "__type": "PlayerController",
-        "__guid": "e4a3c69b-7e36-4d58-a1b8-771b9919cdbd",
-        "AnimationHelper": {
-          "_type": "component",
-          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CitizenAnimationHelper"
-        },
-        "CharacterController": {
-          "_type": "component",
-          "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CharacterController"
-        },
-        "CrouchMoveSpeed": 64,
-        "NoClipSpeed": 250,
-        "RunMoveSpeed": 190,
-        "SprintMoveSpeed": 320,
-        "WalkMoveSpeed": 190
-      },
-      {
         "__type": "Sandbox.Citizen.CitizenAnimationHelper",
         "__guid": "bfcf4839-806e-4912-822d-e881edc46062",
         "BodyWeight": 1,
@@ -168,6 +147,27 @@
           "_type": "gameobject",
           "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
         }
+      },
+      {
+        "__type": "Controller",
+        "__guid": "f212cfd6-8d0f-4239-b766-dbad2749ff08",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "CharacterController": {
+          "_type": "component",
+          "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CharacterController"
+        },
+        "CrouchMoveSpeed": 64,
+        "NoClipSpeed": 250,
+        "RunMoveSpeed": 190,
+        "SprintMoveSpeed": 320,
+        "WalkMoveSpeed": 190
       }
     ],
     "Children": [
