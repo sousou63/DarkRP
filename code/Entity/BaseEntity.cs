@@ -101,7 +101,6 @@ public partial class BaseEntity : Component, IInteractable
     private void SetupPhysics()
     {
         // Setup physics, if necessary.
-        // This might involve adding a collider component, setting collision groups, etc.
     }
 
     /// <summary>
