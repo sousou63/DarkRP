@@ -1,5 +1,5 @@
 using Sandbox;
-using PlayerInfo;
+using PlayerDetails;
 
 /// <summary>
 /// Represents a generic base component that provides common functionality 
