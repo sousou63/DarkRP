@@ -56,10 +56,16 @@ public sealed class Controller : Component
 	{
 		if ( Input.Pressed( "noclip" ) )
 		{
-			IsNoClip = !IsNoClip;
-			// Disable the player's collider when in noclip
-			Collider.Enabled = !IsNoClip;
+			// Get the player's usergroup
+			
+			ToggleNoClip( !IsNoClip );
 		}
+	}
+
+	public void ToggleNoClip( bool enabled)
+	{
+		IsNoClip = enabled;
+		Collider.Enabled = !IsNoClip;
 	}
 
 	float CurrentMoveSpeed
