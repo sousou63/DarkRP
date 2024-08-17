@@ -246,9 +246,6 @@
             var args = parts.Skip(1).ToArray();
             try
             {
-                var GameController = GameControllerObject.Components.Get<GameController>();
-                if ( GameController == null ) return false;
-
                 // Find the player executing the command
                 var player = GameController.GetPlayerByConnectionID( Rpc.Caller.Id );
                 if ( player == null ) return false;
