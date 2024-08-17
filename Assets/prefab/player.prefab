@@ -122,7 +122,7 @@
       {
         "__type": "Sandbox.CapsuleCollider",
         "__guid": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
-        "End": "0,0,10",
+        "End": "0,0,50",
         "IsTrigger": false,
         "Radius": 10,
         "Start": "0,0,0",
@@ -138,7 +138,7 @@
       {
         "__type": "PropToolManager",
         "__guid": "4fcf67f7-bda0-423a-a002-3ce20775594b",
-        "PropLimit": 10,
+        "PropLimit": 50,
         "PropPrefab": {
           "_type": "gameobject",
           "prefab": "prefab/prop.prefab"
@@ -225,6 +225,8 @@
                   "Properties": {
                     "_type": "Sandbox.Component",
                     "_name": "Enabled"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -234,6 +236,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                     "_type": "Sandbox.Component",
                     "_name": "Enabled"
                   },
@@ -327,6 +331,8 @@
                   "Properties": {
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-192,144"
@@ -359,6 +365,8 @@
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsProxy"
                     },
                     "_name": "IsProxy"
                   },
@@ -448,6 +456,8 @@
                   "Properties": {
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-608,528"
@@ -461,6 +471,8 @@
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsProxy"
                     },
                     "_name": "IsProxy"
                   },
@@ -498,6 +510,8 @@
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
+                    },
+                    "_name": "IsOwner"
                     },
                     "_name": "IsOwner"
                   },
@@ -545,6 +559,8 @@
                   "Id": 42,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
@@ -699,8 +715,8 @@
           {
             "__type": "BasicMenu",
             "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
-            "InfoCredits": "Sousou : ( Base GameMode \u002B Github Management ) | QueenPM : ( Chat Improvement \u002B Tab Menu UI Rework ) | HankKitts : ( Money 3D Models )",
-            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System ",
+            "InfoCredits": "Sousou : Base GameMode \u002B Github Management | QueenPM : Chat Improvement \u002B Tab Menu UI Rework | HankKitts : Money 3D Models | Dancore: Entity system, code optimization | Bozy: Team/job system foundation | IRLadderGoat: Scoreboard foundation | Mangrogred : UI Tweak, Money pickup | Stefan : Job Improvement ",
+            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System | Notifications | Entity and Props ",
             "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ) or ( https://discord.gg/yBDk9Xr6VB )",
             "InfoTodo": " Health | Stamina | Food | Jobs | Housing | Weapons | Persistence | Etc...",
             "OnComponentDisabled": {
@@ -733,6 +749,8 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsOwner"
+                    },
+                    "_name": "IsOwner"
                   },
                   "UserData": {
                     "Position": "-16,80"
@@ -749,6 +767,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
@@ -831,6 +851,8 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "IsOwner"
+                    },
+                    "_name": "IsOwner"
                   },
                   "UserData": {
                     "Position": "-16,80"
@@ -847,6 +869,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
@@ -926,7 +950,7 @@
         "__guid": "ec1ef818-48a4-45c5-87f6-ad454af3e172",
         "Flags": 0,
         "Name": "Nameplates",
-        "Position": "0,0,83.15387",
+        "Position": "0.6025014,0,83.15387",
         "Enabled": true,
         "Components": [
           {
@@ -961,6 +985,8 @@
                   "Properties": {
                     "_type": "Sandbox.GameObject",
                     "_name": "Parent"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Parent"
                   },
                   "UserData": {
                     "Position": "-288,96"
@@ -970,6 +996,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                     "_type": "Sandbox.GameObject",
                     "_name": "Network"
                   },
@@ -987,6 +1015,8 @@
                       "Name": "NetworkAccessor"
                     },
                     "_name": "OwnerConnection"
+                    },
+                    "_name": "OwnerConnection"
                   },
                   "UserData": {
                     "Position": "80,96"
@@ -996,6 +1026,8 @@
                   "Id": 9,
                   "Type": "property",
                   "Properties": {
+                    "_type": "Sandbox.Connection",
+                    "_name": "DisplayName"
                     "_type": "Sandbox.Connection",
                     "_name": "DisplayName"
                   },
@@ -1114,6 +1146,8 @@
                   "Properties": {
                     "_type": "Sandbox.Component",
                     "_name": "Enabled"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,112"
@@ -1135,6 +1169,8 @@
                   "Properties": {
                     "_type": "GameController",
                     "_name": "Instance"
+                    "_type": "GameController",
+                    "_name": "Instance"
                   },
                   "UserData": {
                     "Position": "16,-32"
@@ -1144,6 +1180,8 @@
                   "Id": 9,
                   "Type": "property",
                   "Properties": {
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                     "_type": "LeaderBoard",
                     "_name": "Players"
                   },
@@ -1316,6 +1354,8 @@
                   "Properties": {
                     "_type": "LeaderBoard",
                     "_name": "Players"
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                   },
                   "UserData": {
                     "Position": "208,48"
@@ -1364,6 +1404,8 @@
                   "Properties": {
                     "_type": "GameController",
                     "_name": "Instance"
+                    "_type": "GameController",
+                    "_name": "Instance"
                   },
                   "UserData": {
                     "Position": "96,64"
@@ -1385,6 +1427,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                     "_type": "LeaderBoard",
                     "_name": "Players"
                   },

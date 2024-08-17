@@ -6,51 +6,72 @@ using System.Drawing;
 
 public sealed class PlayerInteraction : Component
 {
+	// Interaction range 
 	[Property] public float InteractRange { get; set; } = 120f;
 
+	// Toggle for drawing debug information related to interactions
 	[Property] public bool DrawDebugInteract { get; set; } = false;
 
-	[Property] public string InteractTag { get; set; } = "Interact"; // Interact tag to add to desired interactable objects
+	// Tag that marks objects as interactable
+	[Property] public string InteractTag { get; set; } = "Interact";
 
+	// Camera component reference
+	[Property] public CameraComponent CameraComponent { get; set; }
+
+	// Scene trace result to store the interaction ray hit information
 	SceneTraceResult tr;
 
+	/// <summary>
+	/// Called when the component is started. Initializes the camera component.
+	/// </summary>
+	protected override void OnStart()
+	{
+		CameraComponent = Scene.Camera;
+	}
+
+	/// <summary>
+	/// Called at fixed intervals. Handles interaction logic and draws debug information.
+	/// </summary>
 	protected override void OnFixedUpdate()
 	{
-		// here we make sure that the interact function is only firing for the player network owner only ( maybe I can just check for the local player instead idk )
+		// Ensure that interaction logic only runs for the player who owns the network object
 		if ( Network.IsOwner )
 		{
+			// Execute the interaction logic
 			Interact();
 
-			// Draw the debug information if the boolean is true
+			// Draw the debug information if the option is enabled
 			if ( DrawDebugInteract )
 			{
 				DrawDebug();
 			}
-
 		}
 	}
 
+	/// <summary>
+	/// Handles the interaction logic by tracing a ray from the camera and checking if it hits an interactable object.
+	/// </summary>
 	void Interact()
 	{
-		// Get the main camera 
-		var camera = Gizmo.CameraTransform;
+		// Get the main camera transform
+		var camera = CameraComponent.Transform;
 
 		// Starting position of the line (camera position)
 		Vector3 start = camera.Position;
 
 		// Direction of the line (the direction the camera is facing)
-		Vector3 direction = camera.Forward;
+		Vector3 direction = camera.World.Forward;
 
-		// Calculate the end position based on direction and Interact range
+		// Calculate the end position based on direction and interact range
 		Vector3 end = start + direction * InteractRange;
 
-		// Line Trace
-		tr = Scene.Trace.Ray( start, end ).Run();
+		// Perform a line trace (raycast) to detect objects in the line of sight ( raycast ignore the player )
+		tr = Scene.Trace.IgnoreGameObject(GameObject).Ray( start, end ).Run();
 
-		// Check for the "interact" Tag and do some logic associated to it 
+		// Check if the hit object has the "interact" tag and handle the interaction
 		if ( tr.GameObject != null && tr.GameObject.Tags.Has( InteractTag ) )
 		{
-			// Is there a better way to do this?
+			// Handle the different interaction types based on input
 			if ( Input.Pressed( "Use" ) )
 			{
 				HandleInteraction( "Use" );
@@ -70,61 +91,77 @@ public sealed class PlayerInteraction : Component
 		}
 		else
 		{
-			//Log.Warning( "Hit object is null or does not have the interact tag." );
+			// Optional: Handle cases where no valid object is hit
+			// Log.Warning( "Hit object is null or does not have the interact tag." );
 		}
 	}
 
+	/// <summary>
+	/// Draws debug information, such as the hit point of the interaction ray.
+	/// </summary>
 	void DrawDebug()
 	{
-
-		// Draw the debug sphere at the interaction point
+		// Draw a debug sphere at the interaction point
 		Gizmo.Draw.LineSphere( tr.EndPosition, 3, 8 );
 
-		// Show the Trace Ray Info on the console
+		// Log the trace ray information to the console
 		Log.Info( $"Hit: {tr.GameObject} at {tr.EndPosition}" );
 	}
 
-
 	/// <summary>
-	/// This function is used to get the forward line trace position from the camera
+	/// Performs a forward line trace from the camera and returns the hit position.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>The position of the hit point, or Vector3.Zero if no hit is detected.</returns>
 	public Vector3 ForwardLineTrace()
 	{
 		try
 		{
-			// Get the main camera 
-			var camera = Gizmo.CameraTransform;
+			// Get the main camera transform
+			var camera = CameraComponent.Transform;
+
 			// Starting position of the line (camera position)
 			Vector3 start = camera.Position;
+
 			// Direction of the line (the direction the camera is facing)
-			Vector3 direction = camera.Forward;
-			// Calculate the end position based on direction and Interact range
+			Vector3 direction = camera.World.Forward;
+
+			// Calculate the end position based on direction and interact range
 			Vector3 end = start + direction * InteractRange;
-			// Line Trace
-			tr = Scene.Trace.Ray( start, end ).Run();
-			// Check If the Hit is valid 
+
+			// Perform a line trace (raycast) to detect objects in the line of sight ( raycast ignore the player )
+			tr = Scene.Trace.IgnoreGameObject( GameObject ).Ray( start, end ).Run();
+
+			// Check if the trace hit is valid
 			if ( (tr.GameObject != null) && tr.Hit )
 			{
-				// return the Hit Position
+				// Return the hit position
 				return tr.EndPosition;
 			}
-			// Return a default value if no hit was detected
+
+			// Return a default value if no hit is detected
 			return Vector3.Zero;
-		}catch (Exception e)
+		}
+		catch ( Exception e )
 		{
+			// Log any errors that occur during the line trace
 			Log.Error( e );
 			return Vector3.Zero;
 		}
 	}
 
+	/// <summary>
+	/// Handles the interaction logic based on the provided input key.
+	/// </summary>
+	/// <param name="inputKey">The input key corresponding to the interaction type.</param>
 	private void HandleInteraction( string inputKey )
 	{
 		try
 		{
+			// Get the interactable component from the hit object
 			var interactable = tr.GameObject.Components.Get<IInteractable>();
 			if ( interactable == null ) return;
 
+			// Execute the appropriate interaction based on the input key
 			switch ( inputKey )
 			{
 				case "Use":
@@ -145,6 +182,7 @@ public sealed class PlayerInteraction : Component
 		}
 		catch ( Exception e )
 		{
+			// Log any errors that occur during the interaction handling
 			Log.Error( e );
 		}
 	}

@@ -22,7 +22,10 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		// Open / Close door
 		OpenCloseDoor();
 	}
-
+	public void KnockKnock()
+	{
+		Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
+	}
 	public void InteractSpecial( SceneTraceResult tr, GameObject player )
 	{
 		if ( Owner == null )
@@ -47,7 +50,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		}
 		else
 		{
-			// TODO: Knock on the door
+			KnockKnock();
 		}
 	}
 
@@ -60,7 +63,7 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 		}
 		else
 		{
-			// TODO: Knock on the door
+			KnockKnock();
 		}
 	}
 
@@ -105,6 +108,8 @@ public sealed class DoorLogic : Component, IInteractable, Component.INetworkList
 
 		if (playerStats.SellDoor( GameObject ))
 		{
+			playerStats.AddMoney(Price / 2);
+			UnlockDoor();
 			UpdateDoorOwner();
 			Sound.Play( "audio/notification.sound" );
 		}

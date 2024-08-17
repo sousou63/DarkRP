@@ -1,9 +1,9 @@
 Chat {
 	position: absolute;
-	bottom: 200px;
+	bottom: 250px;
 	left: 70px;
-	width: 40vw;
-	height: auto;
+	width: 30vw;
+	height: 20vw;
 	justify-content: center;
 	font-weight: bold;
 	border-radius: 20px;
@@ -42,11 +42,9 @@ Chat {
 				color: #f3f3f3;
 				flex-shrink: 0;
 				font-family: 'Times New Roman', serif;
-				width: 70px;
 			}
 
 			.user-group {
-				width: 40px;
 				padding: 0;
 				margin: 0;
 				display: flex;
@@ -83,7 +81,8 @@ Chat {
 
 	&.open {
 		pointer-events: all;
-		.output,.header,.input{
+
+		.output, .header, .input {
 			background-color: #73737370;
 		}
 	}
@@ -107,6 +106,4 @@ Chat {
 			flex-direction: column;
 		}
 	}
-
-
 }

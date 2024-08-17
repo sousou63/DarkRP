@@ -1,0 +1,64 @@
+{
+  "RootObject": {
+    "__guid": "0d2d7c5b-a45f-49f7-9d3a-14b0b459db4b",
+    "Flags": 0,
+    "Name": "money",
+    "Scale": "1.277954,1.277954,1.277954",
+    "Tags": "interact",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "229e0963-55bd-44ff-aa9b-e212a932cba5",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/darkrp_main/us_money_stack.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "39509853-20f3-4c86-9d9f-633105574cd1",
+        "Center": "0,0,0.8",
+        "IsTrigger": false,
+        "Scale": "2.8,6.199999,1.6",
+        "Static": false
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "b8f3b51b-058d-4444-bb0f-cf5df494bbdf",
+        "AngularDamping": 0,
+        "Gravity": true,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "4c520a1d-93e7-49e2-9816-231be2e085e5",
+        "Color": "1,1,1,1",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "ObscuredColor": "0,0,0,0.4",
+        "Width": 0.1
+      },
+      {
+        "__type": "MoneyLogic",
+        "__guid": "200c3e5c-16e0-44dc-b2d4-d01885c9589f",
+        "Money": 100
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
