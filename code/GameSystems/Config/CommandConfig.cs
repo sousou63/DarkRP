@@ -203,7 +203,7 @@ namespace GameSystems.Config
 								var controller = targetPlayer.Components.Get<Controller>();
 								if (controller == null) return false;
 
-								controller.ToggleNoClip(controller.IsNoClip);
+								controller.ToggleNoClip(!controller.IsNoClip);
 								if ( targetPlayer.Id == player.Id )
 								{
 									targetPlayer.Components.Get<Stats>()?.SendMessage($"Noclip {(controller.IsNoClip ? "enabled" : "disabled")}.");
