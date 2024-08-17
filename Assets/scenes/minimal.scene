@@ -84,7 +84,17 @@
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
       "Enabled": true,
-      "NetworkOrphaned": 1
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "GameSystems.GameController",
+          "__guid": "1059b5f5-6a85-44a9-9079-8a36e10e9062"
+        },
+        {
+          "__type": "GameSystems.Config.ConfigManager",
+          "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060"
+        }
+      ]
     },
     {
       "__guid": "c5b6dd1e-b549-4cdf-ab5c-517881564f24",

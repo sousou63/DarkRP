@@ -32,10 +32,18 @@ namespace GameSystems.Player
 
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
-		protected override void OnAwake()
+		protected override void OnStart()
 		{
 			chat = Scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
 			if (chat is null) Log.Error("Chat component not found");
+			try {
+				var controller = GameController.Instance;
+				if ( controller == null ) Log.Error( "Game Controller component not found" );
+				controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
+			}catch ( Exception e )
+			{
+				Log.Error( e );
+			}
 		}
 
 		protected override void OnFixedUpdate()
