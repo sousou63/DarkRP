@@ -38,7 +38,6 @@ public sealed class PlayerController : Component
 	{
 		if ( IsProxy )
 			return;
-    Log.Info( "FixedUpdate" );
 		CrouchingInput();
 		MovementInput();
     NoClipInput();
@@ -99,7 +98,7 @@ public sealed class PlayerController : Component
       // Capture movement input
       WishVelocity = Input.AnalogMove;
   
-      if (!WishVelocity.IsNearlyZero() || Input.Down("jump") || Input.Down("crouch"))
+      if (!WishVelocity.IsNearlyZero() || Input.Down("jump") || Input.Down("duck"))
       {
           // Convert input to a movement vector using EyeAngles
           var forward = EyeAngles.ToRotation().Forward;
@@ -113,7 +112,7 @@ public sealed class PlayerController : Component
           if (Input.Down("jump"))
           {
               WishVelocity += up;
-          }else if (Input.Down("crouch"))
+          }else if (Input.Down("duck"))
           {
               WishVelocity -= up;
           }
