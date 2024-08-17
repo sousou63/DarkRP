@@ -173,7 +173,7 @@
     {
       "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
       "Flags": 0,
-      "Name": "Construct Map",
+      "Name": "Map Instance",
       "Position": "-126.4292,-187.5311,115.5769",
       "Enabled": true,
       "Components": [
