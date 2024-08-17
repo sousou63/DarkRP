@@ -52,6 +52,25 @@
             </div>
         }
     </div>
+
+    <div class="slot selector box">
+
+        @if (PlayerPrefab.Components.Get<Inventory>().isInventoryVisible)
+
+        {
+
+            @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().slots; i++)
+
+        {
+            <div class="slot container box" style="color:white">
+                @i
+            </div>
+        }
+
+        }
+
+    </div>
+
 </root>
 
 @code
@@ -90,10 +109,11 @@
     protected override void OnFixedUpdate()
     {
         Notifications.RemoveAll(x => x.timeSinceAdded > 5);
+
     }
 
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, Notifications.Count);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible);
 }
