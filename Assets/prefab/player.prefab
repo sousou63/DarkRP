@@ -16,8 +16,20 @@
         "UseAnimGraph": true
       },
       {
+        "__type": "Sandbox.CharacterController",
+        "__guid": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
+        "Acceleration": 10,
+        "Bounciness": 0.3,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "",
+        "Radius": 16,
+        "StepHeight": 18,
+        "UseCollisionRules": false
+      },
+      {
         "__type": "PlayerController",
-        "__guid": "1844ca4d-4b6b-45df-9a10-4921be88ea30",
+        "__guid": "e4a3c69b-7e36-4d58-a1b8-771b9919cdbd",
         "AnimationHelper": {
           "_type": "component",
           "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
@@ -35,18 +47,6 @@
         "RunMoveSpeed": 190,
         "SprintMoveSpeed": 320,
         "WalkMoveSpeed": 190
-      },
-      {
-        "__type": "Sandbox.CharacterController",
-        "__guid": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
-        "Acceleration": 10,
-        "Bounciness": 0.3,
-        "GroundAngle": 45,
-        "Height": 64,
-        "IgnoreLayers": "",
-        "Radius": 16,
-        "StepHeight": 18,
-        "UseCollisionRules": false
       },
       {
         "__type": "Sandbox.Citizen.CitizenAnimationHelper",
