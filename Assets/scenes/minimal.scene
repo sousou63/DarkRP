@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "__guid": "f53f4df5-74cd-42d1-96e5-6c69754d9aea",
+=======
+  "__guid": "a0bdba6f-42c1-41a8-ab11-120ab19f4f53",
+>>>>>>> Stashed changes
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
