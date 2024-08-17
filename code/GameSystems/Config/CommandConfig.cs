@@ -1,6 +1,5 @@
 using System;
 using GameSystems.Player;
-using System.Security.Cryptography.X509Certificates;
 
 namespace GameSystems.Config
 {
@@ -200,7 +199,7 @@ namespace GameSystems.Config
 								
 
 								// Get the player controller
-								var controller = targetPlayer.Components.Get<MovementController>();
+								var controller = targetPlayer.Components.Get<Player.MovementController>();
 								if (controller == null) return false;
 
 								controller.ToggleNoClip(!controller.IsNoClip);
