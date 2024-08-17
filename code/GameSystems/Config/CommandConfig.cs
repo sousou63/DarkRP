@@ -187,16 +187,17 @@ namespace GameSystems.Config
 						permissionLevel: PermissionLevel.Admin,
 						commandFunction: (player, scene, args) =>
 						{
+							
 							var targetPlayer = player;
 								// Get the player stats
 								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
-
-								if (args.Length < 1)
+								if (args.Length > 0)
 								{
 									var foundPlayer = GameController.PlayerLookup(args[0]);
 									if ( foundPlayer is not null ) targetPlayer = foundPlayer.GameObject;
 								}
+								
 
 								// Get the player controller
 								var controller = targetPlayer.Components.Get<Controller>();
