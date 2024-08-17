@@ -1,5 +1,5 @@
 {
-  "__guid": "f53f4df5-74cd-42d1-96e5-6c69754d9aea",
+  "__guid": "89d2d734-f1c7-4d8f-aa79-885e362a91ac",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -186,8 +186,7 @@
           "NoOrigin": false,
           "UseMapFromLaunch": false
         }
-      ],
-      "Children": []
+      ]
     },
     {
       "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
