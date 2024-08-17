@@ -104,7 +104,6 @@ public sealed class Controller : Component
 		if ( IsNoClip )
 		{
 			cc.IsOnGround = false;
-			// NoClip movement logic using Accelerate
 			if ( !WishVelocity.IsNearlyZero() || Input.Down( "jump" ) || Input.Down( "duck" ) )
 			{
 				// Convert input to a movement vector using EyeAngles
@@ -135,10 +134,10 @@ public sealed class Controller : Component
 			// Apply friction to the velocity
 			float friction = 5.0f;
 			cc.Velocity *= 1.0f - (friction * Time.Delta);
-
-			// Ensure no gravity or collision effects
 			cc.Velocity = cc.Velocity.ClampLength( CurrentMoveSpeed );
-			cc.Move();
+
+			cc.Transform.Position += WishVelocity * Time.Delta;
+			// cc.Move();
 			return;
 		}
 
@@ -221,6 +220,8 @@ public sealed class Controller : Component
 
 	public void CrouchingInput()
 	{
+		// Dont run if noclipping
+		if ( IsNoClip ) return;
 		WishCrouch = Input.Down( "duck" );
 
 		if ( WishCrouch == Crouching )
