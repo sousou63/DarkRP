@@ -42,26 +42,6 @@
         }
       },
       {
-        "__type": "PlayerController",
-        "__guid": "4acf56a3-b4f7-47aa-920b-02e20f101ae9",
-        "AnimationHelper": {
-          "_type": "component",
-          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CitizenAnimationHelper"
-        },
-        "CharacterController": {
-          "_type": "component",
-          "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CharacterController"
-        },
-        "CrouchMoveSpeed": 80,
-        "RunMoveSpeed": 175,
-        "SprintMoveSpeed": 300,
-        "WalkMoveSpeed": 175
-      },
-      {
         "__type": "PlayerFootsteps",
         "__guid": "bfd6360d-27f1-4541-9523-abfdc05ef85c",
         "Source": {
@@ -171,6 +151,33 @@
           "_type": "gameobject",
           "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
         }
+      },
+      {
+        "__type": "MovementController",
+        "__guid": "80152a82-7bc7-4840-b0ab-54df118a57ec",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "CharacterController": {
+          "_type": "component",
+          "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CharacterController"
+        },
+        "Collider": {
+          "_type": "component",
+          "component_id": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "CapsuleCollider"
+        },
+        "CrouchMoveSpeed": 80,
+        "NoClipSpeed": 500,
+        "RunMoveSpeed": 175,
+        "SprintMoveSpeed": 300,
+        "WalkMoveSpeed": 175
       }
     ],
     "Children": [
@@ -424,9 +431,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -469,9 +476,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -1164,9 +1171,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_name": "Reset",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1282,7 +1289,6 @@
           {
             "__type": "LeaderBoard",
             "__guid": "80d51118-4700-4332-a9cf-a1477564a5b7",
-            "Players": [],
             "OnComponentDisabled": {
               "__version": 7,
               "__guid": "cf158763-d0e7-4e1f-bc44-bfafa1d9161a",
