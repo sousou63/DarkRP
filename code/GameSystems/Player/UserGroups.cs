@@ -1,6 +1,6 @@
 using System;
 
-namespace UserGroups {
+namespace GameSystems.Player{
   public enum PermissionLevel {
     User,
     Moderator,

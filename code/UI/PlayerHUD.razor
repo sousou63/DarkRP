@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using GameSystems.Player;
 @inherits PanelComponent
 
 <root>
@@ -15,7 +16,7 @@
             </div>
             <div class="container" style="">
                 <div class="job">@MyStringValue3</div>
-                <div class="money">$ @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div>
+                <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
             </div>
         </div>
         <div class="bars">
@@ -55,7 +56,7 @@
 
 @code
 {
-    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab // code to acces my component : @(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase)
+    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab // code to acces my component : @(PlayerPrefab.Components.Get<Stats>().MoneyBase)
 
     [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
@@ -94,5 +95,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<PlayerStats>().MoneyBase, Notifications.Count);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, Notifications.Count);
 }

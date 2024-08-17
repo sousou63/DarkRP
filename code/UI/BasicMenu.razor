@@ -1,6 +1,10 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using GameSystems;
+@using GameSystems.Player;
 @using System.Threading.Tasks;
+@using Entity.Interactable.Props;
+@using Entity.Interactable.Printer;
 @using System.Text.RegularExpressions;
 @inherits PanelComponent;
 
@@ -12,8 +16,8 @@
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="wallet">$@(PlayerPrefab.Components.Get<PlayerStats>().MoneyBase.ToString("N0"))</div
-                <div class="sub">Salary:<span>$@(PlayerPrefab.Components.Get<PlayerStats>().SalaryAmmount.ToString("N0"))</span></div>
+                <div class="wallet">$@(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div
+                <div class="sub">Salary:<span>$@(PlayerPrefab.Components.Get<Stats>().SalaryAmmount.ToString("N0"))</span></div>
             </div>
             <div class="navigation">
                 <div class="buttoncontainer">
@@ -179,7 +183,7 @@
     // Printer Prefab Reference
     [Property] GameObject PrinterPrefab { get; set; } 
 
-    // Player Prefab Reference
+    // PlayerConnObjectConnObject Prefab Reference
     [Property] GameObject PlayerPrefab { get; set; } 
 
     // List of Props 
@@ -211,7 +215,7 @@
 
     protected override async void OnStart()
     {
-        FindPackage();
+        await FindPackage();
         PropManager = GameObject.Parent.Components.Get<PropToolManager>();
     }
 
@@ -250,7 +254,7 @@
             return;
         }
 
-        var playerStats = PlayerPrefab.Components.Get<PlayerStats>();
+        var playerStats = PlayerPrefab.Components.Get<Stats>();
         if (!playerStats.RemoveMoney(price))
         {
             return; // Not enough money, error sound is handled elsewhere
