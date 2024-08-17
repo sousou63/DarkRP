@@ -8,6 +8,7 @@ public sealed class PlayerController : Component
 	[Property] public CharacterController CharacterController { get; set; }
 	[Property] public float CrouchMoveSpeed { get; set; } = 64.0f;
 	[Property] public float WalkMoveSpeed { get; set; } = 190.0f;
+  [Property] public float NoClipSpeed { get; set; } = 250.0f;
 	[Property] public float RunMoveSpeed { get; set; } = 190.0f;
 	[Property] public float SprintMoveSpeed { get; set; } = 320.0f;
 
@@ -16,6 +17,8 @@ public sealed class PlayerController : Component
 	[Sync] public bool Crouching { get; set; }
 	[Sync] public Angles EyeAngles { get; set; }
 	[Sync] public Vector3 WishVelocity { get; set; }
+
+  [Sync] public bool IsNoClip { get; set; }
 
 	public bool WishCrouch;
 	public float EyeHeight = 64;
@@ -35,9 +38,10 @@ public sealed class PlayerController : Component
 	{
 		if ( IsProxy )
 			return;
-
+    Log.Info( "FixedUpdate" );
 		CrouchingInput();
 		MovementInput();
+    NoClipInput();
 	}
 
 	private void MouseInput()
@@ -48,12 +52,24 @@ public sealed class PlayerController : Component
 		e.roll = 0.0f;
 		EyeAngles = e;
 	}
+  private void NoClipInput()
+  {
+    if ( Input.Pressed("noclip") )
+    {
+      Log.Info( "Toggling noclip" );
+      IsNoClip = !IsNoClip;
+    }
+  }
 
 	float CurrentMoveSpeed
 	{
 		get
 		{
 			if ( Crouching ) return CrouchMoveSpeed;
+      if ( IsNoClip ) {
+        if ( Input.Down( "run" ) ) return NoClipSpeed * 2;
+        return NoClipSpeed;
+      }
 			if ( Input.Down( "run" ) ) return SprintMoveSpeed;
 			if ( Input.Down( "walk" ) ) return WalkMoveSpeed;
 
@@ -73,11 +89,55 @@ public sealed class PlayerController : Component
 		return 0.2f;
 	}
 
+  private void NoClipMovement()
+  {
+      if (CharacterController is null)
+          return;
+  
+      var cc = CharacterController;
+  
+      // Capture movement input
+      WishVelocity = Input.AnalogMove;
+  
+      if (!WishVelocity.IsNearlyZero() || Input.Down("jump") || Input.Down("crouch"))
+      {
+          // Convert input to a movement vector using EyeAngles
+          var forward = EyeAngles.ToRotation().Forward;
+          var right = EyeAngles.ToRotation().Right;
+          var up = EyeAngles.ToRotation().Up;
+  
+          // Invert the right vector to fix reversed left and right movement
+          WishVelocity = forward * WishVelocity.x - right * WishVelocity.y + up * WishVelocity.z;
+  
+          // Add upward movement if jump is pressed
+          if (Input.Down("jump"))
+          {
+              WishVelocity += up;
+          }else if (Input.Down("crouch"))
+          {
+              WishVelocity -= up;
+          }
+  
+          WishVelocity = WishVelocity.ClampLength(1);
+          WishVelocity *= CurrentMoveSpeed;
+  
+          // Apply the movement vector to the player's position
+          cc.Transform.Position += WishVelocity * Time.Delta;
+      }
+  
+      // Ensure no gravity or collision effects
+      cc.Velocity = Vector3.Zero;
+  }
 	private void MovementInput()
 	{
 		if ( CharacterController is null )
 			return;
 
+    if ( IsNoClip )
+    {
+      NoClipMovement();
+      return;
+    }
 		var cc = CharacterController;
 
 		Vector3 halfGravity = Scene.PhysicsWorld.Gravity * Time.Delta * 0.5f;
@@ -183,7 +243,7 @@ public sealed class PlayerController : Component
 			if ( !CharacterController.IsOnGround )
 			{
 				CharacterController.MoveTo( Transform.Position += Vector3.Up * DuckHeight, false );
-				Transform.ClearLerp();
+				Transform.ClearInterpolation();
 				EyeHeight -= DuckHeight;
 			}
 

@@ -17,7 +17,7 @@
       },
       {
         "__type": "PlayerController",
-        "__guid": "aac24d4e-1599-46e4-9038-cf7dca872650",
+        "__guid": "1844ca4d-4b6b-45df-9a10-4921be88ea30",
         "AnimationHelper": {
           "_type": "component",
           "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
@@ -31,6 +31,7 @@
           "component_type": "CharacterController"
         },
         "CrouchMoveSpeed": 64,
+        "NoClipSpeed": 250,
         "RunMoveSpeed": 190,
         "SprintMoveSpeed": 320,
         "WalkMoveSpeed": 190

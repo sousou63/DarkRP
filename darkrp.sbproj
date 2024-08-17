@@ -223,6 +223,17 @@
           "KeyboardCode": "z",
           "GamepadCode": "None",
           "GroupName": "Other"
+        },
+        {
+          "Name": "noclip",
+          "KeyboardCode": "v",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Action 34",
+          "GamepadCode": "None",
+          "GroupName": "Other"
         }
       ],
       "__guid": "7cedfdbc-0fea-49a2-8803-40a706dfe287"
