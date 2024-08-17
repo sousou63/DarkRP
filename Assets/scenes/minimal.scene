@@ -87,12 +87,12 @@
       "NetworkOrphaned": 1,
       "Components": [
         {
-          "__type": "ConfigManager",
-          "__guid": "4858c8f8-d34c-46cc-b8e6-64e6e557b35f"
+          "__type": "GameSystems.GameController",
+          "__guid": "1059b5f5-6a85-44a9-9079-8a36e10e9062"
         },
         {
-          "__type": "GameController",
-          "__guid": "6bed7b0a-efa3-4aa7-b4d2-d73ea155f305"
+          "__type": "GameSystems.Config.ConfigManager",
+          "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060"
         }
       ]
     },

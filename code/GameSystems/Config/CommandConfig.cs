@@ -1,75 +1,16 @@
 using System;
-using UserGroups;
+using GameSystems.Player;
+using System.Security.Cryptography.X509Certificates;
 
-namespace Commands
+namespace GameSystems.Config
 {
-	/// <summary>
-	/// Interface for command configuration.
-	/// </summary>
-	public interface ICommandConfig
-	{
-		string Name { get; }
-		string Description { get; }
-		PermissionLevel PermissionLevel { get; }
-		bool CommandFunction( GameObject player, Scene scene, string[] args );
-	}
 
-	/// <summary>
-	/// Represents a command with a name, description, permission level, and a function to execute.
-	/// </summary>
-	public class Command : ICommandConfig
-	{
-		/// <summary>
-		/// Gets the name of the command.
-		/// </summary>
-		public string Name { get; }
-
-		/// <summary>
-		/// Gets the description of the command.
-		/// </summary>
-		public string Description { get; }
-
-		/// <summary>
-		/// Gets the permission level required to execute the command. Currently does nothing.
-		/// </summary>
-		public PermissionLevel PermissionLevel { get; } = PermissionLevel.User;
-
-		/// <summary>
-		///  The function to execute when the command is called.
-		/// </summary>
-		private readonly Func<GameObject, Scene, string[], bool> commandFunction;
-
-		/// <summary>
-		/// Initializes a new instance of the Command class.
-		/// </summary>
-		/// <param name="name">The name of the command.</param>
-		/// <param name="description">The description of the command.</param>
-		/// <param name="permissionLevel">The permission level required to execute the command. 0 - User, 1 - Mod, 2 - Admin, 99 - Super Admin, 100 - Developer</param>
-		/// <param name="commandFunction">The function to execute when the command is called.</param>
-		/// <exception cref="ArgumentNullException">
-		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
-		/// </exception>
-		public Command( string name, string description, PermissionLevel permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
-		{
-			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
-			Description = description ?? throw new ArgumentNullException( nameof( description ) );
-			PermissionLevel = permissionLevel;
-			this.commandFunction = commandFunction ?? throw new ArgumentNullException( nameof( commandFunction ) );
-		}
-
-		/// <summary>
-		/// Executes the command function with the provided arguments.
-		/// </summary>
-		public bool CommandFunction( GameObject player, Scene scene, string[] args = null ) => commandFunction( player, scene, args );
-	}
 
 	/// <summary>
 	/// Command configuration.
 	/// </summary>
 	public class CommandConfig
 	{
-
-		// TODO move this bloat elsewhere.
 		private readonly Dictionary<string, ICommandConfig> _commands = new()
 		{
 			{ "clear", new Command(
@@ -78,7 +19,7 @@ namespace Commands
 						permissionLevel: PermissionLevel.User,
 						commandFunction: (player, scene, args) =>
 						{
-							var playerStats = player.Components.Get<PlayerStats>();
+							var playerStats = player.Components.Get<Stats>();
 							if (playerStats == null) return false;
 							
 							// Get the chat
@@ -98,7 +39,7 @@ namespace Commands
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
-								var playerStats = player.Components.Get<PlayerStats>();
+								var playerStats = player.Components.Get<Stats>();
 								if (playerStats == null) return false;
 
 								playerStats.SendMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
@@ -112,7 +53,7 @@ namespace Commands
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
-								var playerStats = player.Components.Get<PlayerStats>();
+								var playerStats = player.Components.Get<Stats>();
 								if (playerStats == null) return false;
 
 								// Get the 2nd parameter for player
@@ -140,9 +81,9 @@ namespace Commands
 									return false;
 								}
 
-								foundPlayer.GameObject.Components.Get<PlayerStats>()?.AddMoney(amount);
+								foundPlayer.GameObject.Components.Get<Stats>()?.AddMoney(amount);
 
-								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"You were given ${amount.ToString("N0")} money.");
+								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"You were given ${amount.ToString("N0")} money.");
 								playerStats.SendMessage($"Gave {foundPlayer.Connection.DisplayName} ${amount.ToString("N0")} money");
 								return true;
 						}
@@ -154,7 +95,7 @@ namespace Commands
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
-								var playerStats = player.Components.Get<PlayerStats>();
+								var playerStats = player.Components.Get<Stats>();
 								if (playerStats == null) return false;
 
 								// Get the 2nd parameter for player
@@ -182,9 +123,9 @@ namespace Commands
 									return false;
 								}
 
-								foundPlayer.GameObject.Components.Get<PlayerStats>()?.SetMoney(amount);
+								foundPlayer.GameObject.Components.Get<Stats>()?.SetMoney(amount);
 
-								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your money has been set to ${amount.ToString("N0")}.");
+								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"Your money has been set to ${amount.ToString("N0")}.");
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount.ToString("N0")}");
 								return true;
 						}
@@ -196,7 +137,7 @@ namespace Commands
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
-								var playerStats = player.Components.Get<PlayerStats>();
+								var playerStats = player.Components.Get<Stats>();
 								if (playerStats == null) return false;
 
 								// Get the 2nd parameter for player
@@ -235,7 +176,7 @@ namespace Commands
 								// Set the rank
 								foundPlayer.SetRank(rank);
 
-								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<PlayerStats>()?.SendMessage($"Your rank has been set to {rank.DisplayName}.");
+								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"Your rank has been set to {rank.DisplayName}.");
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} rank to {rank.DisplayName}");
 								return true;
 						}
@@ -249,50 +190,50 @@ namespace Commands
 		/// <param name="command"></param>
 		/// <exception cref="ArgumentNullException"></exception>
 		/// <exception cref="InvalidOperationException"></exception>
-		public void RegisterCommand( ICommandConfig command )
+		public void RegisterCommand(ICommandConfig command)
 		{
-			if ( command == null )
-				throw new ArgumentNullException( nameof( command ) );
+			if (command == null)
+				throw new ArgumentNullException(nameof(command));
 
 			var commandNameLower = command.Name.ToLowerInvariant();
-			if ( _commands.ContainsKey( commandNameLower ) ) Log.Warning( $"Command with name \"{commandNameLower}\" already exists." );
+			if (_commands.ContainsKey(commandNameLower)) Log.Warning($"Command with name \"{commandNameLower}\" already exists.");
 
 			_commands[commandNameLower] = command;
 		}
 
-		public void UnregisterCommand( string commandName )
+		public void UnregisterCommand(string commandName)
 		{
 			commandName = commandName.ToLowerInvariant();
-			if ( string.IsNullOrWhiteSpace( commandName ) )
-				throw new ArgumentException( "Command name cannot be null or whitespace.", nameof( commandName ) );
+			if (string.IsNullOrWhiteSpace(commandName))
+				throw new ArgumentException("Command name cannot be null or whitespace.", nameof(commandName));
 
-			if ( !_commands.Remove( commandName ) ) Log.Warning( $"Command with name \"{commandName}\" does not exist." );
+			if (!_commands.Remove(commandName)) Log.Warning($"Command with name \"{commandName}\" does not exist.");
 		}
 
-		public ICommandConfig GetCommand( string commandName )
+		public ICommandConfig GetCommand(string commandName)
 		{
 			// Lowercase the command name to make it case-insensitive.
 			commandName = commandName.ToLowerInvariant();
-			if ( string.IsNullOrWhiteSpace( commandName ) )
-				throw new ArgumentException( "Command name cannot be null or whitespace.", nameof( commandName ) );
+			if (string.IsNullOrWhiteSpace(commandName))
+				throw new ArgumentException("Command name cannot be null or whitespace.", nameof(commandName));
 
-			if ( _commands.TryGetValue( commandName, out var command ) )
+			if (_commands.TryGetValue(commandName, out var command))
 				return command;
 
-			throw new KeyNotFoundException( $"Command with name {commandName} does not exist." );
+			throw new KeyNotFoundException($"Command with name {commandName} does not exist.");
 		}
 
 		public string[] GetCommandNames()
 		{
 			var commandNames = _commands.Keys.ToList();
-			commandNames.Add( "help" );
+			commandNames.Add("help");
 			return commandNames.ToArray();
 		}
 
-		public bool ExecuteCommand( string commandName, GameObject player, Scene scene, string[] args )
+		public bool ExecuteCommand(string commandName, GameObject player, Scene scene, string[] args)
 		{
 			// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
-			var playerStats = player.Components.Get<PlayerStats>();
+			var playerStats = player.Components.Get<Stats>();
 			if ( playerStats == null ) return false;
 			try
 			{
@@ -336,81 +277,3 @@ namespace Commands
 }
 
 
-// TODO move and refactor this to a better place. It should be more generic and used to cache and fetch all GameController components for easy lookups for other components.
-public static class ConfigManagerHelper
-{
-	public static GameObject GameControllerObject { get; set; } = null;
-	public static ConfigManager ConfigManager { get; set; } = null;
-	public static GameController GameController { get; set; } = null;
-	private static GameObject FetchCacheGameController( Scene scene )
-	{
-		try
-		{
-			if ( GameControllerObject != null ) return GameControllerObject;
-			GameControllerObject = scene.Directory.FindByName( "Game Controller" )?.First();
-			if ( GameControllerObject == null )
-			{
-				Log.Error( "Game Controller not found" );
-			}
-			return GameControllerObject;
-		}
-		catch ( Exception e )
-		{
-			Log.Error( $"Failed to fetch game controller: {e.Message}" );
-			return null; // Ensure a value is returned
-		}
-	}
-
-	private static bool FetchCacheComponents( Scene scene )
-	{
-		try
-		{
-			if ( ConfigManager != null && GameController != null ) return true;
-			var controller = FetchCacheGameController( scene );
-			if ( controller == null ) return false;
-			ConfigManager = controller.Components.Get<ConfigManager>();
-			if ( ConfigManager == null ) Log.Error( "Config Manager not found" );
-			GameController = controller.Components.Get<GameController>();
-			return true;
-		}
-		catch ( Exception e )
-		{
-			Log.Error( $"Failed to fetch Config Manager: {e.Message}" );
-			return false;
-		}
-	}
-
-	public static ConfigManager GetConfigManager( Scene scene )
-	{
-		try
-		{
-			if ( FetchCacheComponents( scene ) )
-			{
-				return ConfigManager;
-			}
-			return null;
-		}
-		catch ( Exception e )
-		{
-			Log.Error( $"Failed to get Config Manager: {e.Message}" );
-			return null;
-		}
-	}
-
-	public static GameController GetGameController( Scene scene )
-	{
-		try
-		{
-			if ( FetchCacheComponents( scene ) )
-			{
-				return GameController;
-			}
-			return null;
-		}
-		catch ( Exception e )
-		{
-			Log.Error( $"Failed to get Game Controller: {e.Message}" );
-			return null;
-		}
-	}
-}
