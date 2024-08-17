@@ -92,8 +92,6 @@
     private GameController GameController;
     public List<string> CommandSuggestions = new();
 
-    // ConfigManager is a helper class that allows us to register commands and other things
-    GameObject GameControllerObject = null;
     protected override void OnStart()
     {
         try
@@ -240,7 +238,6 @@
     // TODO Create a function to suggest commands as the user types. Giving arrow keys + tab controls to cycle through suggestions.
     public bool CheckForCommand(string message)
     {
-        if (GameControllerObject == null) return false;
         if (ConfigManager == null) return false;
         if (message.StartsWith("/"))
         {
