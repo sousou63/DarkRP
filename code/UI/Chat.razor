@@ -20,12 +20,13 @@
             {
                 <div class="chat_entry">
                     <div class="timestamp">@entry.timestamp</div>
-                    @if (DevSteamIDs.Contains(entry.steamid))
-                    {
-                        <div class="user-group">DEV</div>
-                    }
                     @if (entry.steamid > 0)
                     {
+                        var userGroup = GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup();
+                        @if ( userGroup is not null)
+                        {
+                            <div class="user-group" style="color: rgb(@(255 * userGroup.Color.r), @(255 * userGroup.Color.g), @(255 * userGroup.Color.b));">@userGroup.DisplayName</div>
+                        }
                         <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                     }
                     <div class="author">@entry.author</div>
@@ -77,17 +78,6 @@
 
 @code
 {
-
-    // TODO temporary clout
-    private static ulong[] DevSteamIDs = new ulong[] {
-    76561198844028104, // Sousou
-    76561198137204749, // QueenPM
-    76561198161573319, // irlladdergoat
-    76561198237485902, // Bozy
-    76561198040274296, // Stefan
-    76561198006076880 // dancore
-    };
-
     TextEntry InputBox;
     bool ChatOpen = false;
     public record Entry(ulong steamid, string author, string message, RealTimeSince timeSinceAdded)
@@ -97,6 +87,7 @@
     }
     public List<Entry> Messages = new();
     private ConfigManager ConfigManager;
+    private GameController GameController;
     public List<string> CommandSuggestions = new();
 
     // ConfigManager is a helper class that allows us to register commands and other things
@@ -114,7 +105,7 @@
             }
 
             ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
-            if ( ConfigManager == null ) return;
+            GameController = GameControllerObject.Components.Get<GameController>();
             
         }catch (Exception e)
         {
