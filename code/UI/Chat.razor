@@ -98,16 +98,8 @@
     {
         try
         {
-            /// Get the ConfigManager from the scene
-            GameControllerObject = Scene.Directory.FindByName( "Game Controller").First() as GameObject;
-            if (GameControllerObject == null)
-            {
-                Log.Error( "Config Manager not found" );
-                return;
-            }
-
-            ConfigManager = GameControllerObject.Components.Get<ConfigManager>();
-            GameController = GameControllerObject.Components.Get<GameController>();
+            ConfigManager = GameSystems.Config.ConfigManager.Instance;
+            GameController = GameSystems.GameController.Instance;
             
         }catch (Exception e)
         {

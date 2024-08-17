@@ -70,7 +70,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
@@ -112,7 +112,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
@@ -147,7 +147,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
