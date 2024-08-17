@@ -190,45 +190,6 @@
       "Children": []
     },
     {
-      "__guid": "3979c2ce-8821-4ac8-a1ce-e0dd4f9839ec",
-      "Flags": 0,
-      "Name": "door (2)",
-      "Position": "-10.22571,-517.5206,248.5769",
-      "Rotation": "0,0,0.7071067,0.7071068",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "cf734212-9bfb-4e0b-80ec-84d444593cf1",
-      "Flags": 0,
-      "Name": "door (1)",
-      "Position": "99.15402,-517.5207,248.5769",
-      "Rotation": "0,0,0.7071067,0.7071068",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "869de3f0-c08f-4f24-be06-c23f2c80516c",
-      "Flags": 0,
-      "Name": "door",
-      "Position": "210.1536,-517.5208,248.5769",
-      "Rotation": "0,0,0.7071067,0.7071068",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
       "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
       "Flags": 0,
       "Name": "Cube",
@@ -398,6 +359,102 @@
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
+    },
+    {
+      "__guid": "e161b418-ea3e-4613-bb43-020edcd6c975",
+      "Flags": 0,
+      "Name": "door (1)",
+      "Position": "97.84187,-517.5204,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "ed25c923-66e2-44b0-a287-91ed582dbc3a",
+      "Flags": 0,
+      "Name": "temp_door_001a_frame (1)",
+      "Position": "97.79054,-517.5195,247.577",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "6266d29c-fe24-4c35-9936-2e16afb62bc1",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": true,
+          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
+          "Tint": "0.05116,0.03197,0.02308,1"
+        }
+      ]
+    },
+    {
+      "__guid": "3979c2ce-8821-4ac8-a1ce-e0dd4f9839ec",
+      "Flags": 0,
+      "Name": "door (2)",
+      "Position": "-10.22571,-517.5206,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "048935d2-71c8-49ae-8c0d-551e35ae54eb",
+      "Flags": 0,
+      "Name": "temp_door_001a_frame (2)",
+      "Position": "-10.27703,-517.5197,247.577",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "a383dff1-d9da-417a-a200-ef64dcf51b66",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": true,
+          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
+          "Tint": "0.05116,0.03197,0.02308,1"
+        }
+      ]
+    },
+    {
+      "__guid": "8fbc26de-68d3-465e-91d4-31c22c6282e9",
+      "Flags": 0,
+      "Name": "door (3)",
+      "Position": "205.6659,-517.5206,248.5769",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "bdaebe52-da22-4d32-b7c7-bd349b9a5dd4",
+      "Flags": 0,
+      "Name": "temp_door_001a_frame (3)",
+      "Position": "205.6146,-517.5197,247.577",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Prop",
+          "__guid": "cc971a48-aea5-4d2a-8a93-121e8ff059ee",
+          "BodyGroups": 18446744073709551615,
+          "Health": 0,
+          "IsStatic": true,
+          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
+          "Tint": "0.05116,0.03197,0.02308,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {
