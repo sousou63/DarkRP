@@ -47,9 +47,11 @@
         "Width": 0.1
       },
       {
-        "__type": "MoneyLogic",
-        "__guid": "200c3e5c-16e0-44dc-b2d4-d01885c9589f",
-        "Money": 100
+        "__type": "Money",
+        "__guid": "1ca2043b-8bd4-4c47-9b43-46a77497f2ec",
+        "EntityName": "Base Entity",
+        "Health": 100,
+        "MoneyAmount": 100
       }
     ],
     "Children": [],
