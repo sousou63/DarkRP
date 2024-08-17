@@ -1,4 +1,6 @@
 using Sandbox.Citizen;
+using GameSystems.Player;
+using GameSystems;
 
 /// <summary>
 /// Taken from Walker.cs
@@ -21,8 +23,20 @@ public sealed class Controller : Component
 
 	[Sync] public bool IsNoClip { get; set; }
 
+
+	private PlayerConnObject player { get; set; }
+
 	public bool WishCrouch;
 	public float EyeHeight = 64;
+
+	protected override void OnStart()
+	{
+		// Get the Player connection object
+		// TODO better way to do it?
+		var controller = GameController.Instance;
+		if ( controller is null ) return;
+		player = controller.GetPlayerByGameObjectID( GameObject.Id );
+	}
 
 	protected override void OnUpdate()
 	{
@@ -57,8 +71,7 @@ public sealed class Controller : Component
 		if ( Input.Pressed( "noclip" ) )
 		{
 			// Get the player's usergroup
-			
-			ToggleNoClip( !IsNoClip );
+			if ( player.CheckPermission( PermissionLevel.Admin ) ) ToggleNoClip( !IsNoClip );
 		}
 	}
 
