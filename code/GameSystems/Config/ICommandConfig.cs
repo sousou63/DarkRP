@@ -1,3 +1,5 @@
+using GameSystems.Player;
+
 namespace GameSystems.Config
 {
 	/// <summary>
@@ -7,7 +9,7 @@ namespace GameSystems.Config
 	{
 		string Name { get; }
 		string Description { get; }
-		int PermissionLevel { get; }
+		PermissionLevel PermissionLevel { get; }
 		bool CommandFunction( GameObject player, Scene scene, string[] args );
 	}
 }

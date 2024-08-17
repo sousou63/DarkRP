@@ -27,6 +27,7 @@ namespace GameSystems.Player
 		[Property] public float SalaryAmmount { get; set; } = 50f;
 
 		private Chat chat { get; set; }
+		private GameController controller { get; set; }
 
 		TimeSince lastUsed = 0; // Set the timer
 
@@ -37,7 +38,7 @@ namespace GameSystems.Player
 			chat = Scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
 			if (chat is null) Log.Error("Chat component not found");
 			try {
-				var controller = GameController.Instance;
+				controller = GameController.Instance;
 				if ( controller == null ) Log.Error( "Game Controller component not found" );
 				controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
 			}catch ( Exception e )
@@ -56,6 +57,15 @@ namespace GameSystems.Player
 				lastUsed = 0; // reset the timer
 			}
 
+		}
+
+		/// <summary>
+		/// Helper function to find the player's PlayerDetails
+		/// </summary>
+		/// <returns></returns>
+		public PlayerConnObject GetPlayerDetails()
+		{
+			return controller.GetPlayerByGameObjectID(GameObject.Id);
 		}
 
 		public bool RemoveMoney(float Ammount)

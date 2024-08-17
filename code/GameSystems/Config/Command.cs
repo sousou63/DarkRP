@@ -1,4 +1,5 @@
 using System;
+using GameSystems.Player;
 
 namespace GameSystems.Config {
 	/// <summary>
@@ -19,7 +20,7 @@ namespace GameSystems.Config {
 		/// <summary>
 		/// Gets the permission level required to execute the command. Currently does nothing.
 		/// </summary>
-		public int PermissionLevel { get; } = 0;
+		public PermissionLevel PermissionLevel { get; } = PermissionLevel.User;
 
 		/// <summary>
 		///  The function to execute when the command is called.
@@ -36,7 +37,7 @@ namespace GameSystems.Config {
 		/// <exception cref="ArgumentNullException">
 		/// Thrown when <paramref name="name"/>, <paramref name="description"/>, or <paramref name="commandFunction"/> is null.
 		/// </exception>
-		public Command( string name, string description, int permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
+		public Command( string name, string description, PermissionLevel permissionLevel, Func<GameObject, Scene, string[], bool> commandFunction )
 		{
 			Name = name.ToLowerInvariant() ?? throw new ArgumentNullException( nameof( name ) );
 			Description = description ?? throw new ArgumentNullException( nameof( description ) );

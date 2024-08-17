@@ -75,8 +75,8 @@ namespace GameSystems.Interaction
 			// Calculate the end position based on direction and interact range
 			Vector3 end = start + direction * InteractRange;
 
-			// Perform a line trace (raycast) to detect objects in the line of sight
-			tr = Scene.Trace.Ray(start, end).Run();
+			// Perform a line trace (raycast) to detect objects in the line of sight ( raycast ignore the player )
+			tr = Scene.Trace.IgnoreGameObject(GameObject).Ray( start, end ).Run();
 
 			// Check if the hit object has the "interact" tag and handle the interaction
 			if (tr.GameObject != null && tr.GameObject.Tags.Has(InteractTag))
@@ -147,8 +147,8 @@ namespace GameSystems.Interaction
 				// Calculate the end position based on direction and interact range
 				Vector3 end = start + direction * InteractRange;
 
-				// Perform a line trace (raycast) to detect objects in the line of sight
-				tr = Scene.Trace.Ray(start, end).Run();
+				// Perform a line trace (raycast) to detect objects in the line of sight ( raycast ignore the player )
+				tr = Scene.Trace.IgnoreGameObject( GameObject ).Ray( start, end ).Run();
 
 				// Check if the trace hit is valid
 				if ((tr.GameObject != null) && tr.Hit)

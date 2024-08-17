@@ -14,8 +14,8 @@
 		@foreach (var player in Players)
 		{
 		    <div class="TableRow">
-		        <div class="TableCell">@player.Connection.DisplayName</div>
-		        <div class="TableCell">@player.Connection.SteamId</div>
+		        <div class="TableCell">@player.Value.Connection.DisplayName</div>
+		        <div class="TableCell">@player.Value.Connection.SteamId</div>
 		    </div>
 		}
     </div>
@@ -23,7 +23,7 @@
 
 @code
 {
-	[Property] public NetList<PlayerConnObject> Players = null;
+	[Property] public NetDictionary<Guid, PlayerConnObject> Players = null;
 
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt

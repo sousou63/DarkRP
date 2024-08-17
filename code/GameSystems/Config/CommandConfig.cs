@@ -16,7 +16,7 @@ namespace GameSystems.Config
 			{ "clear", new Command(
 						name: "clear",
 						description: "Clears the chat",
-						permissionLevel: 0,
+						permissionLevel: PermissionLevel.User,
 						commandFunction: (player, scene, args) =>
 						{
 							var playerStats = player.Components.Get<Stats>();
@@ -35,7 +35,7 @@ namespace GameSystems.Config
 			{ "lorem", new Command(
 						name: "lorem",
 						description: "Spams the chat with lorem ipsum X times.",
-						permissionLevel: 0,
+						permissionLevel: PermissionLevel.User,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -49,7 +49,7 @@ namespace GameSystems.Config
 				{ "givemoney", new Command(
 						name: "givemoney",
 						description: "Gives the player money",
-						permissionLevel: 0, // TODO make it admin
+						permissionLevel: PermissionLevel.Admin,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -91,7 +91,7 @@ namespace GameSystems.Config
 				{ "setmoney", new Command(
 						name: "setmoney",
 						description: "Set a player's money",
-						permissionLevel: 0, // TODO make it admin
+						permissionLevel: PermissionLevel.Admin,
 						commandFunction: (player, scene, args) =>
 						{
 								// Get the player stats
@@ -127,6 +127,57 @@ namespace GameSystems.Config
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"Your money has been set to ${amount.ToString("N0")}.");
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount.ToString("N0")}");
+								return true;
+						}
+				)},
+				{ "setrank", new Command(
+						name: "setrank",
+						description: "Set a player's rank",
+						permissionLevel: PermissionLevel.SuperAdmin,
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<Stats>();
+								if (playerStats == null) return false;
+
+								// Get the 2nd parameter for player
+								if (args.Length < 2)
+								{
+									playerStats.SendMessage("Usage: /setrank <player> <rank>");
+									return false;
+								}
+
+								var GameController = ConfigManagerHelper.GetGameController(scene);
+								if (GameController == null) return false;
+
+								var foundPlayer = GameController.PlayerLookup(args[0]);
+
+								if (foundPlayer == null)
+								{
+									playerStats.SendMessage($"Player {args[0]} not found");
+									return false;
+								}
+
+								// Get the rank
+								var rank = GameController.GetUserGroup(args[1]);
+								if (rank == null)
+								{
+									playerStats.SendMessage("Invalid rank");
+									return false;
+								}
+
+								// Check if the player has permission to set the rank
+								if ( playerStats.GetPlayerDetails()?.CheckPermission(rank.PermissionLevel) == false )
+								{
+									playerStats.SendMessage("You do not have permission to set this rank.");
+									return false;
+								}
+
+								// Set the rank
+								foundPlayer.SetRank(rank);
+
+								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"Your rank has been set to {rank.DisplayName}.");
+								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} rank to {rank.DisplayName}");
 								return true;
 						}
 				)}
@@ -181,34 +232,44 @@ namespace GameSystems.Config
 
 		public bool ExecuteCommand(string commandName, GameObject player, Scene scene, string[] args)
 		{
+			// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
+			var playerStats = player.Components.Get<Stats>();
+			if ( playerStats == null ) return false;
 			try
 			{
+
 				// Check if its the default "help" command
-				if (commandName == "help")
+				if ( commandName == "help" )
 				{
-					var playerStats = player.Components.Get<Stats>();
-					if (playerStats == null) return false;
+					var commandNames = string.Join( ", ", GetCommandNames().Select( name => "/" + name ) );
 
-					var commandNames = string.Join(", ", GetCommandNames().Select(name => "/" + name));
-
-					playerStats.SendMessage($"Available commands: {commandNames}");
+					playerStats.SendMessage( $"Available commands: {commandNames}" );
 					return true;
 				}
-				var command = GetCommand(commandName);
-				Log.Info($"Executing command \"{commandName}\".");
-				if (command.CommandFunction(player, scene, args) == false)
+
+				// Get the player details
+				var details = playerStats.GetPlayerDetails();
+				if ( details == null ) return false;
+
+				var command = GetCommand( commandName );
+
+				if ( !details.CheckPermission(command.PermissionLevel) )
 				{
-					Log.Error($"Failed to execute command \"{commandName}\".");
-					var playerStats = player.Components.Get<Stats>();
-					if (playerStats == null) return false;
-					playerStats.SendMessage($"Failed to execute command \"{commandName}\".");
+					playerStats.SendMessage( "You do not have permission to execute this command." );
+					return false;
+				}
+
+				Log.Info( $"Executing command \"{commandName}\"." );
+				if ( command.CommandFunction( player, scene, args ) == false )
+				{
 					return false;
 				}
 				return true;
 			}
-			catch (Exception e)
+			catch ( Exception e )
 			{
-				Log.Error($"Failed to execute command \"{commandName}\": {e.Message}");
+				Log.Error( $"Failed to execute command \"{commandName}\": {e.Message}" );
+				playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
 				return false;
 			}
 		}
