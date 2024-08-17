@@ -15,7 +15,7 @@ Layer0
 	//---- Color ----
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "materials/darkrp_map/grass_001a.png"
+	TextureColor "materials/nature/grass_001a.png"
 
 	//---- Fade ----
 	g_flFadeExponent "1.000"
@@ -27,11 +27,11 @@ Layer0
 	g_flMetalness "0.000"
 
 	//---- Normal ----
-	TextureNormal "materials/darkrp_map/grass_001a_normal.png"
+	TextureNormal "materials/nature/grass_001a_normal.png"
 
 	//---- Roughness ----
 	g_flRoughnessScaleFactor "1.000"
-	TextureRoughness "materials/darkrp_map/grass_001a_rough.png"
+	TextureRoughness "materials/nature/grass_001a_rough.png"
 
 	//---- Texture Coordinates ----
 	g_nScaleTexCoordUByModelScaleAxis "0"
@@ -43,5 +43,7 @@ Layer0
 	SystemAttributes
 	{
 		PhysicsSurfaceProperties "grass"
+		WorldMappingWidth "1024"
+		WorldMappingHeight "1024"
 	}
 }

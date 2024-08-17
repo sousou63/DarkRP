@@ -4,15 +4,18 @@ Layer0
 {
 	shader "shaders/complex.shader"
 
+	//---- PBR ----
+	F_SPECULAR 1
+
 	//---- Ambient Occlusion ----
 	g_flAmbientOcclusionDirectDiffuse "0.000"
 	g_flAmbientOcclusionDirectSpecular "0.000"
-	TextureAmbientOcclusion "materials/darkrp_map/woodfloor_001a_ao.png"
+	TextureAmbientOcclusion "materials/tile/tilefloor_001a_ao.png"
 
 	//---- Color ----
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "materials/darkrp_map/tilefloor_001a.png"
+	TextureColor "materials/tile/tilefloor_001a.png"
 
 	//---- Fade ----
 	g_flFadeExponent "1.000"
@@ -24,11 +27,11 @@ Layer0
 	g_flMetalness "0.000"
 
 	//---- Normal ----
-	TextureNormal "materials/darkrp_map/tilefloor_001a_normal.png"
+	TextureNormal "materials/tile/tilefloor_001a_normal.png"
 
 	//---- Roughness ----
 	g_flRoughnessScaleFactor "1.000"
-	TextureRoughness "materials/darkrp_map/grass_001a_rough.png"
+	TextureRoughness "materials/tile/tilefloor_001a_rough.png"
 
 	//---- Texture Coordinates ----
 	g_nScaleTexCoordUByModelScaleAxis "0"
@@ -36,4 +39,11 @@ Layer0
 	g_vTexCoordOffset "[0.000 0.000]"
 	g_vTexCoordScale "[1.000 1.000]"
 	g_vTexCoordScrollSpeed "[0.000 0.000]"
+
+	SystemAttributes
+	{
+		WorldMappingWidth "512"
+		WorldMappingHeight "512"
+		PhysicsSurfaceProperties "ceramic"
+	}
 }

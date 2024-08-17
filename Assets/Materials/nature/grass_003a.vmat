@@ -10,12 +10,12 @@ Layer0
 	//---- Ambient Occlusion ----
 	g_flAmbientOcclusionDirectDiffuse "0.000"
 	g_flAmbientOcclusionDirectSpecular "0.000"
-	TextureAmbientOcclusion "materials/tile/tilewall_001a_ao.png"
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
 
 	//---- Color ----
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "materials/tile/tilewall_001a.png"
+	TextureColor "materials/nature/grass_003a.png"
 
 	//---- Fade ----
 	g_flFadeExponent "1.000"
@@ -27,11 +27,11 @@ Layer0
 	g_flMetalness "0.000"
 
 	//---- Normal ----
-	TextureNormal "materials/tile/tilewall_001a_normal.png"
+	TextureNormal "materials/nature/grass_003a_normal.png"
 
 	//---- Roughness ----
 	g_flRoughnessScaleFactor "1.000"
-	TextureRoughness "materials/tile/tilewall_001a_rough.png"
+	TextureRoughness "materials/nature/grass_003a_rough.png"
 
 	//---- Texture Coordinates ----
 	g_nScaleTexCoordUByModelScaleAxis "0"
@@ -42,8 +42,8 @@ Layer0
 
 	SystemAttributes
 	{
-		PhysicsSurfaceProperties "ceramic"
-		WorldMappingWidth "512"
+		PhysicsSurfaceProperties "grass"
+		WorldMappingWidth "2048"
 		WorldMappingHeight "2048"
 	}
 }
