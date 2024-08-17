@@ -8,29 +8,24 @@ namespace GameSystems.Interaction
 		/// <summary>
 		/// Properties for physics holding props
 		/// </summary>
-		[Property, Sync] 
-        public GameObject HoldingArea { get; set; }
-        [Property]
-        public readonly float LerpTime = 0.01f;
+
+		private GameObject holdingArea;
 
         private float interactRange;
 		private GameObject heldObject;
 		private Rigidbody heldObjectRigidbody;
 		private PlayerController playerController;
 
-        public PickupSystem(float interactRange)
+        public PickupSystem(float interactRange, PlayerController playerController, GameObject holdingArea)
         {
             this.interactRange = interactRange;
-        }
-		protected override void OnAwake()
-		{
-			// parent the holding area to the players camera
-			playerController = GameObject.Components.Get<PlayerController>();
+			this.playerController = playerController;
+			this.holdingArea = holdingArea;
 		}
 		public bool IsHoldingObject(){
-			return heldObject != null;
+			return (heldObject != null && heldObjectRigidbody != null);
 		}
-        [Broadcast]
+
 		public void HandlePickup(GameObject pickedUpObject)
 		{
 			Rigidbody rb = pickedUpObject.Components.Get<Rigidbody>();
@@ -52,7 +47,7 @@ namespace GameSystems.Interaction
 
 				Log.Info("Picking up object");
 				//heldObjectRigidbody.PhysicsBody.Enabled = false;
-				heldObjectRigidbody.GameObject.SetParent(HoldingArea);
+				heldObjectRigidbody.GameObject.SetParent(holdingArea);
 				heldObject = pickedUpObject;
 			}
 		}
@@ -71,11 +66,11 @@ namespace GameSystems.Interaction
 			if (heldObject != null)
 			{
 				SetHoldingArea();
-				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, HoldingArea.Transform.Position);
+				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, holdingArea.Transform.Position);
 				if (dist > 1f)
 				{
 					Log.Info("Moving object");
-					heldObjectRigidbody.Transform.LerpTo(HoldingArea.Transform.World, 0.05f);
+					heldObjectRigidbody.Transform.LerpTo(holdingArea.Transform.World, 0.05f);
 				}
 				// Could be extended with rotating an item
 				if (dist > interactRange)
@@ -87,12 +82,12 @@ namespace GameSystems.Interaction
 		}
 		private void SetHoldingArea()
 		{
-			var eyePos = playerController.Transform.Position + new Vector3(0, 0, playerController.EyeHeight);
+			var eyePos = playerController.Transform.Position + new Vector3(0, 0, playerController.EyeHeight*2/3);
 			var eyeAngles = playerController.EyeAngles.Forward;
 			// rotate the target target vector according to the camera rotation from the eye position
 			var targetVec = eyePos + eyeAngles * (interactRange / 2);
 
-			HoldingArea.Transform.Position = HoldingArea.Transform.Position.LerpTo(targetVec, 0.05f);
+			holdingArea.Transform.Position = holdingArea.Transform.Position.LerpTo(targetVec, 0.05f);
 		}
     }
 }

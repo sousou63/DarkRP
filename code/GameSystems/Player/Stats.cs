@@ -1,5 +1,5 @@
 using System;
-using Sandbox;
+using GameSystems;
 using Entity.Interactable.Door;
 
 namespace GameSystems.Player
@@ -32,21 +32,10 @@ namespace GameSystems.Player
 
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
-		protected override void OnStart()
+		protected override void OnAwake()
 		{
 			chat = Scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
-			if (chat == null) Log.Error("Chat component not found");
-
-			try
-			{
-				var controller = Scene.Directory.FindByName("Game Controller")?.First()?.Components.Get<GameController>();
-				if (controller == null) Log.Error("Game Controller component not found");
-				controller.AddPlayer(GameObject, GameObject.Network.OwnerConnection);
-			}
-			catch (Exception e)
-			{
-				Log.Error(e);
-			}
+			if (chat is null) Log.Error("Chat component not found");
 		}
 
 		protected override void OnFixedUpdate()

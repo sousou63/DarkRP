@@ -18,8 +18,13 @@ namespace GameSystems.Interaction
 		// Toggle for drawing debug information related to interactions
 		[Property] public bool DrawDebugInteract { get; set; } = false;
 
+		public CameraComponent CameraComponent { get; set; }
+
 		// Tag that marks objects as interactable
 		[Property] public string InteractTag { get; set; } = "Interact";
+
+		[Property, Sync] 
+        public GameObject HoldingArea { get; set; }
 
 		private PickupSystem pickupSystem;
 
@@ -27,7 +32,13 @@ namespace GameSystems.Interaction
 
 		protected override void OnAwake()
 		{
-			pickupSystem = new PickupSystem(InteractRange);
+			CameraComponent = Scene.Camera;
+			 
+			pickupSystem = new PickupSystem(
+				InteractRange,
+				GameObject.Components.Get<PlayerController>(),
+				HoldingArea
+				);
 		}
 
 		protected override void OnFixedUpdate()

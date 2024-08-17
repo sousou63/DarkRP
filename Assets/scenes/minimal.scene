@@ -84,17 +84,7 @@
       "Name": "Game Controller",
       "Position": "-61.63499,-460.2009,426.7711",
       "Enabled": true,
-      "NetworkOrphaned": 1,
-      "Components": [
-        {
-          "__type": "ConfigManager",
-          "__guid": "4858c8f8-d34c-46cc-b8e6-64e6e557b35f"
-        },
-        {
-          "__type": "GameController",
-          "__guid": "6bed7b0a-efa3-4aa7-b4d2-d73ea155f305"
-        }
-      ]
+      "NetworkOrphaned": 1
     },
     {
       "__guid": "c5b6dd1e-b549-4cdf-ab5c-517881564f24",
@@ -398,12 +388,6 @@
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
-    },
-    {
-      "__guid": "23fbede8-4440-44f2-a463-8d296bc3bcc5",
-      "Flags": 0,
-      "Name": "GameObject",
-      "Enabled": true
     }
   ],
   "SceneProperties": {

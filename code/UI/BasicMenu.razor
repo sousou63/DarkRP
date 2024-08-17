@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using GameSystems;
 @using GameSystems.Player;
 @using System.Threading.Tasks;
 @using Entity.Interactable.Props;
@@ -214,7 +215,7 @@
 
     protected override async void OnStart()
     {
-        FindPackage();
+        await FindPackage();
         PropManager = GameObject.Parent.Components.Get<PropToolManager>();
     }
 
