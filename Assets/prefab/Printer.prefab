@@ -42,8 +42,8 @@
         "SoundOverride": false,
         "StopOnNew": false,
         "TargetMixer": {
-          "Name": "master",
-          "Id": "3bcc4717-e97f-4fe9-8ccc-f8ee9be3f467"
+          "Name": "game",
+          "Id": "5ee1f692-d498-44a8-a66e-451bb0ff3eeb"
         },
         "Volume": 1
       },
@@ -76,16 +76,6 @@
             "Timer": 5
           }
         },
-        "Bronze": "0.33953,0.07922,0,1",
-        "BronzeMaterial": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
-        "BronzePrice": 500,
-        "BronzeTimer": 20,
-        "Diamond": "0,0.85,1,1",
-        "DiamondPrice": 4800,
-        "DiamondTimer": 5,
-        "Gold": "1,0.9,0,1",
-        "GoldPrice": 2600,
-        "GoldTimer": 10,
         "PrinterCurrentMoney": 0,
         "PrinterFan": {
           "_type": "gameobject",
@@ -93,10 +83,7 @@
         },
         "PrinterFanSpeed": 1000,
         "PrinterMaxMoney": 8000,
-        "PrinterTimerMoney": 25,
-        "Silver": "28.58,28.58,28.58,1",
-        "SilverPrice": 1200,
-        "SilverTimer": 15
+        "PrinterTimerMoney": 25
       },
       {
         "__type": "Sandbox.ModelRenderer",
