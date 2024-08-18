@@ -16,21 +16,21 @@ namespace GameSystems.Player
 		[Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
-
+		[Property] public bool Starving { get; set; } = false;
 		[Property] public float FoodBase { get; set; } = 100f;
-
+		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
 
 		[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
-
+		[Property] public float StarvingTimer { get; set; } = 20f;
 		[Property] public float SalaryAmmount { get; set; } = 50f;
 
 		private Chat chat { get; set; }
 		private GameController controller { get; set; }
 
 		TimeSince lastUsed = 0; // Set the timer
-
+		TimeSince lastUsedFood = 0;
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
 		protected override void OnStart()
@@ -56,7 +56,24 @@ namespace GameSystems.Player
 				Sound.Play("sounds/kenney/ui/ui.upvote.sound"); // play a basic ui sound
 				lastUsed = 0; // reset the timer
 			}
-
+			if (lastUsedFood >= StarvingTimer && (Network.IsOwner) && (Starving))
+			{
+				if (FoodBase > 0)
+				{
+					FoodBase -= 1;
+				}
+				lastUsedFood = 0; // reset the timer
+			}
+			if (HealthBase < 1 || FoodBase < 1)
+			{
+				Died = true;
+				HealthBase = 0;
+				FoodBase = 0;
+			}
+			if (Died)
+			{
+				// TODO: Make ragdolls and die
+			}
 		}
 
 		/// <summary>
@@ -92,7 +109,19 @@ namespace GameSystems.Player
 		{
 			MoneyBase = Ammount;
 		}
-
+		public void AddFood(float Ammount)
+		{
+			FoodBase += Ammount;
+		}
+		public void SetFood(float Ammount)
+		{
+			FoodBase = Ammount;
+		}
+		public bool RemoveFood(float Ammount)
+		{
+			FoodBase -= Ammount;
+			return true; // Successfully removed food
+		}
 		// DOOR LOGIC. Helps keep track of owned doors.
 
 		public bool PurchaseDoor(float price, GameObject door)

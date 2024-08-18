@@ -77,7 +77,6 @@ PlayerHUD {
 
 			.container {
 				display: flex;
-				flex-direction: column;
 				height: auto;
 				justify-content: space-between;
 
@@ -92,28 +91,19 @@ PlayerHUD {
 				}
 
 				.job {
-					font-size: 25px;
-					align-self: flex-end;
-				}
-
-				.money {
-					color: lawngreen;
-					margin-left: 10px;
 					align-self: flex-end;
 					font-size: 25px;
+					margin-top: 10px;
+					margin-left: 100px;
 				}
-
-				.wallet {
-					display: flex;
-					flex-direction: row;
-					font-size: 25px;
-					width: 100%;
-
-					.label {
-						margin-right: 100px
-					}
-				}
+				
 			}
+		}
+
+		.money {
+			color: lawngreen;
+			align-self: flex-start;
+			font-size: 25px;
 		}
 
 		.bars {
@@ -129,6 +119,12 @@ PlayerHUD {
 			position: relative;
 			box-shadow: 2px 2px 30px 1px #000000;
 			margin-top: 10px;
+			
+			.bar-text {
+				font-size: 20px;
+				margin-left: 5px;
+			}
+			
 		}
 
 		.fill {
