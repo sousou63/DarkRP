@@ -1,0 +1,15 @@
+{
+  "AlbedoImage": "map/materials/grass/textures/sfknaeoa_2k_albedo.jpg",
+  "RoughnessImage": "map/materials/grass/textures/sfknaeoa_2k_roughness.jpg",
+  "NormalImage": "map/materials/grass/textures/sfknaeoa_2k_normal.jpg",
+  "HeightImage": "map/materials/grass/textures/sfknaeoa_2k_displacement.jpg",
+  "AOImage": "map/materials/grass/textures/sfknaeoa_2k_ao.jpg",
+  "UVScale": 1,
+  "UVRotation": 0,
+  "Metalness": 0,
+  "NormalStrength": 0.1,
+  "HeightBlendStrength": 0.1,
+  "Surface": "surfaces/grass.surface",
+  "__references": [],
+  "__version": 0
+}
