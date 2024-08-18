@@ -461,66 +461,6 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
-    },
-    {
-      "__guid": "e2b0953c-e055-4063-b58d-366869ea39bb",
-      "Flags": 0,
-      "Name": "food",
-      "Position": "-256.6169,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "6615c39f-ecc1-4728-92c3-ee9a1c34f9ad",
-      "Flags": 0,
-      "Name": "food (1)",
-      "Position": "-260.1717,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "3e2421e9-f24b-442c-9f36-7be6b4fdd29e",
-      "Flags": 0,
-      "Name": "food (2)",
-      "Position": "-263.9833,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "2cacfa44-e5f1-4fbc-b555-f0cac5b005a0",
-      "Flags": 0,
-      "Name": "food (3)",
-      "Position": "-267.7897,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "2c715a35-a6b1-4843-8e12-1f26ce79683f",
-      "Flags": 0,
-      "Name": "food (4)",
-      "Position": "-271.7199,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "39aec1ba-8bca-49e1-a86e-db83e5ebc406",
-      "Flags": 0,
-      "Name": "food (5)",
-      "Position": "-275.5098,-515.674,148.4755",
-      "Tags": "interact",
-      "Enabled": true,
-      "__Prefab": "prefab/food.prefab",
-      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

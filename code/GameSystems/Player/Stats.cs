@@ -16,7 +16,7 @@ namespace GameSystems.Player
 		[Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
-
+		[Property] public bool Starving { get; set; } = false;
 		[Property] public float FoodBase { get; set; } = 100f;
 		[Property] public bool Died { get; set; } = false;
 
@@ -56,7 +56,7 @@ namespace GameSystems.Player
 				Sound.Play("sounds/kenney/ui/ui.upvote.sound"); // play a basic ui sound
 				lastUsed = 0; // reset the timer
 			}
-			if (lastUsedFood >= StarvingTimer && (Network.IsOwner))
+			if (lastUsedFood >= StarvingTimer && (Network.IsOwner) && (Starving))
 			{
 				if (FoodBase > 0)
 				{
