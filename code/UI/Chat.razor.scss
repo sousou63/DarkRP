@@ -1,9 +1,9 @@
 Chat {
 	position: absolute;
-	bottom: 250px;
-	left: 70px;
-	width: 30vw;
-	height: 20vw;
+	bottom: 200px;
+	left: 35px;
+	width: 25vw;
+	height: 15vw;
 	justify-content: center;
 	font-weight: bold;
 	border-radius: 20px;
@@ -83,8 +83,16 @@ Chat {
 	&.open {
 		pointer-events: all;
 
-		.output, .header, .input {
-			background-color: #73737370;
+		.output, .input {
+			background-color: #56565c70;
+		}
+		.input {
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+		.output {
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
 		}
 	}
 

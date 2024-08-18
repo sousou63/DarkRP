@@ -3,6 +3,7 @@
     "__guid": "ef078514-94ec-4695-84a5-c8ec595005e1",
     "Flags": 0,
     "Name": "food",
+    "Tags": "interact",
     "Enabled": true,
     "Components": [
       {
@@ -17,10 +18,23 @@
       {
         "__type": "Sandbox.BoxCollider",
         "__guid": "eb9fb5c7-8e53-4465-9450-3ccc32337c10",
-        "Center": "0,0,0",
+        "Center": "0,0,0.78",
         "IsTrigger": false,
-        "Scale": "50,50,50",
+        "Scale": "2.600002,6.199999,1.600002",
         "Static": false
+      },
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "f08b1318-5e90-4b0c-bbdd-aba924818ab9",
+        "Color": "1,1,1,1",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "ObscuredColor": "0,0,0,0.4",
+        "Width": 0.1
+      },
+      {
+        "__type": "Food",
+        "__guid": "16365237-d6f4-4dd8-90bc-bea5d2c472a3"
       }
     ],
     "Children": [],
