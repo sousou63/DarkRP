@@ -21,7 +21,7 @@ LeaderBoard {
     .TableTitle {
         text-align: center;
         justify-content: center;
-        width: 30%;
+        width: 50%;
         background-color: #1b1b23;
         border-radius: 5px 5px 0 0;
     }   
@@ -29,8 +29,8 @@ LeaderBoard {
     .TableRow {
         display: flex;
         justify-content: center;
-        width: 30%;
-        background-color: #22222b;
+        width: 50%;
+        background-color: #22222bF0;
     }
 
     .TableCell, .TableHeader {
@@ -43,7 +43,7 @@ LeaderBoard {
     }
 
     .TableRow:nth-child(even) {
-        background-color: #1b1b23;
+        background-color: #1b1b23F0;
     }
 
     .TableRow:hover {

@@ -12,8 +12,8 @@ namespace GameSystems.Interaction
 
 		private GameObject holdingArea;
 
-        private float interactRange;
-		private float rotateSpeed = 0.01f;
+        private readonly float interactRange;
+		private readonly float throwForce = 100000f;
 		private GameObject heldObject;
 		private Rigidbody heldObjectRigidbody;
 		private Vector3 heldObjectCenter;
@@ -55,35 +55,51 @@ namespace GameSystems.Interaction
 				heldObject = pickedUpObject;
 			}
 		}
-		public void DropPickup()
+		public void DropPickup(float throwingForce = 0)
 		{
-			Log.Info("Dropping object");
 			heldObjectRigidbody.Gravity = true;
-			//heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
 
 			UnlockHeldObject();
 			heldObjectRigidbody.GameObject.SetParent(null);
+			heldObjectRigidbody.PhysicsBody.ApplyForce(playerController.EyeAngles.Forward * throwingForce);
 			heldObject = null;
 		}
-		public void MoveHeldObject()
+
+		// This function is called in the player's update loop
+		public void UpdateHeldObject()
 		{
 			if (heldObject != null)
 			{
 				SetHoldingArea();
+				// Check if the object is too far away from the holding area
 				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, holdingArea.Transform.Position);
 				if (dist > 1.5f*interactRange) { DropPickup(); return; }
 
+				// Move the object to the holding area
 				if (dist > 1f)
 				{
 					heldObjectRigidbody.Transform.Position = holdingArea.Transform.Position;
 				}
-				// Could be extended with rotating an item
+				// Rotate the object if the player is holding down the rotate button
+				if ( Input.Down( "attack3" ) ) {
+					RotateHeldObject();
+				} else if (Input.Released("attack3")) {
+					UnlockHeldObject();
+				} else if ( Input.Down( "reload" ) ) {
+					ResetRotationHeldObject();
+				} else if (Input.Down("attack1")) {
+					DropPickup(throwForce);
+				}
 			}
 		}
 		public void RotateHeldObject()
 		{
 			playerController.EyesLocked = true;
 			heldObject.Transform.Local = heldObject.Transform.Local.RotateAround(heldObjectCenter, Input.AnalogLook);
+		}
+		public void ResetRotationHeldObject()
+		{
+			heldObject.Transform.Rotation = Rotation.Identity;
 		}
 		public void UnlockHeldObject()
 		{

@@ -6,15 +6,17 @@
 
 <root>
 	<div class="TableContainer"
-		<h2 class="TableTitle"> Current Players </h2>
+		<!--<h2 class="TableTitle"> Current Players </h2>-->
 		<div class="TableRow">
 			<div class="TableHeader">Player Name</div>	
+			<div class="TableHeader">Rank</div>	
 			<div class="TableHeader">Steam ID</div>
 		</div>
 		@foreach (var player in Players)
 		{
 		    <div class="TableRow">
-		        <div class="TableCell">@player.Value.Connection.DisplayName</div>
+		        <div class="TableCell" style="color:@GetColorByUserGroup(@player.Value)">@player.Value.Connection.DisplayName</div>
+				<div class="TableCell" style="color:@GetColorByUserGroup(@player.Value);text-align:center">@player.Value.GetHighestUserGroup().Name.ToUpper()</div>
 		        <div class="TableCell">@player.Value.Connection.SteamId</div>
 		    </div>
 		}
@@ -25,6 +27,10 @@
 {
 	[Property] public NetDictionary<Guid, PlayerConnObject> Players = null;
 
+	private string GetColorByUserGroup(PlayerConnObject p)
+	{
+		return p.GetHighestUserGroup().Color.Hex;
+	}
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
