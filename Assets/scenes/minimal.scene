@@ -224,7 +224,7 @@
       "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
       "Flags": 0,
       "Name": "printer",
-      "Position": "-387.8854,-523.7152,122.7708",
+      "Position": "-387.8854,-523.7152,121.1047",
       "Tags": "printer,interact",
       "Enabled": true,
       "NetworkMode": 1,
@@ -459,39 +459,6 @@
           "IsStatic": true,
           "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
           "Tint": "0.05116,0.03197,0.02308,1"
-        }
-      ]
-    },
-    {
-      "__guid": "5c45effb-974b-40a3-bff2-30c415243846",
-      "Flags": 0,
-      "Name": "Landscape",
-      "Position": "829.3481,1116.456,424.2787",
-      "Enabled": true,
-      "Children": [
-        {
-          "__guid": "1029bce3-3e58-4642-8a4c-d39b6bbadf86",
-          "Flags": 0,
-          "Name": "Terrain",
-          "Position": "-17391.96,-17717.09,-308.4269",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.Terrain",
-              "__guid": "0b77be85-3c88-48a7-ad88-420736704aea",
-              "__version": 1,
-              "ClipMapLodExtentTexels": 256,
-              "ClipMapLodLevels": 6,
-              "DebugView": "None",
-              "EnableCollision": true,
-              "IsTrigger": false,
-              "RenderType": "Off",
-              "Static": false,
-              "Storage": "map/landscape/landscape.terrain",
-              "TerrainHeight": 10000,
-              "TerrainSize": 39936
-            }
-          ]
         }
       ]
     }
