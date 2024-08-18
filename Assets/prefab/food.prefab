@@ -1,0 +1,35 @@
+{
+  "RootObject": {
+    "__guid": "ef078514-94ec-4695-84a5-c8ec595005e1",
+    "Flags": 0,
+    "Name": "food",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "de9bbc1b-f6fb-4f24-a077-abac24b0a1e8",
+        "BodyGroups": 18446744073709551615,
+        "MaterialOverride": "materials/dev/gray_grid_8.vmat",
+        "Model": "models/darkrp_main/us_money_stack.vmdl",
+        "RenderType": "On",
+        "Tint": "1,0.31667,0,1"
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "eb9fb5c7-8e53-4465-9450-3ccc32337c10",
+        "Center": "0,0,0",
+        "IsTrigger": false,
+        "Scale": "50,50,50",
+        "Static": false
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
