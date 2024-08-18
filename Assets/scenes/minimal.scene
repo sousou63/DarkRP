@@ -1,5 +1,5 @@
 {
-  "__guid": "3bcf9eb5-3718-4acb-b5cc-ea80cc405919",
+  "__guid": "ebef40cc-e932-4032-9825-2c4950e435f1",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -97,6 +97,10 @@
             "_type": "gameobject",
             "prefab": "prefab/money.prefab"
           }
+        },
+        {
+          "__type": "JobsLogic",
+          "__guid": "544919eb-5b45-4c3f-a6d0-81de1ffc752a"
         }
       ]
     },
