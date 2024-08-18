@@ -48,7 +48,7 @@
         "Volume": 1
       },
       {
-        "__type": "PrinterLogic",
+        "__type": "Entity.Interactable.Printer.PrinterLogic",
         "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
         "Bronze": "0.33953,0.07922,0,1",
         "BronzePrice": 500,
@@ -70,8 +70,8 @@
         "__type": "Sandbox.ModelRenderer",
         "__guid": "8fbc36f6-c4a2-4338-8f69-eee46201651b",
         "BodyGroups": 18446744073709551615,
-        "MaterialOverride": "materials/dev/dev_measuregeneric01b.vmat",
-        "Model": "models/darkrp_main/printer.vmdl",
+        "MaterialOverride": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
+        "Model": "models/darkrp_main/moneyprinter/moneyprinter.vmdl",
         "RenderType": "On",
         "Tint": "1,1,1,1"
       },
@@ -112,6 +112,24 @@
               "_type": "gameobject",
               "go": "d9722984-8e27-467c-bf69-0aed3358f138"
             }
+          }
+        ]
+      },
+      {
+        "__guid": "77f52835-a0aa-4c30-be47-0bdf2d8d5133",
+        "Flags": 0,
+        "Name": "moneyprinterfan",
+        "Position": "-11.36446,16.90277,-0.6974952",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "5d4e6314-c428-4dd4-b064-b4b329fe93fb",
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/darkrp_main/moneyprinter/fan/bronze/moneyprinter_fan_bronze.vmat",
+            "Model": "models/darkrp_main/moneyprinter/moneyprinterfan.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
           }
         ]
       }
