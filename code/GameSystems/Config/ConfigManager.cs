@@ -5,6 +5,8 @@ namespace GameSystems.Config
 	public sealed class ConfigManager : Component
 	{
 
+		// Property for the Money Prefab
+        [Property] public GameObject MoneyPrefab { get; set; }
 		private static ConfigManager _instance;
 
 		public ConfigManager()
