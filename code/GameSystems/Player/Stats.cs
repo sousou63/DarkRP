@@ -109,7 +109,19 @@ namespace GameSystems.Player
 		{
 			MoneyBase = Ammount;
 		}
-
+		public void AddFood(float Ammount)
+		{
+			FoodBase += Ammount;
+		}
+		public void SetFood(float Ammount)
+		{
+			FoodBase = Ammount;
+		}
+		public bool RemoveFood(float Ammount)
+		{
+			FoodBase -= Ammount;
+			return true; // Successfully removed food
+		}
 		// DOOR LOGIC. Helps keep track of owned doors.
 
 		public bool PurchaseDoor(float price, GameObject door)
