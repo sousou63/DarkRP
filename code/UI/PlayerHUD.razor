@@ -4,30 +4,32 @@
 @inherits PanelComponent
 
 <root>
-    <div style="font-color:white; font-size: 25px; margin-top: 20px; margin-left: 20px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
+    <div
+        style="font-color:white; font-size: 25px; margin-top: 20px; margin-left: 20px; text-shadow: 2px 2px 4px #000000;">
+        @MyStringValue</div>
     <div class="player-card">
         <div class="player-details-container">
             <div class="container">
-            
+
                 <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
-                <div class="job">@MyStringValue3</div>
+                <div class="job">@(PlayerPrefab.Components.Get<Stats>().Job.Name)</div>
             </div>
         </div>
         <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
         <div class="bars">
             <div class="bar">
                 <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().HealthBase * 3); background-color: rgb(180, 71, 71);">
-                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().HealthBase.ToString("N0")) </div>
+                    <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().HealthBase.ToString("N0")) </div>
                 </div>
             </div>
             <div class="bar">
                 <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().FoodBase * 3); background-color: rgb(219, 157, 42);">
-                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().FoodBase.ToString("N0"))</div>
+                    <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().FoodBase.ToString("N0"))</div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="crosshair">
     </div>
 
@@ -60,11 +62,11 @@
 
             @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().slots; i++)
 
-        {
-            <div class="slot container box" style="color:white">
-                @i
-            </div>
-        }
+            {
+                <div class="slot container box" style="color:white">
+                    @i
+                </div>
+            }
 
         }
 
@@ -74,9 +76,9 @@
 
 @code
 {
-    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab // code to acces my component : @(PlayerPrefab.Components.Get<Stats>().MoneyBase)
+    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab code to acces my component :@(PlayerPrefab.Components.Get<Stats>().MoneyBase)
 
-    [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
+[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
 
     public enum NotificationType
@@ -114,5 +116,10 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase,PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3,
+    PlayerPrefab.Components.Get<Stats>().MoneyBase, PlayerPrefab.Components.Get<Stats>().FoodBase,
+        PlayerPrefab.Components.Get<Stats>().Job,
+    PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count,
+    PlayerPrefab.Components.Get<Inventory>().isInventoryVisible
+        );
 }
