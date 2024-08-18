@@ -1,0 +1,15 @@
+{
+  "AlbedoImage": "materials/nature/rockwall_001a.png",
+  "RoughnessImage": "materials/nature/grass_002a_rough.png",
+  "NormalImage": "materials/nature/grass_003a_normal.png",
+  "HeightImage": "materials/nature/grass_002a_height.png",
+  "AOImage": "materials/default/default_ao.tga",
+  "UVScale": 2,
+  "UVRotation": 0,
+  "Metalness": 0,
+  "NormalStrength": 1,
+  "HeightBlendStrength": 1,
+  "Surface": "surfaces/grass.surface",
+  "__references": [],
+  "__version": 0
+}
