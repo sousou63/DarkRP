@@ -1,14 +1,14 @@
 Printer {
 	position: absolute;
-	top: 0;
+	top: 10;
 	left: 0;
-	right: 0;
-	bottom: 0;
+	right: 100;
+	bottom: 3;
 	background-color: #0d0d0d;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
-	border-radius: 20px;
+	border-radius: 5px;
 
 	.title {
 		font-size: 50px;
