@@ -8,6 +8,12 @@
 @implements Component.INetworkListener
 
 <root>
+    @if (ChatOpen == true)
+    {
+        <div class="header">
+            Chat
+        </div>
+    }
 	<div class="output">
 		@foreach (var entry in Messages)
         {
@@ -19,7 +25,11 @@
                     @if (entry.steamid > 0)
                     {
                         var userGroup = GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup();
-                        <div class="avatar" color: rgb(@(255 * userGroup.Color.r), @(255 * userGroup.Color.g), @(255 * userGroup.Color.b)); style="background-image: url( avatar:@entry.steamid )"></div>
+                        @if ( userGroup is not null)
+                        {
+                            <div class="user-group" style="color: rgb(@(255 * userGroup.Color.r), @(255 * userGroup.Color.g), @(255 * userGroup.Color.b));">@userGroup.DisplayName</div>
+                        }
+                        <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                     }
                     <div class="author">@entry.author</div>
                     <text class="message">@entry.message</text>
