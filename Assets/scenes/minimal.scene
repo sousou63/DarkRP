@@ -466,14 +466,14 @@
       "__guid": "5c45effb-974b-40a3-bff2-30c415243846",
       "Flags": 0,
       "Name": "Landscape",
-      "Position": "829.3481,1116.456,424.2787",
+      "Position": "-18.42194,-147.6275,515.4659",
       "Enabled": true,
       "Children": [
         {
           "__guid": "1029bce3-3e58-4642-8a4c-d39b6bbadf86",
           "Flags": 0,
           "Name": "Terrain",
-          "Position": "-17391.96,-17717.09,-308.4269",
+          "Position": "-17391.96,-17183.73,-2178.751",
           "Enabled": true,
           "Components": [
             {
@@ -486,7 +486,7 @@
               "EnableCollision": true,
               "IsTrigger": false,
               "RenderType": "Off",
-              "Static": false,
+              "Static": true,
               "Storage": "map/landscape/landscape.terrain",
               "TerrainHeight": 10000,
               "TerrainSize": 39936
