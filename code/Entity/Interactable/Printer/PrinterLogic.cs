@@ -9,7 +9,8 @@ namespace Entity.Interactable.Printer
 		public enum PrinterType { Bronze, Silver, Gold, Diamond };
 
 		// PRINTER SETTINGS
-
+		[Property] public GameObject Fan { get; set; }
+		[Property] public float FanSpeed { get; set; } = 900f;
 		[Property] public Color Bronze { get; set; } = Color.Orange;
 		[Property] public float BronzePrice { get; set; } = 500f;
 		[Property] public float BronzeTimer { get; set; } = 25f; // (in seconds)
@@ -55,7 +56,8 @@ namespace Entity.Interactable.Printer
 		{
 			// Determine the timer based on the printer type
 			float printerTimer = GetPrinterTimer();
-
+			Fan.Transform.Rotation = Rotation.FromPitch(Time.Now * FanSpeed);
+			
 			// If the timer has passed, add money
 			if ( lastUsed >= printerTimer )
 			{
