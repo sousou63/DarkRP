@@ -90,7 +90,7 @@
         "__guid": "a5cd5a30-2083-43c0-a2d7-a09c3e78d29d",
         "Flags": 0,
         "Name": "World",
-        "Position": "0.0000002915604,17.55421,0",
+        "Position": "5.243546,16.92529,-0.4461318",
         "Rotation": "0,0,0.7071068,0.7071067",
         "Enabled": true,
         "NetworkMode": 1,
@@ -101,7 +101,7 @@
             "HorizontalAlign": "Center",
             "InteractionRange": 1000,
             "LookAtCamera": false,
-            "PanelSize": "600,150",
+            "PanelSize": "429.1026,150",
             "RenderScale": 1,
             "VerticalAlign": "Center"
           },
