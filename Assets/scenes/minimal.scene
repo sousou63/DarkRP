@@ -92,7 +92,11 @@
         },
         {
           "__type": "GameSystems.Config.ConfigManager",
-          "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060"
+          "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060",
+          "MoneyPrefab": {
+            "_type": "gameobject",
+            "go": "68a31445-f1c5-4641-85f2-c97cef88fd65"
+          }
         }
       ]
     },
@@ -266,8 +270,9 @@
       "Flags": 0,
       "Name": "money",
       "Position": "-248.1283,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
+      "NetworkMode": 1,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
     },
@@ -276,7 +281,7 @@
       "Flags": 0,
       "Name": "money (1)",
       "Position": "-251.654,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -286,7 +291,7 @@
       "Flags": 0,
       "Name": "money (8)",
       "Position": "-251.654,-535.307,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -296,7 +301,7 @@
       "Flags": 0,
       "Name": "money (2)",
       "Position": "-255.1791,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -306,7 +311,7 @@
       "Flags": 0,
       "Name": "money (7)",
       "Position": "-255.1791,-535.307,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -316,7 +321,7 @@
       "Flags": 0,
       "Name": "money (3)",
       "Position": "-258.8547,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -326,7 +331,7 @@
       "Flags": 0,
       "Name": "money (6)",
       "Position": "-258.8547,-535.307,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -336,7 +341,7 @@
       "Flags": 0,
       "Name": "money (4)",
       "Position": "-262.8241,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -346,7 +351,7 @@
       "Flags": 0,
       "Name": "money (9)",
       "Position": "-262.8241,-535.307,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
@@ -356,7 +361,7 @@
       "Flags": 0,
       "Name": "money (5)",
       "Position": "-266.6486,-528.0125,148.4755",
-      "Tags": "interact,interactable",
+      "Tags": "interact,interactable,money",
       "Enabled": true,
       "__Prefab": "prefab/money.prefab",
       "__PrefabVariables": {}
