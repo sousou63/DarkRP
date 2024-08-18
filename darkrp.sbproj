@@ -231,9 +231,10 @@
           "GroupName": "Other"
         },
         {
-          "Name": "Action 34",
+          "Name": "attack3",
+          "KeyboardCode": "mouse3",
           "GamepadCode": "None",
-          "GroupName": "Other"
+          "GroupName": "Actions"
         }
       ],
       "__guid": "7cedfdbc-0fea-49a2-8803-40a706dfe287"

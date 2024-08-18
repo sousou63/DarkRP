@@ -54,7 +54,7 @@ namespace GameSystems.Interaction
 				{
 					DrawDebug();
 				}
-				pickupSystem.MoveHeldObject();
+				pickupSystem.UpdateHeldObject();
 			}
 		}
 
@@ -104,13 +104,6 @@ namespace GameSystems.Interaction
 					}
 					HandleInteraction("attack2");
 				}
-			}
-			if (Input.Down("attack1") && pickupSystem.IsHoldingObject())
-			{
-				pickupSystem.RotateHeldObject();
-			} else if (Input.Released("attack1") && pickupSystem.IsHoldingObject())
-			{
-				pickupSystem.UnlockHeldObject();
 			}
 			if (Input.Pressed("attack2") && pickupSystem.IsHoldingObject())
 			{
