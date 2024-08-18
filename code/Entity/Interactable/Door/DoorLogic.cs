@@ -1,9 +1,9 @@
-using System;
+using GameSystems;
 using GameSystems.Player;
 
 namespace Entity.Interactable.Door
 {
-	public sealed class DoorLogic : Component, IInteractable, Component.INetworkListener
+	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
 		[Property]
 		public GameObject Door { get; set; }
@@ -11,13 +11,13 @@ namespace Entity.Interactable.Door
 		public bool IsUnlocked { get; set; } = true;
 		[Property, Sync]
 		public bool IsOpen { get; set; } = false;
-		[Property, Sync]
-		public GameObject Owner { get; set; } = null;
 		public Stats OwnerStats { get; set; }
+
 		[Property, Sync]
 		public int Price { get; set; } = 100;
 
-		public void InteractUse( SceneTraceResult tr, GameObject player )
+
+		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			// Dont interact with the door if it is locked
 			if ( IsUnlocked == false ) return;
@@ -25,35 +25,25 @@ namespace Entity.Interactable.Door
 			// Open / Close door
 			OpenCloseDoor();
 		}
-		public void KnockOnDoor()
+		public override void InteractSpecial( SceneTraceResult tr, GameObject player )
 		{
-			Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
-		}
-		public void InteractSpecial( SceneTraceResult tr, GameObject player )
-		{
-			if ( Owner == null )
-			{
+			if ( Owner == null ) {
 				PurchaseDoor( player );
-			}
-			else
-			{
-				if ( Owner.Id == player.Id )
-				{
-					SellDoor();
-				}
+			} else if ( Owner.GameObject.Id == player.Id ) {
+				SellDoor();
 			}
 		}
 
-		public void InteractAttack1( SceneTraceResult tr, GameObject player )
+		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.Id ) { LockDoor(); } else { KnockOnDoor(); }
+			if (player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
 		}
 
-		public void InteractAttack2( SceneTraceResult tr, GameObject player )
+		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.Id) { UnlockDoor(); } else { KnockOnDoor(); }
+			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
 		public void PurchaseDoor( GameObject player )
@@ -76,7 +66,7 @@ namespace Entity.Interactable.Door
 		[Broadcast]
 		public void UpdateDoorOwner( GameObject player = null, Stats playerStats = null )
 		{
-			Owner = player;
+			Owner = player != null ? GameController.Instance.GetPlayerByGameObjectID( player.Id ) : null;
 			OwnerStats = playerStats;
 		}
 
@@ -84,7 +74,7 @@ namespace Entity.Interactable.Door
 		{
 			if ( Owner == null ) return;
 			// Get player stats
-			var playerStats = Owner.Components.Get<Stats>();
+			var playerStats = Owner.GameObject.Components.Get<Stats>();
 			if ( playerStats == null ) return;
 
 			if ( playerStats.SellDoor( GameObject ) )
@@ -124,6 +114,9 @@ namespace Entity.Interactable.Door
 			OwnerStats?.SendMessage( "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
+		private void KnockOnDoor()
+		{
+			Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
+		}
 	}
-
 }
