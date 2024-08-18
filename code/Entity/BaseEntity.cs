@@ -32,7 +32,7 @@ public partial class BaseEntity : Component, IInteractable
     protected override void OnStart()
     {
         base.OnStart();
-        Log.Info($"{EntityName} has been initialized with {Health} health.");
+        Log.Info($"{EntityName} has been initialized.");
         SetupPhysics();
         
         // Ensure the entity has the interact tag to be recognized by the InteractionSystem

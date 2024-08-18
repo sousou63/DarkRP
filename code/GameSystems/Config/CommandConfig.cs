@@ -180,7 +180,86 @@ namespace GameSystems.Config
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} rank to {rank.DisplayName}");
 								return true;
 						}
-				)}
+				)},
+				{ "dropmoney", new Command(
+                        name: "dropmoney",
+                        description: "Drops the specified amount of money.",
+                        permissionLevel: PermissionLevel.User,
+                        commandFunction: (player, scene, args) =>
+                        {
+								// Get the player stats
+								var playerStats = player.Components.Get<Stats>();
+								if (playerStats == null)
+								{
+									Log.Error("Player stats not found.");
+									return false;
+								}
+
+								if (args.Length < 1)
+								{
+									playerStats.SendMessage("Usage: /dropmoney <amount>");
+									return false;
+								}
+
+								if (!int.TryParse(args[0], out int amount) || amount <= 0)
+								{
+									playerStats.SendMessage("Invalid amount specified.");
+									return false;
+								}
+
+								if (!playerStats.RemoveMoney(amount))
+								{
+									playerStats.SendMessage("You do not have enough money to drop that amount.");
+									return false;
+								}
+
+								try
+								{
+									// Get the ConfigManager to access the MoneyPrefab
+									var configManager = ConfigManagerHelper.GetConfigManager(scene);
+									if (configManager == null || configManager.MoneyPrefab == null)
+									{
+										Log.Error("Money prefab is not set in the ConfigManager.");
+										return false;
+									}
+
+									// Clone the MoneyPrefab and position it
+									var moneyObject = configManager.MoneyPrefab.Clone();
+									if (moneyObject == null)
+									{
+										Log.Error("Failed to clone MoneyPrefab.");
+										return false;
+									}
+
+									// Position the money in front of the player
+									moneyObject.Transform.Position = player.Transform.Position + player.Transform.Rotation.Forward * 50;
+
+									// Attach the Money component to the GameObject
+									var moneyComponent = moneyObject.Components.Get<Money>();
+									if (moneyComponent == null)
+									{
+										Log.Error("Money component is missing on the prefab.");
+										return false;
+									}
+
+									moneyComponent.Amount = amount;
+									moneyComponent.Owner = playerStats.GetPlayerDetails();
+
+									// Network the spawned GameObject
+									moneyObject.NetworkSpawn();
+
+									// Notify the player
+									playerStats.SendMessage($"You have dropped ${amount.ToString("N0")}.");
+
+									return true;
+								}
+								catch (Exception e)
+								{
+									Log.Error($"Error in /dropmoney command: {e.Message}");
+									return false;
+								}
+                        }
+                )}
 		};
 
 		public IReadOnlyCollection<ICommandConfig> Commands => _commands.Values;

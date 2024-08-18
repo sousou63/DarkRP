@@ -12,8 +12,18 @@ public sealed class Money : BaseEntity
     /// <summary>
     /// Amount of money this entity represents.
     /// </summary>
-    [Property]
-    public int MoneyAmount { get; set; } = 100;
+    [Property, Sync] public int Amount { get; set; } = 100;
+
+    /// <summary>
+    /// Called when the component is first created and added to a GameObject.
+    /// Initializes the component and sets up the model and entity name.
+    /// </summary>
+    protected override void OnStart()
+    {
+        EntityName = "Money";
+        base.OnStart();
+
+    }
 
     /// <summary>
     /// Handles interaction when the player uses the default interaction key (e.g., "E").
@@ -26,7 +36,7 @@ public sealed class Money : BaseEntity
         var playerStats = player.Components.Get<Stats>();
         if (playerStats != null)
         {
-            playerStats.AddMoney(MoneyAmount);
+            playerStats.AddMoney(Amount);
             Sound.Play("audio/money.sound");
             DestroyMoney();
         }
