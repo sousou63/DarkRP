@@ -1,0 +1,23 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "rp_minimal_city",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "rp_minimal_city",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "oleshkus.ground_2#57400",
+        "facepunch.wall_limestone_brick_large#18706",
+        "semxy.bowiegrass#24045"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "map/rp_minimal_city.vmap"
+      }
+    }
+  }
+}

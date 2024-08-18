@@ -9,7 +9,7 @@
     "NetworkOrphaned": 1,
     "Components": [
       {
-        "__type": "DoorLogic",
+        "__type": "Entity.Interactable.Door.DoorLogic",
         "__guid": "be1b80f3-03a0-4019-b81f-83972765c1c6",
         "Door": {
           "_type": "gameobject",
@@ -33,17 +33,15 @@
         "__guid": "244484dd-fb97-4cc3-b1af-8d3adb675e91",
         "Flags": 0,
         "Name": "Door",
-        "Position": "-0.03511548,-18.66354,39.41812",
-        "Scale": "0.02540947,0.7285867,1.587103",
         "Enabled": true,
         "Components": [
           {
             "__type": "Sandbox.ModelRenderer",
             "__guid": "1f59113c-d475-48d9-a702-548a5e5f361f",
             "BodyGroups": 18446744073709551615,
-            "Model": "models/dev/box.vmdl",
+            "Model": "models/darkrp_map/temp_door_001a.vmdl",
             "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "Tint": "0.23256,0.15583,0.0887,1"
           }
         ]
       },
@@ -51,7 +49,7 @@
         "__guid": "8b3e3286-3749-4f35-8d43-a58dcea8cb12",
         "Flags": 0,
         "Name": "Panel (1)",
-        "Position": "-0.9605581,-18.3967,56.29179",
+        "Position": "-1.214411,-18.3967,56.29179",
         "Rotation": "0,0,1,-0.00000004371139",
         "Enabled": true,
         "Components": [
@@ -79,7 +77,7 @@
         "__guid": "02c41d63-7d0f-4433-ab3d-68dbe61ce2e2",
         "Flags": 0,
         "Name": "Panel",
-        "Position": "1,-18.3967,56.29179",
+        "Position": "1.248956,-18.3967,56.29179",
         "Enabled": true,
         "Components": [
           {
