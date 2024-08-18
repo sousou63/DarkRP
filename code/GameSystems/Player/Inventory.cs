@@ -15,7 +15,9 @@ public sealed class Inventory : Component
 
 	public bool isInventoryVisible;
 
-	public int slots = 6;
+	public int maxSlots = 9;
+
+	public int currentSelectedSlot;
 
 	protected override void OnStart()
 	{
@@ -55,6 +57,18 @@ public sealed class Inventory : Component
 		inputDetected = false;
 		var wheel = -Input.MouseWheel.y;
 
+		if ( wheel < 0 )
+		{
+			currentSelectedSlot++;
+			SlotLogicCheck();
+		}
+
+		if ( wheel > 0 )
+		{
+			currentSelectedSlot--;
+			SlotLogicCheck();
+		}
+
 		// Check input for slots 0 to 9
 		for ( int i = 0; i < 10; i++ )
 		{
@@ -62,10 +76,24 @@ public sealed class Inventory : Component
 			{
 				// Show inventory and play sound when a slot key is pressed
 				isInventoryVisible = true;
+				currentSelectedSlot = i;
 				PlayInventoryOpenSound();
 				inputDetected = true;
 				break; // Exit loop once an input is detected
 			}
+
+		}
+
+		if ( Input.Pressed( "SlotNext" ))
+		{
+			currentSelectedSlot++;
+			SlotLogicCheck();
+		}
+
+		if ( Input.Pressed( "SlotPrev" ))
+		{
+			currentSelectedSlot--;
+			SlotLogicCheck();
 		}
 
 		// Check input for SlotNext and SlotPrev
@@ -96,6 +124,13 @@ public sealed class Inventory : Component
 		{
 			timeSinceLastVisible = 0;
 		}
+
+	}
+
+	private void SlotLogicCheck()
+	{
+		if (currentSelectedSlot < 1) { currentSelectedSlot = maxSlots; }
+		if (currentSelectedSlot > maxSlots ) { currentSelectedSlot = 1; }
 	}
 
 	private void PlayInventoryOpenSound()

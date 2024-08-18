@@ -58,12 +58,23 @@
 
         {
 
-            @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().slots; i++)
+            @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
 
         {
-            <div class="slot container box" style="color:white">
+                if (i != PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot )
+                {
+                <div class="slot container box" style="color:white">
                 @i
-            </div>
+                </div>
+                }
+
+                else
+                {
+                    <div class="slot container box" style="color:white; background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);">
+                        @i
+                    </div>
+                }
+
         }
 
         }
@@ -114,5 +125,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase,PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot);
 }
