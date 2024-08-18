@@ -35,6 +35,7 @@ To ensure code quality and maintainability, please adhere to the following guide
 - IRLadderGoat: Scoreboard foundation, code refactoring, physic handling 
 - Mangrogred: Money pickup, tweaks, base map 
 - Dada : Map Improvements
+- Red : Chat UI improvements
 ## Links
 - S&Box Page: https://sbox.game/sousoup/darkrp
 - Discord: https://discord.com/invite/yBDk9Xr6VB
