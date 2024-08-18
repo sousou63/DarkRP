@@ -1,6 +1,5 @@
-using Sandbox;
 using GameSystems.Player;
-using Entity.Interactable;
+using Entity;
 
 /// <summary>
 /// Represents a money entity that players can interact with to collect money.
@@ -20,9 +19,8 @@ public sealed class Money : BaseEntity
     /// </summary>
     protected override void OnStart()
     {
-        EntityName = "Money";
         base.OnStart();
-
+        EntityName = "Money";
     }
 
     /// <summary>

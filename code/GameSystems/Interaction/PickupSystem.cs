@@ -18,6 +18,8 @@ namespace GameSystems.Interaction
 		private Rigidbody heldObjectRigidbody;
 		private Vector3 heldObjectCenter;
 		private Player.MovementController playerController;
+		private float lastPickupTime;
+		private float deltaPickupTime = 0.5f;
 
         public PickupSystem(float interactRange, Player.MovementController playerController, GameObject holdingArea)
         {
@@ -34,15 +36,6 @@ namespace GameSystems.Interaction
 			Rigidbody rb = pickedUpObject.Components.Get<Rigidbody>();
 			if (rb != null)
 			{
-				// remove the earlier parent of the pickedUpObject 
-				// i.e if someone else is holding it, remove it from their hands
-				if (pickedUpObject.Parent != null)
-				{
-					pickedUpObject.SetParent(null);
-					rb.GameObject.SetParent(null);
-				}
-				// maybe some other logic is preferred. Maybe not being able to steal items from others
-
 				heldObjectRigidbody = rb;
 				heldObjectRigidbody.Gravity = false;
 				heldObjectRigidbody.ClearForces();
@@ -51,17 +44,20 @@ namespace GameSystems.Interaction
 				var bounds = pickedUpObject.GetBounds();
 				heldObjectCenter = bounds.Center;
 
-				heldObjectRigidbody.GameObject.SetParent(holdingArea);
+				pickedUpObject.SetParent(holdingArea);
 				heldObject = pickedUpObject;
+
+				lastPickupTime = RealTime.Now;
 			}
 		}
 		public void DropPickup(float throwingForce = 0)
 		{
-			heldObjectRigidbody.Gravity = true;
-
 			UnlockHeldObject();
-			heldObjectRigidbody.GameObject.SetParent(null);
+
+			heldObjectRigidbody.Gravity = true;
 			heldObjectRigidbody.PhysicsBody.ApplyForce(playerController.EyeAngles.Forward * throwingForce);
+
+			heldObject.SetParent(null);
 			heldObject = null;
 		}
 
@@ -71,15 +67,7 @@ namespace GameSystems.Interaction
 			if (heldObject != null)
 			{
 				SetHoldingArea();
-				// Check if the object is too far away from the holding area
-				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, holdingArea.Transform.Position);
-				if (dist > 1.5f*interactRange) { DropPickup(); return; }
 
-				// Move the object to the holding area
-				if (dist > 1f)
-				{
-					heldObjectRigidbody.Transform.Position = holdingArea.Transform.Position;
-				}
 				// Rotate the object if the player is holding down the rotate button
 				if ( Input.Down( "attack3" ) ) {
 					RotateHeldObject();
@@ -89,6 +77,22 @@ namespace GameSystems.Interaction
 					ResetRotationHeldObject();
 				} else if (Input.Down("attack1")) {
 					DropPickup(throwForce);
+					return;
+				} else if (Input.Down("attack2") && RealTime.Now - lastPickupTime > deltaPickupTime  ) {
+					DropPickup();
+					return;
+				}
+				// Check if the object is too far away from the holding area
+				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, holdingArea.Transform.Position);
+				if (dist > 1.5f*interactRange) { 
+					DropPickup(); 
+					return;
+				}
+
+				// Move the object to the holding area
+				if (dist > 1f)
+				{
+					heldObject.Transform.Position = holdingArea.Transform.Position;
 				}
 			}
 		}
