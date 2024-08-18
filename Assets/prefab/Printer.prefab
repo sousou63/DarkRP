@@ -50,7 +50,34 @@
       {
         "__type": "Entity.Interactable.Printer.PrinterLogic",
         "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
+        "PrinterConfig": {
+          "Bronze": {
+            "Color": "0.33725,0.07843,0,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
+            "Price": 500,
+            "Timer": 20
+          },
+          "Silver": {
+            "Color": "0.94902,0.94118,0.93725,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/silver/moneyprinter_base_silver.vmat",
+            "Price": 1200,
+            "Timer": 15
+          },
+          "Gold": {
+            "Color": "1,0.90196,0,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/gold/moneyprinter_base_gold.vmat",
+            "Price": 2600,
+            "Timer": 10
+          },
+          "Diamond": {
+            "Color": "0,0.85098,1,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/titanium/moneyprinter_base_titanium.vmat",
+            "Price": 4800,
+            "Timer": 5
+          }
+        },
         "Bronze": "0.33953,0.07922,0,1",
+        "BronzeMaterial": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
         "BronzePrice": 500,
         "BronzeTimer": 20,
         "Diamond": "0,0.85,1,1",
