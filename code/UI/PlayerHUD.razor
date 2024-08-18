@@ -5,30 +5,29 @@
 
 <root>
     <div style="font-color:white; font-size: 25px; margin-top: 20px; margin-left: 20px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
-
     <div class="player-card">
         <div class="player-details-container">
             <div class="container">
+            
                 <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
-                <div class="wallet">
-                    <div class="label">Wallet</div>
-                </div>
-            </div>
-            <div class="container" style="">
                 <div class="job">@MyStringValue3</div>
-                <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
             </div>
         </div>
+        <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
         <div class="bars">
             <div class="bar">
-                <div class="fill" style="width:100%; background-color: rgb(180, 71, 71);"></div>
+                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().HealthBase * 3); background-color: rgb(180, 71, 71);">
+                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().HealthBase.ToString("N0")) </div>
+                </div>
             </div>
             <div class="bar">
-                <div class="fill" style="width:100%; background-color: rgb(219, 157, 42);"></div>
+                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().FoodBase * 3); background-color: rgb(219, 157, 42);">
+                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().FoodBase.ToString("N0"))</div>
+                </div>
             </div>
         </div>
     </div>
-
+    
     <div class="crosshair">
     </div>
 
@@ -108,12 +107,12 @@
 
     protected override void OnFixedUpdate()
     {
-        Notifications.RemoveAll(x => x.timeSinceAdded > 5);
+        Notifications.RemoveAll(x => x.timeSinceAdded > 3);
 
     }
 
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase,PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible);
 }
