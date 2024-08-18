@@ -60,6 +60,10 @@
         "GoldPrice": 2600,
         "GoldTimer": 10,
         "PrinterCurrentMoney": 0,
+        "PrinterFan": {
+          "_type": "gameobject",
+          "go": "77f52835-a0aa-4c30-be47-0bdf2d8d5133"
+        },
         "PrinterMaxMoney": 8000,
         "PrinterTimerMoney": 25,
         "Silver": "28.58,28.58,28.58,1",
