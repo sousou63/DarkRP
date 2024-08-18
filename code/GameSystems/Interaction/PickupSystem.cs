@@ -13,7 +13,7 @@ namespace GameSystems.Interaction
 		private GameObject holdingArea;
 
         private readonly float interactRange;
-		private readonly float throwForce = 500000f;
+		private readonly float throwForce = 100000f;
 		private GameObject heldObject;
 		private Rigidbody heldObjectRigidbody;
 		private Vector3 heldObjectCenter;
