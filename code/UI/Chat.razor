@@ -8,31 +8,36 @@
 @implements Component.INetworkListener
 
 <root>
-    @if (ChatOpen == true)
-    {
-        <div class="header">
-            Chat
-        </div>
-    }
 	<div class="output">
 		@foreach (var entry in Messages)
         {
+            var color = new Color(1, 1, 1);
             // Only show the messages from the last 10 seconds, or all if the input box is focused
             @if (entry.timeSinceAdded < 10f || ChatOpen)
             {
                 <div class="chat_entry">
-                    <div class="timestamp">@entry.timestamp</div>
+                    <div class="about">
+                        @if (entry.steamid > 0)
+                        {
+                            var userGroup = GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup();
+                            if (userGroup?.Color != null) {
+                                color = userGroup.Color;
+                            }
+                            <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
+                        }
+                    </div>
                     @if (entry.steamid > 0)
                     {
-                        var userGroup = GameController?.GetPlayerBySteamID(entry.steamid)?.GetHighestUserGroup();
-                        @if ( userGroup is not null)
-                        {
-                            <div class="user-group" style="color: rgb(@(255 * userGroup.Color.r), @(255 * userGroup.Color.g), @(255 * userGroup.Color.b));">@userGroup.DisplayName</div>
-                        }
-                        <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
+                        <div class="message">
+                            <div class="author" style="color: rgb(@(255 * color.r), @(255 * color.g), @(255 * color.b));">@entry.author</div>
+                            @entry.message
+                        </div> 
+                    } else {
+                        <div class="message system">
+                            <div class="author">@entry.author</div>
+                            @entry.message
+                        </div>
                     }
-                    <div class="author">@entry.author</div>
-                    <text class="message">@entry.message</text>
                 </div>
             }
         }

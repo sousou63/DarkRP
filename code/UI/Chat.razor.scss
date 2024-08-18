@@ -1,24 +1,16 @@
 Chat {
 	position: absolute;
 	bottom: 250px;
-	left: 70px;
-	width: 30vw;
-	height: 20vw;
+	left: 50px;
+	width: 700px;
+	height: 500px;
 	justify-content: center;
-	font-weight: bold;
-	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
-	font-size: 17px;
+	font-size: 20px;
 	font-family: Poppins;
 	text-shadow: 2px 2px 2px #000a;
-
-	.header {
-		color: white;
-		padding: 5px;
-		height: auto;
-		border-bottom: 2px solid rgb(148, 148, 148);
-	}
+	padding-top: 10px;
 
 	.output {
 		display: flex;
@@ -29,9 +21,10 @@ Chat {
 		height: calc(32px * 8);
 		overflow-y: scroll;
 		overflow-x: hidden;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 
 		.chat_entry {
-			//background-color: #222d;
 			padding: 2px;
 			gap: 10px;
 			min-height: 32px;
@@ -42,31 +35,17 @@ Chat {
 				color: #f3f3f3;
 				flex-shrink: 0;
 				font-family: 'Times New Roman', serif;
+				font-weight: bold;
 			}
 
 			.user-group {
 				padding: 0;
 				margin: 0;
-				display: flex;
 				text-align: center;
 				width: 90px;
 				justify-content: center;
 				color: rgb(231, 197, 84);
-			}
-
-			.avatar {
-				width: 25px;
-				height: 25px;
-				margin-left: 5px;
-				margin-right: 5px;
-				background-position: center;
-				background-size: cover;
-				border-radius: 100px;
-			}
-
-			.author {
-				color: #2d95ce;
-				flex-shrink: 0;
+				font-weight: bold;
 			}
 
 			.message {
@@ -75,6 +54,29 @@ Chat {
 				flex-basis: 50%;
 				flex-grow: 1;
 				flex-shrink: 1;
+				flex-direction: column;
+				&.system {
+					font-weight: bold;
+					flex-direction: row;
+					.author {
+						margin-right: 5px;
+					}
+				}
+				
+				.author {
+					color: #2d95ce;
+					flex-shrink: 0;
+					font-weight: bold;
+				}
+			}
+
+			.avatar {
+				width: 45px;
+				height: 45px;
+				margin-left: 10px;
+				background-position: center;
+				background-size: cover;
+				border-radius: 100px;
 			}
 		}
 	}
@@ -86,6 +88,10 @@ Chat {
 		.output, .header, .input {
 			background-color: #73737370;
 		}
+
+		.input-container {
+			border-top: 2px solid rgb(148, 148, 148);
+		}
 	}
 
 	.input-container {
@@ -94,6 +100,8 @@ Chat {
 		.input {
 			color: white;
 			padding: 5px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
 		}
 
 		.command-suggestions {
