@@ -52,7 +52,8 @@ namespace Entity.Interactable.Printer
 		{
 			// Determine the timer based on the printer type
 			float printerTimer = GetPrinterTimer();
-
+			Fan.Transform.Rotation = Rotation.FromPitch(Time.Now * FanSpeed);
+			
 			// If the timer has passed, add money
 			if ( lastUsed >= printerTimer )
 			{

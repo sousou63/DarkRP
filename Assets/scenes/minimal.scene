@@ -461,6 +461,30 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
+    },
+    {
+      "__guid": "ea663a78-1aeb-4b8d-9703-3331d56dad3b",
+      "Flags": 0,
+      "Name": "Terrain",
+      "Position": "-17364.75,-20195,-1670.427",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.Terrain",
+          "__guid": "f1cec5d8-e793-4c4c-85a2-90b6fcd239b8",
+          "__version": 1,
+          "ClipMapLodExtentTexels": 256,
+          "ClipMapLodLevels": 6,
+          "DebugView": "None",
+          "EnableCollision": true,
+          "IsTrigger": false,
+          "RenderType": "Off",
+          "Static": false,
+          "Storage": "map/landscape/landscape.terrain",
+          "TerrainHeight": 10000,
+          "TerrainSize": 39936
+        }
+      ]
     }
   ],
   "SceneProperties": {
