@@ -1,6 +1,5 @@
 using System;
 using GameSystems.Player;
-using System.Security.Cryptography.X509Certificates;
 
 namespace GameSystems.Config
 {
@@ -70,7 +69,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
@@ -112,7 +111,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
@@ -147,7 +146,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								var GameController = ConfigManagerHelper.GetGameController(scene);
+								var GameController = GameSystems.GameController.Instance;
 								if (GameController == null) return false;
 
 								var foundPlayer = GameController.PlayerLookup(args[0]);
@@ -259,7 +258,40 @@ namespace GameSystems.Config
 									return false;
 								}
                         }
-                )}
+                )},
+				{ "noclip", new Command(
+						name: "noclip",
+						description: "Enable noclip on a player",
+						permissionLevel: PermissionLevel.Admin,
+						commandFunction: (player, scene, args) =>
+						{
+							
+							var targetPlayer = player;
+								// Get the player stats
+								var GameController = GameSystems.GameController.Instance;
+								if (GameController == null) return false;
+								if (args.Length > 0)
+								{
+									var foundPlayer = GameController.PlayerLookup(args[0]);
+									if ( foundPlayer is not null ) targetPlayer = foundPlayer.GameObject;
+								}
+								
+
+								// Get the player controller
+								var controller = targetPlayer.Components.Get<Player.MovementController>();
+								if (controller == null) return false;
+
+								controller.ToggleNoClip(!controller.IsNoClip);
+								if ( targetPlayer.Id == player.Id )
+								{
+									targetPlayer.Components.Get<Stats>()?.SendMessage($"Noclip {(controller.IsNoClip ? "enabled" : "disabled")}.");
+								}else
+								{
+									player.Components.Get<Stats>()?.SendMessage($"Noclip {(controller.IsNoClip ? "enabled" : "disabled")} for {targetPlayer.Name}.");
+								}
+								return true;
+						}
+				)}
 		};
 
 		public IReadOnlyCollection<ICommandConfig> Commands => _commands.Values;

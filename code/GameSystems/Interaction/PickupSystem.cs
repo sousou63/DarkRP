@@ -1,4 +1,5 @@
 using Sandbox;
+using GameSystems.Player;
 
 namespace GameSystems.Interaction
 {
@@ -12,11 +13,13 @@ namespace GameSystems.Interaction
 		private GameObject holdingArea;
 
         private float interactRange;
+		private float rotateSpeed = 0.01f;
 		private GameObject heldObject;
 		private Rigidbody heldObjectRigidbody;
-		private PlayerController playerController;
+		private Vector3 heldObjectCenter;
+		private Player.MovementController playerController;
 
-        public PickupSystem(float interactRange, PlayerController playerController, GameObject holdingArea)
+        public PickupSystem(float interactRange, Player.MovementController playerController, GameObject holdingArea)
         {
             this.interactRange = interactRange;
 			this.playerController = playerController;
@@ -43,10 +46,11 @@ namespace GameSystems.Interaction
 				heldObjectRigidbody = rb;
 				heldObjectRigidbody.Gravity = false;
 				heldObjectRigidbody.ClearForces();
-				heldObjectRigidbody.PhysicsBody.LinearDrag = 100f;
 
-				Log.Info("Picking up object");
-				//heldObjectRigidbody.PhysicsBody.Enabled = false;
+				// Get the bounds of the object
+				var bounds = pickedUpObject.GetBounds();
+				heldObjectCenter = bounds.Center;
+
 				heldObjectRigidbody.GameObject.SetParent(holdingArea);
 				heldObject = pickedUpObject;
 			}
@@ -55,9 +59,9 @@ namespace GameSystems.Interaction
 		{
 			Log.Info("Dropping object");
 			heldObjectRigidbody.Gravity = true;
-			//m_heldObjectRigidbody.ClearForces();
-			heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
+			//heldObjectRigidbody.PhysicsBody.LinearDrag = 1f;
 
+			UnlockHeldObject();
 			heldObjectRigidbody.GameObject.SetParent(null);
 			heldObject = null;
 		}
@@ -67,27 +71,32 @@ namespace GameSystems.Interaction
 			{
 				SetHoldingArea();
 				float dist = Vector3.DistanceBetween(heldObject.Transform.Position, holdingArea.Transform.Position);
+				if (dist > 1.5f*interactRange) { DropPickup(); return; }
+
 				if (dist > 1f)
 				{
-					Log.Info("Moving object");
-					heldObjectRigidbody.Transform.LerpTo(holdingArea.Transform.World, 0.05f);
+					heldObjectRigidbody.Transform.Position = holdingArea.Transform.Position;
 				}
 				// Could be extended with rotating an item
-				if (dist > interactRange)
-				{
-					Log.Info("Throwing object");
-					DropPickup();
-				}
 			}
+		}
+		public void RotateHeldObject()
+		{
+			playerController.EyesLocked = true;
+			heldObject.Transform.Local = heldObject.Transform.Local.RotateAround(heldObjectCenter, Input.AnalogLook);
+		}
+		public void UnlockHeldObject()
+		{
+			playerController.EyesLocked = false;
 		}
 		private void SetHoldingArea()
 		{
-			var eyePos = playerController.Transform.Position + new Vector3(0, 0, playerController.EyeHeight*2/3);
+			var eyePos = playerController.Transform.Position + new Vector3(0, 0, playerController.EyeHeight);
 			var eyeAngles = playerController.EyeAngles.Forward;
 			// rotate the target target vector according to the camera rotation from the eye position
 			var targetVec = eyePos + eyeAngles * (interactRange / 2);
 
-			holdingArea.Transform.Position = holdingArea.Transform.Position.LerpTo(targetVec, 0.05f);
+			holdingArea.Transform.Position = holdingArea.Transform.Position.LerpTo(targetVec, 0.15f);
 		}
     }
 }

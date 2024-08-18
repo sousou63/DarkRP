@@ -28,12 +28,13 @@ To ensure code quality and maintainability, please adhere to the following guide
 - Consistency: Follow consistent coding style and formatting conventions. [See](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names)
 ## Credits
 - Sousou: Project initiation and management
-- QueenPM: Chat enhancements, UI improvements, door system, code optimization
-- HankKitts: Money 3D models
+- QueenPM: Chat enhancements, UI improvements, door system, code optimization, user groups, no-clip system
+- HankKitts: Money, door and doorframe - 3d model 
 - dancore: Entity system, code optimization
 - Bozy: Team/job system foundation
-- IRLadderGoat: Scoreboard foundation
-- Mangrogred: Money pickup, tweaks 
+- IRLadderGoat: Scoreboard foundation, code refactoring, physic handling 
+- Mangrogred: Money pickup, tweaks, base map 
+- Dada : Map Improvements
 ## Links
 - S&Box Page: https://sbox.game/sousoup/darkrp
 - Discord: https://discord.com/invite/yBDk9Xr6VB

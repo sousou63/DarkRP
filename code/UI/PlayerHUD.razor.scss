@@ -1,4 +1,26 @@
 PlayerHUD {
+
+	.slot.selector.box {
+		position: absolute;
+		justify-content: center;
+		width: 100%;
+		height: 25%;
+		top: 10%;
+		//background-color: red; // this is to debug the container
+
+		.slot.container.box {
+			height: 35%;
+			width: 5%;
+			margin-left: 20px;
+			//justify-content: center;
+			flex-direction: column;
+			//background-color: black; // this is to debug the container
+			background-color: #1a75ff50;
+			border-radius: 5px 5px 5px 5px;
+
+		}
+	}
+
 	.notifications {
 		position: absolute;
 		top: 80px;

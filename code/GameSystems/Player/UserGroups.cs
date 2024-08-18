@@ -8,7 +8,7 @@ namespace GameSystems.Player{
     SuperAdmin,
     Developer
   }
-  public class UserGroup {
+  public class UserGroup : IComparable<UserGroup> {
     /// <summary>
     /// The name of the user group. This cannot contain spaces or special characters.
     /// </summary>
@@ -17,12 +17,7 @@ namespace GameSystems.Player{
     /// The display name of the user group.
     /// </summary>
     public string DisplayName { get; set; }
-
-    /// <summary>
-    /// The permission level of the user group. Higher levels have more permissions.
-    /// 100 - Developer
-    /// 99 - superadmin
-    /// </summary>
+    
     public PermissionLevel PermissionLevel { get; set; }
 
     public Color Color { get; set; }
@@ -37,6 +32,15 @@ namespace GameSystems.Player{
       PermissionLevel = permissionLevel;
       Color = color;
       Log.Info($"User group {DisplayName} created with permission level {PermissionLevel}.");
+    }
+
+    // Implement the CompareTo method
+    public int CompareTo(UserGroup other)
+    {
+        if (other == null) return 1;
+
+        // Compare based on PermissionLevel
+        return PermissionLevel.CompareTo(other.PermissionLevel);
     }
   }
 }
