@@ -1,0 +1,17 @@
+@using Sandbox
+@using Sandbox.UI;
+@using Entity.Interactable
+@inherits PanelComponent
+
+<root>
+    <div class="title">
+        $ @(MoneyPrefab.Components.Get<Money>().Amount.ToString("N0"))
+    </div>
+</root>
+
+@code {
+
+    [Property] GameObject MoneyPrefab { get; set; }
+
+    protected override int BuildHash() => System.HashCode.Combine(MoneyPrefab.Components.Get<Money>().Amount);
+}

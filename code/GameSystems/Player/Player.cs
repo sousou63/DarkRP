@@ -51,7 +51,7 @@ namespace GameSystems.Player
 
       public UserGroup GetHighestUserGroup()
       {
-        return UserGroups.Max();
+        return UserGroups.MaxBy(x => x.PermissionLevel);
     }
   }
 }

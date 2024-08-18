@@ -126,13 +126,13 @@
                         }
                         </div>
 
-                        <!-- this doesn't work yet, it's supposed to show cloud assets but I struggle a bit to understand their API -->
+                        <!-- this doesn't work yet, it's supposed to show cloud assets but I struggle a bit to understand their API 
                         @foreach (var Package in Packages)
                         {
 
-                            <div class="button" onclick=> @Package.Title </div>
+                           // <div class="button" onclick=> @Package.Title </div>
 
-                        }
+                        } -->
 
                     </div>
                 </div>
@@ -201,9 +201,10 @@
     public string Query { get; set; } = "QuerryPlaceholder"; 
 
     // A list of found packages 
-    List<Package> Packages = new List<Package>();
+   // List<Package> Packages = new List<Package>();
 
-    // doesn't work yet ( I need to figure out their API to understand how to get a list of cloud Assets)
+    
+    /*  doesn't work yet ( I need to figure out their API to understand how to get a list of cloud Assets)
     public async Task FindPackage()
     {
         var found = await Package.FindAsync(Query);
@@ -211,11 +212,11 @@
         {
             Packages.AddRange(found.Packages);
         }
-    }
+    } */
 
     protected override async void OnStart()
     {
-        await FindPackage();
+       // await FindPackage();
         PropManager = GameObject.Parent.Components.Get<PropToolManager>();
     }
 
