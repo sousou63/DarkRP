@@ -1,6 +1,6 @@
 using Sandbox;
 using GameSystems.Player;
-using Entity.Interactable;
+using Entity;
 
 /// <summary>
 /// Represents a Food entity that players can interact with to collect Food.
