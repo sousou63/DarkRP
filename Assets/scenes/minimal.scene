@@ -225,7 +225,7 @@
       "Flags": 0,
       "Name": "printer",
       "Position": "-387.8854,-523.7152,121.1047",
-      "Tags": "printer,interact",
+      "Tags": "interact,printer",
       "Enabled": true,
       "NetworkMode": 1,
       "OwnerTransfer": 0,
