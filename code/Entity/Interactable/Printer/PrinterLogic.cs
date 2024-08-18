@@ -5,6 +5,8 @@ namespace Entity.Interactable.Printer
 {
 	public sealed class PrinterLogic : Component, IInteractable
 	{
+		[Property] public GameObject PrinterFan { get; set; }
+		[Property] public float PrinterFanSpeed { get; set; } = 1000f;
 		// Define the different types of printers
 		public enum PrinterType { Bronze, Silver, Gold, Diamond };
 
@@ -66,6 +68,17 @@ namespace Entity.Interactable.Printer
 
 				lastUsed = 0; // Reset the timer
 			}
+
+			SpinFan();
+		}
+
+		private void SpinFan()
+		{
+				// Calculate the rotation amount based on PrinterFanSpeed and Time.Delta
+				var rotationAmount = PrinterFanSpeed * Time.Delta;
+
+				// Apply the rotation relative to the GameObject's current rotation
+				PrinterFan.Transform.Rotation *= Rotation.FromAxis(Vector3.Left, rotationAmount);
 		}
 
 		// Method to set the current printer type and update its color
