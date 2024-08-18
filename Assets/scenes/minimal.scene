@@ -201,7 +201,7 @@
           "__type": "Sandbox.ModelRenderer",
           "__guid": "473b76b5-65c1-42e2-802a-908e8f82b6f9",
           "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/error.vmat",
+          "MaterialOverride": "materials/tile/tilefloor_001a.vmat",
           "Model": "models/dev/box.vmdl",
           "RenderType": "On",
           "Tint": "1,1,1,1"
