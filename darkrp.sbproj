@@ -5,7 +5,7 @@
   "Ident": "darkrp",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": null,
+  "Resources": "/UI/fonts/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
@@ -178,7 +178,7 @@
         },
         {
           "Name": "Voice",
-          "KeyboardCode": "v",
+          "KeyboardCode": "x",
           "GamepadCode": "None",
           "GroupName": "Other"
         },

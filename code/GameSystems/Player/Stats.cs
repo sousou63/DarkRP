@@ -1,6 +1,8 @@
 using System;
 using GameSystems;
 using Entity.Interactable.Door;
+using System.Runtime.CompilerServices;
+using System.Runtime.Versioning;
 
 namespace GameSystems.Player
 {
@@ -14,7 +16,8 @@ namespace GameSystems.Player
 
 		// DOORS
 
-		public List<GameObject> Doors { get; private set; } = new List<GameObject>();
+		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
+
 
 		// BASE PLAYER PROPERTYS
 
@@ -23,7 +26,7 @@ namespace GameSystems.Player
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;
 		[Property] public float FoodBase { get; set; } = 100f;
-		[Property] public bool Died { get; set; } = false;
+  		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
 
@@ -122,6 +125,7 @@ namespace GameSystems.Player
 		{
 			MoneyBase = Ammount;
 		}
+  
 		public void AddFood( float Ammount )
 		{
 			FoodBase += Ammount;
@@ -135,67 +139,71 @@ namespace GameSystems.Player
 			FoodBase -= Ammount;
 			return true; // Successfully removed food
 		}
-		// DOOR LOGIC. Helps keep track of owned doors.
 
-		public bool PurchaseDoor( float price, GameObject door )
+		// DOOR LOGIC. Helps keep track of owned doors.
+		public void PurchaseDoor(float price, GameObject door)
 		{
+			Log.Info( $"Purchasing the door: {door.Id}" );
 			// Check if its a valid door
 			var doorLogic = door.Components.Get<DoorLogic>();
 			if ( doorLogic == null )
 			{
-				return false;
+				return;
 			}
 			// Check if the door is already owned
 			if ( Doors.Any( d => d.Id == door.Id ) )
 			{
-				return false;
+				return;
 			}
 
 			// If the player can afford it
 			if ( RemoveMoney( price ) )
 			{
-				Doors.Add( door );
-				doorLogic.PurchaseDoor( GameObject );
-				SendMessage( "The door has been purchased." );
-				return true;
+				Doors.Add(door);
+				doorLogic.UpdateDoorOwner( GameObject, this);
+				SendMessage("Door has been purchased.");
+				Sound.Play( "audio/notification.sound" );
+				return;
 			}
 			else
 			{
-				SendMessage( "Can't afford this door." );
-				return false;
+				SendMessage("Can't afford this door.");
+				return;
 			}
-
 		}
 
-		public bool SellDoor( GameObject door )
+		public void SellDoor(GameObject door)
 		{
+			Log.Info($"Selling door: {door.Id}");
 			// Check if its a valid door
 			var doorLogic = door.Components.Get<DoorLogic>();
 			if ( doorLogic == null )
 			{
-				return false;
+				return;
 			}
 
 			// Check if the door is owned
 			if ( !Doors.Any( d => d.Id == door.Id ) )
 			{
-				return false;
+				return;
 			}
-
 			// Remove the door from the list
-			Doors.Remove( door );
+			Doors.Remove(door);
+			AddMoney( doorLogic.Price / 2 );
 			doorLogic.SellDoor();
-			SendMessage( "Door has been sold." );
-			return true;
+			Sound.Play( "audio/notification.sound" );
+			SendMessage("Door has been sold.");
+			return;
 		}
 
 		public void SellAllDoors()
 		{
-			Log.Info( "Selling all doors" );
-			foreach ( var door in Doors )
-			{
-				Log.Info( $"Selling door: {door.Id}" );
-				SellDoor( door );
+			Int32 preRemoveCount=Doors.Count;
+			Log.Info("Selling All "+ preRemoveCount +" doors");
+			for (Int32 i = 0; i < preRemoveCount; i++)
+			{	
+				var door=Doors[0];
+				SellDoor(door);
 			}
 			SendMessage( "All doors have been sold." );
 		}
@@ -203,12 +211,10 @@ namespace GameSystems.Player
 		// TODO this would need to go to its own class. PlayerController or some shit
 		public void SendMessage( string message )
 		{
-			using ( Rpc.FilterInclude( c => c.Id == Rpc.CallerId ) )
+			using ( Rpc.FilterInclude( c => c.Id == GameObject.Network.OwnerId ) )
 			{
-				// Send the message
 				chat?.NewSystemMessage( message );
 			}
 		}
 	}
-
 }

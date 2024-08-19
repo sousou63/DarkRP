@@ -1,17 +1,25 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using Entity.Interactable.Printer;
+@using Utils;
 @inherits PanelComponent
 
 <root>
-    <div class="title">$ @(PrinterPrefab.Components.Get<PrinterLogic>().PrinterCurrentMoney.ToString("N0"))</div>
+    <div class="title">$ @(NumberUtils.FormatNumberWithSuffix(PrinterLogic.PrinterCurrentMoney))</div>
 </root>
 
 @code
 {
+    PrinterLogic PrinterLogic { get; set; }
 
-    [Property] GameObject PrinterPrefab { get; set; }
-
+    protected override void OnStart()
+    {
+        PrinterLogic = GameObject.Parent.Components.Get<PrinterLogic>();
+        if (PrinterLogic == null)
+        {
+            Log.Warning("PrinterLogic not found");
+        }
+    }
 
    // [Property] public GameObject Printer { get; set }
 
@@ -19,5 +27,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(PrinterPrefab.Components.Get<PrinterLogic>().PrinterCurrentMoney);
+    protected override int BuildHash() => System.HashCode.Combine(PrinterLogic?.PrinterCurrentMoney);
 }
