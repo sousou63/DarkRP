@@ -1,5 +1,5 @@
 {
-  "__guid": "a4644243-cfeb-4f3e-beea-f6667aef3099",
+  "__guid": "bcaa5c67-265e-45dc-8c2b-a78cc9e661b3",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -210,7 +210,7 @@
           "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "map/downtown.vmap",
+          "MapName": "map/downtown/downtown.vmap",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         }
