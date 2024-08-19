@@ -3,12 +3,10 @@ using GameSystems.Player;
 
 namespace GameSystems.Config
 {
-
-
 	/// <summary>
 	/// Command configuration.
 	/// </summary>
-	public class CommandConfig
+	public class CommandConfig : Component
 	{
 		private readonly Dictionary<string, ICommandConfig> _commands = new()
 		{
@@ -340,7 +338,6 @@ namespace GameSystems.Config
 			commandNames.Add("help");
 			return commandNames.ToArray();
 		}
-
 		public bool ExecuteCommand(string commandName, GameObject player, Scene scene, string[] args)
 		{
 			// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
