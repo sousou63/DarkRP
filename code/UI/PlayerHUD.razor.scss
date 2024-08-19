@@ -125,16 +125,20 @@ PlayerHUD {
 
 	.inventory {
 		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		top: 0;
-		padding-top: 30px;
+		width: 100%;
+		top: -120px;
+		transition: top .2s ease-out, transform 2s ease-out;
+		transform-origin: center;
 		// background-color: red; // this is to debug the container
 
 		justify-content: center;
 		align-items: flex-start;
 		gap: 20px;
+
+		&.visible {
+			top: 30px;
+			// transform: rotate(360deg); // This do be crazy spinning yo
+		}
 
 		.slot {
 			height: 90px;

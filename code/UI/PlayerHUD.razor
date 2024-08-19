@@ -56,19 +56,14 @@
             </div>
         }
     </div>
-
-    <div class="inventory">
-
-        @if (PlayerPrefab.Components.Get<Inventory>().isInventoryVisible)
+    
+    <div class="inventory @(PlayerPrefab.Components.Get<Inventory>().isInventoryVisible ? "visible" : "")">
+        @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
         {
-            @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
-            {
-                <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">
-                    <div class="text">@i</div>
-                </div>
-            }
+            <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">
+                <div class="text">@i</div>
+            </div>
         }
-
     </div>
 
 </root>
