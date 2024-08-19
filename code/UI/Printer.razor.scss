@@ -1,17 +1,17 @@
 Printer {
 	position: absolute;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
+	top: 10;
+	left: 0;
+	right: 100;
+	bottom: 3;
 	background-color: #0d0d0d;
 	justify-content: center;
 	align-items: center;
 	font-weight: bold;
 	border-radius: 5px;
-	font-family: 'DS-Digital';
 
 	.title {
 		font-size: 50px;
-		color: green;
+		font-color: green;
 	}
 }

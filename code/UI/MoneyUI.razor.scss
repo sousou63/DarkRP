@@ -4,7 +4,7 @@ MoneyUI {
     justify-content: center;
     align-items: center;
     padding: 5px;
-    font-size: 17px;
+    font-size: 14px;
     overflow: visible;
     width: 100%;
 }
@@ -15,7 +15,4 @@ MoneyUI {
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    color: green;
-    font-family: "Lucida Console", "Courier New", monospace;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

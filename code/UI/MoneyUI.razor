@@ -1,26 +1,17 @@
 @using Sandbox
 @using Sandbox.UI;
 @using Entity.Interactable
-@using Utils;
 @inherits PanelComponent
 
 <root>
     <div class="title">
-        $ @(NumberUtils.FormatNumberWithSuffix(MoneyComponent.Amount))
+        $ @(MoneyPrefab.Components.Get<Money>().Amount.ToString("N0"))
     </div>
 </root>
 
 @code {
 
-    Money MoneyComponent { get; set; }
-    protected override void OnStart()
-    {
-        MoneyComponent = GameObject.Parent.Components.Get<Money>();
-        if (MoneyComponent == null)
-        {
-            Log.Warning("Money component not found");
-        }
-    }
+    [Property] GameObject MoneyPrefab { get; set; }
 
-    protected override int BuildHash() => System.HashCode.Combine(MoneyComponent.Amount);
+    protected override int BuildHash() => System.HashCode.Combine(MoneyPrefab.Components.Get<Money>().Amount);
 }
