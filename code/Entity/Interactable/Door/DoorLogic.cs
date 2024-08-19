@@ -26,13 +26,13 @@ namespace Entity.Interactable.Door
 			if ( Owner == null )
 			{
 				var playerStats = player.Components.Get<Stats>();
-				playerStats.PurchaseDoor(Price ,this.Door);
+				playerStats.PurchaseDoor( Price, this.Door );
 			}
 			else
 			{
 				if ( Owner.GameObject.Id == player.Id )
 				{
-					OwnerStats.SellDoor(this.Door);
+					OwnerStats.SellDoor( this.Door );
 				}
 			}
 		}
@@ -40,13 +40,13 @@ namespace Entity.Interactable.Door
 		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
+			if ( player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
 		}
 
 		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
+			if ( player.Id == Owner?.GameObject.Id ) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
 		[Broadcast]
@@ -83,14 +83,14 @@ namespace Entity.Interactable.Door
 		private void LockDoor()
 		{
 			IsUnlocked = false;
-			OwnerStats?.Notify(PlayerHUD.NotificationType.Info, "Door has been locked." );
+			OwnerStats?.Notify( PlayerHUD.NotificationType.Info, "Door has been locked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 
 		private void UnlockDoor()
 		{
 			IsUnlocked = true;
-			OwnerStats?.Notify(PlayerHUD.NotificationType.Info, "Door has been unlocked." );
+			OwnerStats?.Notify( PlayerHUD.NotificationType.Info, "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 		private void KnockOnDoor()
