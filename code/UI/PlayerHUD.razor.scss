@@ -63,7 +63,6 @@ PlayerHUD {
 			width: 100%;
 			font-size: 35px;
 			line-height: 35px;
-			// max-height: 24px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -124,29 +123,41 @@ PlayerHUD {
 		}
 	}
 
-	.slot.selector.box {
+	.inventory {
 		position: absolute;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		top: 86%;
-		//background-color: red; // this is to debug the container
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+		padding-top: 30px;
+		// background-color: red; // this is to debug the container
 
-		.slot.container.box {
-			height: 120px;
-			width: 120px;
-			margin-left: 20px;
-			//justify-content: center;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 20px;
+
+		.slot {
+			height: 90px;
+			width: 90px;
 			flex-direction: column;
 			//background-color: black; // this is to debug the container
 			background-color: #19191d5b;
 			border-radius: 5px 5px 5px 5px;
 			backdrop-filter: blur(1px);
+			color: rgba(255, 255, 255, 0.6);
+			transition: height 0.1s ease-out, width 0.1s ease-out, margin 0.1s ease-out;
 			
-			.slot.font {
-				font-size: 40px;
+			&.active {
+				color: white;
+				background: linear-gradient(90deg, rgba(51, 116, 255, 1) 0%, rgba(25, 25, 29, 0.357) 10%);
+				height: 100px;
+				width: 100px;
+				margin: -5px;
+			}
+			
+			.text {
+				font-size: 30px;
 				font-family: Poppins;
-				color: rgba(255, 255, 255, 0.6);
 				align-self: flex-end;
 				margin-right: 10px;
 			}

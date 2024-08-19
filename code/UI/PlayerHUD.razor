@@ -57,31 +57,16 @@
         }
     </div>
 
-    <div class="slot selector box">
+    <div class="inventory">
 
         @if (PlayerPrefab.Components.Get<Inventory>().isInventoryVisible)
-
         {
-
             @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
-
-        {
-                if (i != PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot )
-                {
-                <div class="slot container box" style="color:white">
-                <div class="slot font">@i</div>
+            {
+                <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">
+                    <div class="text">@i</div>
                 </div>
-                }
-
-                else
-                {
-                    <div class="slot container box" style="color:white; background: linear-gradient(90deg, rgba(51, 116, 255, 1) 0%, rgba(25, 25, 29, 0.357) 10%);">
-                        <div class="slot font">@i</div>
-                    </div>
-                }
-
-        }
-
+            }
         }
 
     </div>
