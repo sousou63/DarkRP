@@ -57,13 +57,13 @@ public sealed class Inventory : Component
 		inputDetected = false;
 		var wheel = -Input.MouseWheel.y;
 
-		if ( wheel < 0 )
+		if ( wheel > 0 || Input.Pressed( "SlotNext" ) )
 		{
 			currentSelectedSlot++;
 			SlotLogicCheck();
 		}
 
-		if ( wheel > 0 )
+		if ( wheel < 0 || Input.Pressed( "SlotPrev" ))
 		{
 			currentSelectedSlot--;
 			SlotLogicCheck();
@@ -82,18 +82,6 @@ public sealed class Inventory : Component
 				break; // Exit loop once an input is detected
 			}
 
-		}
-
-		if ( Input.Pressed( "SlotNext" ))
-		{
-			currentSelectedSlot++;
-			SlotLogicCheck();
-		}
-
-		if ( Input.Pressed( "SlotPrev" ))
-		{
-			currentSelectedSlot--;
-			SlotLogicCheck();
 		}
 
 		// Check input for SlotNext and SlotPrev
