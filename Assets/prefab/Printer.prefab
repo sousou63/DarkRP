@@ -3,7 +3,7 @@
     "__guid": "d9722984-8e27-467c-bf69-0aed3358f138",
     "Flags": 0,
     "Name": "printer",
-    "Tags": "interact,printer",
+    "Tags": "printer,interact",
     "Enabled": true,
     "NetworkMode": 1,
     "OwnerTransfer": 0,
@@ -42,36 +42,55 @@
         "SoundOverride": false,
         "StopOnNew": false,
         "TargetMixer": {
-          "Name": "master",
-          "Id": "3bcc4717-e97f-4fe9-8ccc-f8ee9be3f467"
+          "Name": "game",
+          "Id": "5ee1f692-d498-44a8-a66e-451bb0ff3eeb"
         },
         "Volume": 1
       },
       {
-        "__type": "PrinterLogic",
+        "__type": "Entity.Interactable.Printer.PrinterLogic",
         "__guid": "f8b4b767-1757-42a9-8d5a-071d12dc228d",
-        "Bronze": "0.33953,0.07922,0,1",
-        "BronzePrice": 500,
-        "BronzeTimer": 20,
-        "Diamond": "0,0.85,1,1",
-        "DiamondPrice": 4800,
-        "DiamondTimer": 5,
-        "Gold": "1,0.9,0,1",
-        "GoldPrice": 2600,
-        "GoldTimer": 10,
+        "PrinterConfig": {
+          "Bronze": {
+            "Color": "0.33725,0.07843,0,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
+            "Price": 500,
+            "Timer": 20
+          },
+          "Silver": {
+            "Color": "0.94902,0.94118,0.93725,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/silver/moneyprinter_base_silver.vmat",
+            "Price": 1200,
+            "Timer": 15
+          },
+          "Gold": {
+            "Color": "1,0.90196,0,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/gold/moneyprinter_base_gold.vmat",
+            "Price": 2600,
+            "Timer": 10
+          },
+          "Diamond": {
+            "Color": "0,0.85098,1,1",
+            "Material": "materials/darkrp_main/moneyprinter/base/titanium/moneyprinter_base_titanium.vmat",
+            "Price": 4800,
+            "Timer": 5
+          }
+        },
         "PrinterCurrentMoney": 0,
+        "PrinterFan": {
+          "_type": "gameobject",
+          "go": "77f52835-a0aa-4c30-be47-0bdf2d8d5133"
+        },
+        "PrinterFanSpeed": 1000,
         "PrinterMaxMoney": 8000,
-        "PrinterTimerMoney": 25,
-        "Silver": "28.58,28.58,28.58,1",
-        "SilverPrice": 1200,
-        "SilverTimer": 15
+        "PrinterTimerMoney": 25
       },
       {
         "__type": "Sandbox.ModelRenderer",
         "__guid": "8fbc36f6-c4a2-4338-8f69-eee46201651b",
         "BodyGroups": 18446744073709551615,
-        "MaterialOverride": "materials/dev/dev_measuregeneric01b.vmat",
-        "Model": "models/darkrp_main/printer.vmdl",
+        "MaterialOverride": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
+        "Model": "models/darkrp_main/moneyprinter/moneyprinter.vmdl",
         "RenderType": "On",
         "Tint": "1,1,1,1"
       },
@@ -90,10 +109,9 @@
         "__guid": "a5cd5a30-2083-43c0-a2d7-a09c3e78d29d",
         "Flags": 0,
         "Name": "World",
-        "Position": "0.0000002915604,17.55421,0",
+        "Position": "5.243544,16.74292,-0.5807551",
         "Rotation": "0,0,0.7071068,0.7071067",
         "Enabled": true,
-        "NetworkMode": 1,
         "Components": [
           {
             "__type": "Sandbox.WorldPanel",
@@ -101,17 +119,31 @@
             "HorizontalAlign": "Center",
             "InteractionRange": 1000,
             "LookAtCamera": false,
-            "PanelSize": "600,150",
+            "PanelSize": "410,122",
             "RenderScale": 1,
             "VerticalAlign": "Center"
           },
           {
             "__type": "Printer",
-            "__guid": "047b0e57-8490-4d4e-9107-4837e18ec6bd",
-            "PrinterPrefab": {
-              "_type": "gameobject",
-              "go": "d9722984-8e27-467c-bf69-0aed3358f138"
-            }
+            "__guid": "047b0e57-8490-4d4e-9107-4837e18ec6bd"
+          }
+        ]
+      },
+      {
+        "__guid": "77f52835-a0aa-4c30-be47-0bdf2d8d5133",
+        "Flags": 0,
+        "Name": "moneyprinterfan",
+        "Position": "-11.36446,16.90277,-0.6974952",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "5d4e6314-c428-4dd4-b064-b4b329fe93fb",
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/darkrp_main/moneyprinter/fan/bronze/moneyprinter_fan_bronze.vmat",
+            "Model": "models/darkrp_main/moneyprinter/moneyprinterfan.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
           }
         ]
       }
