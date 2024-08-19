@@ -30,6 +30,8 @@ namespace GameSystems.Player
 		[Property] public float SalaryAmmount { get; set; } = 50f;
 
 		private Chat chat { get; set; }
+		[Property] public GameObject PlayerScreen { get; set; }
+		private PlayerHUD playerHUD { get; set; }
 		private GameController controller { get; set; }
 
 		TimeSince lastUsed = 0; // Set the timer
@@ -39,6 +41,7 @@ namespace GameSystems.Player
 		protected override void OnStart()
 		{
 			chat = Scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
+			playerHUD = PlayerScreen.Components.Get<PlayerHUD>();
 			if (chat is null) Log.Error("Chat component not found");
 			try {
 				controller = GameController.Instance;
@@ -146,13 +149,12 @@ namespace GameSystems.Player
 			{
 				Doors.Add(door);
 				doorLogic.UpdateDoorOwner( GameObject, this);
-				SendMessage("Door has been purchased.");
-				Sound.Play( "audio/notification.sound" );
+				Notify(PlayerHUD.NotificationType.Info, "Door has been purchased.");
 				return;
 			}
 			else
 			{
-				SendMessage("Can't afford this door.");
+				Notify(PlayerHUD.NotificationType.Warning,"Can't afford this door.");
 				return;
 			}
 		}
@@ -176,8 +178,7 @@ namespace GameSystems.Player
 			Doors.Remove(door);
 			AddMoney( doorLogic.Price / 2 );
 			doorLogic.SellDoor();
-			Sound.Play( "audio/notification.sound" );
-			SendMessage("Door has been sold.");
+			Notify(PlayerHUD.NotificationType.Info, "Door has been sold.");
 			return;
 		}
 
@@ -190,15 +191,23 @@ namespace GameSystems.Player
 				var door=Doors[0];
 				SellDoor(door);
 			}
-			SendMessage("All doors have been sold.");
+			Notify(PlayerHUD.NotificationType.Info,"All doors have been sold.");
 		}
 
 		// TODO this would need to go to its own class. PlayerController or some shit
 		public void SendMessage(string message)
 		{
-			using (Rpc.FilterInclude(c => c.Id == Rpc.CallerId))
+			using (Rpc.FilterInclude(c => c.Id == GameObject.Network.OwnerId))
 			{
 				chat?.NewSystemMessage(message);
+			}
+		}
+
+		public void Notify(PlayerHUD.NotificationType type, string message)
+		{
+			using (Rpc.FilterInclude(c => c.Id == GameObject.Network.OwnerId))
+			{
+				playerHUD.Notify(type, message);
 			}
 		}
 	}
