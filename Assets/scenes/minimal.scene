@@ -1,5 +1,5 @@
 {
-  "__guid": "717a69af-8b8f-45a0-b111-a62fc820d755",
+  "__guid": "6049eb4e-38c0-4320-9db1-6a4c8f7b9dd2",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -210,12 +210,10 @@
           "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "map/rp_minimal_city.vmap",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         }
-      ],
-      "Children": []
+      ]
     },
     {
       "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
