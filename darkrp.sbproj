@@ -178,7 +178,7 @@
         },
         {
           "Name": "Voice",
-          "KeyboardCode": "v",
+          "KeyboardCode": "x",
           "GamepadCode": "None",
           "GroupName": "Other"
         },

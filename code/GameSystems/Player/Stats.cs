@@ -194,11 +194,11 @@ namespace GameSystems.Player
 		}
 
 		// TODO this would need to go to its own class. PlayerController or some shit
-		public void SendMessage(string message)
+		public void SendMessage( string message )
 		{
-			using (Rpc.FilterInclude(c => c.Id == Rpc.CallerId))
+			using ( Rpc.FilterInclude( c => c.Id == GameObject.Network.OwnerId ) )
 			{
-				chat?.NewSystemMessage(message);
+				chat?.NewSystemMessage( message );
 			}
 		}
 	}
