@@ -60,6 +60,7 @@ namespace Entity.Interactable.Door
 			OwnerStats = playerStats;
 		}
 
+		[Broadcast]
 		public void SellDoor() //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
 			if ( Owner == null )
@@ -83,19 +84,17 @@ namespace Entity.Interactable.Door
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
 		}
 
-		[Broadcast]
 		private void LockDoor()
 		{
 			IsUnlocked = false;
-			OwnerStats?.SendMessage( "Door has been locked." );
+			OwnerStats?.Notify(PlayerHUD.NotificationType.Info, "Door has been locked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 
-		[Broadcast]
 		private void UnlockDoor()
 		{
 			IsUnlocked = true;
-			OwnerStats?.SendMessage( "Door has been unlocked." );
+			OwnerStats?.Notify(PlayerHUD.NotificationType.Info, "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 		private void KnockOnDoor()
