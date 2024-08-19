@@ -70,22 +70,21 @@ PlayerHUD {
 
 		.player-details-container {
 			margin-top: 10px;
-			gap: 2rem;
 			display: flex;
 			height: auto;
 			justify-content: space-between;
 
+			.money {
+				color: lawngreen;
+				align-self: flex-start;
+				font-size: 25px;
+				flex-shrink: 0;
+			}
 			.job {
 				align-self: flex-end;
 				font-size: 25px;
 				flex-shrink: 0;
 			}
-		}
-
-		.money {
-			color: lawngreen;
-			align-self: flex-start;
-			font-size: 25px;
 		}
 
 		.bars {
