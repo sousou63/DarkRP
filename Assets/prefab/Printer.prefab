@@ -112,7 +112,6 @@
         "Position": "5.243544,16.74292,-0.5807551",
         "Rotation": "0,0,0.7071068,0.7071067",
         "Enabled": true,
-        "NetworkMode": 1,
         "Components": [
           {
             "__type": "Sandbox.WorldPanel",
