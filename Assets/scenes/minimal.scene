@@ -461,42 +461,6 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
-    },
-    {
-      "__guid": "947e69c9-aa8c-4f87-80af-b2543bf7ed18",
-      "Flags": 0,
-      "Name": "moneyprinter",
-      "Position": "-436.0978,-523.8828,121.1969",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "ee8b3afa-a3dc-458c-ac37-6a91b1c2c09e",
-          "BodyGroups": 1,
-          "MaterialOverride": "materials/darkrp_main/moneyprinter/base/diamond/moneyprinter_base_diamond.vmat",
-          "Model": "models/darkrp_main/moneyprinter/moneyprinter.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "76e37e39-9425-4f1a-bd89-feb97a1b0d06",
-      "Flags": 0,
-      "Name": "moneyprinter",
-      "Position": "-480.7191,-523.8899,121.1969",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "117a64f3-94c2-4746-87aa-09b08ba2f68c",
-          "BodyGroups": 1,
-          "MaterialOverride": "materials/darkrp_main/moneyprinter/base/diamond/clean_version/moneyprinter_base_diamond_clean.vmat",
-          "Model": "models/darkrp_main/moneyprinter/moneyprinter.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
     }
   ],
   "SceneProperties": {
