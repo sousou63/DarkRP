@@ -35,7 +35,7 @@ To ensure code quality and maintainability, please adhere to the following guide
 - IRLadderGoat: Scoreboard foundation, code refactoring, physic handling 
 - Mangrogred: Money pickup, tweaks, base map 
 - Dada: Map Improvements
-- Red ([SebbeJohansson](https://github.com/SebbeJohansson)): Chat UI improvements
+- Red ([SebbeJohansson](https://github.com/SebbeJohansson)): UI work
 - goodmittens: Money printer 3d model
 - EuroBlue : Linux library implementation + Door fixes
 ## Links
