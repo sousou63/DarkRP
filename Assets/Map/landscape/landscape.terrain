@@ -8,8 +8,7 @@
   "TerrainSize": 39936,
   "TerrainHeight": 10000,
   "Materials": [
-    "map/materials/grass.tmat",
-    "map/materials/rock.tmat"
+    "map/materials/grass.tmat"
   ],
   "MaterialSettings": {
     "HeightBlendEnabled": true,
