@@ -4,7 +4,7 @@
 @inherits PanelComponent
 
 <root>
-    <div style="font-color:white; font-size: 25px; margin-top: 50px; margin-left: 50px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
+    <div style="font-color:white; font-size: 25px; margin-top: 20px; margin-left: 20px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
     <div class="player-card">
         <div class="player-details-container">
             <div class="container">
@@ -16,12 +16,12 @@
         <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
         <div class="bars">
             <div class="bar">
-                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().HealthBase * 4); background-color: rgb(180, 71, 71);">
+                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().HealthBase * 3); background-color: rgb(180, 71, 71);">
                 <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().HealthBase.ToString("N0")) </div>
                 </div>
             </div>
             <div class="bar">
-                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().FoodBase * 4); background-color: rgb(219, 157, 42);">
+                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().FoodBase * 3); background-color: rgb(219, 157, 42);">
                 <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().FoodBase.ToString("N0"))</div>
                 </div>
             </div>
@@ -64,14 +64,14 @@
                 if (i != PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot )
                 {
                 <div class="slot container box" style="color:white">
-                <div class="slot font">@i</div>
+                @i
                 </div>
                 }
 
                 else
                 {
-                    <div class="slot container box" style="color:white; background: linear-gradient(90deg, rgba(51, 116, 255, 1) 0%, rgba(25, 25, 29, 0.357) 10%);">
-                        <div class="slot font">@i</div>
+                    <div class="slot container box" style="color:white; background: linear-gradient(0deg, rgba(50,125,179,1) 0%, rgba(0,99,176,1) 100%);">
+                        @i
                     </div>
                 }
 
