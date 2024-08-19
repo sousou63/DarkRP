@@ -5,13 +5,15 @@ BasicMenu {
 	left: 400;
 	right: 400;
 	bottom: 150;
-	background-color: #24292ff4;
+	background-color: #19191d7a;
+	backdrop-filter: blur(2px);
 	color: #c9c9c9;
 	flex-direction: column;
 	gap: 1rem;
 	font-family: 'Times New Roman', serif;
 	font-weight: 400;
-	border-radius: 5px;
+	border-radius: 10px;
+	overflow: hidden;
 
 	.main {
 		display: flex;
@@ -56,12 +58,12 @@ BasicMenu {
 		.sub {
 			font-size: 15px;
 			gap: 3px;
-			color: #556B2F;
+			color: rgb(75, 150, 0);
 		}
 
 		.wallet {
 			font-size: 25px;
-			color: #556B2F;
+			color: rgb(75, 150, 0);
 			margin-bottom: 10px;
 		}
 	}
@@ -98,7 +100,7 @@ BasicMenu {
 		}
 
 		.active {
-			background: #343b43;
+			background:  #0000003d;
 			color: white;
 		}
 	}
@@ -109,7 +111,7 @@ BasicMenu {
 		overflow-y: scroll;
 		overflow-x: visible;
 		justify-content: center;
-		background-color: #1b1b2318;
+		
 		padding: 10px;
 		height: 100%;
 
@@ -118,16 +120,17 @@ BasicMenu {
 			padding: 10px;
 			font-size: 25px;
 			color: white;
-			background-color: #252830;
+			background-color: #0000003d;
 			border-radius: 15px 15px 0 0;
 		}
 
 		.section {
-			background-color: #22222b5e;
-			border-radius: 15px 15px 0 0;
+			background-color: #19191d48;
+			border-radius: 15px 15px 15px 15px;
 			width: 100%;
 			display: flex;
 			flex-direction: column;
+			margin-bottom: 20px;
 		}
 
 		.section-contents {
@@ -138,10 +141,10 @@ BasicMenu {
 		}
 
 		.button {
-			border-color: #37343e;
+			border-color: #00000000;
 			border-width: 2px;
 			border-radius: 5px;
-			background-color: #25282e;
+			background-color: #0000003d;
 			padding: 10px;
 			cursor: pointer;
 
