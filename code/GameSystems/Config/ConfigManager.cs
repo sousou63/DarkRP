@@ -19,7 +19,7 @@ namespace GameSystems.Config
 		}
 
 		public static ConfigManager Instance => _instance;
-		public CommandConfig Commands { get; } = new();
+		[Sync] public CommandConfig Commands { get; } = new();
 
 		protected override void OnStart()
 		{
