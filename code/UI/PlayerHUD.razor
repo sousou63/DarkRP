@@ -16,13 +16,11 @@
     }
     <div style="font-color:white; font-size: 25px; margin-top: 50px; margin-left: 50px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
     <div class="player-card">
+        <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
-                <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
-            <div class="name">LONGNAMEISVERYLONGINDEEDLONGNAMEISVERYLONGINDEEDLONGNAMEISVERYLONGINDEEDLONGNAMEISVERYLONGINDEED</div>
+            <div class="money">$ @(stats.MoneyBase.ToString("N0"))</div>
             <div class="job">@MyStringValue3</div>
         </div>
-        <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
-        <div class="money">$ @(stats.MoneyBase.ToString("N0"))</div>
         <div class="bars">
             <div class="bar">
                 <div class="fill fill--health" style="width:@(healthPercentage)%;"/>

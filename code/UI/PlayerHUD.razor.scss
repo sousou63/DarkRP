@@ -80,29 +80,26 @@ PlayerHUD {
 		font-family: 'Times New Roman', serif;
 		padding: 10px;
 
+		.name {
+			width: 100%;
+			font-size: 35px;
+			line-height: 35px;
+			// max-height: 24px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+		}
+
 		.player-details-container {
+			margin-top: 10px;
 			gap: 2rem;
 			display: flex;
 			height: auto;
 			justify-content: space-between;
 
-			.center {
-				flex-direction: column;
-				justify-content: center;
-				height: 100%;
-			}
-
-			.name {
-				font-size: 35px;
-				line-height: 35px;
-				max-height: 94px;
-				text-overflow: ellipsis;
-			}
-
 			.job {
 				align-self: flex-end;
 				font-size: 25px;
-				margin-top: 10px;
 				flex-shrink: 0;
 			}
 		}
@@ -117,21 +114,20 @@ PlayerHUD {
 			display: flex;
 			flex-direction: column;
 			margin-top: 10px;
-		}
-
-		.bar {
-			width: 100%;
-			height: 30px;
-			background-color: #ccc;
-			position: relative;
-			box-shadow: -1px -1px 30px 1px #000000;
-			margin-top: 10px;
-			
-			.bar-text {
-				font-size: 20px;
-				margin-left: 5px;
+			.bar {
+				width: 100%;
+				height: 30px;
+				background-color: #ccc;
+				position: relative;
+				box-shadow: -1px -1px 30px 1px #000000;
+				margin-top: 10px;
+				
+				.bar-text {
+					font-size: 20px;
+					margin-left: 5px;
+				}
+				
 			}
-			
 		}
 
 		.fill {
