@@ -11,7 +11,7 @@ namespace Entity.Interactable.Door
 		public bool IsUnlocked { get; set; } = true;
 		[Property, Sync]
 		public bool IsOpen { get; set; } = false;
-		public Stats OwnerStats { get; set; }
+		[Property, Sync] public Stats OwnerStats { get; set; }
 
 		[Property, Sync]
 		public int Price { get; set; } = 100;
