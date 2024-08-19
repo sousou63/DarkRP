@@ -202,7 +202,7 @@
       "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
       "Flags": 0,
       "Name": "Map Instance",
-      "Position": "-126.4292,-187.5311,106.1024",
+      "Position": "-97.31008,-187.5311,106.4104",
       "Enabled": true,
       "Components": [
         {
@@ -471,7 +471,7 @@
       "__guid": "bdaebe52-da22-4d32-b7c7-bd349b9a5dd4",
       "Flags": 0,
       "Name": "temp_door_001a_frame (3)",
-      "Position": "205.6146,-517.5197,95.72749",
+      "Position": "205.6145,-517.5193,107.5682",
       "Rotation": "0,0,0.7071067,0.7071068",
       "Enabled": true,
       "Components": [
