@@ -11,7 +11,7 @@ namespace GameSystems.Player
 	{
 		// DOORS
 
-		[Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
+		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
 
 		// BASE PLAYER PROPERTYS
@@ -126,8 +126,6 @@ namespace GameSystems.Player
 		}
 
 		// DOOR LOGIC. Helps keep track of owned doors.
-
-		[Broadcast]
 		public void PurchaseDoor(float price, GameObject door)
 		{
 			Log.Info( $"Purchasing the door: {door.Id}" );
@@ -147,8 +145,8 @@ namespace GameSystems.Player
 			if (RemoveMoney(price))
 			{
 				Doors.Add(door);
-				SendMessage("Door has been purchased.");
 				doorLogic.UpdateDoorOwner( GameObject, this);
+				SendMessage("Door has been purchased.");
 				Sound.Play( "audio/notification.sound" );
 				return;
 			}
@@ -157,10 +155,8 @@ namespace GameSystems.Player
 				SendMessage("Can't afford this door.");
 				return;
 			}
-
 		}
 
-		[Broadcast]
 		public void SellDoor(GameObject door)
 		{
 			Log.Info($"Selling door: {door.Id}");
@@ -200,7 +196,6 @@ namespace GameSystems.Player
 		// TODO this would need to go to its own class. PlayerController or some shit
 		public void SendMessage(string message)
 		{
-			if ( Rpc.Caller.IsHost ) return;
 			using (Rpc.FilterInclude(c => c.Id == Rpc.CallerId))
 			{
 				chat?.NewSystemMessage(message);

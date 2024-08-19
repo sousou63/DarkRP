@@ -1,7 +1,7 @@
 Chat {
 	position: absolute;
-	bottom: 250px;
-	left: 50px;
+	bottom: 210px;
+	left: 38px;
 	width: 700px;
 	height: 500px;
 	justify-content: center;
@@ -86,12 +86,13 @@ Chat {
 		pointer-events: all;
 
 		.output, .header, .input {
-			background-color: #73737370;
+			background-color: #19191d5b;
+			backdrop-filter: blur(2px);
+		}
+		.input {
+			background-color: #19191d7a;
 		}
 
-		.input-container {
-			border-top: 2px solid rgb(148, 148, 148);
-		}
 	}
 
 	.input-container {
@@ -102,12 +103,14 @@ Chat {
 			padding: 5px;
 			border-bottom-left-radius: 10px;
 			border-bottom-right-radius: 10px;
+			
 		}
 
 		.command-suggestions {
 			position: absolute;
-			background-color: #1e1e27e7;
+			background-color: #19191d7a;
 			color: yellow;
+			backdrop-filter: blur(2px);
 			padding: 5px;
 			bottom: 100%;
 			width: 100%;
