@@ -66,7 +66,7 @@ namespace Entity.Interactable.Door
 			{
 				return;
 			}
-			UnlockDoor();
+			IsUnlocked = true;
 			UpdateDoorOwner();
 		}
 
