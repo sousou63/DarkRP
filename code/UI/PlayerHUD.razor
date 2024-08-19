@@ -4,26 +4,31 @@
 @inherits PanelComponent
 
 <root>
-    <div style="font-color:white; font-size: 25px; margin-top: 50px; margin-left: 50px; text-shadow: 2px 2px 4px #000000;">@MyStringValue</div>
+    @{
+        Stats stats = PlayerPrefab.Components.Get<Stats>();
+        float health = 100f; // TODO: Add value for current health on player
+        float maxHealth = stats.HealthBase.Floor();
+        int healthPercentage = (health / maxHealth * 100).FloorToInt();
+
+        float food = 100f; // TODO: Add value for current food on player
+        float maxFood = stats.FoodBase.Floor();
+        int foodPercentage = ((food / maxFood) * 100).FloorToInt();
+    }
+    <div class="key-instructions">@MyStringValue</div>
     <div class="player-card">
+        <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
-            <div class="container">
-            
-                <div class="name">@Rpc.Caller.DisplayName.Truncate(13)</div>
-                <div class="job">@MyStringValue3</div>
-            </div>
+            <div class="money">$ @(stats.MoneyBase.ToString("N0"))</div>
+            <div class="job">@MyStringValue3</div>
         </div>
-        <div class="money">$ @(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
         <div class="bars">
             <div class="bar">
-                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().HealthBase * 4); background-color: rgb(180, 71, 71);">
-                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().HealthBase.ToString("N0")) </div>
-                </div>
+                <div class="fill fill--health" style="width:@(healthPercentage)%;"/>
+                <div class="bar-text">@(health.ToString("N0")) </div>
             </div>
             <div class="bar">
-                <div class="fill" style="width:@(PlayerPrefab.Components.Get<Stats>().FoodBase * 4); background-color: rgb(219, 157, 42);">
-                <div class="bar-text">@(PlayerPrefab.Components.Get<Stats>().FoodBase.ToString("N0"))</div>
-                </div>
+                <div class="fill fill--food" style="width:@(foodPercentage)%;"/>
+                <div class="bar-text">@(food.ToString("N0"))</div>
             </div>
         </div>
     </div>
@@ -51,34 +56,14 @@
             </div>
         }
     </div>
-
-    <div class="slot selector box">
-
-        @if (PlayerPrefab.Components.Get<Inventory>().isInventoryVisible)
-
+    
+    <div class="inventory @(PlayerPrefab.Components.Get<Inventory>().isInventoryVisible ? "visible" : "")">
+        @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
         {
-
-            @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
-
-        {
-                if (i != PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot )
-                {
-                <div class="slot container box" style="color:white">
-                <div class="slot font">@i</div>
-                </div>
-                }
-
-                else
-                {
-                    <div class="slot container box" style="color:white; background: linear-gradient(90deg, rgba(51, 116, 255, 1) 0%, rgba(25, 25, 29, 0.357) 10%);">
-                        <div class="slot font">@i</div>
-                    </div>
-                }
-
+            <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">
+                <div class="text">@i</div>
+            </div>
         }
-
-        }
-
     </div>
 
 </root>

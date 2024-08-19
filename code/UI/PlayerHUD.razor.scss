@@ -1,34 +1,5 @@
 PlayerHUD {
 
-	.slot.selector.box {
-		position: absolute;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		top: 86%;
-		//background-color: red; // this is to debug the container
-
-		.slot.container.box {
-			height: 120px;
-			width: 120px;
-			margin-left: 20px;
-			//justify-content: center;
-			flex-direction: column;
-			//background-color: black; // this is to debug the container
-			background-color: #19191d5b;
-			border-radius: 5px 5px 5px 5px;
-			backdrop-filter: blur(1px);
-			
-			.slot.font {
-				font-size: 40px;
-				font-family: Poppins;
-				color: rgba(255, 255, 255, 0.6);
-				align-self: flex-end;
-				margin-right: 10px;
-			}
-		}
-	}
-
 	.notifications {
 		position: absolute;
 		top: 80px;
@@ -68,10 +39,19 @@ PlayerHUD {
 		pointer-events: none;
 	}
 
+	.key-instructions {
+		color:white;
+		font-size: 25px;
+		margin-top: 50px;
+		margin-left: 50px;
+		text-shadow: 2px 2px 4px #000000;
+	}
+
 	.player-card {
 		position: absolute;
 		bottom: 25px;
 		left: 25px;
+		width: 400px;
 		// background-color: #1e1e27ba;
 		color: white;
 		text-shadow: 2px 2px 4px #000000;
@@ -79,69 +59,111 @@ PlayerHUD {
 		font-family: 'Times New Roman', serif;
 		padding: 10px;
 
-		.player-details-container {
+		.name {
 			width: 100%;
-			gap: 2rem;
-
-			.container {
-				display: flex;
-				height: auto;
-				justify-content: space-between;
-
-				.center {
-					flex-direction: column;
-					justify-content: center;
-					height: 100%;
-				}
-
-				.name {
-					font-size: 35px;
-				}
-
-				.job {
-					align-self: flex-end;
-					font-size: 25px;
-					margin-top: 10px;
-					margin-left: 200px;
-				}
-				
-			}
+			font-size: 35px;
+			line-height: 35px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 		}
 
-		.money {
-			color: lawngreen;
-			align-self: flex-start;
-			font-size: 25px;
+		.player-details-container {
+			margin-top: 10px;
+			display: flex;
+			height: auto;
+			justify-content: space-between;
+
+			.money {
+				color: lawngreen;
+				align-self: flex-start;
+				font-size: 25px;
+				flex-shrink: 0;
+			}
+			.job {
+				align-self: flex-end;
+				font-size: 25px;
+				flex-shrink: 0;
+			}
 		}
 
 		.bars {
 			display: flex;
 			flex-direction: column;
 			margin-top: 10px;
-		}
-
-		.bar {
-			width: 100%;
-			height: 2.5vh;
-			background-color: #ccc;
-			position: relative;
-			box-shadow: 2px 2px 30px 1px #000000;
-			margin-top: 10px;
-			
-			.bar-text {
-				font-size: 20px;
-				margin-left: 5px;
+			.bar {
+				width: 100%;
+				height: 30px;
+				background-color: #ccc;
+				position: relative;
+				box-shadow: -1px -1px 30px 1px #000000;
+				margin-top: 10px;
+				
+				.bar-text {
+					font-size: 20px;
+					margin-left: 5px;
+				}
+				
 			}
-			
 		}
 
 		.fill {
 			height: 100%;
-			width: 50%;
-			background-color: red;
+			width: 100%;
 			position: absolute;
 			top: 0;
 			left: 0;
+			&.fill--health {
+				background-color: rgb(180, 71, 71);
+			}
+			&.fill--food {
+				background-color: rgb(219, 157, 42);
+			}
+		}
+	}
+
+	.inventory {
+		position: absolute;
+		width: 100%;
+		top: -120px;
+		transition: top .2s ease-out, transform 2s ease-out;
+		transform-origin: center;
+		// background-color: red; // this is to debug the container
+
+		justify-content: center;
+		align-items: flex-start;
+		gap: 20px;
+
+		&.visible {
+			top: 30px;
+			// transform: rotate(360deg); // This do be crazy spinning yo
+		}
+
+		.slot {
+			height: 90px;
+			width: 90px;
+			flex-direction: column;
+			//background-color: black; // this is to debug the container
+			background-color: #19191d5b;
+			border-radius: 5px 5px 5px 5px;
+			backdrop-filter: blur(1px);
+			color: rgba(255, 255, 255, 0.6);
+			transition: height 0.1s ease-out, width 0.1s ease-out, margin 0.1s ease-out;
+			
+			&.active {
+				color: white;
+				background: linear-gradient(90deg, rgba(51, 116, 255, 1) 0%, rgba(25, 25, 29, 0.357) 10%);
+				height: 100px;
+				width: 100px;
+				margin: -5px;
+			}
+			
+			.text {
+				font-size: 30px;
+				font-family: Poppins;
+				align-self: flex-end;
+				margin-right: 10px;
+			}
 		}
 	}
 }
