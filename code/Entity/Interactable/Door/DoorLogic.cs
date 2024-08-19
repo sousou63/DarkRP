@@ -12,7 +12,6 @@ namespace Entity.Interactable.Door
 
 		[Property, Sync] public int Price { get; set; } = 100;
 
-
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			// Dont interact with the door if it is locked
@@ -56,7 +55,6 @@ namespace Entity.Interactable.Door
 			OwnerStats = playerStats;
 		}
 
-		[Broadcast]
 		public void SellDoor() //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
 			if ( Owner == null )
