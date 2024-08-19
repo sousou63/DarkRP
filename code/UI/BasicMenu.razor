@@ -9,8 +9,6 @@
 @inherits PanelComponent;
 
 <root>
-    <div class="title">Tab Menu</div>
-
     <!-- TODO this should be modularized -->
     <div class="main">
         <div class="side-bar">
@@ -22,7 +20,7 @@
             <div class="navigation">
                 <div class="buttoncontainer">
                     <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs"> <i class="icon">work</i> Jobs </button>
-                    <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb"> <i class="icon">store</i> Dark Web </button>
+                    <button class="button @(IsShopVisible ? "active" : "")" onclick="@DisplayShop"> <i class="icon">store</i> Shop </button>
                     <button class="button @(IsPropsVisible ? "active" : "")" onclick="@DisplayProps"> <i class="icon">folder</i> Props </button> 
                 </div>
                 <div class="buttoncontainer">
@@ -35,7 +33,7 @@
         </div>
         <div class="main-container">
             <!-- Dark Web Section -->
-            <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
+            <div class="section" style="display: @(IsShopVisible ? "flex" : "none");">
                 <div class="section-title">Dark Web</div>
                 <div class="section-contents">
 
@@ -104,7 +102,7 @@
                 <div class="section-contents">
                     <div class="info">
 
-                        <button class="button" style=" justify-content:center; margin-top:10px; margin-bottom:20px; background-color:maroon;" onclick=@RemoveAllProps>Remove all my props ( Press "Z" to undo props )</button>
+                        <button class="button" style=" justify-content:center; margin-top:10px; margin-bottom:20px; background-color:rgba(255, 0, 0, 0.233);" onclick=@RemoveAllProps>Remove all my props ( Press "Z" to undo props )</button>
 
                         <div style="flex-direction: row; flex-wrap:wrap; ">
                         @foreach (var Model in Props) // TODO :  add the thumbnail with the props name
@@ -273,11 +271,11 @@
 
 
     // Boolean properties to control visibility
-    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
+    bool IsShopVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible = false;
     
     void DisplaySection(string section)
     {
-        IsDarkWebVisible = section == "DarkWeb";
+        IsShopVisible = section == "Shop";
         IsJobsVisible = section == "Jobs";
         IsInfoVisible = section == "Info";
         IsAdminVisible = section == "Admin";
@@ -286,7 +284,7 @@
         Sound.Play("audio/select.sound");
     }
 
-    void DisplayDarkWeb() { DisplaySection("DarkWeb"); }
+    void DisplayShop() { DisplaySection("Shop"); }
     void DisplayJobs() { DisplaySection("Jobs"); }
     void DisplayInfo() { DisplaySection("Info"); }
     void DisplayAdmin() { DisplaySection("Admin"); }
