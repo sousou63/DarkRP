@@ -14,6 +14,9 @@ insert_final_newline = true
 
 #### C# Coding Conventions ####
 
+# Allow for unconventional naming of namespaces
+# given that the project is a s&box project
+dotnet_diagnostic.IDE0130.severity = none
 # Expression-bodied members
 csharp_style_expression_bodied_accessors = true:silent
 csharp_style_expression_bodied_constructors = false:silent

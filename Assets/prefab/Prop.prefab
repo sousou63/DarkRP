@@ -17,8 +17,11 @@
         "Tint": "1,1,1,1"
       },
       {
-        "__type": "PropLogic",
-        "__guid": "20df19f0-fb4e-4399-9c68-afaeea05daeb"
+        "__type": "Entity.Interactable.Props.PropLogic",
+        "__guid": "20df19f0-fb4e-4399-9c68-afaeea05daeb",
+        "CanBePickedUp": true,
+        "EntityName": "Prop Entity",
+        "Health": 100
       }
     ],
     "Children": [],

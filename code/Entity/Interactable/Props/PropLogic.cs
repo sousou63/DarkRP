@@ -5,10 +5,10 @@ namespace Entity.Interactable.Props
 	/// <summary>
 	/// A sealed class that manages the prop logic and interaction .
 	/// </summary>
-	public sealed class PropLogic : Component, IInteractable
+	public sealed class PropLogic : BaseEntity
 	{
 
-		public void InteractUse( SceneTraceResult tr, GameObject player )
+		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			// Should probably be picked up in this case 
 			Log.Info( "Interacting with prop" );

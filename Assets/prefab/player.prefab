@@ -75,6 +75,7 @@
       {
         "__type": "GameSystems.Player.Stats",
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
+        "Died": false,
         "FoodBase": 100,
         "HealthBase": 100,
         "MoneyBase": 1250,
@@ -117,7 +118,8 @@
           ]
         },
         "SalaryAmmount": 100,
-        "SalaryTimer": 60
+        "SalaryTimer": 60,
+        "StarvingTimer": 20
       },
       {
         "__type": "Sandbox.CapsuleCollider",
@@ -153,7 +155,7 @@
         }
       },
       {
-        "__type": "MovementController",
+        "__type": "GameSystems.Player.MovementController",
         "__guid": "80152a82-7bc7-4840-b0ab-54df118a57ec",
         "AnimationHelper": {
           "_type": "component",
@@ -174,6 +176,7 @@
           "component_type": "CapsuleCollider"
         },
         "CrouchMoveSpeed": 80,
+        "EyesLocked": false,
         "NoClipSpeed": 500,
         "RunMoveSpeed": 175,
         "SprintMoveSpeed": 300,
@@ -1294,6 +1297,7 @@
           {
             "__type": "LeaderBoard",
             "__guid": "80d51118-4700-4332-a9cf-a1477564a5b7",
+            "Players": {},
             "OnComponentDisabled": {
               "__version": 7,
               "__guid": "cf158763-d0e7-4e1f-bc44-bfafa1d9161a",

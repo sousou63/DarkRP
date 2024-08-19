@@ -11,10 +11,13 @@
       {
         "__type": "Entity.Interactable.Door.DoorLogic",
         "__guid": "be1b80f3-03a0-4019-b81f-83972765c1c6",
+        "CanBePickedUp": false,
         "Door": {
           "_type": "gameobject",
           "go": "0d3c6985-290a-4400-9505-0d59d586a655"
         },
+        "EntityName": "Door Entity",
+        "Health": 100,
         "IsOpen": false,
         "IsUnlocked": true,
         "Price": 100

@@ -5,6 +5,8 @@ namespace GameSystems.Config
 	public sealed class ConfigManager : Component
 	{
 
+		// Property for the Money Prefab
+        [Property] public GameObject MoneyPrefab { get; set; }
 		private static ConfigManager _instance;
 
 		public ConfigManager()
@@ -17,7 +19,7 @@ namespace GameSystems.Config
 		}
 
 		public static ConfigManager Instance => _instance;
-		public CommandConfig Commands { get; } = new();
+		[Sync] public CommandConfig Commands { get; } = new();
 
 		protected override void OnStart()
 		{

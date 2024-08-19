@@ -1,11 +1,5 @@
-using Sandbox;
 using System;
-using System.Linq;
-using System.Drawing;
-using Sandbox.Citizen;
-using System.Diagnostics;
 using Entity.Interactable;
-using System.ComponentModel.Design;
 
 namespace GameSystems.Interaction
 {
@@ -36,7 +30,7 @@ namespace GameSystems.Interaction
 			 
 			pickupSystem = new PickupSystem(
 				InteractRange,
-				GameObject.Components.Get<PlayerController>(),
+				GameObject.Components.Get<Player.MovementController>(),
 				HoldingArea
 				);
 		}
@@ -54,7 +48,7 @@ namespace GameSystems.Interaction
 				{
 					DrawDebug();
 				}
-				pickupSystem.MoveHeldObject();
+				pickupSystem.UpdateHeldObject();
 			}
 		}
 
@@ -97,18 +91,8 @@ namespace GameSystems.Interaction
 				}
 				if (Input.Pressed("attack2"))
 				{
-					if (tr.GameObject.Tags.Has("prop") && !pickupSystem.IsHoldingObject())
-					{
-						pickupSystem.HandlePickup(tr.GameObject);
-						return;
-					}
 					HandleInteraction("attack2");
 				}
-			}
-			if (Input.Pressed("attack2") && pickupSystem.IsHoldingObject())
-			{
-				pickupSystem.DropPickup();
-				return;
 			}
 
 			// Optional: Handle cases where no valid object is hit
@@ -169,6 +153,11 @@ namespace GameSystems.Interaction
 		}
 
 
+		public void TryPickup(GameObject gameObject)
+		{
+			if (!pickupSystem.IsHoldingObject())
+				pickupSystem.HandlePickup( gameObject );
+		}
 		/// <summary>
 		/// Handles the interaction logic based on the provided input key.
 		/// </summary>

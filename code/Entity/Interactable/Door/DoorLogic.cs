@@ -1,9 +1,9 @@
-using System;
+using GameSystems;
 using GameSystems.Player;
 
 namespace Entity.Interactable.Door
 {
-	public sealed class DoorLogic : Component, IInteractable, Component.INetworkListener
+	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
 		[Property]
 		public GameObject Door { get; set; }
@@ -11,13 +11,13 @@ namespace Entity.Interactable.Door
 		public bool IsUnlocked { get; set; } = true;
 		[Property, Sync]
 		public bool IsOpen { get; set; } = false;
-		[Property, Sync]
-		public GameObject Owner { get; set; } = null;
 		public Stats OwnerStats { get; set; }
+
 		[Property, Sync]
 		public int Price { get; set; } = 100;
 
-		public void InteractUse( SceneTraceResult tr, GameObject player )
+
+		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			// Dont interact with the door if it is locked
 			if ( IsUnlocked == false ) return;
@@ -25,75 +25,49 @@ namespace Entity.Interactable.Door
 			// Open / Close door
 			OpenCloseDoor();
 		}
-		public void KnockOnDoor()
-		{
-			Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
-		}
-		public void InteractSpecial( SceneTraceResult tr, GameObject player )
+		public override void InteractSpecial( SceneTraceResult tr, GameObject player )
 		{
 			if ( Owner == null )
 			{
-				PurchaseDoor( player );
+				var playerStats = player.Components.Get<Stats>();
+				playerStats.PurchaseDoor(Price ,this.Door);
 			}
 			else
 			{
-				if ( Owner.Id == player.Id )
+				if ( Owner.GameObject.Id == player.Id )
 				{
-					SellDoor();
+					OwnerStats.SellDoor(this.Door);
 				}
 			}
 		}
 
-		public void InteractAttack1( SceneTraceResult tr, GameObject player )
+		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.Id ) { LockDoor(); } else { KnockOnDoor(); }
+			if (player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
 		}
 
-		public void InteractAttack2( SceneTraceResult tr, GameObject player )
+		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.Id) { UnlockDoor(); } else { KnockOnDoor(); }
-		}
-
-		public void PurchaseDoor( GameObject player )
-		{
-			Log.Info( $"{player.Name} is purchasing the door." );
-			// Get player stats
-			var playerStats = player.Components.Get<Stats>();
-			if ( playerStats == null ) return;
-
-			if ( playerStats.PurchaseDoor( Price, GameObject ) )
-			{
-				// Deduct the money
-				playerStats.RemoveMoney( Price );
-				// Update the door owner
-				UpdateDoorOwner( player, playerStats );
-				Sound.Play( "audio/notification.sound" );
-			}
+			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
 		[Broadcast]
 		public void UpdateDoorOwner( GameObject player = null, Stats playerStats = null )
 		{
-			Owner = player;
+			Owner = player != null ? GameController.Instance.GetPlayerByGameObjectID( player.Id ) : null;
 			OwnerStats = playerStats;
 		}
 
-		public void SellDoor()
+		public void SellDoor() //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
-			if ( Owner == null ) return;
-			// Get player stats
-			var playerStats = Owner.Components.Get<Stats>();
-			if ( playerStats == null ) return;
-
-			if ( playerStats.SellDoor( GameObject ) )
+			if ( Owner == null )
 			{
-				playerStats.AddMoney( Price / 2 );
-				UnlockDoor();
-				UpdateDoorOwner();
-				Sound.Play( "audio/notification.sound" );
+				return;
 			}
+			IsUnlocked = true;
+			UpdateDoorOwner();
 		}
 
 		[Broadcast]
@@ -124,6 +98,9 @@ namespace Entity.Interactable.Door
 			OwnerStats?.SendMessage( "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
+		private void KnockOnDoor()
+		{
+			Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
+		}
 	}
-
 }

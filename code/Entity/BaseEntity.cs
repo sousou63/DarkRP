@@ -1,200 +1,131 @@
 using Sandbox;
+using GameSystems.Player;
 using Entity.Interactable;
+using GameSystems.Interaction;
+
 
 namespace Entity
 {
 
-    /// <summary>
-    /// Represents a generic base component that provides common functionality 
-    /// for various types of interactable entities such as dropped money, printers, food, etc.
-    /// </summary>
-    [Library("base_entity", Title = "Base Entity")]
-    public partial class BaseEntity : Component, Component.IDamageable, Component.ICollisionListener, IInteractable
-    {
-        /// <summary>
-        /// Gets or sets the health of the entity.
-        /// </summary>
-        [Sync] public float Health { get; set; } = 100f;
+	/// <summary>
+	/// Represents a generic base component that provides common functionality 
+	/// for various types of interactable entities such as dropped money, printers, food, etc.
+	/// </summary>
+	[Library( "base_entity", Title = "Base Entity" )]
+	public class BaseEntity : Component, IInteractable
+	{
+		/// <summary>
+		/// Gets or sets the health of the entity.
+		/// </summary>
+		[Property] public float Health { get; set; } = 100f;
 
-        /// <summary>
-        /// Gets or sets the name of the entity.
-        /// </summary>
-        [Sync] public string EntityName { get; set; } = "Base Entity";
+		/// <summary>
+		/// Gets or sets the name of the entity.
+		/// </summary>
+		[Property] public string EntityName { get; set; } = "Base Entity";
 
-        /// <summary>
-        /// Gets or sets the owner of the entity.
-        /// </summary>
-        /// [Sync] public PlayerConnObject Owner { get; set; } ??
+		/// <summary>
+		/// Gets or sets the owner of the entity.
+		/// </summary>
+		public PlayerConnObject Owner { get; set; }
 
-        /// <summary>
-        /// Called when the component is first created. Initializes the component and sets default values.
-        /// </summary>
-        protected override void OnAwake()
-        {
-            base.OnAwake();
-            Log.Info($"{EntityName} has been initialized with {Health} health.");
-        }
+		/// <summary>
+		/// Gets or sets whether the entity can be picked up by players.
+		/// </summary>
+		[Property] public bool CanBePickedUp { get; set; } = true;
 
-        /// <summary>
-        /// Called when the component is enabled for the first time. 
-        /// Used to set up the model and any necessary physics.
-        /// </summary>
-        protected override void OnStart()
-        {
-            base.OnStart();
+		/// <summary>
+		/// Called when the component is first created and added to a GameObject.
+		/// Initializes the component and sets up necessary physics.
+		/// </summary>
+		protected override void OnStart()
+		{
+			base.OnStart();
+			Log.Info( $"{EntityName} has been initialized." );
+			SetupPhysics();
 
-            if (GameObject != null)
-            {
-                // Create or retrieve a ModelRenderer component and set the model.
-                var modelRenderer = GameObject.Components.GetOrCreate<ModelRenderer>();
-                modelRenderer.Model = Model.Load("models/citizen_props/crate01.vmdl");
-                // Set up physics, if necessary.
-            }
-        }
+			// Ensure the entity has the interact tag to be recognized by the InteractionSystem
+			GameObject.Tags.Add( "Interactable" );
+		}
 
-        /// <summary>
-        /// Called every frame. Handles per-frame updates such as player input or other dynamic behavior.
-        /// </summary>
-        protected override void OnUpdate()
-        {
-            base.OnUpdate();
-            HandlePlayerInput(); // Placeholder for actual functionality
-        }
+		/// <summary>
+		/// Applies damage to the entity and checks if it should be destroyed.
+		/// </summary>
+		/// <param name="damage">The amount of damage to apply.</param>
+		public void TakeDamage( float damage )
+		{
+			Health -= damage;
+			Log.Info( $"{EntityName} took {damage} damage. Health is now {Health}." );
 
-        /// <summary>
-        /// Called at a fixed timestep, typically used for physics updates.
-        /// </summary>
-        protected override void OnFixedUpdate()
-        {
-            base.OnFixedUpdate();
-            ApplyPhysicsMovement(); // Placeholder for actual functionality
-        }
+			if ( Health <= 0 )
+			{
+				OnDestroyed();
+			}
+		}
 
-        /// <summary>
-        /// Called when the component takes damage. Adjusts the health and checks if the entity should be destroyed.
-        /// </summary>
-        /// <param name="damageInfo">The damage information.</param>
-        public void OnDamage(in DamageInfo damageInfo)
-        {
-            Health -= damageInfo.Damage;
-            Log.Info($"{EntityName} took {damageInfo.Damage} damage. Health is now {Health}.");
+		/// <summary>
+		/// Called when the entity's health reaches zero. Disables the component.
+		/// </summary>
+		protected void OnDestroyed()
+		{
+			Log.Info( $"{EntityName} has been destroyed." );
+			Enabled = false; // Disables the component
+		}
 
-            if (Health <= 0)
-            {
-                OnDestroyed();
-            }
-        }
+		/// <summary>
+		/// Handles interaction when the player uses the default interaction key (e.g., "E").
+		/// </summary>
+		public virtual void InteractUse( SceneTraceResult tr, GameObject player )
+		{
+			Log.Info( $"{player.Name} used {EntityName} with the default interaction." );
+		}
 
-        /// <summary>
-        /// Called when the entity's health reaches zero. Disables the GameObject or removes the component.
-        /// </summary>
-        protected void OnDestroyed()
-        {
-            Log.Info($"{EntityName} has been destroyed.");
-            GameObject.Enabled = false; // Disable the GameObject
-                                        // Alternatively, remove the component
-                                        // GameObject.Components.Remove(this);
-        }
+		/// <summary>
+		/// Handles interaction when the player uses the special interaction key (e.g., "R").
+		/// </summary>
+		public virtual void InteractSpecial( SceneTraceResult tr, GameObject player )
+		{
+			Log.Info( $"{player.Name} used {EntityName} with a special interaction." );
+		}
 
-        /// <summary>
-        /// Called when a collision starts with another collider.
-        /// </summary>
-        /// <param name="other">The collision data.</param>
-        public void OnCollisionStart(Collision other)
-        {
-            Log.Info($"{EntityName} started colliding with {other.Other.GameObject}");
-        }
+		/// <summary>
+		/// Handles interaction when the player uses the Attack 1 key (e.g., "Mouse 1").
+		/// </summary>
+		public virtual void InteractAttack1( SceneTraceResult tr, GameObject player )
+		{
+			Log.Info( $"{player.Name} used {EntityName} with an Attack 1 interaction." );
+		}
 
-        /// <summary>
-        /// Called each physics step while a collision is ongoing.
-        /// </summary>
-        /// <param name="other">The collision data.</param>
-        public void OnCollisionUpdate(Collision other)
-        {
-            Log.Info($"{EntityName} is colliding with {other.Other.GameObject}");
-        }
+		/// <summary>
+		/// Handles interaction when the player uses the Attack 2 key (e.g., "Mouse 2").
+		/// </summary>
+		public virtual void InteractAttack2( SceneTraceResult tr, GameObject player )
+		{
+			if ( CanBePickedUp )
+			{
+				player.Components.Get<InteractionSystem>().TryPickup(this.GameObject);
+			}
+		}
 
-        /// <summary>
-        /// Called when a collision stops with another collider.
-        /// </summary>
-        /// <param name="other">The collision stop data.</param>
-        public void OnCollisionStop(CollisionStop other)
-        {
-            Log.Info($"{EntityName} stopped colliding with {other.Other.GameObject}");
-        }
+		/// <summary>
+		/// Sets up physics properties for the entity, such as colliders and collision groups.
+		/// </summary>
+		private void SetupPhysics()
+		{
+			// Setup physics, if necessary.
+		}
 
-        /// <summary>
-        /// Called when the component is disabled.
-        /// </summary>
-        protected override void OnDisabled()
-        {
-            base.OnDisabled();
-            // Handle when the component is disabled
-        }
+		/// <summary>
+		/// Spawns a new "entity" as a component on a GameObject.
+		/// </summary>
+		/// <param name="gameObject">The GameObject to add the entity to.</param>
+		/// <param name="owner">The player who owns this entity.</param>
+		public static void SpawnEntity( GameObject gameObject, PlayerConnObject owner )
+		{
+			var entity = gameObject.Components.GetOrCreate<BaseEntity>();
+			entity.Owner = owner;
+			Log.Info( $"Spawned entity {entity.EntityName} on GameObject {gameObject} for player {owner.Name}." );
+		}
 
-        /// <summary>
-        /// Called when the component is destroyed. Cleans up resources.
-        /// </summary>
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            // Cleanup when the component is destroyed
-        }
-
-        /// <summary>
-        /// Handles player input. This is a placeholder for actual input handling logic.
-        /// </summary>
-        private void HandlePlayerInput()
-        {
-            // Implement input handling logic here
-        }
-
-        /// <summary>
-        /// Handles physics-related movement. This is a placeholder for actual physics logic.
-        /// </summary>
-        private void ApplyPhysicsMovement()
-        {
-            // Implement physics movement logic here
-        }
-
-        /// <summary>
-        /// Called when the player uses the default interaction key (default is "E").
-        /// </summary>
-        /// <param name="tr">The scene trace result.</param>
-        /// <param name="player">The player interacting with the entity.</param>
-        public void InteractUse(SceneTraceResult tr, GameObject player)
-        {
-            Log.Info($"{player} used {EntityName} with the default interaction.");
-        }
-
-        /// <summary>
-        /// Called when the player uses the special interaction key (default is "R").
-        /// </summary>
-        /// <param name="tr">The scene trace result.</param>
-        /// <param name="player">The player interacting with the entity.</param>
-        public void InteractSpecial(SceneTraceResult tr, GameObject player)
-        {
-            Log.Info($"{player} used {EntityName} with a special interaction.");
-        }
-
-        /// <summary>
-        /// Called when the player uses the Attack 1 interaction key (default is "Mouse 1").
-        /// </summary>
-        /// <param name="tr">The scene trace result.</param>
-        /// <param name="player">The player interacting with the entity.</param>
-        public void InteractAttack1(SceneTraceResult tr, GameObject player)
-        {
-            Log.Info($"{player} used {EntityName} with an Attack 1 interaction.");
-        }
-
-        /// <summary>
-        /// Called when the player uses the Attack 2 interaction key (default is "Mouse 2").
-        /// </summary>
-        /// <param name="tr">The scene trace result.</param>
-        /// <param name="player">The player interacting with the entity.</param>
-        public void InteractAttack2(SceneTraceResult tr, GameObject player)
-        {
-            Log.Info($"{player} used {EntityName} with an Attack 2 interaction.");
-        }
-    }
+	}
 }

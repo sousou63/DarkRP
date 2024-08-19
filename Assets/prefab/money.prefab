@@ -4,8 +4,9 @@
     "Flags": 0,
     "Name": "money",
     "Scale": "1.277954,1.277954,1.277954",
-    "Tags": "interact",
+    "Tags": "interact,money",
     "Enabled": true,
+    "NetworkMode": 1,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
@@ -40,6 +41,7 @@
       {
         "__type": "Sandbox.HighlightOutline",
         "__guid": "4c520a1d-93e7-49e2-9816-231be2e085e5",
+        "__enabled": false,
         "Color": "1,1,1,1",
         "InsideColor": "0,0,0,0",
         "InsideObscuredColor": "0,0,0,0",
@@ -47,12 +49,71 @@
         "Width": 0.1
       },
       {
-        "__type": "MoneyLogic",
-        "__guid": "200c3e5c-16e0-44dc-b2d4-d01885c9589f",
-        "Money": 100
+        "__type": "Money",
+        "__guid": "1ca2043b-8bd4-4c47-9b43-46a77497f2ec",
+        "Amount": 100,
+        "CanBePickedUp": true,
+        "EntityName": "Money",
+        "Health": 100
       }
     ],
-    "Children": [],
+    "Children": [
+      {
+        "__guid": "69152697-9a74-498a-ab52-57e2483bd29a",
+        "Flags": 0,
+        "Name": "World",
+        "Position": "0,0,1.56",
+        "Rotation": "0,-0.7071068,0,0.7071068",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "02471c19-f1ab-41f8-80fc-79c5f5402ee4",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "240,50",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "MoneyUI",
+            "__guid": "6e413488-a5ae-4275-93a1-4f1573e92cf8",
+            "MoneyPrefab": {
+              "_type": "gameobject",
+              "go": "0d2d7c5b-a45f-49f7-9d3a-14b0b459db4b"
+            }
+          }
+        ]
+      },
+      {
+        "__guid": "07585e3c-0c38-451b-8805-c9dbaab28591",
+        "Flags": 0,
+        "Name": "World (1)",
+        "Rotation": "0,0.7071068,0,0.7071068",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "2ffe12ff-0a70-4b4a-90c6-661c42161d4c",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "240,50",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "MoneyUI",
+            "__guid": "1c5f1db3-9b2b-4096-b466-456f8b38d037",
+            "MoneyPrefab": {
+              "_type": "gameobject",
+              "go": "0d2d7c5b-a45f-49f7-9d3a-14b0b459db4b"
+            }
+          }
+        ]
+      }
+    ],
     "__variables": []
   },
   "ShowInMenu": false,

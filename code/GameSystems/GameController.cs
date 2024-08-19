@@ -40,7 +40,6 @@ namespace GameSystems
 
 		protected override void OnStart()
 		{
-			Log.Info( GameObject.Id );
 			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 			if ( chat == null ) Log.Error( "Chat component not found" );
 		}
