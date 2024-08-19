@@ -9,7 +9,7 @@
   "Metalness": 0,
   "NormalStrength": 10,
   "HeightBlendStrength": 10,
-  "Surface": "surfaces/dirt.surface",
+  "Surface": "surfaces/default.surface",
   "__references": [],
   "__version": 0
 }
