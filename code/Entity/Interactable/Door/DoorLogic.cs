@@ -5,16 +5,12 @@ namespace Entity.Interactable.Door
 {
 	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
-		[Property]
-		public GameObject Door { get; set; }
-		[Property, Sync]
-		public bool IsUnlocked { get; set; } = true;
-		[Property, Sync]
-		public bool IsOpen { get; set; } = false;
+		[Property] public GameObject Door { get; set; }
+		[Property, Sync] public bool IsUnlocked { get; set; } = true;
+		[Property, Sync] public bool IsOpen { get; set; } = false;
 		[Property, Sync] public Stats OwnerStats { get; set; }
 
-		[Property, Sync]
-		public int Price { get; set; } = 100;
+		[Property, Sync] public int Price { get; set; } = 100;
 
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
