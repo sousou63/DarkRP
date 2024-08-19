@@ -5,12 +5,17 @@ namespace Entity.Interactable.Door
 {
 	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
-		[Property] public GameObject Door { get; set; }
-		[Property, Sync] public bool IsUnlocked { get; set; } = true;
-		[Property, Sync] public bool IsOpen { get; set; } = false;
-		[Property, Sync] public Stats OwnerStats { get; set; }
+		[Property]
+		public GameObject Door { get; set; }
+		[Property, Sync]
+		public bool IsUnlocked { get; set; } = true;
+		[Property, Sync]
+		public bool IsOpen { get; set; } = false;
+		public Stats OwnerStats { get; set; }
 
-		[Property, Sync] public int Price { get; set; } = 100;
+		[Property, Sync]
+		public int Price { get; set; } = 100;
+
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
@@ -25,13 +30,13 @@ namespace Entity.Interactable.Door
 			if ( Owner == null )
 			{
 				var playerStats = player.Components.Get<Stats>();
-				playerStats.PurchaseDoor( Price, this.Door );
+				playerStats.PurchaseDoor(Price ,this.Door);
 			}
 			else
 			{
 				if ( Owner.GameObject.Id == player.Id )
 				{
-					OwnerStats.SellDoor( this.Door );
+					OwnerStats.SellDoor(this.Door);
 				}
 			}
 		}
@@ -39,13 +44,13 @@ namespace Entity.Interactable.Door
 		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if ( player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
+			if (player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
 		}
 
 		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if ( player.Id == Owner?.GameObject.Id ) { UnlockDoor(); } else { KnockOnDoor(); }
+			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
 		[Broadcast]
@@ -78,17 +83,19 @@ namespace Entity.Interactable.Door
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
 		}
 
+		[Broadcast]
 		private void LockDoor()
 		{
 			IsUnlocked = false;
-			OwnerStats?.Notify( PlayerHUD.NotificationType.Info, "Door has been locked." );
+			OwnerStats?.SendMessage( "Door has been locked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 
+		[Broadcast]
 		private void UnlockDoor()
 		{
 			IsUnlocked = true;
-			OwnerStats?.Notify( PlayerHUD.NotificationType.Info, "Door has been unlocked." );
+			OwnerStats?.SendMessage( "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 		private void KnockOnDoor()
