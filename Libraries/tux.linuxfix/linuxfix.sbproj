@@ -1,0 +1,14 @@
+{
+  "Title": "Linux Fix",
+  "Type": "library",
+  "Org": "tux",
+  "Ident": "linuxfix",
+  "Schema": 1,
+  "IncludeSourceFiles": true,
+  "Resources": null,
+  "PackageReferences": [],
+  "EditorReferences": null,
+  "Metadata": {
+    "CsProjName": ""
+  }
+}
