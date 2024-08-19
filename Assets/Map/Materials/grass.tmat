@@ -9,7 +9,7 @@
   "Metalness": 0,
   "NormalStrength": 10,
   "HeightBlendStrength": 10,
-  "Surface": "surfaces/default.surface",
+  "Surface": "surfaces/sand.surface",
   "__references": [],
   "__version": 0
 }
