@@ -23,6 +23,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
+						name = "moneyprinter_fan_LOD0"
 						filename = "models/darkrp_main/moneyprinter/moneyprinterfan.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
@@ -39,6 +40,119 @@
 								"BezierCurve_004",
 							]
 						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "moneyprinter_fan_LOD1"
+						filename = "Models/darkrp_main/moneyprinter/LODS/fan/MoneyPrinters_Fan_LOD1.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "moneyprinter_fan_LOD2"
+						filename = "Models/darkrp_main/moneyprinter/LODS/fan/MoneyPrinters_Fan_LOD2.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+					{
+						_class = "RenderMeshFile"
+						name = "moneyprinter_fan_LOD3"
+						filename = "Models/darkrp_main/moneyprinter/LODS/fan/MoneyPrinters_Fan_LOD3.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+			{
+				_class = "LODGroupList"
+				children = 
+				[
+					{
+						_class = "LODGroup"
+						switch_threshold = 0.0
+						meshes = 
+						[
+							"moneyprinter_fan_LOD0",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 15.0
+						meshes = 
+						[
+							"moneyprinter_fan_LOD1",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 30.0
+						meshes = 
+						[
+							"moneyprinter_fan_LOD2",
+						]
+					},
+					{
+						_class = "LODGroup"
+						switch_threshold = 40.0
+						meshes = 
+						[
+							"moneyprinter_fan_LOD3",
+						]
+					},
+				]
+			},
+			{
+				_class = "BodyGroupList"
+				children = 
+				[
+					{
+						_class = "BodyGroup"
+						name = "moneyprinter_fan_bodygroup"
+						children = 
+						[
+							{
+								_class = "BodyGroupChoice"
+								meshes = 
+								[
+									"moneyprinter_fan_LOD0",
+									"moneyprinter_fan_LOD1",
+									"moneyprinter_fan_LOD2",
+									"moneyprinter_fan_LOD3",
+								]
+							},
+						]
+						hidden_in_tools = false
 					},
 				]
 			},
