@@ -4,24 +4,19 @@ using Entity.Interactable.Door;
 using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 using Sandbox.UI;
+using GameSystems.Jobs;
 
 namespace GameSystems.Player
 {
 
 	public sealed class Stats : Component
 	{
-		// JOB
-		// Initialize first job on the list as default
-
-		[Property] public Job Job { get; set; } = JobsLogic.GetJobs()[0];
-
+		// JOB PROPERTYS
+		public Job Job { get; private set; }
 		// DOORS
-
 		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
-
 		// BASE PLAYER PROPERTYS
-
 		[Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
@@ -30,10 +25,9 @@ namespace GameSystems.Player
   		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
-
 		[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] public float StarvingTimer { get; set; } = 20f;
-		[Property] public float SalaryAmmount { get; set; } = 50f;
+		[Property] public float SalaryAmount { get; set; } = 50f;
 
 		private Chat chat { get; set; }
 		private GameController controller { get; set; }
@@ -49,8 +43,10 @@ namespace GameSystems.Player
 			try
 			{
 				controller = GameController.Instance;
+
 				if ( controller == null ) Log.Error( "Game Controller component not found" );
 				controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
+				Job = JobSystem.GetDefault();
 			}
 			catch ( Exception e )
 			{
@@ -102,43 +98,38 @@ namespace GameSystems.Player
 			Job = job;
 		}
 
-		public bool RemoveMoney( float Ammount )
+		public bool RemoveMoney( float Amount )
 		{
-			if ( MoneyBase < Ammount )
+			if ( MoneyBase < Amount )
 			{
 				Sound.Play( "audio/error.sound" );
 				return false; // Not enough money 
 			}
-			else if ( MoneyBase >= Ammount )
+			else if ( MoneyBase >= Amount )
 			{
-				MoneyBase -= Ammount;
+				MoneyBase -= Amount;
 				return true; // Successfully removed money
 			}
 			return false;
 		}
 
-		public void AddMoney( float Ammount )
+		public void AddMoney( float Amount )
 		{
-			MoneyBase += Ammount;
+			MoneyBase += Amount;
 		}
 
-		public void SetMoney( float Ammount )
+		public void SetMoney( float Amount )
 		{
-			MoneyBase = Ammount;
+			MoneyBase = Amount;
 		}
   
-		public void AddFood( float Ammount )
+		public void AddFood( float Amount )
 		{
-			FoodBase += Ammount;
+			FoodBase += Amount;
 		}
-		public void SetFood( float Ammount )
+		public void SetFood( float Amount )
 		{
-			FoodBase = Ammount;
-		}
-		public bool RemoveFood( float Ammount )
-		{
-			FoodBase -= Ammount;
-			return true; // Successfully removed food
+			FoodBase = Amount;
 		}
 
 		// DOOR LOGIC. Helps keep track of owned doors.
