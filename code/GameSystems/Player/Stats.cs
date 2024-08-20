@@ -18,7 +18,7 @@ namespace GameSystems.Player
 
 		// BASE PLAYER PROPERTYS
 
-		[Sync][Property] public float MoneyBase { get; set; } = 500f;
+		[Sync, HostSync][Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;

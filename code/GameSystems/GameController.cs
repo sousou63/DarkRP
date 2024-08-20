@@ -93,6 +93,7 @@ namespace GameSystems
 
 		public void RemovePlayer( Connection connection )
 		{
+			Log.Info( $"Removing player: {connection.Id} {connection.DisplayName}" );
 			try
 			{
 				// Find the player in the list
@@ -110,6 +111,7 @@ namespace GameSystems
 				}
 				
 				//Saves player Data
+				Log.Info( $"Saving players data: {connection.Id} {connection.DisplayName}" );
 				SavedPlayer.SavePlayer( new SavedPlayer(player) );
 
 				// Remove the player from the list
