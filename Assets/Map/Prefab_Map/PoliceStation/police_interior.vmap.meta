@@ -1,0 +1,21 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "police_interior",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "police_interior",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "semxy.bowiegrass#24045"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "map/prefab_map/policestation/police_interior.vmap"
+      }
+    }
+  }
+}
