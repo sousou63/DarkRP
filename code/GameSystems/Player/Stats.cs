@@ -10,6 +10,11 @@ namespace GameSystems.Player
 
 	public sealed class Stats : Component
 	{
+		// JOB
+		// Initialize first job on the list as default
+
+		[Property] public Job Job { get; set; } = JobsLogic.GetJobs()[0];
+
 		// DOORS
 
 		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
@@ -39,41 +44,45 @@ namespace GameSystems.Player
 
 		protected override void OnStart()
 		{
-			chat = Scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
-			if (chat is null) Log.Error("Chat component not found");
-			try {
+			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
+			if ( chat is null ) Log.Error( "Chat component not found" );
+			try
+			{
 				controller = GameController.Instance;
 				if ( controller == null ) Log.Error( "Game Controller component not found" );
 				controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
-			}catch ( Exception e )
+			}
+			catch ( Exception e )
 			{
 				Log.Error( e );
+				return;
 			}
 		}
 
 		protected override void OnFixedUpdate()
 		{
 
-			if (lastUsed >= SalaryTimer && (Network.IsOwner))
+			if ( lastUsed >= SalaryTimer && (Network.IsOwner) )
 			{
-				MoneyBase += SalaryAmmount; // add Salary to the player Money
-				Sound.Play("sounds/kenney/ui/ui.upvote.sound"); // play a basic ui sound
+				MoneyBase += Job.Salary; // add Salary to the player Money
+				Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
 				lastUsed = 0; // reset the timer
-			}			if (lastUsedFood >= StarvingTimer && (Network.IsOwner) && (Starving))
+			}
+			if ( lastUsedFood >= StarvingTimer && (Network.IsOwner) && (Starving) )
 			{
-				if (FoodBase > 0)
+				if ( FoodBase > 0 )
 				{
 					FoodBase -= 1;
 				}
 				lastUsedFood = 0; // reset the timer
 			}
-			if (HealthBase < 1 || FoodBase < 1)
+			if ( HealthBase < 1 || FoodBase < 1 )
 			{
 				Died = true;
 				HealthBase = 0;
 				FoodBase = 0;
 			}
-			if (Died)
+			if ( Died )
 			{
 				// TODO: Make ragdolls and die
 			}
@@ -85,17 +94,22 @@ namespace GameSystems.Player
 		/// <returns></returns>
 		public PlayerConnObject GetPlayerDetails()
 		{
-			return controller.GetPlayerByGameObjectID(GameObject.Id);
+			return controller.GetPlayerByGameObjectID( GameObject.Id );
 		}
 
-		public bool RemoveMoney(float Ammount)
+		public void SelectJob( Job job )
 		{
-			if (MoneyBase < Ammount)
+			Job = job;
+		}
+
+		public bool RemoveMoney( float Ammount )
+		{
+			if ( MoneyBase < Ammount )
 			{
-				Sound.Play("audio/error.sound");
+				Sound.Play( "audio/error.sound" );
 				return false; // Not enough money 
 			}
-			else if (MoneyBase >= Ammount)
+			else if ( MoneyBase >= Ammount )
 			{
 				MoneyBase -= Ammount;
 				return true; // Successfully removed money
@@ -103,24 +117,25 @@ namespace GameSystems.Player
 			return false;
 		}
 
-		public void AddMoney(float Ammount)
+		public void AddMoney( float Ammount )
 		{
 			MoneyBase += Ammount;
 		}
 
-		public void SetMoney(float Ammount)
+		public void SetMoney( float Ammount )
 		{
 			MoneyBase = Ammount;
 		}
-  		public void AddFood(float Ammount)
+  
+		public void AddFood( float Ammount )
 		{
 			FoodBase += Ammount;
 		}
-		public void SetFood(float Ammount)
+		public void SetFood( float Ammount )
 		{
 			FoodBase = Ammount;
 		}
-		public bool RemoveFood(float Ammount)
+		public bool RemoveFood( float Ammount )
 		{
 			FoodBase -= Ammount;
 			return true; // Successfully removed food
@@ -132,18 +147,18 @@ namespace GameSystems.Player
 			Log.Info( $"Purchasing the door: {door.Id}" );
 			// Check if its a valid door
 			var doorLogic = door.Components.Get<DoorLogic>();
-			if (doorLogic == null)
+			if ( doorLogic == null )
 			{
 				return;
 			}
 			// Check if the door is already owned
-			if (Doors.Any(d => d.Id == door.Id))
+			if ( Doors.Any( d => d.Id == door.Id ) )
 			{
 				return;
 			}
 
 			// If the player can afford it
-			if (RemoveMoney(price))
+			if ( RemoveMoney( price ) )
 			{
 				Doors.Add(door);
 				doorLogic.UpdateDoorOwner( GameObject, this);
@@ -163,13 +178,13 @@ namespace GameSystems.Player
 			Log.Info($"Selling door: {door.Id}");
 			// Check if its a valid door
 			var doorLogic = door.Components.Get<DoorLogic>();
-			if (doorLogic == null)
+			if ( doorLogic == null )
 			{
 				return;
 			}
 
 			// Check if the door is owned
-			if (!Doors.Any(d => d.Id == door.Id))
+			if ( !Doors.Any( d => d.Id == door.Id ) )
 			{
 				return;
 			}
@@ -191,7 +206,7 @@ namespace GameSystems.Player
 				var door=Doors[0];
 				SellDoor(door);
 			}
-			SendMessage("All doors have been sold.");
+			SendMessage( "All doors have been sold." );
 		}
 
 		// TODO this would need to go to its own class. PlayerController or some shit
