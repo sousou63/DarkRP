@@ -1,5 +1,7 @@
 using System;
+using GameSystems.Jobs;
 using GameSystems.Player;
+using Sandbox.UI;
 
 namespace GameSystems
 {
@@ -12,7 +14,7 @@ namespace GameSystems
  		    76561198237485902, // Bozy
  		    76561198040274296, // Stefan
  		    76561198006076880, // dancore
-	        76561198837197784  // EuroBlue 
+	      76561198837197784  // EuroBlue 
 		};
 		private static GameController _instance;
 
@@ -39,15 +41,20 @@ namespace GameSystems
 			{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Blue ) },
 			{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 		};
+		[HostSync]
+		public JobSystem JobSystem { get; private set; } = new JobSystem();
 
 		protected override void OnStart()
 		{
 			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 			if ( chat == null ) Log.Error( "Chat component not found" );
+      
 			if ( !FileSystem.Data.DirectoryExists( "playersdata" ) )
 			{
-				FileSystem.Data.CreateDirectory( "playersdata" );
+			  FileSystem.Data.CreateDirectory( "playersdata" );
 			}
+
+			JobSystem =  new JobSystem();;
 		}
 
 		// This could probably be put in the network controller/helper.
