@@ -20,7 +20,7 @@ namespace GameSystems.Player {
 		[Property, Sync] public bool DisabledMovement { get; set; } = false;
 		[Property] public Sitable Seat { get; set; }
 
-		[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
+		[Property] public PlayerAnimationHelper AnimationHelper { get; set; }
 
 		[Sync] public bool Crouching { get; set; }
 		[Sync] public Angles EyeAngles { get; set; }
@@ -344,7 +344,7 @@ namespace GameSystems.Player {
 			AnimationHelper.IsGrounded = CharacterController.IsOnGround;
 			AnimationHelper.DuckLevel = Crouching ? 1.0f : 0.0f;
 
-			AnimationHelper.MoveStyle = wv < 160f ? CitizenAnimationHelper.MoveStyles.Walk : CitizenAnimationHelper.MoveStyles.Run;
+			AnimationHelper.MoveStyle = wv < 160f ? PlayerAnimationHelper.MoveStyles.Walk : PlayerAnimationHelper.MoveStyles.Run;
 
 			var lookDir = EyeAngles.ToRotation().Forward * 1024;
 			AnimationHelper.WithLook(lookDir, 1, 0.5f, 0.25f);
