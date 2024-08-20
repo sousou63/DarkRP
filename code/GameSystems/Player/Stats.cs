@@ -14,7 +14,7 @@ namespace GameSystems.Player
 		// JOB PROPERTYS
 		public Job Job { get; private set; }
 		// DOORS
-		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
+		[Sync, HostSync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
 		// BASE PLAYER PROPERTYS
 
