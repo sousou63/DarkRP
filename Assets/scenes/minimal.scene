@@ -500,6 +500,58 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
+    },
+    {
+      "__guid": "7b8b0f72-b751-4706-933b-e2ba864079c2",
+      "Flags": 0,
+      "Name": "Chair",
+      "Position": "-203.7049,-429.8347,159.6782",
+      "Tags": "interact,interactable",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "193f2492-fbf1-4390-b85d-c5ba350f7b32",
+          "Center": "0,0,20.90004",
+          "IsTrigger": false,
+          "Scale": "33.50019,47.69996,38.80008",
+          "Static": false
+        },
+        {
+          "__type": "Entity.Interactable.Props.Sitable",
+          "__guid": "6ed1da98-1772-40fd-970f-426056ef282e",
+          "SeatSpot": {
+            "_type": "gameobject",
+            "go": "a9f9e045-e265-49a8-bf82-5f04ebf53a6a"
+          }
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "a9f9e045-e265-49a8-bf82-5f04ebf53a6a",
+          "Flags": 0,
+          "Name": "Seat Position",
+          "Position": "9.96813,0,8.331214",
+          "Enabled": true
+        },
+        {
+          "__guid": "0b37e32f-e6aa-41bf-8c72-6f2cfc4ae70d",
+          "Flags": 0,
+          "Name": "Chair \u0022Model\u0022",
+          "Position": "0,0,0",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "c692dbab-cf86-4401-9785-bcf1abad00e9",
+              "BodyGroups": 18446744073709551615,
+              "Model": "models/citizen_props/chair02.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        }
+      ]
     }
   ],
   "SceneProperties": {

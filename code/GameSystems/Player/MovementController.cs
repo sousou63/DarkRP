@@ -1,6 +1,7 @@
 using Sandbox.Citizen;
 using GameSystems.Player;
 using GameSystems;
+using Entity.Interactable.Props;
 
 namespace GameSystems.Player {
 	/// <summary>
@@ -16,7 +17,10 @@ namespace GameSystems.Player {
 		[Property] public float RunMoveSpeed { get; set; } = 190.0f;
 		[Property] public float SprintMoveSpeed { get; set; } = 320.0f;
 
-		[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
+		[Property, Sync] public bool DisabledMovement { get; set; } = false;
+		[Property] public Sitable Seat { get; set; }
+
+		[Property] public PlayerAnimationHelper AnimationHelper { get; set; }
 
 		[Sync] public bool Crouching { get; set; }
 		[Sync] public Angles EyeAngles { get; set; }
@@ -41,6 +45,12 @@ namespace GameSystems.Player {
 			player = controller.GetPlayerByGameObjectID(GameObject.Id);
 		}
 
+		public void Stand()
+		{
+			if (Seat is null) return;
+			Seat.Stand(GameObject);
+		}
+
 		protected override void OnUpdate()
 		{
 			if (!IsProxy)
@@ -54,6 +64,15 @@ namespace GameSystems.Player {
 
 		protected override void OnFixedUpdate()
 		{
+			if ( Seat is not null )
+			{
+				// If the player is seated and they press the jump, unseat them
+				if ( Input.Pressed( "jump" ) )
+				{
+					Seat.Stand( GameObject );
+				}
+			}
+			if ( DisabledMovement ) return;
 			NoClipInput();
 			if (IsProxy)
 				return;
@@ -325,7 +344,7 @@ namespace GameSystems.Player {
 			AnimationHelper.IsGrounded = CharacterController.IsOnGround;
 			AnimationHelper.DuckLevel = Crouching ? 1.0f : 0.0f;
 
-			AnimationHelper.MoveStyle = wv < 160f ? CitizenAnimationHelper.MoveStyles.Walk : CitizenAnimationHelper.MoveStyles.Run;
+			AnimationHelper.MoveStyle = wv < 160f ? PlayerAnimationHelper.MoveStyles.Walk : PlayerAnimationHelper.MoveStyles.Run;
 
 			var lookDir = EyeAngles.ToRotation().Forward * 1024;
 			AnimationHelper.WithLook(lookDir, 1, 0.5f, 0.25f);
