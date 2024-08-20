@@ -1,6 +1,7 @@
 using Sandbox.Citizen;
 using GameSystems.Player;
 using GameSystems;
+using Entity.Interactable.Props;
 
 namespace GameSystems.Player {
 	/// <summary>
@@ -15,6 +16,9 @@ namespace GameSystems.Player {
 		[Property] public float NoClipSpeed { get; set; } = 250.0f;
 		[Property] public float RunMoveSpeed { get; set; } = 190.0f;
 		[Property] public float SprintMoveSpeed { get; set; } = 320.0f;
+
+		[Property, Sync] public bool DisabledMovement { get; set; } = false;
+		[Property] public Sitable Seat { get; set; }
 
 		[Property] public CitizenAnimationHelper AnimationHelper { get; set; }
 
@@ -41,6 +45,12 @@ namespace GameSystems.Player {
 			player = controller.GetPlayerByGameObjectID(GameObject.Id);
 		}
 
+		public void Stand()
+		{
+			if (Seat is null) return;
+			Seat.Stand(GameObject);
+		}
+
 		protected override void OnUpdate()
 		{
 			if (!IsProxy)
@@ -54,6 +64,15 @@ namespace GameSystems.Player {
 
 		protected override void OnFixedUpdate()
 		{
+			if ( Seat is not null )
+			{
+				// If the player is seated and they press the jump, unseat them
+				if ( Input.Pressed( "jump" ) )
+				{
+					Seat.Stand( GameObject );
+				}
+			}
+			if ( DisabledMovement ) return;
 			NoClipInput();
 			if (IsProxy)
 				return;
