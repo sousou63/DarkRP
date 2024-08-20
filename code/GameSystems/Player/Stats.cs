@@ -14,11 +14,11 @@ namespace GameSystems.Player
 		// JOB PROPERTYS
 		public Job Job { get; private set; }
 		// DOORS
-		[Sync, HostSync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
+		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
 		// BASE PLAYER PROPERTYS
 
-		[Sync][Property] public float MoneyBase { get; set; } = 500f;
+		[Sync, HostSync][Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;
