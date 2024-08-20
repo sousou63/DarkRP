@@ -13,7 +13,8 @@ namespace GameSystems
  		    76561198161573319, // irlladdergoat
  		    76561198237485902, // Bozy
  		    76561198040274296, // Stefan
- 		    76561198006076880 // dancore
+ 		    76561198006076880, // dancore
+	      76561198837197784  // EuroBlue 
 		};
 		private static GameController _instance;
 
@@ -28,7 +29,8 @@ namespace GameSystems
 
 		public static GameController Instance => _instance;
 		Chat chat { get; set; }
-
+		private Database _database { get; set; } // Don't touch it's waiting when the time will come (when garry releases servers)
+		
 		[HostSync] public NetDictionary<Guid, PlayerConnObject> Players { get; set; } = new NetDictionary<Guid, PlayerConnObject>();
 		[HostSync]
 		public NetDictionary<string, UserGroup> UserGroups { get; set; } = new NetDictionary<string, UserGroup>()
@@ -46,9 +48,13 @@ namespace GameSystems
 		{
 			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 			if ( chat == null ) Log.Error( "Chat component not found" );
+      
+			if ( !FileSystem.Data.DirectoryExists( "playersdata" ) )
+			{
+			  FileSystem.Data.CreateDirectory( "playersdata" );
+			}
 
 			JobSystem =  new JobSystem();;
-
 		}
 
 		// This could probably be put in the network controller/helper.
@@ -102,6 +108,9 @@ namespace GameSystems
 				{
 					playerStats.SellAllDoors();
 				}
+				
+				//Saves player Data
+				SavedPlayer.SavePlayer( new SavedPlayer(player) );
 
 				// Remove the player from the list
 				Players.Remove( connection.Id );
