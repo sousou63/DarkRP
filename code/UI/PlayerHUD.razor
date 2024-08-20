@@ -15,6 +15,7 @@
         int foodPercentage = ((food / maxFood) * 100).FloorToInt();
     }
     <div class="key-instructions">@MyStringValue</div>
+
     <div class="player-card">
         <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
@@ -32,7 +33,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="crosshair">
     </div>
 
@@ -70,9 +71,9 @@
 
 @code
 {
-    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab // code to acces my component : @(PlayerPrefab.Components.Get<Stats>().MoneyBase)
+    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab code to acces my component :@(PlayerPrefab.Components.Get<Stats>().MoneyBase)
 
-    [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
+[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
     [Property, TextArea] public string MyStringValue3 { get; set; } = "Hello World!";
 
     public enum NotificationType
@@ -110,5 +111,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, MyStringValue3, PlayerPrefab.Components.Get<Stats>().MoneyBase, PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().HealthBase, Notifications.Count, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot);
 }

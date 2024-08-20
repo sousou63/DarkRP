@@ -97,6 +97,10 @@
             "_type": "gameobject",
             "prefab": "prefab/money.prefab"
           }
+        },
+        {
+          "__type": "JobsLogic",
+          "__guid": "544919eb-5b45-4c3f-a6d0-81de1ffc752a"
         }
       ]
     },
