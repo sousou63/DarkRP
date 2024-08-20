@@ -290,6 +290,55 @@ namespace GameSystems.Config
 									return false;
 								}
 						}
+				)},
+				{ "tp", new Command(
+						name: "tp",
+						description: "Teleports a player to where you are looking.",
+						permissionLevel: PermissionLevel.Admin,
+						commandFunction: (player, scene, args) =>
+						{
+								// Get the player stats
+								var playerStats = player.Components.Get<Stats>();
+								if (playerStats == null) return false;
+
+								// Check if a username was provided
+								if (args.Length < 1)
+								{
+									playerStats.SendMessage("Usage: /tp <player>");
+									return false;
+								}
+
+								// Get the GameController instance
+								var gameController = GameSystems.GameController.Instance;
+								if (gameController == null) return false;
+
+								// Find the target player by username
+								var targetPlayer = gameController.PlayerLookup(args[0]);
+								if (targetPlayer == null)
+								{
+									playerStats.SendMessage($"Player {args[0]} not found.");
+									return false;
+								}
+
+								// Get the player's transform component
+								var playerTransform = player.Transform;
+								if (playerTransform == null) return false;
+
+								// Calculate the forward direction based on the player's rotation
+								var forwardDirection = playerTransform.Rotation * Vector3.Forward;
+
+								// Calculate the teleport position (100 units in front of the player)
+								var position = playerTransform.Position + forwardDirection * 100;
+
+								// Set the target player's position to the calculated position
+								targetPlayer.GameObject.Transform.Position = position;
+
+								// Notify both players
+								targetPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"You have been teleported by {playerStats.GetPlayerDetails().Name}.");
+								playerStats.SendMessage($"You have teleported {targetPlayer.Connection.DisplayName} to your location.");
+
+								return true;
+						}
 				)}
 		};
 
