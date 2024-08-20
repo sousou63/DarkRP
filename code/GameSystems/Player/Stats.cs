@@ -3,6 +3,7 @@ using GameSystems;
 using Entity.Interactable.Door;
 using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
+using Sandbox.UI;
 
 namespace GameSystems.Player
 {
