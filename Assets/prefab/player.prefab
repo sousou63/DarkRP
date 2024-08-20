@@ -28,20 +28,6 @@
         "UseCollisionRules": false
       },
       {
-        "__type": "Sandbox.Citizen.CitizenAnimationHelper",
-        "__guid": "bfcf4839-806e-4912-822d-e881edc46062",
-        "BodyWeight": 1,
-        "EyesWeight": 1,
-        "HeadWeight": 1,
-        "LookAtEnabled": false,
-        "Target": {
-          "_type": "component",
-          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "SkinnedModelRenderer"
-        }
-      },
-      {
         "__type": "PlayerFootsteps",
         "__guid": "bfd6360d-27f1-4541-9523-abfdc05ef85c",
         "Source": {
@@ -71,6 +57,20 @@
       {
         "__type": "GameSystems.Player.Outfitter",
         "__guid": "1a06b6f9-0d8a-454e-8b2e-69ddf9c2855e"
+      },
+      {
+        "__type": "Sandbox.Citizen.PlayerAnimationHelper",
+        "__guid": "c7f53018-0101-408e-8f1a-c4e8d231b481",
+        "BodyWeight": 1,
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "SkinnedModelRenderer"
+        }
       },
       {
         "__type": "GameSystems.Player.Stats",
@@ -161,9 +161,9 @@
         "__guid": "80152a82-7bc7-4840-b0ab-54df118a57ec",
         "AnimationHelper": {
           "_type": "component",
-          "component_id": "bfcf4839-806e-4912-822d-e881edc46062",
+          "component_id": "c7f53018-0101-408e-8f1a-c4e8d231b481",
           "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CitizenAnimationHelper"
+          "component_type": "PlayerAnimationHelper"
         },
         "CharacterController": {
           "_type": "component",
@@ -442,9 +442,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -487,9 +487,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -1182,9 +1182,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
                     "_type": "Sandbox.Component",
-                    "_name": "Reset"
+                    "_name": "Reset",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "720,112"

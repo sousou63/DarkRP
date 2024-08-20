@@ -6,10 +6,7 @@ namespace Sandbox.Citizen;
 /// Used to control the Citizen animation state. You don't have to use this to animate your citizen avatar, but our
 /// aim is to put everything you need in this class, so you can easily see what variables are available.
 /// </summary>
-[Title( "Citizen Animation Helper" )]
-[Category( "Citizen" )]
-[Icon( "directions_run" )]
-[Alias( "CitizenAnimation" )]
+[Title( "Player Animation Helper" )]
 public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 {
 	/// <summary>

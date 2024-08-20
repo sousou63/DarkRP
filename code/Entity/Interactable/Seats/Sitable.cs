@@ -24,7 +24,7 @@ namespace Entity.Interactable.Props
       // Get the necessary components
       if ( player.Components.Get<MovementController>() is not MovementController movementController ||
           player.Components.Get<CharacterController>() is not CharacterController characterController ||
-          player.Components.Get<CitizenAnimationHelper>() is not CitizenAnimationHelper animationHelper )
+          player.Components.Get<PlayerAnimationHelper>() is not PlayerAnimationHelper animationHelper )
       {
         return;
       }
@@ -39,7 +39,7 @@ namespace Entity.Interactable.Props
       movementController.DisabledMovement = true;
       player.Transform.Position = SeatSpot.Transform.Position;
 
-      animationHelper.Sitting = CitizenAnimationHelper.SittingStyle.Chair;
+      animationHelper.Sitting = PlayerAnimationHelper.SittingStyle.Chair;
       animationHelper.IsSitting = true;
 
 
@@ -61,7 +61,7 @@ namespace Entity.Interactable.Props
 
       // Get the player's movement controller
       if ( player.Components.Get<MovementController>() is not MovementController movementController ||
-          player.Components.Get<CitizenAnimationHelper>() is not CitizenAnimationHelper animationHelper )
+          player.Components.Get<PlayerAnimationHelper>() is not PlayerAnimationHelper animationHelper )
       {
         return;
       }
@@ -76,7 +76,7 @@ namespace Entity.Interactable.Props
       // Unparent the player from the seat
       player.SetParent( null );
 
-      animationHelper.Sitting = CitizenAnimationHelper.SittingStyle.None;
+      animationHelper.Sitting = PlayerAnimationHelper.SittingStyle.None;
       animationHelper.IsSitting = false;
 
       // Handle the seat
