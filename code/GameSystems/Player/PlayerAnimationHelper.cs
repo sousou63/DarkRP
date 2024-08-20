@@ -244,7 +244,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// Are we sitting down?
 	/// </summary>
-	[Sync] public bool IsSitting
+	[Sync, HostSync] public bool IsSitting
 	{
 		get => Target.GetBool( "b_sit" );
 		set => Target.Set( "b_sit", value );
@@ -253,7 +253,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// Are we on the ground?
 	/// </summary>
-	[Sync] public bool IsGrounded
+	[Sync, HostSync] public bool IsGrounded
 	{
 		get => Target.GetBool( "b_grounded" );
 		set => Target.Set( "b_grounded", value );
@@ -262,7 +262,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// Are we swimming?
 	/// </summary>
-	[Sync] public bool IsSwimming
+	public bool IsSwimming
 	{
 		get => Target.GetBool( "b_swim" );
 		set => Target.Set( "b_swim", value );
@@ -271,7 +271,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// Are we climbing?
 	/// </summary>
-	[Sync] public bool IsClimbing
+	public bool IsClimbing
 	{
 		get => Target.GetBool( "b_climbing" );
 		set => Target.Set( "b_climbing", value );
@@ -280,7 +280,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// Are we noclipping?
 	/// </summary>
-	[Sync] public bool IsNoclipping
+	public bool IsNoclipping
 	{
 		get => Target.GetBool( "b_noclip" );
 		set => Target.Set( "b_noclip", value );
@@ -395,7 +395,7 @@ public sealed class PlayerAnimationHelper : Component, Component.ExecuteInEditor
 	/// <summary>
 	/// How are we sitting down?
 	/// </summary>
-	[Sync] public SittingStyle Sitting
+	[Sync, HostSync] public SittingStyle Sitting
 	{
 		get => (SittingStyle)Target.GetInt( "sit" );
 		set => Target.Set( "sit", (int)value );
