@@ -27,10 +27,17 @@ namespace Entity.Interactable.Door
 		}
 		public override void InteractSpecial( SceneTraceResult tr, GameObject player )
 		{
-			if ( Owner == null ) {
-				PurchaseDoor( player );
-			} else if ( Owner.GameObject.Id == player.Id ) {
-				SellDoor();
+			if ( Owner == null )
+			{
+				var playerStats = player.Components.Get<Stats>();
+				playerStats.PurchaseDoor(Price ,this.Door);
+			}
+			else
+			{
+				if ( Owner.GameObject.Id == player.Id )
+				{
+					OwnerStats.SellDoor(this.Door);
+				}
 			}
 		}
 
@@ -46,23 +53,6 @@ namespace Entity.Interactable.Door
 			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
-		public void PurchaseDoor( GameObject player )
-		{
-			Log.Info( $"{player.Name} is purchasing the door." );
-			// Get player stats
-			var playerStats = player.Components.Get<Stats>();
-			if ( playerStats == null ) return;
-
-			if ( playerStats.PurchaseDoor( Price, GameObject ) )
-			{
-				// Deduct the money
-				playerStats.RemoveMoney( Price );
-				// Update the door owner
-				UpdateDoorOwner( player, playerStats );
-				Sound.Play( "audio/notification.sound" );
-			}
-		}
-
 		[Broadcast]
 		public void UpdateDoorOwner( GameObject player = null, Stats playerStats = null )
 		{
@@ -70,20 +60,14 @@ namespace Entity.Interactable.Door
 			OwnerStats = playerStats;
 		}
 
-		public void SellDoor()
+		public void SellDoor() //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
-			if ( Owner == null ) return;
-			// Get player stats
-			var playerStats = Owner.GameObject.Components.Get<Stats>();
-			if ( playerStats == null ) return;
-
-			if ( playerStats.SellDoor( GameObject ) )
+			if ( Owner == null )
 			{
-				playerStats.AddMoney( Price / 2 );
-				UnlockDoor();
-				UpdateDoorOwner();
-				Sound.Play( "audio/notification.sound" );
+				return;
 			}
+			IsUnlocked = true;
+			UpdateDoorOwner();
 		}
 
 		[Broadcast]

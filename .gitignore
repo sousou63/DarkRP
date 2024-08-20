@@ -19,6 +19,7 @@ code/Properties/*
 *.los
 *.vpk
 !rp_minimal_city.vpk
+!downtown.vpk
 *launchSettings.json
 *.sln
 

@@ -3,28 +3,25 @@ using GameSystems.Player;
 
 namespace Entity.Interactable.Printer
 {
+
+	public class PrinterConfiguration {
+		public Color Color { get; set; }
+		public Material Material { get; set; }
+		public float Price { get; set; }
+		/// <summary>
+		/// The timer for the printer to generate money in seconds
+		/// </summary>
+		public float Timer { get; set; }
+	}
 	public sealed class PrinterLogic : Component, IInteractable
 	{
+		[Property] public GameObject PrinterFan { get; set; }
+		[Property] public float PrinterFanSpeed { get; set; } = 1000f;
 		// Define the different types of printers
 		public enum PrinterType { Bronze, Silver, Gold, Diamond };
 
-		// PRINTER SETTINGS
-
-		[Property] public Color Bronze { get; set; } = Color.Orange;
-		[Property] public float BronzePrice { get; set; } = 500f;
-		[Property] public float BronzeTimer { get; set; } = 25f; // (in seconds)
-
-		[Property] public Color Silver { get; set; } = Color.Gray;
-		[Property] public float SilverPrice { get; set; } = 1200f;
-		[Property] public float SilverTimer { get; set; } = 18f; // (in seconds)
-
-		[Property] public Color Gold { get; set; } = Color.Yellow;
-		[Property] public float GoldPrice { get; set; } = 2600f;
-		[Property] public float GoldTimer { get; set; } = 13f; // (in seconds)
-
-		[Property] public Color Diamond { get; set; } = Color.Blue;
-		[Property] public float DiamondPrice { get; set; } = 4800f;
-		[Property] public float DiamondTimer { get; set; } = 8f; // (in seconds)
+		[Property]
+		public Dictionary<PrinterType, PrinterConfiguration> PrinterConfig = new Dictionary<PrinterType, PrinterConfiguration>();
 
 		// Printer Timer Setup
 		[Property, Sync] public float PrinterCurrentMoney { get; set; } = 0f;
@@ -55,7 +52,6 @@ namespace Entity.Interactable.Printer
 		{
 			// Determine the timer based on the printer type
 			float printerTimer = GetPrinterTimer();
-
 			// If the timer has passed, add money
 			if ( lastUsed >= printerTimer )
 			{
@@ -66,6 +62,17 @@ namespace Entity.Interactable.Printer
 
 				lastUsed = 0; // Reset the timer
 			}
+
+			SpinFan();
+		}
+
+		private void SpinFan()
+		{
+				// Calculate the rotation amount based on PrinterFanSpeed and Time.Delta
+				var rotationAmount = PrinterFanSpeed * Time.Delta;
+
+				// Apply the rotation relative to the GameObject's current rotation
+				PrinterFan.Transform.Rotation *= Rotation.FromAxis(Vector3.Left, -rotationAmount);
 		}
 
 		// Method to set the current printer type and update its color
@@ -84,19 +91,11 @@ namespace Entity.Interactable.Printer
 		// Method to get the correct timer based on the printer type
 		private float GetPrinterTimer()
 		{
-			switch ( currentPrinterType )
+			if ( PrinterConfig.TryGetValue( currentPrinterType, out var config ) )
 			{
-				case PrinterType.Bronze:
-					return BronzeTimer;
-				case PrinterType.Silver:
-					return SilverTimer;
-				case PrinterType.Gold:
-					return GoldTimer;
-				case PrinterType.Diamond:
-					return DiamondTimer;
-				default:
-					return 60f; // Default timer, in case something goes wrong
+				return config.Timer;
 			}
+			return 60f; // Default timer, in case something goes wrong
 		}
 
 		// Method to update the printer color based on the printer type
@@ -104,28 +103,27 @@ namespace Entity.Interactable.Printer
 		{
 			Color newColor;
 
-			switch ( currentPrinterType )
+			if ( !PrinterConfig.TryGetValue( currentPrinterType, out var config ) )
 			{
-				case PrinterType.Bronze:
-					newColor = Bronze;
-					break;
-				case PrinterType.Silver:
-					newColor = Silver;
-					break;
-				case PrinterType.Gold:
-					newColor = Gold;
-					break;
-				case PrinterType.Diamond:
-					newColor = Diamond;
-					break;
-				default:
-					newColor = Color.White; // Default color, in case something goes wrong
-					break;
+				// Default color, in case something goes wrong
+				newColor = Color.White;
+			}
+			else
+			{
+				newColor = config.Color;
 			}
 
 			// Assuming there's a component responsible for rendering the model
-			this.Components.Get<ModelRenderer>().Tint = newColor;
-		}
+			var ModelRenderer = GameObject.Components.Get<ModelRenderer>();
+			if ( ModelRenderer is null )
+			{
+				Log.Warning( "ModelRenderer component not found" );
+				return;
+			}
 
+			// ModelRenderer.Tint = newColor;
+			// PrinterFan.Components.Get<ModelRenderer>().Tint = newColor;
+			ModelRenderer.MaterialOverride = config.Material;
+		}
 	}
 }
