@@ -485,6 +485,24 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
+    },
+    {
+      "__guid": "7b8b0f72-b751-4706-933b-e2ba864079c2",
+      "Flags": 0,
+      "Name": "Cube",
+      "Position": "-203.7049,-429.8347,127.3253",
+      "Scale": "1,1,0.1341401",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "ec5362e4-a93b-472e-9613-f31b4f87f633",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/dev/box.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {
