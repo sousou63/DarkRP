@@ -8,6 +8,8 @@ namespace Entity.Interactable.Props
 
     [HostSync] bool IsOccupied { get; set; } = false;
     [HostSync] GameObject Occupant { get; set; }
+
+    // TODO perhaps make this into a list so multiple can sit down on the same object.
     [Property] GameObject SeatSpot { get; set; }
 
     public void InteractUse( SceneTraceResult tr, GameObject player )
@@ -82,6 +84,14 @@ namespace Entity.Interactable.Props
       // Handle the seat
       IsOccupied = false;
       Occupant = null;
+    }
+
+    protected override void OnDestroy()
+    {
+      if ( IsOccupied )
+      {
+        Stand( Occupant );
+      }
     }
   }
 }
