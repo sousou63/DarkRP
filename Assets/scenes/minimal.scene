@@ -214,7 +214,7 @@
           "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "map/downtown/downtown.vmap",
+          "MapName": "map/rp_minimal_city.vmap",
           "NoOrigin": false,
           "UseMapFromLaunch": false
         }
