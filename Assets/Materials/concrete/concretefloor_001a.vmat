@@ -43,7 +43,7 @@ Layer0
 	SystemAttributes
 	{
 		PhysicsSurfaceProperties "concrete"
-		WorldMappingWidth "2048"
-		WorldMappingHeight "2048"
+		WorldMappingWidth "512"
+		WorldMappingHeight "512"
 	}
 }
