@@ -20,7 +20,7 @@
         <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
             <div class="money">$ @(stats.MoneyBase.ToString("N0"))</div>
-            <div class="job"> @(PlayerPrefab.Components.Get<Stats>().Job) </div>
+            <div class="job"> @(PlayerPrefab.Components.Get<Stats>().Job.Name) </div>
         </div>
         <div class="bars">
             <div class="bar">

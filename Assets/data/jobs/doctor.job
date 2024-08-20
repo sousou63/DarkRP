@@ -1,0 +1,15 @@
+{
+  "Name": null,
+  "Description": null,
+  "Color": "0,0,0,0",
+  "Category": null,
+  "PermissionLevel": "User",
+  "SortingLevel": 0,
+  "Salary": 0,
+  "MaxWorkers": 0,
+  "Weapons": null,
+  "WeaponsAmmo": null,
+  "Vote": false,
+  "__references": [],
+  "__version": 0
+}
