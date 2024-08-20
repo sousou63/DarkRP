@@ -1,4 +1,5 @@
 using Sandbox;
+using Sandbox.UI;
 
 namespace Entity.Interactable.Props 
 {
