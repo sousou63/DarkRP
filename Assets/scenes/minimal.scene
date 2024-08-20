@@ -500,6 +500,25 @@
           "Tint": "0.05116,0.03197,0.02308,1"
         }
       ]
+    },
+    {
+      "__guid": "ef6bd7e8-240f-43dd-b2b9-42b15ca9ab2e",
+      "Flags": 0,
+      "Name": "moneyprinter",
+      "Position": "1500.661,-453.6545,95.35591",
+      "Rotation": "-0.003617168,0.005018383,-0.8112216,0.584706",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "75883d6a-e7d7-4ca2-83f8-8e7969901ea2",
+          "BodyGroups": 1,
+          "MaterialOverride": "materials/error.vmat",
+          "Model": "models/darkrp_main/moneyprinter/moneyprinter.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        }
+      ]
     }
   ],
   "SceneProperties": {
