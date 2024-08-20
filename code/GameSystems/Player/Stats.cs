@@ -17,6 +17,8 @@ namespace GameSystems.Player
 		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
 		// BASE PLAYER PROPERTYS
+
+		[Sync][Property] public float MoneyBase { get; set; } = 500f;
 		[Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
@@ -25,6 +27,7 @@ namespace GameSystems.Player
   		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
+    
 		[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] public float StarvingTimer { get; set; } = 20f;
 		[Property] public float SalaryAmount { get; set; } = 50f;
@@ -118,9 +121,11 @@ namespace GameSystems.Player
 			MoneyBase += Amount;
 		}
 
-		public void SetMoney( float Amount )
+		public void SetMoney(float Ammount)
 		{
-			MoneyBase = Amount;
+			Log.Info( "Setting money to: " + Ammount );
+			MoneyBase = Ammount;
+			Log.Info( "Money is set to: " + MoneyBase );
 		}
   
 		public void AddFood( float Amount )
