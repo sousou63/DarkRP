@@ -76,6 +76,7 @@
         "__type": "GameSystems.Player.Stats",
         "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
         "Died": false,
+        "Doors": [],
         "FoodBase": 100,
         "HealthBase": 100,
         "MoneyBase": 1250,
@@ -119,6 +120,7 @@
         },
         "SalaryAmmount": 100,
         "SalaryTimer": 60,
+        "Starving": false,
         "StarvingTimer": 20
       },
       {
@@ -176,6 +178,7 @@
           "component_type": "CapsuleCollider"
         },
         "CrouchMoveSpeed": 80,
+        "DisabledMovement": false,
         "EyesLocked": false,
         "NoClipSpeed": 500,
         "RunMoveSpeed": 175,
@@ -439,9 +442,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -484,9 +487,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
-                    "_isStatic": false
+                    "_name": "Destroy"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -1179,9 +1182,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
+                    "_isStatic": false,
                     "_type": "Sandbox.Component",
-                    "_name": "Reset",
-                    "_isStatic": false
+                    "_name": "Reset"
                   },
                   "UserData": {
                     "Position": "720,112"
