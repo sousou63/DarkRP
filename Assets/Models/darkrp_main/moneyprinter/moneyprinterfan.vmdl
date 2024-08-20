@@ -116,7 +116,7 @@
 					},
 					{
 						_class = "LODGroup"
-						switch_threshold = 25.0
+						switch_threshold = 30.0
 						meshes = 
 						[
 							"moneyprinter_fan_LOD2",
@@ -124,7 +124,7 @@
 					},
 					{
 						_class = "LODGroup"
-						switch_threshold = 30.0
+						switch_threshold = 40.0
 						meshes = 
 						[
 							"moneyprinter_fan_LOD3",
