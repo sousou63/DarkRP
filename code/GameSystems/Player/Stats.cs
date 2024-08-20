@@ -19,7 +19,6 @@ namespace GameSystems.Player
 		// BASE PLAYER PROPERTYS
 
 		[Sync][Property] public float MoneyBase { get; set; } = 500f;
-		[Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;
@@ -27,7 +26,7 @@ namespace GameSystems.Player
   		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
-    
+		
 		[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] public float StarvingTimer { get; set; } = 20f;
 		[Property] public float SalaryAmount { get; set; } = 50f;
