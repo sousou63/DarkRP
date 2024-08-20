@@ -73,55 +73,6 @@
         "__guid": "1a06b6f9-0d8a-454e-8b2e-69ddf9c2855e"
       },
       {
-        "__type": "GameSystems.Player.Stats",
-        "__guid": "d72916ea-2bf4-4562-a6c0-091c46414a54",
-        "Died": false,
-        "FoodBase": 100,
-        "HealthBase": 100,
-        "MoneyBase": 1250,
-        "OnComponentFixedUpdate": {
-          "__version": 7,
-          "__guid": "78bb95f9-5f59-4c1f-8ca7-00f435fd3a87",
-          "UserData": {
-            "Title": "On Component Fixed Update",
-            "ReferencedComponentTypes": []
-          },
-          "Variables": [],
-          "Nodes": [
-            {
-              "Id": 0,
-              "Type": "input",
-              "UserData": {
-                "Position": "-2304,-48"
-              }
-            },
-            {
-              "Id": 66,
-              "Type": "sound.play",
-              "UserData": {
-                "Position": "-2144,80"
-              }
-            }
-          ],
-          "Links": [
-            {
-              "SrcId": 0,
-              "SrcName": "_target",
-              "DstId": 66,
-              "DstName": "_this"
-            },
-            {
-              "Value": "sounds/kenney/ui/ui.upvote.sound",
-              "DstId": 66,
-              "DstName": "soundEvent"
-            }
-          ]
-        },
-        "SalaryAmmount": 100,
-        "SalaryTimer": 60,
-        "StarvingTimer": 20
-      },
-      {
         "__type": "Sandbox.CapsuleCollider",
         "__guid": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
         "End": "0,0,50",
@@ -186,6 +137,24 @@
         "__type": "Inventory",
         "__guid": "852fd4e7-8461-4b98-ae5d-df0fad1012bf",
         "InventoryVisibilityDelay": 3
+      },
+      {
+        "__type": "GameSystems.Player.Stats",
+        "__guid": "f6680f91-296d-4b6f-8810-42acacfa096d",
+        "Died": false,
+        "Doors": [],
+        "FoodBase": 100,
+        "HealthBase": 100,
+        "Job": {
+          "Name": "Citizen",
+          "Description": "Be a normal person.",
+          "Salary": 100
+        },
+        "MoneyBase": 1250,
+        "SalaryAmmount": 100,
+        "SalaryTimer": 60,
+        "Starving": false,
+        "StarvingTimer": 20
       }
     ],
     "Children": [
@@ -402,8 +371,8 @@
                   "Id": 20,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Children"
+                    "_name": "Children",
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "432,160"
@@ -439,9 +408,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
                     "_name": "Destroy",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -484,9 +453,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
                     "_name": "Destroy",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -702,7 +671,6 @@
             "__type": "PlayerHUD",
             "__guid": "c37f901d-9dcc-4287-ac82-22e6b6bf1ceb",
             "MyStringValue": "Press \u0022TAB\u0022 to open the MENU",
-            "MyStringValue3": "Citizen",
             "PlayerPrefab": {
               "_type": "gameobject",
               "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678"
@@ -1113,8 +1081,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,-16"
@@ -1179,9 +1147,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_type": "Sandbox.Component",
                     "_name": "Reset",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
