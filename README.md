@@ -38,6 +38,7 @@ To ensure code quality and maintainability, please adhere to the following guide
 - Red ([SebbeJohansson](https://github.com/SebbeJohansson)): UI work
 - goodmittens: Money printer 3d model
 - EuroBlue : Linux library implementation + Door fixes
+- Dimmer : Code fixes for Rider IDE
 ## Links
 - S&Box Page: https://sbox.game/sousoup/darkrp
 - Discord: https://discord.com/invite/yBDk9Xr6VB
