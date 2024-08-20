@@ -16,14 +16,14 @@ namespace GameSystems.Player
 
 		// BASE PLAYER PROPERTYS
 
-		[Property] public float MoneyBase { get; set; } = 500f;
+		[Sync][Property] public float MoneyBase { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;
 		[Property] public float FoodBase { get; set; } = 100f;
   		[Property] public bool Died { get; set; } = false;
 
-		// TIMER PROPERTYS
+		// TIMER PROPERTY
 
 		[Property] public float SalaryTimer { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] public float StarvingTimer { get; set; } = 20f;
@@ -109,7 +109,9 @@ namespace GameSystems.Player
 
 		public void SetMoney(float Ammount)
 		{
+			Log.Info( "Setting money to: " + Ammount );
 			MoneyBase = Ammount;
+			Log.Info( "Money is set to: " + MoneyBase );
 		}
   		public void AddFood(float Ammount)
 		{
