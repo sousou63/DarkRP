@@ -1,6 +1,7 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using GameSystems;
+@using GameSystems.Jobs;
 @using GameSystems.Player;
 @using System.Threading.Tasks;
 @using Entity.Interactable.Props;
@@ -16,9 +17,9 @@
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="wallet">$@(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div <div
+                <div class="wallet">$@(playerStats.MoneyBase.ToString("N0"))</div <div
                     class="sub">
-                Salary:<span>$@(PlayerPrefab.Components.Get<Stats>().SalaryAmmount.ToString("N0"))</span>
+                Salary:<span>$@(playerStats.Job.Salary.ToString("N0"))</span>
             </div>
         </div>
         <div class="navigation">
@@ -100,9 +101,9 @@
         <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
             <div class="section-title">Jobs</div>
             <div class="section-contents">
-                    @foreach (Job job in JobsLogic.GetJobs())
+                    @foreach (Job job in GameController.JobSystem.Jobs.Values)
                     {
-                    <div class="button" onclick="@(() => JobsLogic.SelectJob(job, PlayerPrefab))">
+                    <div class="button" onclick="@(() => playerStats.SelectJob(job))">
                         <div class="icon"></div>
                         <div class="label-container">
                             <div class="label">@job.Name</div>
@@ -197,16 +198,32 @@
 
 @code
 {
-    // Printer Prefab Reference
-    [Property] GameObject PrinterPrefab { get; set; }
+	// Printer Prefab Reference
+	[Property] GameObject PrinterPrefab { get; set; }
 
-    // PlayerConnObjectConnObject Prefab Reference
-    [Property] GameObject PlayerPrefab { get; set; }
+	// PlayerConnObjectConnObject Prefab Reference
+	[Property] GameObject PlayerPrefab { get; set; }
 
-    // List of Props
-    [Property] public List<Model> Props { get; set; }
-    PropToolManager PropManager { get; set; }
+	private Stats playerStats => PlayerPrefab.Components.Get<Stats>();
 
+	// List of Props
+	[Property] public List<Model> Props { get; set; }
+	PropToolManager PropManager { get; set; }
+
+	private GameController GameController;
+
+	protected override void OnStart()
+	{
+		try
+		{
+			PropManager = GameObject.Parent.Components.Get<PropToolManager>();
+			GameController = GameSystems.GameController.Instance;
+		}
+		catch
+		{
+			Log.Error("Failed to get the PropManager or GameController");
+		}
+	}
     // All the text property for the information tab
     [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
     [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
@@ -231,11 +248,6 @@
     }
     } */
 
-    protected override async void OnStart()
-    {
-        // await FindPackage();
-        PropManager = GameObject.Parent.Components.Get<PropToolManager>();
-    }
 
     void SpawnProps(string modelname)
     {
@@ -289,8 +301,11 @@
 
 
     // Boolean properties to control visibility
-    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false, IsPropsVisible =
-    false;
+    bool IsDarkWebVisible = false, 
+	     IsJobsVisible    = false, 
+		 IsInfoVisible    = true, 
+		 IsAdminVisible   = false, 
+		 IsPropsVisible   = false;
 
     void DisplaySection(string section)
     {
