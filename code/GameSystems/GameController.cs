@@ -1,4 +1,5 @@
 using System;
+using GameSystems.Jobs;
 using GameSystems.Player;
 using Sandbox.UI;
 
@@ -38,11 +39,16 @@ namespace GameSystems
 			{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Blue ) },
 			{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 		};
+		[HostSync]
+		public JobSystem JobSystem { get; private set; } = new JobSystem();
 
 		protected override void OnStart()
 		{
 			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
 			if ( chat == null ) Log.Error( "Chat component not found" );
+
+			JobSystem =  new JobSystem();;
+
 		}
 
 		// This could probably be put in the network controller/helper.
