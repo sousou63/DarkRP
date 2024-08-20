@@ -16,8 +16,9 @@
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="wallet">$@(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div>
-                <div class="sub">Salary:<span>$@(PlayerPrefab.Components.Get<Stats>().SalaryAmmount.ToString("N0"))</span></div>
+                <div class="wallet">$@(PlayerPrefab.Components.Get<Stats>().MoneyBase.ToString("N0"))</div <div
+                    class="sub">
+                Salary:<span>$@(PlayerPrefab.Components.Get<Stats>().SalaryAmmount.ToString("N0"))</span>
             </div>
         </div>
         <div class="navigation">

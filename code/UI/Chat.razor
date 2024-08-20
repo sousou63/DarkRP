@@ -1,4 +1,4 @@
-@using Sandbox;
+﻿﻿@using Sandbox;
 @using Sandbox.UI;
 @using System;
 @using GameSystems;
@@ -23,8 +23,7 @@
                             if (userGroup?.Color != null) {
                                 color = userGroup.Color;
                             }
-                            <!--suppress CssUnknownTarget -->
-							<div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
+                            <div class="avatar" style="background-image: url( avatar:@entry.steamid )"></div>
                         }
                     </div>
                     @if (entry.steamid > 0)
