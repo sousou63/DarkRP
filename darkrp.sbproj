@@ -5,7 +5,7 @@
   "Ident": "darkrp",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": "/UI/fonts/*",
+  "Resources": "/ui/fonts/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
