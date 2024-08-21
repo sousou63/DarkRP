@@ -143,14 +143,14 @@
         "__guid": "f6680f91-296d-4b6f-8810-42acacfa096d",
         "Died": false,
         "Doors": [],
-        "FoodBase": 100,
+        "HungerBase": 100,
         "HealthBase": 100,
         "Job": {
           "Name": "Citizen",
           "Description": "Be a normal person.",
           "Salary": 100
         },
-        "MoneyBase": 1250,
+        "Balance": 1250,
         "SalaryAmmount": 100,
         "SalaryTimer": 60,
         "Starving": false,

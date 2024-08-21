@@ -11,7 +11,7 @@
         int healthPercentage = (health / maxHealth * 100).FloorToInt();
 
         float food = 100f; // TODO: Add value for current food on player
-        float maxFood = stats.FoodBase.Floor();
+        float maxFood = stats.HungerBase.Floor();
         int foodPercentage = ((food / maxFood) * 100).FloorToInt();
     }
     <div class="key-instructions">@MyStringValue</div>
@@ -19,7 +19,7 @@
     <div class="player-card">
         <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
-            <div class="money">$ @(stats.MoneyBase.ToString("N0"))</div>
+            <div class="money">$ @(stats.Balance.ToString("N0"))</div>
             <div class="job"> @(PlayerPrefab.Components.Get<Stats>().Job.Name) </div>
         </div>
         <div class="bars">
@@ -71,7 +71,7 @@
 
 @code
 {
-    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab code to acces my component :@(PlayerPrefab.Components.Get<Stats>().MoneyBase)
+    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab code to acces my component :@(PlayerPrefab.Components.Get<Stats>().Balance)
 
     [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
 
@@ -110,5 +110,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().MoneyBase, PlayerPrefab.Components.Get<Stats>().FoodBase, PlayerPrefab.Components.Get<Stats>().HealthBase, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot, Notifications.Count);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().Balance, PlayerPrefab.Components.Get<Stats>().HungerBase, PlayerPrefab.Components.Get<Stats>().HealthBase, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot, Notifications.Count);
 }

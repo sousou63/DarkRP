@@ -25,8 +25,8 @@ namespace GameSystems.Player
 	      
 	      Log.Info( "SavedPlayer SteamID: " + savedPlayer.SteamId +" Money: " + savedPlayer.Money );
 	      //Overwriting default data with saved Data
-	      this.GameObject.Components.Get<Stats>().SetMoney( savedPlayer.Money );
-	      Log.Info( "LoadedPlayer SteamID: " + this.Connection.SteamId +" Money: " + this.GameObject.Components.Get<Stats>().MoneyBase );
+	      this.GameObject.Components.Get<Stats>().SetBalance( savedPlayer.Money );
+	      Log.Info( "LoadedPlayer SteamID: " + this.Connection.SteamId +" Money: " + this.GameObject.Components.Get<Stats>().Balance );
       }
       Log.Info( "Ended player creation" );
     }
