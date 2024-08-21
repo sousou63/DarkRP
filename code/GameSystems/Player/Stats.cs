@@ -36,6 +36,10 @@ namespace GameSystems.Player
 
 		TimeSince lastUsed = 0; // Set the timer
 		TimeSince lastUsedFood = 0;
+		
+		//Pereodiocal player data save in seconds
+		private TimeSince lastSaved = 0;
+		private static uint saveCooldown = 30;
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
 		protected override void OnStart()
@@ -58,13 +62,19 @@ namespace GameSystems.Player
 
 		protected override void OnFixedUpdate()
 		{
-
 			if ( lastUsed >= SalaryTimerSeconds && (Network.IsOwner) )
 			{
 				Balance += Job.Salary; // add Salary to the player Money
 				Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
 				lastUsed = 0; // reset the timer
 			}
+
+			if ( (lastSaved >= saveCooldown) && (Networking.IsHost) )
+			{
+				Log.Info( $"Saving players data: {this.GetPlayerDetails().Connection.Id} {this.GetPlayerDetails().Connection.DisplayName}" );
+				SavedPlayer.SavePlayer( new SavedPlayer(this.GetPlayerDetails()) );
+			}
+			
 			if ( lastUsedFood >= StarvingTimerSeconds && (Network.IsOwner) && (Starving) )
 			{
 				if ( HungerBase > 0 )
