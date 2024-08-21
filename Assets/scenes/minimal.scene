@@ -97,6 +97,16 @@
             "_type": "gameobject",
             "prefab": "prefab/money.prefab"
           }
+        },
+        {
+          "__type": "GameSystems.NetworkController",
+          "__guid": "ab7ef311-9b45-4efe-8cee-227ab2603134",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefab/player.prefab"
+          },
+          "SpawnPoints": [],
+          "StartServer": true
         }
       ]
     },
@@ -118,26 +128,6 @@
         {
           "__type": "Chat",
           "__guid": "d44a2652-d727-454b-afb0-6637c4caff57"
-        }
-      ]
-    },
-    {
-      "__guid": "7a63f673-6998-43a4-80de-532550116c66",
-      "Flags": 0,
-      "Name": "Network Manager",
-      "Position": "0,0,136.2419",
-      "Enabled": true,
-      "NetworkOrphaned": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.NetworkHelper",
-          "__guid": "7a015147-d27b-44b1-a3a5-81d364b2e76b",
-          "PlayerPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefab/player.prefab"
-          },
-          "SpawnPoints": [],
-          "StartServer": true
         }
       ]
     },

@@ -5,19 +5,19 @@ namespace Utils
     /// <summary>
     /// Format a number with a suffix (K, M, B, etc.)
     /// Starts formatting from 100,000.
-    /// Also adds comma seperators.
+    /// Also adds comma separators.
     /// </summary>
     /// <param name="number"></param>
     /// <returns></returns>
     public static string FormatNumberWithSuffix(float number)
     {
-        if (number >= 1_000_000_000)
-            return (number / 1_000_000_000).ToString("N0") + " B";
-        if (number >= 1_000_000)
-            return (number / 1_000_000).ToString("N0") + " M";
-        if (number >= 100_000)
-            return (number / 1_000).ToString("N0") + " K";
-        return number.ToString("N0");
+        return number switch
+        {
+            >= 1_000_000_000 => (number / 1_000_000_000).ToString("0.#") + " B",
+            >= 1_000_000 => (number / 1_000_000).ToString("0.#") + " M",
+            >= 100_000 => (number / 1_000).ToString("0.#") + " K",
+            _ => number.ToString("N0")
+        };
     }
   }
 }

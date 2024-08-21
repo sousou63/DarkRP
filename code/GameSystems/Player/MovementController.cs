@@ -1,6 +1,7 @@
 using Sandbox.Citizen;
 using GameSystems.Player;
 using GameSystems;
+using System;
 
 namespace GameSystems.Player {
 	/// <summary>
@@ -10,7 +11,6 @@ namespace GameSystems.Player {
 	{
 		[Property] public CharacterController CharacterController { get; set; }
 		[Property] public Collider Collider { get; set; }
-		[Property] public float CrouchMoveSpeed { get; set; } = 64.0f;
 		[Property] public float WalkMoveSpeed { get; set; } = 190.0f;
 		[Property] public float NoClipSpeed { get; set; } = 250.0f;
 		[Property] public float RunMoveSpeed { get; set; } = 190.0f;
@@ -39,6 +39,16 @@ namespace GameSystems.Player {
 			var controller = GameController.Instance;
 			if (controller is null) return;
 			player = controller.GetPlayerByGameObjectID(GameObject.Id);
+		}
+		
+		void TryGetPlayer()
+		{
+			if (player is null)
+			{
+				var controller = GameController.Instance;
+				if (controller is null) return;
+				player = controller.GetPlayerByGameObjectID(GameObject.Id);
+			}
 		}
 
 		protected override void OnUpdate()
@@ -75,8 +85,14 @@ namespace GameSystems.Player {
 		{
 			if (Input.Pressed("noclip"))
 			{
-				// Get the player's usergroup
-				if (player.CheckPermission(PermissionLevel.Admin)) ToggleNoClip(!IsNoClip);
+				try{
+					// Temporary fix until PlayerConnObject and NetworkHelper have been refactored;
+					TryGetPlayer();
+					if (player.CheckPermission(PermissionLevel.Admin)) ToggleNoClip(!IsNoClip);
+				}catch (Exception e){
+					Log.Warning($"Player {GameObject.Name} tried to toggle noclip but failed.");
+					Log.Warning(e);
+				}
 			}
 		}
 
@@ -90,7 +106,7 @@ namespace GameSystems.Player {
 		{
 			get
 			{
-				if (Crouching) return CrouchMoveSpeed;
+				if (Crouching) return WalkMoveSpeed * 0.5f;
 				if (IsNoClip)
 				{
 					if (Input.Down("run")) return NoClipSpeed * 2.5f;

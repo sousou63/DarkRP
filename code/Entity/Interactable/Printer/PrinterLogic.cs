@@ -42,7 +42,7 @@ namespace Entity.Interactable.Printer
 				var playerStats = player.Components.Get<Stats>();
 				if ( playerStats == null ) {  return; }
 
-				playerStats.AddMoney( PrinterCurrentMoney );
+				playerStats.UpdateBalance( PrinterCurrentMoney );
 				ResetPrinterMoney();
 				Sound.Play( "audio/money.sound" );
 			}
