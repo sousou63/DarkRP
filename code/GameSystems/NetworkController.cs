@@ -55,6 +55,11 @@ public sealed class NetworkController : Component, Component.INetworkListener
 
 		// Spawn this object and make the client the owner
 		var player = PlayerPrefab.Clone( startLocation, name: $"Player - {channel.DisplayName}" );
+    try{
+      GameController.Instance.AddPlayer( player, channel );
+    }catch (Exception e){
+      Log.Error( $"Failed to add player to list. {e}" );
+    }
 		player.NetworkSpawn( channel );
 	}
 

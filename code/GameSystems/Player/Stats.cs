@@ -47,7 +47,6 @@ namespace GameSystems.Player
 				controller = GameController.Instance;
 
 				if ( controller == null ) Log.Error( "Game Controller component not found" );
-				controller.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
 				Job = JobSystem.GetDefault();
 			}
 			catch ( Exception e )
