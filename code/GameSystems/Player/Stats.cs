@@ -73,6 +73,7 @@ namespace GameSystems.Player
 			{
 				Log.Info( $"Saving players data: {this.GetPlayerDetails().Connection.Id} {this.GetPlayerDetails().Connection.DisplayName}" );
 				SavedPlayer.SavePlayer( new SavedPlayer(this.GetPlayerDetails()) );
+				lastSaved = 0; // reset the timer
 			}
 			
 			if ( lastUsedFood >= StarvingTimerSeconds && (Network.IsOwner) && (Starving) )
