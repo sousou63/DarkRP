@@ -1,0 +1,118 @@
+{
+  "RootObject": {
+    "__guid": "0d3c6985-290a-4400-9505-0d59d586a655",
+    "Flags": 0,
+    "Name": "door_single_test",
+    "Tags": "interact",
+    "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 1,
+    "Components": [
+      {
+        "__type": "Entity.Interactable.Door.DoorLogic",
+        "__guid": "be1b80f3-03a0-4019-b81f-83972765c1c6",
+        "CanBePickedUp": false,
+        "Door": {
+          "_type": "gameobject",
+          "go": "0d3c6985-290a-4400-9505-0d59d586a655"
+        },
+        "EntityName": "Door Entity",
+        "Health": 100,
+        "IsOpen": false,
+        "IsUnlocked": true,
+        "Price": 100
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "a29b4042-5d91-4d65-b1b1-480e3cae11e6",
+        "Center": "0,-18.79998,43.10012",
+        "IsTrigger": false,
+        "Scale": "2.099964,36.40015,86.00031",
+        "Static": false
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "0fc5cbdf-929f-47d1-a386-91f6dc163fc9",
+        "Flags": 0,
+        "Name": "Cube",
+        "Position": "0.7420825,-0.2374333,3.71734",
+        "Scale": "0.38,0.38,0.38",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "309979b2-754a-4667-94ce-3c431f65767e",
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/darkrp_map/buildings/doors/single/door_fancy/door_single_fancy.vmat",
+            "Model": "models/darkrp_map/buildings/doors/single/door_fancy/door_single_fancy.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "8b3e3286-3749-4f35-8d43-a58dcea8cb12",
+        "Flags": 0,
+        "Name": "Panel (1)",
+        "Position": "-1.214411,-17.23319,56.29179",
+        "Rotation": "0,0,1,-0.00000004371139",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "e5a41cfc-bd67-458f-b547-7377c05d1132",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "512,512",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "Door",
+            "__guid": "251cfeb4-92aa-4a1b-8dcb-ae0110711d1c",
+            "DoorPrefab": {
+              "_type": "gameobject",
+              "prefab": "prefab/door_single_test.prefab"
+            }
+          }
+        ]
+      },
+      {
+        "__guid": "02c41d63-7d0f-4433-ab3d-68dbe61ce2e2",
+        "Flags": 0,
+        "Name": "Panel",
+        "Position": "1.248956,-17.23319,56.29179",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.WorldPanel",
+            "__guid": "a60c17ce-27b2-4efc-a78e-75f9624f42f5",
+            "HorizontalAlign": "Center",
+            "InteractionRange": 1000,
+            "LookAtCamera": false,
+            "PanelSize": "512,512",
+            "RenderScale": 1,
+            "VerticalAlign": "Center"
+          },
+          {
+            "__type": "Door",
+            "__guid": "7a45bb87-a00d-452b-b911-db150f21225c",
+            "DoorPrefab": {
+              "_type": "gameobject",
+              "go": "0d3c6985-290a-4400-9505-0d59d586a655"
+            }
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

@@ -230,7 +230,7 @@
           "__type": "Sandbox.ModelRenderer",
           "__guid": "473b76b5-65c1-42e2-802a-908e8f82b6f9",
           "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/tile/tilefloor_001a.vmat",
+          "MaterialOverride": "materials/error.vmat",
           "Model": "models/dev/box.vmdl",
           "RenderType": "On",
           "Tint": "1,1,1,1"
@@ -498,6 +498,70 @@
           "IsStatic": true,
           "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
           "Tint": "0.05116,0.03197,0.02308,1"
+        }
+      ]
+    },
+    {
+      "__guid": "2ba65d89-8a3e-454e-826a-82a07895891e",
+      "Flags": 0,
+      "Name": "door_single_test",
+      "Position": "420.7725,-57.2972,113.7601",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door_single_test.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "080b083a-335a-4fb0-b40f-691087710c7d",
+      "Flags": 0,
+      "Name": "door_single_test (1)",
+      "Position": "420.7358,-36.38859,113.7601",
+      "Rotation": "0,0,-0.7071069,-0.7071066",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door_single_test.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "0ff28f2e-bb4c-4e6d-8db1-57de617aba7f",
+      "Flags": 0,
+      "Name": "doorframe_single_a",
+      "Position": "420.7224,-57.32038,113.6393",
+      "Scale": "0.38,0.38,0.38",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "13119da6-f2ba-4a04-b494-839df2baf102",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/darkrp_map/buildings/doors/single/doorframe/tintable/doorframe_single_a.vmat",
+          "Model": "models/darkrp_map/buildings/doors/single/doorframe/doorframe_single_a.vmdl",
+          "RenderType": "On",
+          "Tint": "0.18336,0.19701,0.24186,1"
+        }
+      ]
+    },
+    {
+      "__guid": "fa954019-5ed2-498b-866d-6a8a6a66fc73",
+      "Flags": 0,
+      "Name": "doorframe_single_a (1)",
+      "Position": "420.759,-36.43867,113.6393",
+      "Rotation": "0,0,-0.7071069,-0.7071066",
+      "Scale": "0.38,0.38,0.38",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "661e8cb2-36a6-46ca-9742-3d0c847bf48a",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/darkrp_map/buildings/doors/single/doorframe/material/doorframe_single_material_a.vmat",
+          "Model": "models/darkrp_map/buildings/doors/single/doorframe/doorframe_single_a.vmdl",
+          "RenderType": "On",
+          "Tint": "0.18336,0.19701,0.24186,1"
         }
       ]
     }
