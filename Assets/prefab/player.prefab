@@ -4,6 +4,8 @@
     "Flags": 0,
     "Name": "player",
     "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 1,
     "Components": [
       {
         "__type": "Sandbox.SkinnedModelRenderer",
@@ -126,7 +128,6 @@
           "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
           "component_type": "CapsuleCollider"
         },
-        "CrouchMoveSpeed": 80,
         "EyesLocked": false,
         "NoClipSpeed": 500,
         "RunMoveSpeed": 175,
@@ -141,20 +142,15 @@
       {
         "__type": "GameSystems.Player.Stats",
         "__guid": "f6680f91-296d-4b6f-8810-42acacfa096d",
-        "Died": false,
+        "Balance": 1000,
+        "Dead": false,
         "Doors": [],
-        "HungerBase": 100,
         "HealthBase": 100,
-        "Job": {
-          "Name": "Citizen",
-          "Description": "Be a normal person.",
-          "Salary": 100
-        },
-        "Balance": 1250,
-        "SalaryAmmount": 100,
-        "SalaryTimer": 60,
+        "HungerBase": 100,
+        "SalaryAmount": 50,
+        "SalaryTimerSeconds": 60,
         "Starving": false,
-        "StarvingTimer": 20
+        "StarvingTimerSeconds": 20
       }
     ],
     "Children": [
