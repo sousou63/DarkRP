@@ -198,7 +198,7 @@ namespace GameSystems.Player
 			Log.Info("Selling All "+ preRemoveCount +" doors");
 			for (Int32 i = 0; i < preRemoveCount; i++)
 			{	
-				var door=Doors[0];
+				var door=Doors[i];
 				SellDoor(door);
 			}
 			SendMessage( "All doors have been sold." );
