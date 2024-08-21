@@ -14,7 +14,10 @@ namespace GameSystems
  		    76561198237485902, // Bozy
  		    76561198040274296, // Stefan
  		    76561198006076880, // dancore
-	      76561198837197784  // EuroBlue 
+			76561198837197784, // EuroBlue 
+			76561199092626415, // Mangro
+			76561198243368782,  // Dada
+			76561198071517597 // Red
 		};
 		private static GameController _instance;
 
