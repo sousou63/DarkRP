@@ -11,7 +11,6 @@ namespace GameSystems.Player {
 	{
 		[Property] public CharacterController CharacterController { get; set; }
 		[Property] public Collider Collider { get; set; }
-		[Property] public float CrouchMoveSpeed { get; set; } = 64.0f;
 		[Property] public float WalkMoveSpeed { get; set; } = 190.0f;
 		[Property] public float NoClipSpeed { get; set; } = 250.0f;
 		[Property] public float RunMoveSpeed { get; set; } = 190.0f;
@@ -107,7 +106,7 @@ namespace GameSystems.Player {
 		{
 			get
 			{
-				if (Crouching) return CrouchMoveSpeed;
+				if (Crouching) return WalkMoveSpeed * 0.5f;
 				if (IsNoClip)
 				{
 					if (Input.Down("run")) return NoClipSpeed * 2.5f;
