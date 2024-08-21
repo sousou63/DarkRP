@@ -4,6 +4,8 @@
     "Flags": 0,
     "Name": "player",
     "Enabled": true,
+    "NetworkMode": 1,
+    "NetworkOrphaned": 1,
     "Components": [
       {
         "__type": "Sandbox.SkinnedModelRenderer",
@@ -140,7 +142,7 @@
       {
         "__type": "GameSystems.Player.Stats",
         "__guid": "f6680f91-296d-4b6f-8810-42acacfa096d",
-        "Balance": 1250,
+        "Balance": 1000,
         "Dead": false,
         "Doors": [],
         "HealthBase": 100,
@@ -198,8 +200,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "704,-64"
@@ -209,8 +211,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,128"
@@ -300,8 +302,8 @@
                   "Id": 1,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-192,144"
@@ -318,8 +320,8 @@
                   "Id": 4,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -330,12 +332,12 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "16,144"
@@ -376,8 +378,8 @@
                   "Id": 21,
                   "Type": "call",
                   "Properties": {
-                    "_name": "ForEach",
                     "_type": "System.Collections.Generic.List\u00601",
+                    "_name": "ForEach",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -403,8 +405,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -421,8 +423,8 @@
                   "Id": 28,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-608,528"
@@ -432,12 +434,12 @@
                   "Id": 29,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsProxy",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsProxy"
                   },
                   "UserData": {
                     "Position": "-400,528"
@@ -448,8 +450,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -469,12 +471,12 @@
                   "Id": 37,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsOwner",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsOwner"
                   },
                   "UserData": {
                     "Position": "-432,928"
@@ -498,8 +500,8 @@
                   "Id": 40,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
+                    "_name": "Destroy",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -520,8 +522,8 @@
                   "Id": 42,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-624,928"
@@ -673,10 +675,10 @@
           {
             "__type": "BasicMenu",
             "__guid": "66371a07-fbb7-48a3-90fb-66f40db9152e",
-            "InfoCredits": "Sousou : Base GameMode \u002B Github Management | QueenPM : Chat Improvement \u002B Tab Menu UI Rework | HankKitts : Money 3D Models | Dancore: Entity system, code optimization | Bozy: Team/job system foundation | IRLadderGoat: Scoreboard foundation | Mangrogred : UI Tweak, Money pickup | Stefan : Job Improvement | Dada: Map Improvements | Red (SebbeJohansson): UI work | goodmittens: Money printer 3d model | EuroBlue : Linux library implementation \u002B Door fixes | Dimmer : Code fixes for Rider IDE",
-            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer | Interaction System | Notifications | Entity and Props | Props Handling (80%) | Persistence (70%) | Housing (50%) | Inventory (30%) | Job system (20%) | Props Menu (20%)",
+            "InfoCredits": "Sousou : Base GameMode \u002B Github Management | QueenPM : Chat Improvement \u002B Tab Menu UI Rework | HankKitts : Money 3D Models | Dancore: Entity system, code optimization | Bozy: Team/job system foundation | IRLadderGoat: Scoreboard foundation | Mangrogred : UI Tweak, Money pickup | Stefan : Job Improvement ",
+            "InfoDone": "Player and Camera Controller | Network Manager | Chat | Clothing | Ambient Audio | VOIP | Basic HUD | Money | Salary | Printer (90%) | Interaction System | Notifications | Entity and Props ",
             "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ) or ( https://discord.gg/yBDk9Xr6VB )",
-            "InfoTodo": " Health | Stamina | Food | Weapons | Tools | Interaction Outline | Ragdolls | Revive |  Etc...",
+            "InfoTodo": " Health | Stamina | Food | Jobs | Housing | Weapons | Persistence | Etc...",
             "OnComponentDisabled": {
               "__version": 7,
               "__guid": "86ae15ed-598d-40f6-8392-45ff34f3d151",
@@ -701,12 +703,12 @@
                   "Id": 2,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsOwner",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsOwner"
                   },
                   "UserData": {
                     "Position": "-16,80"
@@ -723,8 +725,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-208,80"
@@ -799,12 +801,12 @@
                   "Id": 2,
                   "Type": "property",
                   "Properties": {
-                    "_name": "IsOwner",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "IsOwner"
                   },
                   "UserData": {
                     "Position": "-16,80"
@@ -821,8 +823,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-208,80"
@@ -933,8 +935,8 @@
                   "Id": 3,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Parent",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Parent"
                   },
                   "UserData": {
                     "Position": "-288,96"
@@ -944,8 +946,8 @@
                   "Id": 6,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Network",
-                    "_type": "Sandbox.GameObject"
+                    "_type": "Sandbox.GameObject",
+                    "_name": "Network"
                   },
                   "UserData": {
                     "Position": "-128,96"
@@ -955,12 +957,12 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "OwnerConnection",
                     "_type": {
                       "$type": "Nested",
                       "DeclaringType": "Sandbox.GameObject",
                       "Name": "NetworkAccessor"
-                    }
+                    },
+                    "_name": "OwnerConnection"
                   },
                   "UserData": {
                     "Position": "80,96"
@@ -970,8 +972,8 @@
                   "Id": 9,
                   "Type": "property",
                   "Properties": {
-                    "_name": "DisplayName",
-                    "_type": "Sandbox.Connection"
+                    "_type": "Sandbox.Connection",
+                    "_name": "DisplayName"
                   },
                   "UserData": {
                     "Position": "416,96"
@@ -1086,8 +1088,8 @@
                   "Id": 5,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "480,112"
@@ -1107,8 +1109,8 @@
                   "Id": 7,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Instance",
-                    "_type": "GameSystems.GameController"
+                    "_type": "GameSystems.GameController",
+                    "_name": "Instance"
                   },
                   "UserData": {
                     "Position": "16,-32"
@@ -1118,8 +1120,8 @@
                   "Id": 9,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Players",
-                    "_type": "LeaderBoard"
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                   },
                   "UserData": {
                     "Position": "480,-16"
@@ -1129,8 +1131,8 @@
                   "Id": 18,
                   "Type": "call",
                   "Properties": {
-                    "_name": "GetAllPlayers",
                     "_type": "GameSystems.GameController",
+                    "_name": "GetAllPlayers",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -1142,8 +1144,8 @@
                   "Type": "call",
                   "Properties": {
                     "_name": "Reset",
-                    "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1289,8 +1291,8 @@
                   "Id": 9,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Players",
-                    "_type": "LeaderBoard"
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                   },
                   "UserData": {
                     "Position": "208,48"
@@ -1337,8 +1339,8 @@
                   "Id": 1,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Instance",
-                    "_type": "GameSystems.GameController"
+                    "_type": "GameSystems.GameController",
+                    "_name": "Instance"
                   },
                   "UserData": {
                     "Position": "96,64"
@@ -1348,8 +1350,8 @@
                   "Id": 2,
                   "Type": "call",
                   "Properties": {
-                    "_name": "GetAllPlayers",
                     "_type": "GameSystems.GameController",
+                    "_name": "GetAllPlayers",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -1360,8 +1362,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Players",
-                    "_type": "LeaderBoard"
+                    "_type": "LeaderBoard",
+                    "_name": "Players"
                   },
                   "UserData": {
                     "Position": "592,-16"
