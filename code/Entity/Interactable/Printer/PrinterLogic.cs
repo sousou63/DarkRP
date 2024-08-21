@@ -13,7 +13,7 @@ namespace Entity.Interactable.Printer
 		/// </summary>
 		public float Timer { get; set; }
 	}
-	public sealed class PrinterLogic : Component, IInteractable
+	public sealed class PrinterLogic : BaseEntity
 	{
 		[Property] public GameObject PrinterFan { get; set; }
 		[Property] public float PrinterFanSpeed { get; set; } = 1000f;
@@ -34,7 +34,7 @@ namespace Entity.Interactable.Printer
 		/// <summary>
 		/// Interact with the printer. This comes from the IInteractable interface inherited from the Interactable class.
 		/// </summary>
-		public void InteractUse( SceneTraceResult tr, GameObject player )
+		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			Log.Info( "Interacting with printer" );
 			if ( PrinterCurrentMoney > 0 )
