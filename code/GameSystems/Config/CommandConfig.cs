@@ -79,7 +79,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								foundPlayer.GameObject.Components.Get<Stats>()?.AddMoney(amount);
+								foundPlayer.GameObject.Components.Get<Stats>()?.UpdateBalance(amount);
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"You were given ${amount.ToString("N0")} money.");
 								playerStats.SendMessage($"Gave {foundPlayer.Connection.DisplayName} ${amount.ToString("N0")} money");
@@ -121,7 +121,7 @@ namespace GameSystems.Config
 									return false;
 								}
 
-								foundPlayer.GameObject.Components.Get<Stats>()?.SetMoney(amount);
+								foundPlayer.GameObject.Components.Get<Stats>()?.SetBalance(amount);
 
 								if ( foundPlayer.GameObject != player ) foundPlayer.GameObject.Components.Get<Stats>()?.SendMessage($"Your money has been set to ${amount.ToString("N0")}.");
 								playerStats.SendMessage($"Set {foundPlayer.Connection.DisplayName} money to ${amount.ToString("N0")}");
@@ -240,7 +240,7 @@ namespace GameSystems.Config
 								}
 
 								// Check if the player has enough money to drop
-								if (!playerStats.RemoveMoney(amount))
+								if (!playerStats.UpdateBalance(-amount))
 								{
 									playerStats.SendMessage("You do not have enough money to drop that amount.");
 									return false;

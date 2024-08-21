@@ -15,7 +15,7 @@ public class SavedPlayer
 	public SavedPlayer(PlayerConnObject player)
 	{
 		this.SteamId=player.Connection.SteamId;
-		this.Money = player.GameObject.Components.Get<Stats>().MoneyBase;
+		this.Money = player.GameObject.Components.Get<Stats>().Balance;
 	}
 
 	public static SavedPlayer LoadSavedPlayer(ulong SteamId)

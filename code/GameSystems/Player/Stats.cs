@@ -18,12 +18,12 @@ namespace GameSystems.Player
 
 		// BASE PLAYER PROPERTYS
 
-		[Sync, HostSync][Property] public float MoneyBase { get; set; } = 500f;
+		[Sync, HostSync][Property] public float Balance { get; set; } = 500f;
 
 		[Property] public float HealthBase { get; set; } = 100f;
 		[Property] public bool Starving { get; set; } = false;
 		[Property] public float FoodBase { get; set; } = 100f;
-  		[Property] public bool Died { get; set; } = false;
+		[Property] public bool Died { get; set; } = false;
 
 		// TIMER PROPERTYS
 		
@@ -62,7 +62,7 @@ namespace GameSystems.Player
 
 			if ( lastUsed >= SalaryTimer && (Network.IsOwner) )
 			{
-				MoneyBase += Job.Salary; // add Salary to the player Money
+				Balance += Job.Salary; // add Salary to the player Money
 				Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
 				lastUsed = 0; // reset the timer
 			}
@@ -100,40 +100,32 @@ namespace GameSystems.Player
 			Job = job;
 		}
 
-		public bool RemoveMoney( float Amount )
+		/// <summary>
+		/// Updates the player's balance. If the amount is negative, it checks if the player can afford it. Returns false if the player can't afford it.
+		/// </summary>
+		public bool UpdateBalance( float Amount )
 		{
-			if ( MoneyBase < Amount )
+			// If the amount is a negative, check if the player can afford it
+			if ( Amount < 0)
 			{
-				Sound.Play( "audio/error.sound" );
-				return false; // Not enough money 
+				if ( Balance < Math.Abs(Amount) )
+				{
+					Sound.Play( "audio/error.sound" );
+					return false;
+				}
 			}
-			else if ( MoneyBase >= Amount )
-			{
-				MoneyBase -= Amount;
-				return true; // Successfully removed money
-			}
-			return false;
+			Balance += Amount;
+			return true;
 		}
 
-		public void AddMoney( float Amount )
+		public void SetBalance(float Amount)
 		{
-			MoneyBase += Amount;
+			Balance = Amount;
 		}
 
-		public void SetMoney(float Ammount)
-		{
-			Log.Info( "Setting money to: " + Ammount );
-			MoneyBase = Ammount;
-			Log.Info( "Money is set to: " + MoneyBase );
-		}
-  
-		public void AddFood( float Amount )
+		public void UpdateHunger( float Amount )
 		{
 			FoodBase += Amount;
-		}
-		public void SetFood( float Amount )
-		{
-			FoodBase = Amount;
 		}
 
 		// DOOR LOGIC. Helps keep track of owned doors.
@@ -153,7 +145,7 @@ namespace GameSystems.Player
 			}
 
 			// If the player can afford it
-			if ( RemoveMoney( price ) )
+			if ( UpdateBalance( -price ) )
 			{
 				Doors.Add(door);
 				doorLogic.UpdateDoorOwner( GameObject, this);
@@ -185,7 +177,7 @@ namespace GameSystems.Player
 			}
 			// Remove the door from the list
 			Doors.Remove(door);
-			AddMoney( doorLogic.Price / 2 );
+			UpdateBalance( doorLogic.Price / 2 );
 			doorLogic.SellDoor();
 			Sound.Play( "audio/notification.sound" );
 			SendMessage("Door has been sold.");

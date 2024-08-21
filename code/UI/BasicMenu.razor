@@ -17,7 +17,7 @@
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="wallet">$@(playerStats.MoneyBase.ToString("N0"))</div <div
+                <div class="wallet">$@(playerStats.Balance.ToString("N0"))</div <div
                     class="sub">
                 Salary:<span>$@(playerStats.Job.Salary.ToString("N0"))</span>
             </div>
@@ -284,7 +284,7 @@
         }
 
         var playerStats = PlayerPrefab.Components.Get<Stats>();
-        if (!playerStats.RemoveMoney(price))
+        if (!playerStats.UpdateBalance(-price))
         {
             return; // Not enough money, error sound is handled elsewhere
         }

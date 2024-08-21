@@ -150,7 +150,7 @@
           "Description": "Be a normal person.",
           "Salary": 100
         },
-        "MoneyBase": 1250,
+        "Balance": 1250,
         "SalaryAmmount": 100,
         "SalaryTimer": 60,
         "Starving": false,
