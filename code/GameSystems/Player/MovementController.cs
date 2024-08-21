@@ -1,6 +1,7 @@
 using Sandbox.Citizen;
 using GameSystems.Player;
 using GameSystems;
+using System;
 
 namespace GameSystems.Player {
 	/// <summary>
@@ -40,6 +41,16 @@ namespace GameSystems.Player {
 			if (controller is null) return;
 			player = controller.GetPlayerByGameObjectID(GameObject.Id);
 		}
+		
+		void TryGetPlayer()
+		{
+			if (player is null)
+			{
+				var controller = GameController.Instance;
+				if (controller is null) return;
+				player = controller.GetPlayerByGameObjectID(GameObject.Id);
+			}
+		}
 
 		protected override void OnUpdate()
 		{
@@ -75,8 +86,14 @@ namespace GameSystems.Player {
 		{
 			if (Input.Pressed("noclip"))
 			{
-				// Get the player's usergroup
-				if (player.CheckPermission(PermissionLevel.Admin)) ToggleNoClip(!IsNoClip);
+				try{
+					// Temporary fix until PlayerConnObject and NetworkHelper have been refactored;
+					TryGetPlayer();
+					if (player.CheckPermission(PermissionLevel.Admin)) ToggleNoClip(!IsNoClip);
+				}catch (Exception e){
+					Log.Warning($"Player {GameObject.Name} tried to toggle noclip but failed.");
+					Log.Warning(e);
+				}
 			}
 		}
 
