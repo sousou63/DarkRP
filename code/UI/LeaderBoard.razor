@@ -39,10 +39,12 @@
 
 	private string GetColorForUser(PlayerConnObject p, bool forceGroupColor = false)
 	{
-		if (p.GetHighestUserGroup().PermissionLevel == 0 || !forceGroupColor)
-		{
-			return p.GameObject.Components.Get<Stats>().Job.Color.Hex;
-		}
+		//if (p.GetHighestUserGroup().PermissionLevel == 0 || !forceGroupColor)
+		//{
+		//	return p.GameObject.Components.Get<Stats>().Job.Color.Hex;
+		//}
+
+        // this work better
 		return p.GetHighestUserGroup().Color.Hex;
 	}
 

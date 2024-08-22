@@ -42,7 +42,7 @@ namespace GameSystems
 			{ "user", new UserGroup( "user", "User", PermissionLevel.User, Color.White ) },
 			{ "moderator", new UserGroup( "moderator", "Moderator", PermissionLevel.Moderator, Color.Yellow ) },
 			{ "admin", new UserGroup( "admin", "Admin", PermissionLevel.Admin, Color.Red ) },
-			{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Blue ) },
+			{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Cyan ) },
 			{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 		};
 		[HostSync]
