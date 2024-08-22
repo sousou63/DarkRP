@@ -108,7 +108,52 @@ namespace Entity.Interactable.Props
 			// Notify the player that the prop has been spawned
 			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Spawned prop {modelname} ({Props.Count}/{PropLimit})" );
 		}
+		
+		/// <summary>
+		/// Spawns a cloud-based model at a specified position and rotation.
+		/// </summary>
+		/// <param name="cloudModel">The identifier of the cloud model to spawn.</param>
+		/// <param name="position">The position in the world where the model should be spawned.</param>
+		/// <param name="rotation">The rotation to apply to the model after spawning.</param>
+		public GameObject SpawnCloudModel(string cloudModel, Vector3 position, Rotation rotation)
+		{
+			if (Props.Count >= PropLimit)
+			{
+				Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Warning, $"You've reached the Prop Limit ({PropLimit})");
+				return null;
+			}
 
+			// Calculate a spawn position in front of the player
+			Vector3 spawnOffset = GameObject.Transform.Local.Forward * 100f;
+			position += spawnOffset;
+
+			GameObject Prop = PropPrefab.Clone(position);
+			Prop.Transform.Rotation = rotation;
+
+			var PropHelper = Prop.Components.GetOrCreate<PropHelper>();
+			if (PropHelper != null)
+			{
+				PropHelper.SetCloudModel(cloudModel);
+			}
+			else
+			{
+				Log.Warning($"PropHelper component not found on the prop prefab.");
+				return null;
+			}
+
+			if (Prop.NetworkSpawn())
+			{
+				Props.Add(Prop);
+				History.Add(new PropAction(this, Prop, cloudModel));
+				Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Info, $"Spawned cloud model {cloudModel} ({Props.Count}/{PropLimit})");
+				return Prop;
+			}
+			else
+			{
+				Log.Warning("Failed to network spawn the cloud model.");
+				return null;
+			}
+		}
 
 		/// <summary>
 		/// Undoes the last action performed by the player.

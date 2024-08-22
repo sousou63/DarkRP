@@ -7,269 +7,205 @@
 @using Entity.Interactable.Props;
 @using Entity.Interactable.Printer;
 @using System.Text.RegularExpressions;
+@using System;
+
 @inherits PanelComponent;
 
 <root>
     <div class="title">Tab Menu</div>
 
-    <!-- TODO this should be modularized -->
     <div class="main">
         <div class="side-bar">
             <div class="player-container">
                 <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
-                <div class="wallet">$@(playerStats.Balance.ToString("N0"))</div <div
-                    class="sub">
-                Salary:<span>$@(playerStats.Job.Salary.ToString("N0"))</span>
+                <div class="wallet">$@(playerStats.Balance.ToString("N0"))</div>
+                <div class="sub">Salary:<span>$@(playerStats.Job.Salary.ToString("N0"))</span></div>
             </div>
-        </div>
-        <div class="navigation">
-            <div class="buttoncontainer">
-                <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs">
-                    <i class="icon">work</i> Jobs
-                </button>
-                <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb">
-                    <i class="icon">store</i> Dark Web
-                </button>
-                <button class="button @(IsPropsVisible ? "active" : "")" onclick="@DisplayProps">
-                    <i class="icon">folder</i> Props
-                </button>
-            </div>
-            <div class="buttoncontainer">
-                <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin">
-                    <i class="icon">local_police</i> Admin Tools </button>
-                <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo">
-                    <i class="icon">info</i> Information
-                </button>
-                <button class="button" onclick=@GitHubLink style="color:#4078c0;">
-                    <i class="icon">web</i> @GitHub
-                </button>
-                <button class="button" onclick=@DiscordLink style="color:#7289da;">
-                    <i class="icon">discord</i> @Discord
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="main-container">
-        <!-- Dark Web Section -->
-        <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
-            <div class="section-title">Dark Web</div>
-            <div class="section-contents">
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
-                    <div class="icon" style="background-color: #A52A2A"></div>
-                    <div class="label-container">
-                        <div class="label">Bronze Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">Slow</span>
-                        <div class="price">$500</div>
-                    </div>
+            <div class="navigation">
+                <div class="buttoncontainer">
+                    <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs">
+                        <i class="icon">work</i> Jobs
+                    </button>
+                    <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb">
+                        <i class="icon">store</i> Dark Web
+                    </button>
+                    <button class="button @(IsPropsVisible ? "active" : "")" onclick="@DisplayProps">
+                        <i class="icon">folder</i> Props
+                    </button>
                 </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
-                    <div class="icon" style="background-color: #DCDCDC"></div>
-                    <div class="label-container">
-                        <div class="label">Silver Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">Average</span>
-                        <div class="price">$1,200</div>
-                    </div>
-                </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
-                    <div class="icon" style="background-color: #FFD700"></div>
-                    <div class="label-container">
-                        <div class="label">Gold Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">Fast</span>
-                        <div class="price">$2,600</div>
-                    </div>
-                </div>
-
-                <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
-                    <div class="icon" style="background-color: #40E0D0"></div>
-                    <div class="label-container">
-                        <div class="label">Diamond Printer</div>
-                        <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                        <span class="description">Super-fast</span>
-                        <div class="price">$4,200</div>
-                    </div>
+                <div class="buttoncontainer">
+                    <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin">
+                        <i class="icon">local_police</i> Admin Tools
+                    </button>
+                    <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo">
+                        <i class="icon">info</i> Information
+                    </button>
+                    <button class="button" onclick=@GitHubLink style="color:#4078c0;">
+                        <i class="icon">web</i> @GitHub
+                    </button>
+                    <button class="button" onclick=@DiscordLink style="color:#7289da;">
+                        <i class="icon">discord</i> @Discord
+                    </button>
                 </div>
             </div>
         </div>
+        <div class="main-container">
+            <!-- Dark Web Section -->
+            <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
+                <div class="section-title">Dark Web</div>
+                <div class="section-contents">
 
-        <!-- Jobs Section -->
-        <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
-            <div class="section-title">Jobs</div>
-            <div class="section-contents">
-                    @foreach (Job job in GameController.JobSystem.Jobs.Values)
-                    {
-                    <div class="button" onclick="@(() => playerStats.SelectJob(job))">
-                        <div class="icon"></div>
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
+                        <div class="icon" style="background-color: #A52A2A"></div>
                         <div class="label-container">
-                            <div class="label">@job.Name</div>
-                            <div class="description">@job.Description</div>
+                            <div class="label">Bronze Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">Slow</span>
+                            <div class="price">$500</div>
                         </div>
                     </div>
-                    }
-            </div>
-        </div>
 
-        <!-- Props Section -->
-        <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");)">
-            <div class="section-title">Props : @PropManager?.PropCount() / @PropManager?.PropLimit</div>
-            <div class="section-contents">
-                <div class="info">
-
-                    <button class="button"
-                        style=" justify-content:center; margin-top:10px; margin-bottom:20px; background-color:maroon;"
-                        onclick=@RemoveAllProps>Remove all my props ( Press "Z" to undo props )</button>
-
-                    <div style="flex-direction: row; flex-wrap:wrap; ">
-                            @foreach (var Model in Props) // TODO : add the thumbnail with the props name
-                            {
-
-                                string Propsname = Model.Name;
-
-                                // Shitty workaround while I find the real model name ( need the thumbnail too)
-                                var DisplayableName = Model.ResourceName;
-                                DisplayableName = Regex.Replace(DisplayableName, @"0[1-99]", "");
-
-
-                            <div style="padding:8px;">
-                                <div class="button" onclick=@(() => SpawnProps(Propsname))>
-                                    <div style="padding:60px;"> @DisplayableName </div>
-                                </div>
-                            </div>
-
-                            }
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
+                        <div class="icon" style="background-color: #DCDCDC"></div>
+                        <div class="label-container">
+                            <div class="label">Silver Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">Average</span>
+                            <div class="price">$1,200</div>
+                        </div>
                     </div>
 
-                    <!-- this doesn't work yet, it's supposed to show cloud assets but I struggle a bit to understand their API 
-                        @foreach (var Package in Packages)
-                        {
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
+                        <div class="icon" style="background-color: #FFD700"></div>
+                        <div class="label-container">
+                            <div class="label">Gold Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">Fast</span>
+                            <div class="price">$2,600</div>
+                        </div>
+                    </div>
 
-                        // <div class="button" onclick=> @Package.Title </div>
+                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
+                        <div class="icon" style="background-color: #40E0D0"></div>
+                        <div class="label-container">
+                            <div class="label">Diamond Printer</div>
+                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
+                            <span class="description">Super-fast</span>
+                            <div class="price">$4,200</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        } -->
+            <!-- Jobs Section -->
+            <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
+                <div class="section-title">Jobs</div>
+                <div class="section-contents">
+                    @foreach (Job job in GameController.JobSystem.Jobs.Values)
+                    {
+                        <div class="button" onclick="@(() => playerStats.SelectJob(job))">
+                            <div class="icon"></div>
+                            <div class="label-container">
+                                <div class="label">@job.Name</div>
+                                <div class="description">@job.Description</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
 
+            <!-- Props Section -->
+            <div class="section" style="display: @(IsPropsVisible ? "flex" : "none");">
+                <div class="section-title">Props: @PropManager?.PropCount() / @PropManager?.PropLimit</div>
+                <div class="section-contents">
+                    <div class="info">
+                        <!-- Local Props -->
+                        <button class="button" style="justify-content:center; margin-top:10px; margin-bottom:20px; background-color:maroon;" onclick=@RemoveAllProps>
+                            Remove all my props (Press "Z" to undo props)
+                        </button>
+
+                        <div style="flex-direction: row; flex-wrap:wrap;">
+                            @foreach (var Model in Props)
+                            {
+                                string Propsname = Model.Name;
+                                var DisplayableName = Regex.Replace(Model.ResourceName, @"0[1-99]", "");
+
+                                <div style="padding:8px;">
+                                    <div class="button" onclick=@(() => SpawnProps(Propsname))>
+                                        <div style="padding:60px;"> @DisplayableName </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Cloud Assets -->
+                        <div class="section-title">Cloud Assets</div>
+                        <div style="flex-direction: row; flex-wrap:wrap; margin-top: 20px;">
+                            @if (CloudPackages != null && CloudPackages.Count > 0)
+                            {
+                                @foreach (var package in CloudPackages)
+                                {
+                                    <div class="button" onclick=@(() => SpawnCloudProp(package.FullIdent))>
+                                        <div style="padding:60px;">
+                                            <!-- Display package title -->
+                                            @package.Title
+                                            <!-- Display package identifier (if you want to show it) -->
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div>No cloud models available.</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Section -->
+            <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
+                <div class="section-title">Information</div>
+                <div class="section-contents">
+                    <div class="info" style="color: #556B2F;">
+                        <h1>Completed</h1>
+                        <p>@InfoDone</p>
+                    </div>
+                    <div class="info" style="color: #8B0000;">
+                        <h1>TODO</h1>
+                        <p>@InfoTodo</p>
+                    </div>
+                    <div class="info" style="color: #DAA520;">
+                        <h1>Notes</h1>
+                        <p>@InfoNotes</p>
+                    </div>
+                    <div class="info" style="color: #DCDCDC;">
+                        <h1>Credits</h1>
+                        <p>@InfoCredits</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Section -->
+            <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
+                <div class="section-title">Admin Tools</div>
+                <div class="section-contents">
+                    <div class="info" style="color: red;">
+                        <h1>TODO</h1>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Information Section -->
-        <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
-            <div class="section-title">Information</div>
-            <div class="section-contents">
-
-                <div class="info" style="color: #556B2F;">
-                    <h1>Completed</h1>
-                    <p>@InfoDone</p>
-                </div>
-
-                <div class="info" style="color: #8B0000;">
-                    <h1>TODO</h1>
-                    <p>@InfoTodo</p>
-                </div>
-
-                <div class="info" style="color: #DAA520;">
-                    <h1>Notes</h1>
-                    <p>@InfoNotes</p>
-                </div>
-                <div class="info" style="color: #DCDCDC;">
-                    <h1>Credits</h1>
-                    <p>@InfoCredits</p>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Admin Section -->
-        <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
-            <div class="section-title">Admin Tools</div>
-            <div class="section-contents">
-                <div class="info" style="color: red;">
-                    <h1>TODO</h1>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </root>
 
-@code
-{
-	// Printer Prefab Reference
-	[Property] GameObject PrinterPrefab { get; set; }
-
-	// PlayerConnObjectConnObject Prefab Reference
-	[Property] GameObject PlayerPrefab { get; set; }
-
-	private Stats playerStats => PlayerPrefab.Components.Get<Stats>();
-
-	// List of Props
-	[Property] public List<Model> Props { get; set; }
-	PropToolManager PropManager { get; set; }
-
-	private GameController GameController;
-
-	protected override void OnStart()
-	{
-		try
-		{
-			PropManager = GameObject.Parent.Components.Get<PropToolManager>();
-			GameController = GameSystems.GameController.Instance;
-		}
-		catch
-		{
-			Log.Error("Failed to get the PropManager or GameController");
-		}
-	}
-    // All the text property for the information tab
-    [Property, TextArea] public string InfoDone { get; set; } = "Hello World!";
-    [Property, TextArea] public string InfoTodo { get; set; } = "Hello World!";
-    [Property, TextArea] public string InfoNotes { get; set; } = "Hello World!";
-    [Property, TextArea] public string InfoCredits { get; set; } = "Hello World!";
-
-
-    // The string used to query for packages
-    public string Query { get; set; } = "QuerryPlaceholder";
-
-    // A list of found packages
-    // List<Package> Packages = new List<Package>();
-
-
-    /* doesn't work yet ( I need to figure out their API to understand how to get a list of cloud Assets)
-    public async Task FindPackage()
-    {
-    var found = await Package.FindAsync(Query);
-    if (found != null)
-    {
-    Packages.AddRange(found.Packages);
-    }
-    } */
-
-
-    void SpawnProps(string modelname)
-    {
-        if (PropManager == null)
-        {
-            Log.Error("PropManager not found");
-            return;
-        }
-        PropManager.SpawnProp(modelname);
-    }
-
-    void RemoveAllProps()
-    {
-        if (PropManager == null)
-        {
-            Log.Error("PropManager not found");
-            return;
-        }
-        PropManager.RemoveAllProps();
-    }
-
-    // everything related to printers
+@code {
+    [Property] GameObject PrinterPrefab { get; set; }
+    [Property] GameObject PlayerPrefab { get; set; }
+    private Stats playerStats => PlayerPrefab.Components.Get<Stats>();
+    
+    // Everything related to printers
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
     enum PrinterType { Bronze, Silver, Gold, Diamond }
@@ -299,13 +235,152 @@
         CurrentPrinter++;
     }
 
+    [Property] public List<Model> Props { get; set; } = new List<Model>();
+    private List<Package> CloudPackages { get; set; } = new List<Package>();
+    PropToolManager PropManager { get; set; }
+    private GameController GameController;
+
+    // Information tab properties
+    [Property, TextArea] public string InfoDone { get; set; } = "Completed tasks...";
+    [Property, TextArea] public string InfoTodo { get; set; } = "Pending tasks...";
+    [Property, TextArea] public string InfoNotes { get; set; } = "Important notes...";
+    [Property, TextArea] public string InfoCredits { get; set; } = "Credits for the team...";
+
+    protected override void OnStart()
+    {
+        try
+        {
+            PropManager = GameObject.Parent.Components.Get<PropToolManager>();
+            GameController = GameSystems.GameController.Instance;
+
+            // Load Cloud Packages
+            _ = LoadCloudPackages("model");
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to initialize: {ex.Message}");
+        }
+    }
+
+    private async Task LoadCloudPackages(string query)
+    {
+        try
+        {
+            // Perform the search with the given query
+            var result = await Package.FindAsync(query);
+            if (result != null && result.Packages != null)
+            {
+                CloudPackages = result.Packages
+                    .Where(package => IsModelPackage(package))
+                    .ToList();
+
+                foreach (var package in CloudPackages)
+                {
+                    Log.Info($"Package Found: {package.Title}, Identifier: {package.FullIdent}");
+                }
+
+                StateHasChanged(); // Refresh the UI to show the packages
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to load cloud packages: {ex.Message}");
+        }
+    }
+
+    private bool IsModelPackage(Package package)
+    {
+        try
+        {
+            // Fetch the package metadata
+            var meta = package.GetMeta("PrimaryAsset", string.Empty);
+            return !string.IsNullOrEmpty(meta) && meta.EndsWith(".vmdl");
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to determine if package is a model: {ex.Message}");
+            return false;
+        }
+    }
+
+    void SpawnProps(string modelname)
+    {
+        if (PropManager == null)
+        {
+            Log.Error("PropManager not found");
+            return;
+        }
+        PropManager.SpawnProp(modelname);
+    }
+
+    async Task SpawnCloudProp(string fullIdent)
+    {
+        try
+        {
+            // Fetch the package metadata
+            var package = await Package.FetchAsync(fullIdent, true);
+
+            if (package != null)
+            {
+                Log.Info($"Package {package.Title} fetched successfully.");
+
+                // Mount the package to ensure it's downloaded and ready to use
+                var installedPackage = await package.MountAsync();
+
+                if (installedPackage != null)
+                {
+                    Log.Info($"Package {package.Title} downloaded and mounted successfully.");
+
+                    // Attempt to find the PropToolManager in the current GameObject or its parent
+                    var propToolManager = GameObject.Components.Get<PropToolManager>() ??
+                                        GameObject.Parent?.Components.Get<PropToolManager>();
+
+                    if (propToolManager != null)
+                    {
+                        Vector3 position = GameObject.Transform.Position + Vector3.Up * 50; // Example position
+                        Rotation rotation = Rotation.Identity; // Example rotation
+
+                        // Use the SpawnCloudModel method to spawn the model
+                        propToolManager.SpawnCloudModel(fullIdent, position, rotation);
+                        Log.Info($"Cloud model {fullIdent} spawned successfully.");
+                    }
+                    else
+                    {
+                        Log.Warning("PropToolManager not found on the game object or its parent.");
+                    }
+                }
+                else
+                {
+                    Log.Warning($"Failed to mount package: {fullIdent}");
+                }
+            }
+            else
+            {
+                Log.Warning($"Could not fetch package with identifier: {fullIdent}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to spawn cloud model: {ex.Message}");
+        }
+    }
+
+    void RemoveAllProps()
+    {
+        if (PropManager == null)
+        {
+            Log.Error("PropManager not found");
+            return;
+        }
+        PropManager.RemoveAllProps();
+    }
 
     // Boolean properties to control visibility
-    bool IsDarkWebVisible = false, 
-	     IsJobsVisible    = false, 
-		 IsInfoVisible    = true, 
-		 IsAdminVisible   = false, 
-		 IsPropsVisible   = false;
+    bool IsDarkWebVisible = false,
+         IsJobsVisible = false,
+         IsInfoVisible = true,
+         IsAdminVisible = false,
+         IsPropsVisible = false;
 
     void DisplaySection(string section)
     {
@@ -324,8 +399,6 @@
     void DisplayAdmin() { DisplaySection("Admin"); }
     void DisplayProps() { DisplaySection("Props"); }
 
-
-    // Discord and Github string
     string Discord = "Discord";
     string GitHub = "GitHub";
 
@@ -346,7 +419,6 @@
         }
     }
 
-
     async void GitHubLink()
     {
         Sound.Play("audio/select.sound");
@@ -363,9 +435,6 @@
             Log.Error("Failed to copy to clipboard");
         }
     }
-    /// <summary>
-    /// The BuildHash method determines if the system should be rebuilt.
-    /// If it changes, the system will be rebuilt.
-    /// </summary>
+
     protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes, PropManager?.PropCount());
 }
