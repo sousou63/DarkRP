@@ -3,7 +3,7 @@
     "__guid": "d9722984-8e27-467c-bf69-0aed3358f138",
     "Flags": 0,
     "Name": "printer",
-    "Tags": "printer,interact",
+    "Tags": "printer,interact,grab",
     "Enabled": true,
     "NetworkMode": 1,
     "OwnerTransfer": 0,

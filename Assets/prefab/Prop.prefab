@@ -3,9 +3,10 @@
     "__guid": "48f3c565-3343-41ad-9f4d-7f88b2478712",
     "Flags": 0,
     "Name": "prop",
-    "Tags": "prop,interact",
+    "Tags": "prop,grab",
     "Enabled": true,
     "NetworkMode": 1,
+    "OwnerTransfer": 0,
     "Components": [
       {
         "__type": "Sandbox.Prop",

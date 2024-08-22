@@ -17,7 +17,8 @@ namespace GameSystems
 			76561198837197784, // EuroBlue 
 			76561199092626415, // Mangro
 			76561198243368782,  // Dada
-			76561198071517597 // Red
+			76561198071517597, // Red
+			76561198047807813 // Dimmer
 		};
 		private static GameController _instance;
 

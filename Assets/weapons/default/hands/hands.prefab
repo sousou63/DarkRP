@@ -1,0 +1,27 @@
+{
+  "RootObject": {
+    "__guid": "56340921-7862-404f-90c0-7ef0c4cf1405",
+    "Flags": 0,
+    "Name": "hands",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.Weapons.Hands",
+        "__guid": "cf2f2b0d-88d6-4539-b9e8-9e953511185f",
+        "GrabbableTag": "grab",
+        "HoldDistance": 70,
+        "InteractRange": 100,
+        "RotateSpeed": 5,
+        "ThrowForce": 100
+      }
+    ],
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
