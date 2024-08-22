@@ -1,0 +1,18 @@
+{
+  "Name": "Hands",
+  "Description": "Your interaction to the world!",
+  "Slot": 1,
+  "IconCharacter": "u",
+  "DamageIcon": null,
+  "HasAmmo": false,
+  "ClipSize": 16,
+  "StartingReserve": 32,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/default/hands/hands.prefab"
+  },
+  "ViewModelPrefab": null,
+  "WorldModel": null,
+  "__references": [],
+  "__version": 0
+}

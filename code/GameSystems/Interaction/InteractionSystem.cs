@@ -16,39 +16,26 @@ namespace GameSystems.Interaction
 
 		// Tag that marks objects as interactable
 		[Property] public string InteractTag { get; set; } = "Interact";
-
-		[Property, Sync] 
-        public GameObject HoldingArea { get; set; }
-
-		private PickupSystem pickupSystem;
-
+        
 		private SceneTraceResult tr;
 
 		protected override void OnAwake()
 		{
 			CameraComponent = Scene.Camera;
-			 
-			pickupSystem = new PickupSystem(
-				InteractRange,
-				GameObject.Components.Get<Player.MovementController>(),
-				HoldingArea
-				);
 		}
 
 		protected override void OnFixedUpdate()
 		{
 			// Ensure that interaction logic only runs for the player who owns the network object
-			if (Network.IsOwner)
-			{
-				// Execute the interaction logic
-				Interact();
+			if (Network.IsProxy) return;
+		
+			// Execute the interaction logic
+			Interact();
 
-				// Draw the debug information if the option is enabled
-				if (DrawDebugInteract)
-				{
-					DrawDebug();
-				}
-				pickupSystem.UpdateHeldObject();
+			// Draw the debug information if the option is enabled
+			if (DrawDebugInteract)
+			{
+				DrawDebug();
 			}
 		}
 
@@ -151,13 +138,7 @@ namespace GameSystems.Interaction
 				return Vector3.Zero;
 			}
 		}
-
-
-		public void TryPickup(GameObject gameObject)
-		{
-			if (!pickupSystem.IsHoldingObject())
-				pickupSystem.HandlePickup( gameObject );
-		}
+		
 		/// <summary>
 		/// Handles the interaction logic based on the provided input key.
 		/// </summary>

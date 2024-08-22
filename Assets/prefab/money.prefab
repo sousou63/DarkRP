@@ -4,9 +4,10 @@
     "Flags": 0,
     "Name": "money",
     "Scale": "1.277954,1.277954,1.277954",
-    "Tags": "interact,money",
+    "Tags": "interact,money,grab",
     "Enabled": true,
     "NetworkMode": 1,
+    "OwnerTransfer": 0,
     "Components": [
       {
         "__type": "Sandbox.ModelRenderer",
@@ -78,11 +79,7 @@
           },
           {
             "__type": "MoneyUI",
-            "__guid": "6e413488-a5ae-4275-93a1-4f1573e92cf8",
-            "MoneyPrefab": {
-              "_type": "gameobject",
-              "go": "0d2d7c5b-a45f-49f7-9d3a-14b0b459db4b"
-            }
+            "__guid": "6e413488-a5ae-4275-93a1-4f1573e92cf8"
           }
         ]
       },
@@ -105,11 +102,7 @@
           },
           {
             "__type": "MoneyUI",
-            "__guid": "1c5f1db3-9b2b-4096-b466-456f8b38d037",
-            "MoneyPrefab": {
-              "_type": "gameobject",
-              "go": "0d2d7c5b-a45f-49f7-9d3a-14b0b459db4b"
-            }
+            "__guid": "1c5f1db3-9b2b-4096-b466-456f8b38d037"
           }
         ]
       }

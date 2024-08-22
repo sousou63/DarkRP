@@ -101,10 +101,6 @@ namespace Entity
 		/// </summary>
 		public virtual void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
-			if ( CanBePickedUp )
-			{
-				player.Components.Get<InteractionSystem>().TryPickup(this.GameObject);
-			}
 		}
 
 		/// <summary>
