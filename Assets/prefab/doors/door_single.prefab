@@ -1,0 +1,46 @@
+{
+  "RootObject": {
+    "__guid": "85ef87f9-1260-4892-b2b1-2f60f5a0d2f8",
+    "Flags": 0,
+    "Name": "door_single",
+    "Enabled": true,
+    "Children": [
+      {
+        "__guid": "12b6a63b-19f7-4d7f-8ec0-6da16e1589ec",
+        "Flags": 0,
+        "Name": "doorframe_single",
+        "Position": "0,-37,0",
+        "Scale": "0.4,0.4,0.4",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "c1673c7b-5d3a-46bf-80b1-b574b1eb490d",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/darkrp_map/buildings/doors/frames/frame_single/doorframe_single.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "cdf85731-8a27-4103-86ad-e7955c7ceffa",
+        "Flags": 0,
+        "Name": "door_right (1)",
+        "Tags": "right,interact",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkOrphaned": 1,
+        "__Prefab": "prefab/doors/doorassembly_right.prefab",
+        "__PrefabVariables": {}
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

@@ -594,7 +594,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -624,7 +624,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -654,7 +654,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -732,6 +732,24 @@
       "Position": "-650.5162,-1813.18,167.623",
       "Enabled": true,
       "__Prefab": "prefab/doubledoor.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "e34d54b6-6dc5-4977-9982-9a43d1d22258",
+      "Flags": 0,
+      "Name": "door_double",
+      "Position": "-646.7786,-1816.107,167.623",
+      "Enabled": true,
+      "__Prefab": "prefab/doors/door_double.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "0603b619-8784-47c3-acef-b9c579162b4c",
+      "Flags": 0,
+      "Name": "door_single",
+      "Position": "-643.9766,-1711.261,167.623",
+      "Enabled": true,
+      "__Prefab": "prefab/doors/door_single.prefab",
       "__PrefabVariables": {}
     }
   ],

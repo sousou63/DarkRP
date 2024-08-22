@@ -14,7 +14,7 @@
         "Enabled": true,
         "NetworkMode": 1,
         "NetworkOrphaned": 1,
-        "__Prefab": "prefab/door_right.prefab",
+        "__Prefab": "prefab/doors/doorassembly_right.prefab",
         "__PrefabVariables": {}
       },
       {
@@ -22,11 +22,11 @@
         "Flags": 0,
         "Name": "door_left (1)",
         "Position": "0,-37,0",
-        "Tags": "left,interact",
+        "Tags": "interact,left",
         "Enabled": true,
         "NetworkMode": 1,
         "NetworkOrphaned": 1,
-        "__Prefab": "prefab/door_left.prefab",
+        "__Prefab": "prefab/doors/doorassembly_left.prefab",
         "__PrefabVariables": {}
       },
       {
