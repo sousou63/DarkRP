@@ -54,7 +54,7 @@
         "__guid": "8b3e3286-3749-4f35-8d43-a58dcea8cb12",
         "Flags": 0,
         "Name": "Panel (1)",
-        "Position": "-1.214411,-18.3967,56.29179",
+        "Position": "-1.4,-19,56",
         "Rotation": "0,0,1,-0.00000004371139",
         "Enabled": true,
         "Components": [
@@ -82,7 +82,7 @@
         "__guid": "02c41d63-7d0f-4433-ab3d-68dbe61ce2e2",
         "Flags": 0,
         "Name": "Panel",
-        "Position": "1.248956,-18.3967,56.29179",
+        "Position": "1.4,-19,56",
         "Enabled": true,
         "Components": [
           {
