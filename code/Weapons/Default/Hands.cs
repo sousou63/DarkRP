@@ -34,6 +34,11 @@ public class Hands : Weapon
 
 	protected override void OnStart()
 	{
+		if ( IsProxy )
+		{
+			Enabled = false;
+		}
+		
 		_camera = Scene.Camera;
 	}
 	
