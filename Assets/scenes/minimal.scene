@@ -328,7 +328,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -358,7 +358,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
@@ -388,7 +388,7 @@
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
+      "__Prefab": "prefab/doors/door.prefab",
       "__PrefabVariables": {}
     },
     {
