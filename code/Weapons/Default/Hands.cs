@@ -65,7 +65,6 @@ public class Hands : Weapon
 		}
 	}
 	
-	// This function is called in the player's update loop
 	protected override void OnFixedUpdate()
 	{
 		if ( _held == null )
