@@ -64,9 +64,9 @@ namespace GameSystems.Player {
 
 		protected override void OnFixedUpdate()
 		{
-			NoClipInput();
 			if (IsProxy)
 				return;
+			NoClipInput();
 			CrouchingInput();
 			MovementInput();
 			//NoClipInput();
