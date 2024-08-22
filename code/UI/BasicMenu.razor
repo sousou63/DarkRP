@@ -266,20 +266,22 @@
     {
         try
         {
-            // Perform the search with the given query
             var result = await Package.FindAsync(query);
             if (result != null && result.Packages != null)
             {
-                CloudPackages = result.Packages
-                    .Where(package => IsModelPackage(package))
-                    .ToList();
+                // Temporarily removed the IsModelPackage check to display all packages - dancore
+                CloudPackages = result.Packages.ToList();
 
-                foreach (var package in CloudPackages)
+                @* foreach (var package in CloudPackages)
                 {
                     Log.Info($"Package Found: {package.Title}, Identifier: {package.FullIdent}");
-                }
+                } *@
 
                 StateHasChanged(); // Refresh the UI to show the packages
+            }
+            else
+            {
+                Log.Warning("No packages found matching the query.");
             }
         }
         catch (Exception ex)
@@ -288,20 +290,27 @@
         }
     }
 
-    private bool IsModelPackage(Package package)
+    // Once I understand GetMeta better, I'll reincorporate this - dancore
+    @* private bool IsModelPackage(Package package)
     {
         try
         {
-            // Fetch the package metadata
+            // Check for the presence of a model file in the package's metadata
             var meta = package.GetMeta("PrimaryAsset", string.Empty);
-            return !string.IsNullOrEmpty(meta) && meta.EndsWith(".vmdl");
+            if (!string.IsNullOrEmpty(meta) && meta.EndsWith(".vmdl"))
+            {
+                Log.Info($"Package {package.FullIdent} is a model package.");
+                return true;
+            }
+            Log.Warning($"Package {package.FullIdent} is not a model package.");
+            return false;
         }
         catch (Exception ex)
         {
             Log.Error($"Failed to determine if package is a model: {ex.Message}");
             return false;
         }
-    }
+    } *@
 
     void SpawnProps(string modelname)
     {
