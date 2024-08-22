@@ -71,7 +71,13 @@ public class Hands : Weapon
 		{
 			return;
 		}
-			
+
+		if ( !_held.IsValid )
+		{
+			Release();
+			return;
+		}
+		
 		var holdPosition = _camera.Transform.Position + _camera.Transform.World.Forward * HoldDistance;
 
 		// Check if the object is too far away from the hold position
@@ -154,20 +160,20 @@ public class Hands : Weapon
 	{
 		UnlockHeldObject();
 		
-		if ( _heldBody.IsValid() )
+		if ( _heldBody != null && _heldBody.IsValid() )
 		{
 			_heldBody.AutoSleep = true;
+			
+			// Cap the velocity
+			var currentVelocity = _heldBody.Velocity;
+			if (currentVelocity.Length > MaxReleaseVelocity)
+			{
+				currentVelocity = currentVelocity.Normal * MaxReleaseVelocity;
+				_heldBody.Velocity = currentVelocity;
+			}
+			
+			_heldBody.ApplyImpulse(_camera.Transform.World.Forward * _heldBody.Mass * throwingForce);
 		}
-		
-		// Cap the velocity
-		var currentVelocity = _heldBody.Velocity;
-		if (currentVelocity.Length > MaxReleaseVelocity)
-		{
-			currentVelocity = currentVelocity.Normal * MaxReleaseVelocity;
-			_heldBody.Velocity = currentVelocity;
-		}
-		
-		_heldBody.ApplyImpulse(_camera.Transform.World.Forward * _heldBody.Mass * throwingForce);
 		
 		_held = null;
 		_heldBody = null;
