@@ -18,10 +18,10 @@
 		@foreach (var player in Players)
 		{
 		    <div class="TableRow">
-		        <div class="TableCell" style="color:@GetColorForUser(@player.Value)">@player.Value.Connection.DisplayName</div>
-		        <div class="TableCell" style="color:@GetColorForUser(@player.Value)">@GetJobNameForUser(@player.Value)</div>
+                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@player.Value.Connection.DisplayName</div>
+                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@GetJobNameForUser(@player.Value)</div>
 				<div class="TableCell" style="color:@GetColorForUser(@player.Value, true);text-align:center">@player.Value.GetHighestUserGroup().Name.ToUpper()</div>
-		        <div class="TableCell">@player.Value.Connection.SteamId</div>
+                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@player.Value.Connection.SteamId</div>
 		    </div>
 		}
     </div>
@@ -29,7 +29,8 @@
 
 @code
 {
-	[Property] public NetDictionary<Guid, PlayerConnObject> Players = null;
+    // This players list is updated in the ACTION GRAPH [ON FIXED UPDATE] inside the screen panel and it use the gamecontroller instance
+    [Property] public NetDictionary<Guid, PlayerConnObject> Players = null;
 
 	private string GetJobNameForUser(PlayerConnObject p)
 	{
@@ -46,7 +47,7 @@
 	}
 
 	/// <summary>
-	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine(Players.Count);
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(Players);
 }
