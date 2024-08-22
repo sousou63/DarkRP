@@ -30,7 +30,7 @@ To ensure code quality and maintainability, please adhere to the following guide
 - Sousou: Project initiation and management
 - QueenPM: Chat enhancements, UI improvements, door system, code optimization, user groups, no-clip system
 - HankKitts: Money, door and doorframe - 3d model 
-- dancore: Entity system, code optimization, Money Entity
+- dancore: Entity system, code optimization, Money Entity, Cloud Asset spawn system/Menu, ported rp_downtown_v2 to source 2, Chat enhancements
 - Bozy: Team/job system foundation
 - IRLadderGoat: Scoreboard foundation, code refactoring, physic handling 
 - Mangrogred: Money pickup, tweaks, base map 
