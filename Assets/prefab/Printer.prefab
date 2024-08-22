@@ -64,18 +64,21 @@
             "Timer": 15
           },
           "Gold": {
-            "Color": "1,0.90196,0,1",
+            "Color": "1,0.78333,0,1",
             "Material": "materials/darkrp_main/moneyprinter/base/gold/moneyprinter_base_gold.vmat",
             "Price": 2600,
             "Timer": 10
           },
           "Diamond": {
             "Color": "0,0.85098,1,1",
-            "Material": "materials/darkrp_main/moneyprinter/base/titanium/moneyprinter_base_titanium.vmat",
+            "Material": "materials/darkrp_main/moneyprinter/base/diamond/clean_version/moneyprinter_base_diamond_clean.vmat",
             "Price": 4800,
             "Timer": 5
           }
         },
+        "CanBePickedUp": true,
+        "EntityName": "Base Entity",
+        "Health": 100,
         "PrinterCurrentMoney": 0,
         "PrinterFan": {
           "_type": "gameobject",

@@ -48,8 +48,14 @@ namespace Entity.Interactable.Props
         /// </summary>
         struct BodyInfo
         {
-            public PhysicsBodyType Type;
-            public Transform Transform;
+            public PhysicsBodyType Type { get; set; }
+            public Transform Transform { get; set; }
+
+            public BodyInfo(PhysicsBodyType type, Transform transform)
+            {
+                Type = type;
+                Transform = transform;
+            }
         }
 
         /// <summary>
