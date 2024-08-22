@@ -26,16 +26,19 @@ namespace GameSystems.Player
 		[Property] public bool Dead { get; set; } = false;
 
 		// TIMER PROPERTYS
-		
+
 		[Property] public float SalaryTimerSeconds { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] public float StarvingTimerSeconds { get; set; } = 20f;
-		[Property] public float SalaryAmount { get; set; } = 50f;
 
 		private Chat chat { get; set; }
 		private GameController controller { get; set; }
 
 		TimeSince lastUsed = 0; // Set the timer
 		TimeSince lastUsedFood = 0;
+
+		//Pereodiocal player data save in seconds
+		private TimeSince lastSaved = 0;
+		private static uint saveCooldown = 30;
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
 		protected override void OnStart()
@@ -58,13 +61,26 @@ namespace GameSystems.Player
 
 		protected override void OnFixedUpdate()
 		{
-
 			if ( lastUsed >= SalaryTimerSeconds && (Network.IsOwner) )
 			{
 				Balance += Job.Salary; // add Salary to the player Money
 				Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
 				lastUsed = 0; // reset the timer
 			}
+
+			if ( (lastSaved >= saveCooldown) && (Networking.IsHost) )
+			{
+
+				if ( this.GetPlayerDetails() != null )
+				{
+
+					Log.Info( $"Saving players data: {this.GetPlayerDetails().Connection.Id} {this.GetPlayerDetails().Connection.DisplayName}" );
+					SavedPlayer.SavePlayer( new SavedPlayer( this.GetPlayerDetails() ) );
+					lastSaved = 0; // reset the timer
+				}
+
+			}
+
 			if ( lastUsedFood >= StarvingTimerSeconds && (Network.IsOwner) && (Starving) )
 			{
 				if ( HungerBase > 0 )
@@ -105,9 +121,9 @@ namespace GameSystems.Player
 		public bool UpdateBalance( float Amount )
 		{
 			// If the amount is a negative, check if the player can afford it
-			if ( Amount < 0)
+			if ( Amount < 0 )
 			{
-				if ( Balance < Math.Abs(Amount) )
+				if ( Balance < Math.Abs( Amount ) )
 				{
 					Sound.Play( "audio/error.sound" );
 					return false;
@@ -117,7 +133,7 @@ namespace GameSystems.Player
 			return true;
 		}
 
-		public void SetBalance(float Amount)
+		public void SetBalance( float Amount )
 		{
 			Balance = Amount;
 		}
@@ -128,7 +144,7 @@ namespace GameSystems.Player
 		}
 
 		// DOOR LOGIC. Helps keep track of owned doors.
-		public void PurchaseDoor(float price, GameObject door)
+		public void PurchaseDoor( float price, GameObject door )
 		{
 			Log.Info( $"Purchasing the door: {door.Id}" );
 			// Check if its a valid door
@@ -146,22 +162,22 @@ namespace GameSystems.Player
 			// If the player can afford it
 			if ( UpdateBalance( -price ) )
 			{
-				Doors.Add(door);
-				doorLogic.UpdateDoorOwner( GameObject, this);
-				SendMessage("Door has been purchased.");
+				Doors.Add( door );
+				doorLogic.UpdateDoorOwner( GameObject, this );
+				SendMessage( "Door has been purchased." );
 				Sound.Play( "audio/notification.sound" );
 				return;
 			}
 			else
 			{
-				SendMessage("Can't afford this door.");
+				SendMessage( "Can't afford this door." );
 				return;
 			}
 		}
 
-		public void SellDoor(GameObject door)
+		public void SellDoor( GameObject door )
 		{
-			Log.Info($"Selling door: {door.Id}");
+			Log.Info( $"Selling door: {door.Id}" );
 			// Check if its a valid door
 			var doorLogic = door.Components.Get<DoorLogic>();
 			if ( doorLogic == null )
@@ -175,22 +191,22 @@ namespace GameSystems.Player
 				return;
 			}
 			// Remove the door from the list
-			Doors.Remove(door);
+			Doors.Remove( door );
 			UpdateBalance( doorLogic.Price / 2 );
 			doorLogic.SellDoor();
 			Sound.Play( "audio/notification.sound" );
-			SendMessage("Door has been sold.");
+			SendMessage( "Door has been sold." );
 			return;
 		}
 
 		public void SellAllDoors()
 		{
-			Int32 preRemoveCount=Doors.Count;
-			Log.Info("Selling All "+ preRemoveCount +" doors");
-			for (Int32 i = 0; i < preRemoveCount; i++)
-			{	
-				var door=Doors[i];
-				SellDoor(door);
+			Int32 preRemoveCount = Doors.Count;
+			Log.Info( "Selling All " + preRemoveCount + " doors" );
+			for ( Int32 i = 0; i < preRemoveCount; i++ )
+			{
+				var door = Doors[i];
+				SellDoor( door );
 			}
 			SendMessage( "All doors have been sold." );
 		}

@@ -2,16 +2,21 @@ $border-radius: 5px;
 
 Chat {
 	position: absolute;
-	bottom: 210px;
+	bottom: 250px;
 	left: 35px;
-	width: 700px;
-	height: 500px;
+	width: 600px;
+	height: 400px;
 	justify-content: center;
 	display: flex;
 	flex-direction: column;
 	font-size: 15px;
 	font-family: Poppins;
 	text-shadow: 2px 2px 2px #000a;
+
+	.textentry {
+		align-items: flex-start;
+		white-space: normal;
+	}
 
 	.output {
 		display: flex;
@@ -45,14 +50,16 @@ Chat {
 				flex-grow: 1;
 				flex-shrink: 1;
 				flex-direction: column;
+
 				&.system {
 					font-weight: bold;
 					flex-direction: row;
+
 					.author {
 						margin-right: 5px;
 					}
 				}
-				
+
 				.author {
 					color: #2d95ce;
 					flex-shrink: 0;
@@ -80,10 +87,10 @@ Chat {
 			background-color: #19191d5b;
 			backdrop-filter: blur(2px);
 		}
+
 		.input {
 			background-color: #19191d7a;
 		}
-
 	}
 
 	.input-container {
@@ -93,7 +100,6 @@ Chat {
 			color: white;
 			padding: 5px;
 			border-radius: 0 0 $border-radius $border-radius;
-			
 		}
 
 		.command-suggestions {
