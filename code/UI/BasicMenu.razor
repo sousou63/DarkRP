@@ -272,10 +272,10 @@
                 // Temporarily removed the IsModelPackage check to display all packages - dancore
                 CloudPackages = result.Packages.ToList();
 
-                foreach (var package in CloudPackages)
+                @* foreach (var package in CloudPackages)
                 {
                     Log.Info($"Package Found: {package.Title}, Identifier: {package.FullIdent}");
-                }
+                } *@
 
                 StateHasChanged(); // Refresh the UI to show the packages
             }
