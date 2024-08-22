@@ -121,7 +121,7 @@ namespace Entity.Interactable.Printer
 				return;
 			}
 
-			// ModelRenderer.Tint = newColor;
+			 ModelRenderer.Tint = newColor;
 			// PrinterFan.Components.Get<ModelRenderer>().Tint = newColor;
 			ModelRenderer.MaterialOverride = config.Material;
 		}
