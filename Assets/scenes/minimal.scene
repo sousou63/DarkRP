@@ -676,25 +676,6 @@
       ]
     },
     {
-      "__guid": "95e577c6-f0da-4e68-a501-e35d1590681b",
-      "Flags": 0,
-      "Name": "wall",
-      "Position": "-25.10448,-1656.81,167.6232",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "b9b94f0e-9fbf-4211-b990-df4f4298756a",
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/error.vmat",
-          "Model": "models/dev/error.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "__guid": "892ffa7c-c9ae-45f0-819e-8a31f0b6ea57",
       "Flags": 0,
       "Name": "wall (1)",
@@ -707,44 +688,6 @@
           "__guid": "d4f30771-8043-42f7-94f6-c630c8b4f82f",
           "BodyGroups": 18446744073709551615,
           "MaterialOverride": "materials/error.vmat",
-          "Model": "models/dev/error.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "bc1c2d32-649a-45d0-8732-9cab6f89bab0",
-      "Flags": 0,
-      "Name": "wall_trim_a",
-      "Position": "-25.10448,-1656.81,167.6232",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "2c46e6dc-df1d-4699-9f9e-17e885ed82eb",
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/error.vmat",
-          "Model": "models/dev/error.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "d9dccb69-87a7-428d-bee7-ddaaf0e6b90b",
-      "Flags": 0,
-      "Name": "doorframe_single_a",
-      "Position": "-25.10448,-1656.81,167.6232",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "87f3bbf4-c8d2-42bd-aeb7-5710c71fd918",
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/darkrp_map/buildings/doors/single/doorframe/tintable/doorframe_single_a.vmat",
           "Model": "models/dev/error.vmdl",
           "RenderType": "On",
           "Tint": "1,1,1,1"
@@ -771,135 +714,25 @@
       ]
     },
     {
-      "__guid": "407f2382-a589-440c-98b1-aa952e00c5ae",
-      "Flags": 0,
-      "Name": "wall_double",
-      "Position": "-19.16216,-1469.962,173.1357",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "25340948-02f3-4fb0-9218-ffaf3b5261e5",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/darkrp_map/buildings/test_wall/wall_double.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
-      "__guid": "214ca412-3554-4112-a504-e639a3820b7c",
-      "Flags": 0,
-      "Name": "wall_trim_double",
-      "Position": "-21.62669,-1469.962,167.623",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "9683b36d-5c73-41fe-8805-a2468953443b",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/darkrp_map/buildings/test_wall/wall_trim_double.vmdl",
-          "RenderType": "On",
-          "Tint": "1,0.4,0.02745,1"
-        }
-      ]
-    },
-    {
-      "__guid": "bab4af3d-5906-498d-9abd-346104187262",
-      "Flags": 0,
-      "Name": "wall_window",
-      "Position": "-24.47768,-1403.771,220.9946",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "581eb928-11b5-4d94-9b93-9fbb29599654",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/darkrp_map/buildings/test_wall/wall_window.vmdl",
-          "RenderType": "On",
-          "Tint": "1,0.4,0.02745,1"
-        }
-      ]
-    },
-    {
-      "__guid": "bf08f899-551f-4bda-b277-b5024ddbfdc2",
-      "Flags": 0,
-      "Name": "door_single_test",
-      "Position": "-25.10448,-1656.81,167.6232",
-      "Tags": "interact_right,interact,interact_left,right",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door_right.prefab",
-      "__PrefabVariables": {}
-    },
-    {
       "__guid": "84b6ce74-71db-4a01-a95f-4eb23998c25d",
       "Flags": 0,
       "Name": "GameObject",
       "Enabled": true
     },
     {
-      "__guid": "a52e72f5-1a91-4825-a6c3-99bd831ed1e8",
+      "__guid": "336a07f6-5d6a-4cb4-9381-689de1a1d401",
       "Flags": 0,
-      "Name": "door_right",
-      "Position": "-20.62999,-1433.516,172.2958",
-      "Tags": "interact,right",
+      "Name": "GameObject",
+      "Enabled": true
+    },
+    {
+      "__guid": "229b6ac4-f40c-46eb-a80a-ef8fd8dfabf7",
+      "Flags": 0,
+      "Name": "doubledoor",
+      "Position": "-650.5162,-1813.18,167.623",
       "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door_right.prefab",
+      "__Prefab": "prefab/doubledoor.prefab",
       "__PrefabVariables": {}
-    },
-    {
-      "__guid": "37d4cfac-eb23-4bd9-b133-d301f8c9d6aa",
-      "Flags": 0,
-      "Name": "door_left",
-      "Position": "-21.01861,-1509.72,168.2086",
-      "Tags": "left,interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door_left.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "a84182a9-d5e4-4cac-a6b3-9f719e5b90ae",
-      "Flags": 0,
-      "Name": "error",
-      "Position": "-22.91265,-1470.999,167.6231",
-      "Scale": "0.4,0.4,0.4",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "9820990d-9e10-48b6-bc73-e280b2f23560",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/error.vmdl",
-          "RenderType": "On",
-          "Tint": "0.34085,0.93953,0.78986,1"
-        }
-      ]
-    },
-    {
-      "__guid": "d62a1a3b-9254-4d66-9eea-657f67fc3651",
-      "Flags": 0,
-      "Name": "error",
-      "Position": "40.60518,-1445.172,167.6232",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "d51a95af-fe43-4a61-8e83-a7cd25e33414",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/dev/error.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
     }
   ],
   "SceneProperties": {

@@ -36,7 +36,7 @@
         "__guid": "0fc5cbdf-929f-47d1-a386-91f6dc163fc9",
         "Flags": 0,
         "Name": "DoorLeft",
-        "Position": "0.750536,3.328125,3.71734",
+        "Position": "0.75,37,0",
         "Scale": "0.4,0.4,0.4",
         "Enabled": true,
         "Components": [

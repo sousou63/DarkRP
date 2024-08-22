@@ -1,0 +1,59 @@
+{
+  "RootObject": {
+    "__guid": "f364f93c-3ae4-48c8-839b-362f94e7b914",
+    "Flags": 0,
+    "Name": "doubledoor",
+    "Enabled": true,
+    "Children": [
+      {
+        "__guid": "24cedbe2-dc23-486c-95ad-f5eb5a221db3",
+        "Flags": 0,
+        "Name": "door_right (1)",
+        "Position": "0,37.5,0",
+        "Tags": "right,interact",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkOrphaned": 1,
+        "__Prefab": "prefab/door_right.prefab",
+        "__PrefabVariables": {}
+      },
+      {
+        "__guid": "378edf30-78d2-4838-bdd2-03fae5ca2478",
+        "Flags": 0,
+        "Name": "door_left (1)",
+        "Position": "0,-37,0",
+        "Tags": "left,interact",
+        "Enabled": true,
+        "NetworkMode": 1,
+        "NetworkOrphaned": 1,
+        "__Prefab": "prefab/door_left.prefab",
+        "__PrefabVariables": {}
+      },
+      {
+        "__guid": "5949ff6a-00a7-4f24-8670-0205221714ce",
+        "Flags": 0,
+        "Name": "doorframe_double",
+        "Rotation": "0,0,-1,0.0000001947072",
+        "Scale": "0.4,0.4,0.4",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "7f983014-976e-49ff-8257-3221b4ed3d51",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/darkrp_map/buildings/doors/frames/frame_double/doorframe_double.vmdl",
+            "RenderType": "On",
+            "Tint": "0.05098,0.03137,0.01961,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
