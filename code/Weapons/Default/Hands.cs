@@ -37,6 +37,7 @@ public class Hands : Weapon
 		if ( IsProxy )
 		{
 			Enabled = false;
+			return;
 		}
 		
 		_camera = Scene.Camera;
