@@ -78,6 +78,15 @@ namespace Entity.Interactable.Door
 
 			var currentRotation = Door.Transform.Rotation;
 			var rotationIncrement = Rotation.From( 0, 90, 0 );
+		    
+			    if (Door.Tags.Has("left"))
+			    	{
+			        rotationIncrement = Rotation.From(0, 90, 0);
+			    	}
+			    else if (Door.Tags.Has("right"))
+			    	{
+			        rotationIncrement = Rotation.From(0, -90, 0);
+			    	}
 
 			Door.Transform.Rotation = IsOpen ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse;
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
