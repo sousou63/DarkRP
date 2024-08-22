@@ -160,7 +160,7 @@ public class Hands : Weapon
 	{
 		UnlockHeldObject();
 		
-		if ( _heldBody != null && _heldBody.IsValid() )
+		if ( _heldBody.IsValid() )
 		{
 			_heldBody.AutoSleep = true;
 			
