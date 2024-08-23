@@ -11,7 +11,9 @@
       "Resources": null,
       "PackageReferences": [],
       "EditorReferences": [
-        "facepunch.trim_a_metal#18736"
+        "facepunch.trim_a_metal#18736",
+        "rust.concrete_c_bld#22383",
+        "eurorp.door01_right_01#12553"
       ],
       "IsWhitelistDisabled": false,
       "Metadata": {
