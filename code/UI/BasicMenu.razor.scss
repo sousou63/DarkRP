@@ -66,6 +66,11 @@ BasicMenu {
 		}
 	}
 
+	// Jobs container
+	.job {
+		flex: 1;
+	}
+
 	.buttoncontainer {
 		flex-direction: column;
 		padding: 20px;
