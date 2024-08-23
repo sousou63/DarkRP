@@ -106,6 +106,23 @@
 							exception_list = [  ]
 						}
 					},
+					{
+						_class = "RenderMeshFile"
+						name = "moneyprinter_LOD0_smooth"
+						filename = "Models/darkrp_main/moneyprinter/MoneyPrinters_LOD0_Autosmooth.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
 				]
 			},
 			{
@@ -118,6 +135,7 @@
 						meshes = 
 						[
 							"MoneyPrinter_LOD0",
+							"moneyprinter_LOD0_smooth",
 						]
 					},
 					{
@@ -167,7 +185,7 @@
 								_class = "BodyGroupChoice"
 								meshes = 
 								[
-									"MoneyPrinter_LOD0",
+									"moneyprinter_LOD0_smooth",
 									"moneyprinter_LOD1",
 									"moneyprinter_LOD2",
 									"moneyprinter_LOD3",
