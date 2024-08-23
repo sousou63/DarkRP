@@ -3,9 +3,13 @@ using Sandbox.Audio;
 using Sandbox.Diagnostics;
 using System.Numerics;
 using System;
+using Sandbox.GameResources;
 
 public sealed class Inventory : Component
 {
+
+	// define the default Items related to all players
+	[Property] public List<WeaponResource> DefaultItems;
 
 	[Property] public float InventoryVisibilityDelay { get; set; } = 3f;
 
@@ -19,8 +23,21 @@ public sealed class Inventory : Component
 
 	public int currentSelectedSlot;
 
+	// Slots for storing weapon resources
+	public WeaponResource[] inventorySlots;
+
+
 	protected override void OnStart()
 	{
+
+		// Initialize the inventory slots
+		inventorySlots = new WeaponResource[maxSlots];
+
+		// Equip all the defaults Items
+		foreach ( var weaponResource in DefaultItems )
+		{
+			AddItem( weaponResource );
+		}
 
 	}
 
@@ -29,24 +46,58 @@ public sealed class Inventory : Component
 		CheckForInputs();
 	}
 
-	public void EquipItem()
+	// Add the desired item to the inventory
+	public void AddItem(WeaponResource resource)
 	{
-		// TODO
+		int slotIndex = resource.Slot-1;
+
+		if ( slotIndex >= 0 && slotIndex <= maxSlots )
+		{
+			inventorySlots[slotIndex] = resource;
+			Log.Info( $"Weapon {resource.Name} equipped in slot {slotIndex + 1}" );
+		}
+		else
+		{
+			Log.Warning( "Invalid slot selected!" );
+		}
 	}
 
+	// Equip the desired Item from the slot
+	public void EquipItem(int slot)
+	{
+			if ( slot >= 1 && slot <= maxSlots )
+			{
+				var equippedItem = inventorySlots[slot-1];
+				if ( equippedItem != null )
+				{
+					Log.Info( $"Equipped weapon: {equippedItem.Name} from slot {slot}" );
+				}
+				else
+				{
+					Log.Info( $"No weapon to equip in slot {slot}" );
+				}
+			}
+			else
+			{
+				Log.Warning( "Invalid slot selected!" );
+			}
+	}
+
+	// Remove the desired item from the inventory
 	public void RemoveItem()
 	{
-		// TODO
+		
 	}
 
+	// Check if the inventory have a specific item
 	public void Hasitem()
 	{
 		// TODO + change to public bool
 	}
 
 
-	[Broadcast]
-	public void DropItem()
+	// Drop the item from the inventory
+	[Broadcast] public void DropItem()
 	{
 		// TODO
 	}
@@ -78,6 +129,7 @@ public sealed class Inventory : Component
 				isInventoryVisible = true;
 				currentSelectedSlot = i;
 				PlayInventoryOpenSound();
+				SlotLogicCheck();
 				inputDetected = true;
 				break; // Exit loop once an input is detected
 			}
@@ -89,6 +141,7 @@ public sealed class Inventory : Component
 		{
 			isInventoryVisible = true;
 			PlayInventoryOpenSound();
+			SlotLogicCheck();
 			inputDetected = true;
 		}
 
@@ -119,6 +172,7 @@ public sealed class Inventory : Component
 	{
 		if (currentSelectedSlot < 1) { currentSelectedSlot = maxSlots; }
 		if (currentSelectedSlot > maxSlots ) { currentSelectedSlot = 1; }
+		EquipItem( currentSelectedSlot );
 	}
 
 	private void PlayInventoryOpenSound()

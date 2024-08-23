@@ -9,7 +9,7 @@ public partial class WeaponResource : GameResource
 	[Group( "General" )] public string Description { get; set; } = "A basic weapon";
 	[Group( "General" )] public int Slot { get; set; } = 1;
 	[Group( "General" )] public string IconCharacter { get; set; } = "u";
-	[Group( "General" ), ImageAssetPath] public string DamageIcon { get; set; }
+	[Group( "General" ), ImageAssetPath] public string Icon { get; set; }
 
 
 	[Group( "Ammo" )] public bool HasAmmo { get; set; } = true;
