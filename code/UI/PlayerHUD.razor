@@ -61,8 +61,17 @@
     <div class="inventory @(PlayerPrefab.Components.Get<Inventory>().isInventoryVisible ? "visible" : "")">
         @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
         {
-            <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">
-                <div class="text">@i</div>
+
+            // get the weapon from the inventory slot
+            var inventory = PlayerPrefab.Components.Get<Inventory>();
+            var weapon = inventory.inventorySlots[i - 1]; // arrays index start at 0
+
+
+            // Check if a weapon exist in this slot and assign an icon ( I need to use world model thumbnail instead of this )
+            var thumbnail = weapon != null ? $"{weapon.WorldModel.Name.ToLower().Replace(".vmdl", "")}.vmdl_c.png" : "";
+
+            <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">@i
+                <image src="@thumbnail" style="border-radius: 5px 5px 5px 5px;"></image>
             </div>
         }
     </div>

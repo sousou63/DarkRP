@@ -3,7 +3,7 @@
   "Description": "Your interaction to the world!",
   "Slot": 1,
   "IconCharacter": "u",
-  "DamageIcon": null,
+  "Icon": null,
   "HasAmmo": false,
   "ClipSize": 16,
   "StartingReserve": 32,
@@ -12,7 +12,7 @@
     "prefab": "weapons/default/hands/hands.prefab"
   },
   "ViewModelPrefab": null,
-  "WorldModel": null,
+  "WorldModel": "models/citizen_props/foamhand.vmdl",
   "__references": [],
   "__version": 0
 }

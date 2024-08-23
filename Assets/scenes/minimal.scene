@@ -383,31 +383,15 @@
       "__guid": "8fbc26de-68d3-465e-91d4-31c22c6282e9",
       "Flags": 0,
       "Name": "door (3)",
-      "Position": "-733.3755,-1814.685,169.9049",
+      "Position": "-61.8578,-2482.226,168.2727",
+      "Rotation": "0,0,0.7071067,0.7071068",
+      "Scale": "1,1.38,1.36",
       "Tags": "interact",
       "Enabled": true,
       "NetworkMode": 1,
       "NetworkOrphaned": 1,
       "__Prefab": "prefab/door.prefab",
       "__PrefabVariables": {}
-    },
-    {
-      "__guid": "bdaebe52-da22-4d32-b7c7-bd349b9a5dd4",
-      "Flags": 0,
-      "Name": "temp_door_001a_frame (3)",
-      "Position": "-733.3742,-1814.633,169.4664",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "cc971a48-aea5-4d2a-8a93-121e8ff059ee",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
-          "Tint": "0.05116,0.03197,0.02308,1"
-        }
-      ]
     }
   ],
   "SceneProperties": {
