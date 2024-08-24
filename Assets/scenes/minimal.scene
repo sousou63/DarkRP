@@ -1,7 +1,5 @@
 {
-
   "__guid": "e12fc378-b298-4bad-8590-631919a39bfd",
-  
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -177,34 +175,10 @@
       ]
     },
     {
-      "__guid": "ea663a78-1aeb-4b8d-9703-3331d56dad3b",
-      "Flags": 0,
-      "Name": "Terrain",
-      "Position": "-19311.73,-20195,-1670.427",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Terrain",
-          "__guid": "f1cec5d8-e793-4c4c-85a2-90b6fcd239b8",
-          "__version": 1,
-          "ClipMapLodExtentTexels": 256,
-          "ClipMapLodLevels": 6,
-          "DebugView": "None",
-          "EnableCollision": true,
-          "IsTrigger": false,
-          "RenderType": "Off",
-          "Static": true,
-          "Storage": "map/landscape/landscape.terrain",
-          "TerrainHeight": 10000,
-          "TerrainSize": 39936
-        }
-      ]
-    },
-    {
       "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
       "Flags": 0,
       "Name": "Map Instance",
-      "Position": "2653.494,-933.2069,-608.377",
+      "Position": "2653.947,-933.2069,-601.2447",
       "Enabled": true,
       "Components": [
         {
@@ -466,6 +440,25 @@
           "Scale": 0.3,
           "Text": "Turn Around\uD83E\uDD26\n(fix this)",
           "TextAlignment": "Center"
+        }
+      ]
+    },
+    {
+      "__guid": "adbc2951-be68-4d54-83c5-d94521a5b171",
+      "Flags": 0,
+      "Name": "skybox_apartment001a",
+      "Position": "3071.052,1579.945,166.9576",
+      "Rotation": "0,0,-0.7071067,0.7071068",
+      "Scale": "0.2314866,0.2314866,0.2314866",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "d2d407c7-1dd0-4c83-92b9-e6e0d453533a",
+          "BodyGroups": 18446744073709551615,
+          "Model": "models/skybox/skybox_apartment001a.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
         }
       ]
     }
