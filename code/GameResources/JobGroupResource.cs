@@ -1,3 +1,5 @@
+using System.Drawing;
+
 namespace GameSystems.Jobs
 {
     [GameResource( "Job Group Definition", "group", "" )]
@@ -5,6 +7,8 @@ namespace GameSystems.Jobs
     {
         [Category( "Description" )]
         public string Name { get; set; }
+        // Background color of the group
+        [Category( "Gameplay" )]
+        public Color Color { get; set; }
     }
-
 }
