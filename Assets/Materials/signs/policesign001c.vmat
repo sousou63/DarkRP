@@ -55,5 +55,6 @@ Layer0
 	{
 		WorldMappingWidth "1024"
 		WorldMappingHeight "256"
+		PhysicsSurfaceProperties "metal"
 	}
 }
