@@ -12,7 +12,7 @@ namespace GameSystems.Jobs
 		[Category("Description")]
 		public Color Color { get; set; }
 		[Category("Description")]
-		public JobGroup Group { get; set; }
+		public string Category { get; set; }
 		[Category("Description")]
 		public PermissionLevel PermissionLevel { get; set; }
 		[Category("Description")]

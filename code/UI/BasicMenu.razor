@@ -99,25 +99,19 @@
 
             <!-- Jobs Section -->
             <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
-                    @foreach (JobGroup group in GameController.JobSystem.JobGroups.Values)
+                <div class="section-title">Jobs</div>
+                <div class="section-contents">
+                    @foreach (Job job in GameController.JobSystem.Jobs.Values)
                     {
-                        <div style="display: flex; flex-direction: column; flex-wrap: wrap">
-                            <div class="section-title">@group.Name</div>
-                            <div class="section-contents"> 
-                                @foreach (Job job in GameController.JobSystem.Jobs.Values.Where(x => x.Group == group))
-                                {
-
-                                    <div class="button job" onclick="@(() => playerStats.SelectJob(job))">
-                                        <div class="icon"></div>
-                                        <div class="label-container">
-                                            <div class="label">@job.Name</div>
-                                            <div class="description">@job.Description</div>
-                                        </div>
-                                    </div>
-                                }
+                        <div class="button" onclick="@(() => playerStats.SelectJob(job))">
+                            <div class="icon"></div>
+                            <div class="label-container">
+                                <div class="label">@job.Name</div>
+                                <div class="description">@job.Description</div>
                             </div>
                         </div>
                     }
+                </div>
             </div>
 
             <!-- Props Section -->
