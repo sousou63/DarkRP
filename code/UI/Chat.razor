@@ -270,6 +270,7 @@
     [Broadcast]
     public void executeCommand(string command, GameObject player, string[] args)
     {
+		Log.Info( $"{Rpc.Caller.DisplayName} with the steamid {Rpc.Caller.SteamId} executed this command: {command}!" );
         if (ConfigManager == null) return;
         ConfigManager.Commands.ExecuteCommand(command,player, Scene, args);
     }
