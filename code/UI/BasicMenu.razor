@@ -101,19 +101,23 @@
             <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
                 <div class="section-title">Jobs</div>
                 <div class="section-contents">
-                    @foreach (JobGroup group in GameController.JobSystem.JobGroups.Values)
+                    @foreach (JobGroupResource group in GameController.JobSystem.JobGroups.Values)
                     {
-                        <div class="section-title">@group.Name</div>
-                        @foreach (Job job in GameController.JobSystem.Jobs.Values.Where(x => x.Group == group))
-                        {
-                            <div class="button" onclick="@(() => playerStats.SelectJob(job))">
-                                <div class="icon"></div>
-                                <div class="label-container">
-                                    <div class="label">@job.Name</div>
-                                    <div class="description">@job.Description</div>
-                                </div>
+                        <div class="section-job-group">
+                            <div class="section-job-titel" style="background-color: rgba(@(group.Color.r * 255), @(group.Color.g * 255), @(group.Color.b * 255), @(group.Color.a * 255))">@group.Name</div>
+                            <div class="section-job-list">
+                                @foreach (JobResource job in GameController.JobSystem.Jobs.Values.Where(x => x.Group == group))
+                                {
+                                    <div class="section-job button" onclick="@(() => playerStats.SelectJob(job))">
+                                        <div class="icon"></div>
+                                        <div class="label-container">
+                                            <div class="label">@job.Name</div>
+                                            <div class="description">@job.Description</div>
+                                        </div>
+                                    </div>
+                                }
                             </div>
-                        }
+                        </div>
                     }
                 </div>
             </div>
