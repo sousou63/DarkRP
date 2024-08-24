@@ -41,5 +41,6 @@ Layer0
 	{
 		WorldMappingWidth "2048"
 		WorldMappingHeight "2048"
+		PhysicsSurfaceProperties "plaster"
 	}
 }

@@ -2,7 +2,7 @@
   "Name": "Citizen",
   "Description": "Be a normal person",
   "Color": "1,1,1,0",
-  "Category": "citizen",
+  "Group": "data/jobs/groups/civilian.group",
   "PermissionLevel": "User",
   "SortingLevel": 0,
   "Salary": 10,
