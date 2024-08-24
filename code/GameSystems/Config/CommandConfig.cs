@@ -24,7 +24,10 @@ namespace GameSystems.Config
 							var chat = scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
 							if (chat == null) return false;
 
-							chat.ClearChat();
+							using ( Rpc.FilterInclude( c => c.Id == playerStats.GetPlayerDetails()?.Connection.Id) )
+							{
+								chat.ClearChat();
+							}
 
 							playerStats.SendMessage("Chat has been cleared");
 							return true;
@@ -388,11 +391,13 @@ namespace GameSystems.Config
 			commandNames.Add("help");
 			return commandNames.ToArray();
 		}
-		public bool ExecuteCommand(string commandName, GameObject player, Scene scene, string[] args)
+
+		[Broadcast( NetPermission.HostOnly )]
+		public void ExecuteCommand(string commandName, GameObject player, Scene scene, string[] args)
 		{
 			// Get the PlayerStats component. This is required for all players. Verifies the player is a player.
 			var playerStats = player.Components.Get<Stats>();
-			if ( playerStats == null ) return false;
+			if ( playerStats == null ) return;
 			try
 			{
 
@@ -402,33 +407,33 @@ namespace GameSystems.Config
 					var commandNames = string.Join( ", ", GetCommandNames().Select( name => "/" + name ) );
 
 					playerStats.SendMessage( $"Available commands: {commandNames}" );
-					return true;
+					return;
 				}
 
 				// Get the player details
 				var details = playerStats.GetPlayerDetails();
-				if ( details == null ) return false;
+				if ( details == null ) return;
 
 				var command = GetCommand( commandName );
 
 				if ( !details.CheckPermission(command.PermissionLevel) )
 				{
 					playerStats.SendMessage( "You do not have permission to execute this command." );
-					return false;
+					return;
 				}
 
 				Log.Info( $"Executing command \"{commandName}\"." );
 				if ( command.CommandFunction( player, scene, args ) == false )
 				{
-					return false;
+					return;
 				}
-				return true;
+				return;
 			}
 			catch ( Exception e )
 			{
 				Log.Error( $"Failed to execute command \"{commandName}\": {e.Message}" );
 				playerStats.SendMessage( $"Failed to execute command \"{commandName}\"." );
-				return false;
+				return;
 			}
 		}
 	}
