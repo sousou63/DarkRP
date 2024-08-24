@@ -1,4 +1,5 @@
-﻿using GameSystems.Player;
+﻿using System;
+using GameSystems.Player;
 
 namespace Sandbox.Weapons.Default;
 
@@ -15,7 +16,7 @@ public class Hands : Weapon
     [Property] private float MaxReleaseVelocity { get; set; } = 500f;
     [Property] private float RotateSpeed { get; set; } = 1f;
 
-    [Property] private float HoldDistance { get; set; } = 70f;
+    [Property] private float HoldDistance { get; set; } = 55f;
     private float _heldDistance;
     private Rotation _heldRotation = Rotation.Identity;
 
@@ -28,7 +29,7 @@ public class Hands : Weapon
 	private Vector3 _heldCenter;
 	
 	private float _lastPickupTime;
-	private const float DeltaPickupTime = 0.5f;
+	private const float DeltaPickupTime = 0.20f;
 	
 	public bool IsHolding() => _held != null;
 
@@ -78,8 +79,12 @@ public class Hands : Weapon
 			return;
 		}
 		
-		var holdPosition = _camera.Transform.Position + _camera.Transform.World.Forward * HoldDistance;
+		// Calculate the offset from the object's position to its center
+		var centerOffset = _heldBody.MassCenter - _heldBody.Position;
 
+		// Calculate the target position, adjusting for the center offset
+		var holdPosition =  _camera.Transform.Position + _camera.Transform.World.Forward * _heldDistance - centerOffset;
+		
 		// Check if the object is too far away from the hold position
 		var heldDistance = Vector3.DistanceBetween(_held.Transform.Position, holdPosition);
 		if (heldDistance > InteractRange) { 
@@ -88,7 +93,7 @@ public class Hands : Weapon
 		}
 
 		var velocity = _heldBody.Velocity;
-		Vector3.SmoothDamp( _heldBody.Position, holdPosition, ref velocity, 0.075f, Time.Delta );
+		Vector3.SmoothDamp(_heldBody.Position, holdPosition, ref velocity, 0.075f, Time.Delta);
 		_heldBody.Velocity = velocity;
 
 		var angularVelocity = _heldBody.AngularVelocity;
@@ -143,14 +148,14 @@ public class Hands : Weapon
 	{
 		target.Network.TakeOwnership();
 		
-		_heldDistance = HoldDistance;
+		var bounds = target.GetBounds();
+		var boundsExtents = bounds.Extents;
+		_heldDistance = HoldDistance + Math.Max(Math.Max(boundsExtents.x, boundsExtents.y), boundsExtents.z);
 		_heldRotation = target.Transform.Rotation;
 		
 		_held = target;
 		_heldBody = targetBody;
 		
-		// Get the bounds of the object
-		var bounds = target.GetBounds();
 		_heldCenter = bounds.Center;
 
 		_lastPickupTime = RealTime.Now;
