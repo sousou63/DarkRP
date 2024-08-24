@@ -101,10 +101,10 @@
             <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
                 <div class="section-title">Jobs</div>
                 <div class="section-contents">
-                    @foreach (JobGroup group in GameController.JobSystem.JobGroups.Values)
+                    @foreach (JobGroupResource group in GameController.JobSystem.JobGroups.Values)
                     {
                         <div class="section-title">@group.Name</div>
-                        @foreach (Job job in GameController.JobSystem.Jobs.Values.Where(x => x.Group == group))
+                        @foreach (JobResource job in GameController.JobSystem.Jobs.Values.Where(x => x.Group == group))
                         {
                             <div class="button" onclick="@(() => playerStats.SelectJob(job))">
                                 <div class="icon"></div>

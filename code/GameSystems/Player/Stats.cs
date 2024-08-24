@@ -12,7 +12,7 @@ namespace GameSystems.Player
 	public sealed class Stats : Component
 	{
 		// JOB PROPERTYS
-		public Job Job { get; private set; }
+		public JobResource Job { get; private set; }
 		// DOORS
 		[Sync][Property] public List<GameObject> Doors { get; private set; } = new List<GameObject>();
 
@@ -111,7 +111,7 @@ namespace GameSystems.Player
 			return controller.GetPlayerByGameObjectID( GameObject.Id );
 		}
 
-		public void SelectJob( Job job )
+		public void SelectJob( JobResource job )
 		{
 			Job = job;
 		}

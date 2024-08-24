@@ -4,15 +4,15 @@ namespace GameSystems.Jobs
 {
 	public class JobSystem : Component
 	{
-		public Dictionary<string, Job> Jobs { get; private set; } = new();
-		public Dictionary<string, JobGroup> JobGroups { get; private set; } = new();
+		public Dictionary<string, JobResource> Jobs { get; private set; } = new();
+		public Dictionary<string, JobGroupResource> JobGroups { get; private set; } = new();
 
 		// On Start load all jobs
 		public JobSystem()
 		{
 			Log.Info( "Loading groups..." );
 			// Get all JobGroup resources
-			foreach ( var group in ResourceLibrary.GetAll<JobGroup>( "data/jobs/groups" ) )
+			foreach ( var group in ResourceLibrary.GetAll<JobGroupResource>( "data/jobs/groups" ) )
 			{
 				Log.Info( $"Loading group: {group.Name}" );
 				JobGroups[group.Name] = group;
@@ -20,7 +20,7 @@ namespace GameSystems.Jobs
 
 			Log.Info( "Loading jobs..." );
 			// Get all Job resources
-			foreach ( var job in ResourceLibrary.GetAll<Job>( "data/jobs" ) )
+			foreach ( var job in ResourceLibrary.GetAll<JobResource>( "data/jobs" ) )
 			{
 				Log.Info( $"Loading job: {job.Name}" );
 				Jobs[job.Name] = job;
@@ -28,9 +28,9 @@ namespace GameSystems.Jobs
 		}
 
 		// Get default job when player spawns
-		public static Job GetDefault()
+		public static JobResource GetDefault()
 		{
-			return ResourceLibrary.Get<Job>( "data/jobs/citizen.job" ); ;
+			return ResourceLibrary.Get<JobResource>( "data/jobs/citizen.job" ); ;
 		}
 	}
 }
