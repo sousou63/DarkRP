@@ -20,10 +20,12 @@ namespace GameSystems.Player
 
 		[Sync, HostSync][Property] public float Balance { get; set; } = 500f;
 
-		[Property] public float HealthBase { get; set; } = 100f;
-		[Property] public bool Starving { get; set; } = false;
-		[Property] public float HungerBase { get; set; } = 100f;
-		[Property] public bool Dead { get; set; } = false;
+		[Property] public float Health { get; private set; } = 100f;
+		[Property] public float Hunger { get; private set; } = 100f;
+		[Property] public float MaxHealth { get; private set; } = 100f;
+		[Property] public float HungerMax { get; private set; } = 100f;
+		[Property] public bool Dead { get; private set; } = false;
+		[Property] public bool Starving { get; private set; } = false;
 
 		// TIMER PROPERTYS
 
@@ -84,18 +86,20 @@ namespace GameSystems.Player
 
 			if ( lastUsedFood >= StarvingTimerSeconds && (Network.IsOwner) && (Starving) )
 			{
-				if ( HungerBase > 0 )
+				if ( Hunger > 0 )
 				{
-					HungerBase -= 1;
+					Hunger -= 1;
 				}
 				lastUsedFood = 0; // reset the timer
 			}
-			if ( HealthBase < 1 || HungerBase < 1 )
+			if ( Health < 1 || Hunger < 1 )
 			{
 				Dead = true;
-				HealthBase = 0;
-				HungerBase = 0;
+				Health = 0;
+				Hunger = 0;
 			}
+			if ( Health > MaxHealth) {Health = MaxHealth;}
+			if ( Hunger > HungerMax) {Hunger = HungerMax;}
 			if ( Dead )
 			{
 				// TODO: Make ragdolls and die
@@ -141,9 +145,12 @@ namespace GameSystems.Player
 
 		public void UpdateHunger( float Amount )
 		{
-			HungerBase += Amount;
+			Hunger += Amount;
 		}
-
+		public void SetHunger( float Amount )
+		{
+			Hunger = Amount;
+		}
 		// DOOR LOGIC. Helps keep track of owned doors.
 		public void PurchaseDoor( float price, GameObject door )
 		{

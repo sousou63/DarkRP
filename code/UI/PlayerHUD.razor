@@ -6,12 +6,12 @@
 <root>
     @{
         Stats stats = PlayerPrefab.Components.Get<Stats>();
-        float health = 100f; // TODO: Add value for current health on player
-        float maxHealth = stats.HealthBase.Floor();
+        float health = stats.Health.Floor(); 
+        float maxHealth = stats.MaxHealth.Floor();
         int healthPercentage = (health / maxHealth * 100).FloorToInt();
 
-        float food = 100f; // TODO: Add value for current food on player
-        float maxFood = stats.HungerBase.Floor();
+        float food = stats.Hunger.Floor(); 
+        float maxFood = stats.HungerMax.Floor();
         int foodPercentage = ((food / maxFood) * 100).FloorToInt();
     }
     <div class="key-instructions">@MyStringValue</div>
@@ -119,5 +119,5 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().Balance, PlayerPrefab.Components.Get<Stats>().HungerBase, PlayerPrefab.Components.Get<Stats>().HealthBase, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot, Notifications.Count);
+    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().Balance, PlayerPrefab.Components.Get<Stats>().Hunger, PlayerPrefab.Components.Get<Stats>().Health, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot, Notifications.Count);
 }
