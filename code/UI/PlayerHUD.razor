@@ -7,7 +7,7 @@
     @{
         Stats stats = PlayerPrefab.Components.Get<Stats>();
         float health = stats.Health.Floor(); 
-        float maxHealth = stats.HealthMax.Floor();
+        float maxHealth = stats.MaxHealth.Floor();
         int healthPercentage = (health / maxHealth * 100).FloorToInt();
 
         float food = stats.Hunger.Floor(); 

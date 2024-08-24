@@ -22,7 +22,7 @@ namespace GameSystems.Player
 
 		[Property] public float Health { get; private set; } = 100f;
 		[Property] public float Hunger { get; private set; } = 100f;
-		[Property] public float HealthMax { get; private set; } = 100f;
+		[Property] public float MaxHealth { get; private set; } = 100f;
 		[Property] public float HungerMax { get; private set; } = 100f;
 		[Property] public bool Dead { get; private set; } = false;
 		[Property] public bool Starving { get; private set; } = false;
@@ -98,7 +98,7 @@ namespace GameSystems.Player
 				Health = 0;
 				Hunger = 0;
 			}
-			if ( Health > HealthMax) {Health = HealthMax;}
+			if ( Health > MaxHealth) {Health = MaxHealth;}
 			if ( Hunger > HungerMax) {Hunger = HungerMax;}
 			if ( Dead )
 			{
@@ -146,6 +146,10 @@ namespace GameSystems.Player
 		public void UpdateHunger( float Amount )
 		{
 			Hunger += Amount;
+		}
+		public void SetHunger( float Amount )
+		{
+			Hunger = Amount;
 		}
 		// DOOR LOGIC. Helps keep track of owned doors.
 		public void PurchaseDoor( float price, GameObject door )
