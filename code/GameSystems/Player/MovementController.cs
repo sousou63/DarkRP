@@ -22,7 +22,7 @@ namespace GameSystems.Player {
 		[Sync] public Angles EyeAngles { get; set; }
 		[Sync] public Vector3 WishVelocity { get; set; }
 
-		[Sync] public bool IsNoClip { get; set; }
+		[Sync, HostSync] public bool IsNoClip { get; set; }
 
 		[Property] public bool EyesLocked { get; set; } = false;
 
