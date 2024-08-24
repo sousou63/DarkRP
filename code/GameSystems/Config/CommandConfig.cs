@@ -24,7 +24,10 @@ namespace GameSystems.Config
 							var chat = scene.Directory.FindByName("Screen")?.First()?.Components.Get<Chat>();
 							if (chat == null) return false;
 
-							chat.ClearChat();
+							using ( Rpc.FilterInclude( c => c.Id == playerStats.GetPlayerDetails()?.Connection.Id) )
+							{
+								chat.ClearChat();
+							}
 
 							playerStats.SendMessage("Chat has been cleared");
 							return true;
