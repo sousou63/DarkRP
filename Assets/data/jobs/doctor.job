@@ -2,7 +2,7 @@
   "Name": "Doctor",
   "Description": "Heal people in need",
   "Color": "254,254,254,1",
-  "Category": "doctor",
+  "Group": "data/jobs/groups/goverment.group",
   "PermissionLevel": "User",
   "SortingLevel": 2,
   "Salary": 200,
