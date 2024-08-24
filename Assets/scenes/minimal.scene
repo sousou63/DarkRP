@@ -1,5 +1,5 @@
 {
-  "__guid": "ed65f53e-a0fe-45f4-b010-0f8789c80ae0",
+  "__guid": "ec7f2479-1f85-4028-a8b4-ee1c42ff4bc4",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -87,16 +87,16 @@
       "NetworkOrphaned": 1,
       "Components": [
         {
-          "__type": "GameSystems.GameController",
-          "__guid": "1059b5f5-6a85-44a9-9079-8a36e10e9062"
-        },
-        {
           "__type": "GameSystems.Config.ConfigManager",
           "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060",
           "MoneyPrefab": {
             "_type": "gameobject",
             "prefab": "prefab/money.prefab"
           }
+        },
+        {
+          "__type": "GameSystems.GameController",
+          "__guid": "b1a2a595-dab4-4505-b927-07b149373d20"
         }
       ]
     },

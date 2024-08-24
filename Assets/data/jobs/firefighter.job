@@ -2,7 +2,7 @@
   "Name": "Firefighter",
   "Description": "Keeps the peace in the city, respond to emergencies and maintain the law and order",
   "Color": "254,0,0,0",
-  "Category": "governmental",
+  "Group": "data/jobs/groups/goverment.group",
   "PermissionLevel": "User",
   "SortingLevel": 2,
   "Salary": 100,
