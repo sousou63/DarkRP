@@ -36,9 +36,9 @@ public sealed class Food : BaseEntity
         var playerStats = player.Components.Get<Stats>();
         if (playerStats != null)
         {
-            playerStats.HungerBase += Amount;
-			if (playerStats.HungerBase > 100) {
-				playerStats.HungerBase = 100;
+            playerStats.Hunger += Amount;
+			if (playerStats.Hunger > 100) {
+				playerStats.Hunger = 100;
 			}
             Sound.Play(""); // TODO: sound of eating
             DestroyFood();
