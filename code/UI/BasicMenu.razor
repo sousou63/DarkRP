@@ -129,11 +129,11 @@
                             {
                                 string Propsname = Model.Name;
                                 var DisplayableName = Regex.Replace(Model.ResourceName, @"0[1-99]", "");
+                                var propThumbnailPath = PropManager.GetPropThumbnail(Propsname);
 
                                 <div style="padding:8px;">
-                                    <div class="button" onclick=@(() => SpawnProps(Propsname))>
-                                        <div style="padding:60px;"> @DisplayableName </div>
-                                    </div>
+                                    <div class="button" onclick=@(() => SpawnProps(Propsname)) style="background-image: url('@propThumbnailPath'); background-size: cover; width:150px; height:150px; margin: 10px;">
+                                </div>
                                 </div>
                             }
                         </div>
@@ -145,13 +145,9 @@
                             {
                                 @foreach (var package in CloudPackages)
                                 {
-                                    <div class="button" onclick=@(() => SpawnCloudProp(package.FullIdent))>
-                                        <div style="padding:60px;">
-                                            <!-- Display package title -->
-                                            @package.Title
-                                            <!-- Display package identifier (if you want to show it) -->
+                                    var thumbnailPath = package.Thumb;
 
-                                        </div>
+                                    <div class="button" onclick=@(() => SpawnCloudProp(package.FullIdent)) style="background-image: url(@thumbnailPath); background-size: cover; width:150px; height:150px; margin: 10px;">
                                     </div>
                                 }
                             }
@@ -269,13 +265,7 @@
             var result = await Package.FindAsync(query);
             if (result != null && result.Packages != null)
             {
-                // Temporarily removed the IsModelPackage check to display all packages - dancore
                 CloudPackages = result.Packages.ToList();
-
-                @* foreach (var package in CloudPackages)
-                {
-                    Log.Info($"Package Found: {package.Title}, Identifier: {package.FullIdent}");
-                } *@
 
                 StateHasChanged(); // Refresh the UI to show the packages
             }
@@ -326,30 +316,26 @@
     {
         try
         {
-            // Fetch the package metadata
             var package = await Package.FetchAsync(fullIdent, true);
 
             if (package != null)
             {
                 Log.Info($"Package {package.Title} fetched successfully.");
 
-                // Mount the package to ensure it's downloaded and ready to use
                 var installedPackage = await package.MountAsync();
 
                 if (installedPackage != null)
                 {
                     Log.Info($"Package {package.Title} downloaded and mounted successfully.");
 
-                    // Attempt to find the PropToolManager in the current GameObject or its parent
                     var propToolManager = GameObject.Components.Get<PropToolManager>() ??
                                         GameObject.Parent?.Components.Get<PropToolManager>();
 
                     if (propToolManager != null)
                     {
-                        Vector3 position = GameObject.Transform.Position + Vector3.Up * 50; // Example position
-                        Rotation rotation = Rotation.Identity; // Example rotation
+                        Vector3 position = GameObject.Transform.Position + Vector3.Up * 50;
+                        Rotation rotation = Rotation.Identity;
 
-                        // Use the SpawnCloudModel method to spawn the model
                         propToolManager.SpawnCloudModel(fullIdent, position, rotation);
                         Log.Info($"Cloud model {fullIdent} spawned successfully.");
                     }
@@ -373,6 +359,7 @@
             Log.Error($"Failed to spawn cloud model: {ex.Message}");
         }
     }
+
 
     void RemoveAllProps()
     {

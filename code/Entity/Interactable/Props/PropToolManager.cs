@@ -21,7 +21,6 @@ namespace Entity.Interactable.Props
 		/// </summary>
 		private List<IUndoable> History { get; set; } = new List<IUndoable>();
 
-
 		/// <summary>
 		/// Called every frame, listens for undo input and attempts to undo the last action if triggered.
 		/// </summary>
@@ -153,6 +152,13 @@ namespace Entity.Interactable.Props
 				Log.Warning("Failed to network spawn the cloud model.");
 				return null;
 			}
+		}
+
+		public string GetPropThumbnail(string propName)
+		{
+			var thumbnailPath = $"{propName.ToLower().Replace(".vmdl", "")}.vmdl_c.png";
+			// Log.Info($"Thumbnail path for {propName}: {thumbnailPath}");
+			return thumbnailPath;
 		}
 
 		/// <summary>
