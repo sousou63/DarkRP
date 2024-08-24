@@ -312,173 +312,6 @@
               "Variables": [],
               "Nodes": [
                 {
-                  "Id": 1,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Network"
-                  },
-                  "UserData": {
-                    "Position": "-192,144"
-                  }
-                },
-                {
-                  "Id": 3,
-                  "Type": "if",
-                  "UserData": {
-                    "Position": "288,64"
-                  }
-                },
-                {
-                  "Id": 4,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "832,64"
-                  }
-                },
-                {
-                  "Id": 6,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": {
-                      "$type": "Nested",
-                      "DeclaringType": "Sandbox.GameObject",
-                      "Name": "NetworkAccessor"
-                    },
-                    "_name": "IsProxy"
-                  },
-                  "UserData": {
-                    "Position": "16,144"
-                  }
-                },
-                {
-                  "Id": 14,
-                  "Type": "comment",
-                  "UserData": {
-                    "Position": "-224,-32",
-                    "Size": "1500,274",
-                    "Title": "Destroy all the UI Stuff not related to us ( In the newtork )",
-                    "Layer": 1
-                  }
-                },
-                {
-                  "Id": 17,
-                  "Type": "input.value",
-                  "Properties": {
-                    "_name": "_target"
-                  },
-                  "UserData": {
-                    "Position": "288,160"
-                  }
-                },
-                {
-                  "Id": 20,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Children"
-                  },
-                  "UserData": {
-                    "Position": "432,160"
-                  }
-                },
-                {
-                  "Id": 21,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "System.Collections.Generic.List\u00601",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "656,96"
-                  }
-                },
-                {
-                  "Id": 23,
-                  "Type": "op.isnotnull",
-                  "UserData": {
-                    "Position": "800,192"
-                  }
-                },
-                {
-                  "Id": 24,
-                  "Type": "if",
-                  "UserData": {
-                    "Position": "912,160"
-                  }
-                },
-                {
-                  "Id": 26,
-                  "Type": "call",
-                  "Properties": {
-                    "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "1072,112"
-                  }
-                },
-                {
-                  "Id": 27,
-                  "Type": "if",
-                  "UserData": {
-                    "Position": "-128,400"
-                  }
-                },
-                {
-                  "Id": 28,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_name": "Network"
-                  },
-                  "UserData": {
-                    "Position": "-608,528"
-                  }
-                },
-                {
-                  "Id": 29,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": {
-                      "$type": "Nested",
-                      "DeclaringType": "Sandbox.GameObject",
-                      "Name": "NetworkAccessor"
-                    },
-                    "_name": "IsProxy"
-                  },
-                  "UserData": {
-                    "Position": "-400,528"
-                  }
-                },
-                {
-                  "Id": 30,
-                  "Type": "call",
-                  "Properties": {
-                    "_name": "Destroy",
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "80,432"
-                  }
-                },
-                {
-                  "Id": 34,
-                  "Type": "input.value",
-                  "Properties": {
-                    "_name": "_target"
-                  },
-                  "UserData": {
-                    "Position": "-96,544"
-                  }
-                },
-                {
                   "Id": 37,
                   "Type": "property",
                   "Properties": {
@@ -508,17 +341,6 @@
                   }
                 },
                 {
-                  "Id": 40,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "Sandbox.GameObject",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "32,896"
-                  }
-                },
-                {
                   "Id": 41,
                   "Type": "input.value",
                   "Properties": {
@@ -538,99 +360,21 @@
                   "UserData": {
                     "Position": "-624,928"
                   }
+                },
+                {
+                  "Id": 43,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "Sandbox.GameObject",
+                    "_isStatic": false,
+                    "_name": "Destroy"
+                  },
+                  "UserData": {
+                    "Position": "16,896"
+                  }
                 }
               ],
               "Links": [
-                {
-                  "SrcId": 6,
-                  "SrcName": "_result",
-                  "DstId": 3,
-                  "DstName": "condition"
-                },
-                {
-                  "SrcId": 21,
-                  "SrcName": "_signal",
-                  "DstId": 4,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 1,
-                  "SrcName": "_result",
-                  "DstId": 6,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 17,
-                  "SrcName": "_result",
-                  "DstId": 20,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 3,
-                  "SrcName": "true",
-                  "DstId": 21,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 20,
-                  "SrcName": "_result",
-                  "DstId": 21,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 21,
-                  "SrcName": "action.obj",
-                  "DstId": 23,
-                  "DstName": "input"
-                },
-                {
-                  "SrcId": 21,
-                  "SrcName": "action",
-                  "DstId": 24,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 23,
-                  "SrcName": "_result",
-                  "DstId": 24,
-                  "DstName": "condition"
-                },
-                {
-                  "SrcId": 24,
-                  "SrcName": "true",
-                  "DstId": 26,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 21,
-                  "SrcName": "action.obj",
-                  "DstId": 26,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 29,
-                  "SrcName": "_result",
-                  "DstId": 27,
-                  "DstName": "condition"
-                },
-                {
-                  "SrcId": 28,
-                  "SrcName": "_result",
-                  "DstId": 29,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 27,
-                  "SrcName": "true",
-                  "DstId": 30,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 34,
-                  "SrcName": "_result",
-                  "DstId": 30,
-                  "DstName": "_target"
-                },
                 {
                   "SrcId": 42,
                   "SrcName": "_result",
@@ -650,21 +394,21 @@
                   "DstName": "condition"
                 },
                 {
-                  "SrcId": 39,
-                  "SrcName": "false",
-                  "DstId": 40,
-                  "DstName": "_signal"
+                  "SrcId": 38,
+                  "SrcName": "_target",
+                  "DstId": 42,
+                  "DstName": "_target"
                 },
                 {
-                  "SrcId": 41,
-                  "SrcName": "_result",
-                  "DstId": 40,
-                  "DstName": "_target"
+                  "SrcId": 39,
+                  "SrcName": "false",
+                  "DstId": 43,
+                  "DstName": "_signal"
                 },
                 {
                   "SrcId": 38,
                   "SrcName": "_target",
-                  "DstId": 42,
+                  "DstId": 43,
                   "DstName": "_target"
                 }
               ]
@@ -1148,26 +892,27 @@
                   }
                 },
                 {
-                  "Id": 18,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "GameSystems.GameController",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "208,-16"
-                  }
-                },
-                {
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Reset",
                     "_type": "Sandbox.Component",
-                    "_isStatic": false
+                    "_isStatic": false,
+                    "_name": "Reset"
                   },
                   "UserData": {
                     "Position": "720,112"
+                  }
+                },
+                {
+                  "Id": 27,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "GameSystems.GameController",
+                    "_isStatic": false,
+                    "_name": "GetAllPlayers"
+                  },
+                  "UserData": {
+                    "Position": "192,-16"
                   }
                 }
               ],
@@ -1230,7 +975,7 @@
                   "DstName": "_this"
                 },
                 {
-                  "SrcId": 18,
+                  "SrcId": 27,
                   "SrcName": "_signal",
                   "DstId": 9,
                   "DstName": "_signal"
@@ -1242,22 +987,10 @@
                   "DstName": "_target"
                 },
                 {
-                  "SrcId": 18,
+                  "SrcId": 27,
                   "SrcName": "_result",
                   "DstId": 9,
                   "DstName": "_value"
-                },
-                {
-                  "SrcId": 2,
-                  "SrcName": "true",
-                  "DstId": 18,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 7,
-                  "SrcName": "_result",
-                  "DstId": 18,
-                  "DstName": "_target"
                 },
                 {
                   "SrcId": 5,
@@ -1269,6 +1002,18 @@
                   "SrcId": 6,
                   "SrcName": "_result",
                   "DstId": 23,
+                  "DstName": "_target"
+                },
+                {
+                  "SrcId": 2,
+                  "SrcName": "true",
+                  "DstId": 27,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 7,
+                  "SrcName": "_result",
+                  "DstId": 27,
                   "DstName": "_target"
                 }
               ]
@@ -1366,17 +1111,6 @@
                   }
                 },
                 {
-                  "Id": 2,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "GameSystems.GameController",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "272,-0"
-                  }
-                },
-                {
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
@@ -1396,23 +1130,23 @@
                   "UserData": {
                     "Position": "336,128"
                   }
+                },
+                {
+                  "Id": 6,
+                  "Type": "call",
+                  "Properties": {
+                    "_type": "GameSystems.GameController",
+                    "_isStatic": false,
+                    "_name": "GetAllPlayers"
+                  },
+                  "UserData": {
+                    "Position": "272,-0"
+                  }
                 }
               ],
               "Links": [
                 {
-                  "SrcId": 0,
-                  "SrcName": "_signal",
-                  "DstId": 2,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 1,
-                  "SrcName": "_result",
-                  "DstId": 2,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 2,
+                  "SrcId": 6,
                   "SrcName": "_signal",
                   "DstId": 4,
                   "DstName": "_signal"
@@ -1424,7 +1158,7 @@
                   "DstName": "_target"
                 },
                 {
-                  "SrcId": 2,
+                  "SrcId": 6,
                   "SrcName": "_result",
                   "DstId": 4,
                   "DstName": "_value"
@@ -1434,98 +1168,18 @@
                   "SrcName": "_target",
                   "DstId": 5,
                   "DstName": "_this"
-                }
-              ]
-            },
-            "OnComponentFixedUpdate": {
-              "__version": 7,
-              "__guid": "681b35fe-039c-4434-b060-e2e8cad0f949",
-              "UserData": {
-                "Title": "On Component Fixed Update",
-                "ReferencedComponentTypes": [
-                  "LeaderBoard"
-                ]
-              },
-              "Variables": [],
-              "Nodes": [
-                {
-                  "Id": 0,
-                  "Type": "input"
-                },
-                {
-                  "Id": 1,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "GameSystems.GameController",
-                    "_name": "Instance"
-                  },
-                  "UserData": {
-                    "Position": "64,64"
-                  }
-                },
-                {
-                  "Id": 2,
-                  "Type": "call",
-                  "Properties": {
-                    "_type": "GameSystems.GameController",
-                    "_isStatic": false
-                  },
-                  "UserData": {
-                    "Position": "240,0"
-                  }
-                },
-                {
-                  "Id": 3,
-                  "Type": "property",
-                  "Properties": {
-                    "_type": "LeaderBoard",
-                    "_name": "Players"
-                  },
-                  "UserData": {
-                    "Position": "560,-16"
-                  }
-                },
-                {
-                  "Id": 4,
-                  "Type": "scene.get",
-                  "Properties": {
-                    "T": "LeaderBoard"
-                  },
-                  "UserData": {
-                    "Position": "256,80"
-                  }
-                }
-              ],
-              "Links": [
-                {
-                  "SrcId": 1,
-                  "SrcName": "_result",
-                  "DstId": 2,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 2,
-                  "SrcName": "_signal",
-                  "DstId": 3,
-                  "DstName": "_signal"
-                },
-                {
-                  "SrcId": 4,
-                  "SrcName": "_result",
-                  "DstId": 3,
-                  "DstName": "_target"
-                },
-                {
-                  "SrcId": 2,
-                  "SrcName": "_result",
-                  "DstId": 3,
-                  "DstName": "_value"
                 },
                 {
                   "SrcId": 0,
-                  "SrcName": "_target",
-                  "DstId": 4,
-                  "DstName": "_this"
+                  "SrcName": "_signal",
+                  "DstId": 6,
+                  "DstName": "_signal"
+                },
+                {
+                  "SrcId": 1,
+                  "SrcName": "_result",
+                  "DstId": 6,
+                  "DstName": "_target"
                 }
               ]
             }
