@@ -104,6 +104,10 @@
       {
         "__type": "Inventory",
         "__guid": "852fd4e7-8461-4b98-ae5d-df0fad1012bf",
+        "DefaultItems": [
+          "weapons/default/hands/hands.weapon",
+          "weapons/default/camera/camera.weapon"
+        ],
         "InventoryVisibilityDelay": 3
       },
       {
@@ -330,7 +334,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -388,7 +391,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "System.Collections.Generic.List\u00601",
-                    "_name": "ForEach",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -413,9 +415,9 @@
                   "Id": 26,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
+                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "1072,112"
@@ -458,9 +460,9 @@
                   "Id": 30,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
+                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "80,432"
@@ -510,7 +512,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
-                    "_name": "Destroy",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -1151,7 +1152,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "GameSystems.GameController",
-                    "_name": "GetAllPlayers",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -1162,9 +1162,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_isStatic": false,
+                    "_name": "Reset",
                     "_type": "Sandbox.Component",
-                    "_name": "Reset"
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1370,7 +1370,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "GameSystems.GameController",
-                    "_name": "GetAllPlayers",
                     "_isStatic": false
                   },
                   "UserData": {
@@ -1469,7 +1468,6 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "GameSystems.GameController",
-                    "_name": "GetAllPlayers",
                     "_isStatic": false
                   },
                   "UserData": {
