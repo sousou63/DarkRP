@@ -153,7 +153,7 @@
         "__type": "Sandbox.Weapons.Default.Hands",
         "__guid": "c1fa8775-caf0-48ee-9b85-494bd0247fcf",
         "GrabbableTag": "grab",
-        "HoldDistance": 70,
+        "HoldDistance": 55,
         "InteractRange": 150,
         "MaxReleaseVelocity": 500,
         "MovementController": {
@@ -365,8 +365,8 @@
                   "Id": 43,
                   "Type": "call",
                   "Properties": {
-                    "_type": "Sandbox.GameObject",
                     "_isStatic": false,
+                    "_type": "Sandbox.GameObject",
                     "_name": "Destroy"
                   },
                   "UserData": {
@@ -895,8 +895,8 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_type": "Sandbox.Component",
                     "_isStatic": false,
+                    "_type": "Sandbox.Component",
                     "_name": "Reset"
                   },
                   "UserData": {
@@ -907,8 +907,8 @@
                   "Id": 27,
                   "Type": "call",
                   "Properties": {
-                    "_type": "GameSystems.GameController",
                     "_isStatic": false,
+                    "_type": "GameSystems.GameController",
                     "_name": "GetAllPlayers"
                   },
                   "UserData": {
@@ -1135,8 +1135,8 @@
                   "Id": 6,
                   "Type": "call",
                   "Properties": {
-                    "_type": "GameSystems.GameController",
                     "_isStatic": false,
+                    "_type": "GameSystems.GameController",
                     "_name": "GetAllPlayers"
                   },
                   "UserData": {
