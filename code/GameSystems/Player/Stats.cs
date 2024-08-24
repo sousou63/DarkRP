@@ -20,12 +20,12 @@ namespace GameSystems.Player
 
 		[Sync, HostSync][Property] public float Balance { get; set; } = 500f;
 
-		[Property] public float Health { get; set; } = 100f;
-		[Property] public float Hunger { get; set; } = 100f;
-		[Property] public float HealthMax { get; set; } = 100f;
-		[Property] public float HungerMax { get; set; } = 100f;
-		[Property] public bool Dead { get; set; } = false;
-		[Property] public bool Starving { get; set; } = false;
+		[Property] public float Health { get; private set; } = 100f;
+		[Property] public float Hunger { get; private set; } = 100f;
+		[Property] public float HealthMax { get; private set; } = 100f;
+		[Property] public float HungerMax { get; private set; } = 100f;
+		[Property] public bool Dead { get; private set; } = false;
+		[Property] public bool Starving { get; private set; } = false;
 
 		// TIMER PROPERTYS
 
@@ -147,7 +147,6 @@ namespace GameSystems.Player
 		{
 			Hunger += Amount;
 		}
-
 		// DOOR LOGIC. Helps keep track of owned doors.
 		public void PurchaseDoor( float price, GameObject door )
 		{
