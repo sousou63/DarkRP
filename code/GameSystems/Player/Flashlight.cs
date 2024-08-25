@@ -6,10 +6,21 @@ using System.Numerics;
 public sealed class Flashlight : Component
 {
 	[Property] private SpotLight light;
+	[Property] private SoundPointComponent soundPoint;
+	[Property] private MovementController mc;
+
+	private void UpdateCameraTilt()
+	{
+		//Updates Tilt on Flashlight because parenting to camera
+		//Parents all flashlights to the 1 camera there is because each client
+		//Uses the same camera
+		light.Transform.Rotation = mc.EyeAngles.ToRotation();
+	}
 
 	protected override void OnFixedUpdate()
 	{
 		if ( Input.Pressed( "Flashlight" ) ) ToggleFlashlight();
+		if(light.Enabled) UpdateCameraTilt();
 	}
 
 	[Broadcast(NetPermission.OwnerOnly)]
@@ -20,7 +31,7 @@ public sealed class Flashlight : Component
 		light.Enabled = !light.Enabled;
 
 		//Play the click click sound
-		Sound.Play( "audio/flashlighton.sound", this.Transform.World.Position );
+		soundPoint.StartSound();
 	}
 
 }
