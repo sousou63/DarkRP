@@ -15,7 +15,7 @@
 						[
 							{
 								from = "black.vmat"
-								to = "materials/dev/black_unlit.vmat"
+								to = "materials/dev/black_cheap.vmat"
 							},
 							{
 								from = "metal.001.vmat"
@@ -37,8 +37,8 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "models/darkrp_map/temp_door_001a.fbx"
-						import_translation = [ 0.0, 0.0, 0.0 ]
+						filename = "models/props_doors/temp_door_001a_44_92.fbx"
+						import_translation = [ 0.0, -10.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 0.3937
 						align_origin_x_type = "None"
@@ -50,8 +50,9 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"Cube_001",
-								"Door_Frame",
+								"Cube",
+								"Handle_Back",
+								"Door",
 							]
 						}
 					},
@@ -62,31 +63,34 @@
 				children = 
 				[
 					{
-						_class = "PhysicsShapeBox"
+						_class = "PhysicsHullFile"
+						name = "TEMP_door_001a"
 						parent_bone = ""
 						surface_prop = "wood"
 						collision_tags = "solid"
-						origin = [ -0.082589, 1.968446, 45.781288 ]
-						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 4.01758, 92.0 ]
-					},
-					{
-						_class = "PhysicsShapeBox"
-						parent_bone = ""
-						surface_prop = "wood"
-						collision_tags = "solid"
-						origin = [ 0.0, 42.0, 46.098949 ]
-						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 4.14417, 92.0 ]
-					},
-					{
-						_class = "PhysicsShapeBox"
-						parent_bone = ""
-						surface_prop = "wood"
-						collision_tags = "solid"
-						origin = [ 0.0, 22.0, 90.233437 ]
-						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 44.0, 3.634898 ]
+						recenter_on_parent_bone = false
+						offset_origin = [ 0.0, 0.0, 0.0 ]
+						offset_angles = [ 0.0, 0.0, 0.0 ]
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						filename = "models/props_doors/temp_door_001a_44_92.fbx"
+						import_scale = 0.3937
+						faceMergeAngle = 80.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = 
+							[
+								"Cube_001",
+								"Handle_Back",
+								"Door",
+								"Door_Frame",
+							]
+						}
 					},
 				]
 			},
