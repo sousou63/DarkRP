@@ -51,6 +51,7 @@
 							exception_list = 
 							[
 								"Cube_001",
+								"Door_Frame",
 							]
 						}
 					},
@@ -63,29 +64,29 @@
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "default"
+						surface_prop = "wood"
 						collision_tags = "solid"
-						origin = [ -0.082589, 1.968446, 41.149147 ]
+						origin = [ -0.082589, 1.968446, 45.781288 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.166304, 4.017583, 82.577118 ]
+						dimensions = [ 6.1663, 4.01758, 92.0 ]
 					},
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "default"
+						surface_prop = "wood"
 						collision_tags = "solid"
-						origin = [ -0.082589, -37.45813, 41.210571 ]
+						origin = [ 0.0, 42.0, 46.098949 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.166304, 4.144167, 82.454269 ]
+						dimensions = [ 6.1663, 4.14417, 92.0 ]
 					},
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "default"
+						surface_prop = "wood"
 						collision_tags = "solid"
-						origin = [ -0.082589, -17.74995, 80.666946 ]
+						origin = [ 0.0, 22.0, 90.233437 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.166304, 43.56052, 3.5415 ]
+						dimensions = [ 6.1663, 44.0, 3.634898 ]
 					},
 				]
 			},

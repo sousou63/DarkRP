@@ -38,7 +38,7 @@
 					{
 						_class = "RenderMeshFile"
 						filename = "models/darkrp_map/temp_door_001a.fbx"
-						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_translation = [ 0.0, -10.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 0.3937
 						align_origin_x_type = "None"
@@ -52,6 +52,7 @@
 							[
 								"Cube",
 								"Handle_Back",
+								"Door",
 							]
 						}
 					},
@@ -65,7 +66,7 @@
 						_class = "PhysicsHullFile"
 						name = "TEMP_door_001a"
 						parent_bone = ""
-						surface_prop = "default"
+						surface_prop = "wood"
 						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
@@ -86,6 +87,8 @@
 							[
 								"Cube_001",
 								"Handle_Back",
+								"Door",
+								"Door_Frame",
 							]
 						}
 					},
