@@ -5,10 +5,7 @@ using System.Numerics;
 
 public sealed class Flashlight : Component
 {
-	[Property]
-	private SpotLight light;
-	[Property]
-	private SoundPointComponent soundPoint;
+	[Property] private SpotLight light;
 
 	protected override void OnFixedUpdate()
 	{
@@ -22,27 +19,8 @@ public sealed class Flashlight : Component
 		if ( light == null ) return;
 		light.Enabled = !light.Enabled;
 
-		PlaySound();
-		
+		//Play the click click sound
+		Sound.Play( "audio/flashlighton.sound", this.Transform.World.Position );
 	}
 
-	/// <summary>
-	/// Plays Toggle Audio dependant on state
-	/// </summary>
-	[Broadcast(NetPermission.OwnerOnly)]
-	private void PlaySound()
-	{
-		//Selects what file to play based on state
-		string soundToPlay = light.Enabled ? "audio/FlashlightOn.sound" : "audio/FlashlightOff.sound";
-
-		SoundEvent soundEvent = new SoundEvent( soundToPlay );
-		if ( soundEvent == null ) return;
-
-		soundPoint.SoundEvent = soundEvent;
-
-		//Stops the last audio so the new one can play if needed
-		soundPoint.StopSound();
-
-		soundPoint.StartSound();
-	}
 }
