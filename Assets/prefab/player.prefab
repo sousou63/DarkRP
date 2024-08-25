@@ -1217,7 +1217,44 @@
               "component_id": "316f73a0-a3e8-4aeb-a298-3cccc24f7fcf",
               "go": "4cd83b94-b253-4955-8123-0a7e28793b4a",
               "component_type": "SpotLight"
+            },
+            "mc": {
+              "_type": "component",
+              "component_id": "80152a82-7bc7-4840-b0ab-54df118a57ec",
+              "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+              "component_type": "MovementController"
+            },
+            "soundPoint": {
+              "_type": "component",
+              "component_id": "4f91538b-962b-48ab-b29f-e8ce958d31e8",
+              "go": "4cd83b94-b253-4955-8123-0a7e28793b4a",
+              "component_type": "SoundPointComponent"
             }
+          },
+          {
+            "__type": "Sandbox.SoundPointComponent",
+            "__guid": "4f91538b-962b-48ab-b29f-e8ce958d31e8",
+            "DistanceAttenuation": false,
+            "DistanceAttenuationOverride": false,
+            "Force2d": false,
+            "MaxRepeatTime": 1,
+            "MinRepeatTime": 1,
+            "Occlusion": false,
+            "OcclusionOverride": false,
+            "OcclusionRadius": 32,
+            "Pitch": 1,
+            "PlayOnStart": false,
+            "ReflectionOverride": false,
+            "Reflections": false,
+            "Repeat": false,
+            "SoundEvent": "audio/flashlighton.sound",
+            "SoundOverride": false,
+            "StopOnNew": true,
+            "TargetMixer": {
+              "Name": "game",
+              "Id": "b12b3054-0f4b-495a-b43a-e6469a03328a"
+            },
+            "Volume": 1
           }
         ]
       }
