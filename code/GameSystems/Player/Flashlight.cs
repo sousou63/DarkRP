@@ -20,6 +20,9 @@ public sealed class Flashlight : Component
 	protected override void OnFixedUpdate()
 	{
 		if ( Input.Pressed( "Flashlight" ) ) ToggleFlashlight();
+	}
+	protected override void OnUpdate()
+	{
 		if(light.Enabled) UpdateCameraTilt();
 	}
 
