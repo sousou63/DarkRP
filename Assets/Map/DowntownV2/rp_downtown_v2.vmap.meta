@@ -25,7 +25,17 @@
         "gkaf.wood_floor#32170",
         "facepunch.floor_wood_laminated#18686",
         "facepunch.metal_rust_a_hs#28962",
-        "magikarp.purple3#34288"
+        "magikarp.purple3#34288",
+        "facepunch.roof_tile_a#18739",
+        "pilgrim.dirtymetal#10326",
+        "rustextended.roof_plating_a#43365",
+        "kvien.metalwall02_pixel#37210",
+        "matek.dev_wall_light#46461",
+        "facepunch.wall_brick_new#18729",
+        "facepunch.wall_brick_paint#18721",
+        "facepunch.wall_limestone_brick_large#18706",
+        "facepunch.concrete_simple#18632",
+        "facepunch.wall_panel_a#18704"
       ],
       "IsWhitelistDisabled": false,
       "Metadata": {
