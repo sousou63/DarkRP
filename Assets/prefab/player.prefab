@@ -75,10 +75,10 @@
       {
         "__type": "Sandbox.CapsuleCollider",
         "__guid": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
-        "End": "0,0,50",
+        "End": "0,0,61.99998",
         "IsTrigger": false,
         "Radius": 10,
-        "Start": "0,0,0",
+        "Start": "0,0,9.900003",
         "Static": false
       },
       {
@@ -157,7 +157,7 @@
         "GrabbableTag": "grab",
         "HoldDistance": 55,
         "InteractRange": 150,
-        "MaxReleaseVelocity": 500,
+        "MaxReleaseVelocity": 250,
         "MovementController": {
           "_type": "component",
           "component_id": "80152a82-7bc7-4840-b0ab-54df118a57ec",
@@ -165,7 +165,7 @@
           "component_type": "MovementController"
         },
         "RotateSpeed": 0.3,
-        "ThrowForce": 100
+        "ThrowForce": 250
       }
     ],
     "Children": [
@@ -843,8 +843,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_name": "Enabled",
-                    "_type": "Sandbox.Component"
+                    "_type": "Sandbox.Component",
+                    "_name": "Enabled"
                   },
                   "UserData": {
                     "Position": "720,-16"
@@ -897,9 +897,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Reset",
+                    "_type": "Sandbox.Component",
                     "_isStatic": false,
-                    "_type": "Sandbox.Component"
+                    "_name": "Reset"
                   },
                   "UserData": {
                     "Position": "720,112"
