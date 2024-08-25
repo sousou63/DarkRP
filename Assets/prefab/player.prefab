@@ -143,8 +143,10 @@
         "Balance": 1250,
         "Dead": false,
         "Doors": [],
-        "HealthBase": 100,
-        "HungerBase": 100,
+        "Health": 100,
+        "Hunger": 100,
+        "HungerMax": 100,
+        "MaxHealth": 100,
         "SalaryTimerSeconds": 60,
         "Starving": false,
         "StarvingTimerSeconds": 20
@@ -841,8 +843,8 @@
                   "Id": 4,
                   "Type": "property",
                   "Properties": {
-                    "_type": "Sandbox.Component",
-                    "_name": "Enabled"
+                    "_name": "Enabled",
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,-16"
@@ -895,9 +897,9 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
+                    "_name": "Reset",
                     "_isStatic": false,
-                    "_type": "Sandbox.Component",
-                    "_name": "Reset"
+                    "_type": "Sandbox.Component"
                   },
                   "UserData": {
                     "Position": "720,112"
@@ -1182,6 +1184,68 @@
                   "DstName": "_target"
                 }
               ]
+            }
+          }
+        ]
+      },
+      {
+        "__guid": "4cd83b94-b253-4955-8123-0a7e28793b4a",
+        "Flags": 0,
+        "Name": "Flashlight",
+        "Position": "1.416,0,42.175",
+        "Tags": "light_spot,light",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SpotLight",
+            "__guid": "316f73a0-a3e8-4aeb-a298-3cccc24f7fcf",
+            "Attenuation": 1,
+            "ConeInner": 20,
+            "ConeOuter": 30,
+            "FogMode": "Enabled",
+            "FogStrength": 1,
+            "LightColor": "0.91373,0.98039,1,1",
+            "Radius": 700,
+            "Shadows": true
+          },
+          {
+            "__type": "Sandbox.SoundPointComponent",
+            "__guid": "c376d169-735a-4036-b1c4-82ee8d4a467a",
+            "DistanceAttenuation": false,
+            "DistanceAttenuationOverride": false,
+            "Force2d": false,
+            "MaxRepeatTime": 1,
+            "MinRepeatTime": 1,
+            "Occlusion": false,
+            "OcclusionOverride": false,
+            "OcclusionRadius": 32,
+            "Pitch": 1,
+            "PlayOnStart": false,
+            "ReflectionOverride": false,
+            "Reflections": false,
+            "Repeat": false,
+            "SoundOverride": false,
+            "StopOnNew": false,
+            "TargetMixer": {
+              "Name": "game",
+              "Id": "f8c0128f-841e-479f-8c9f-1062fa8bb7d7"
+            },
+            "Volume": 1
+          },
+          {
+            "__type": "Flashlight",
+            "__guid": "ebe28aad-0c9c-479c-977b-54d0b9578e6b",
+            "light": {
+              "_type": "component",
+              "component_id": "316f73a0-a3e8-4aeb-a298-3cccc24f7fcf",
+              "go": "4cd83b94-b253-4955-8123-0a7e28793b4a",
+              "component_type": "SpotLight"
+            },
+            "soundPoint": {
+              "_type": "component",
+              "component_id": "c376d169-735a-4036-b1c4-82ee8d4a467a",
+              "go": "4cd83b94-b253-4955-8123-0a7e28793b4a",
+              "component_type": "SoundPointComponent"
             }
           }
         ]
