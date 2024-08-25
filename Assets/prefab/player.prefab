@@ -367,8 +367,8 @@
                   "Id": 43,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Destroy",
                     "_isStatic": false,
+                    "_name": "Destroy",
                     "_type": "Sandbox.GameObject"
                   },
                   "UserData": {
@@ -897,8 +897,8 @@
                   "Id": 23,
                   "Type": "call",
                   "Properties": {
-                    "_name": "Reset",
                     "_isStatic": false,
+                    "_name": "Reset",
                     "_type": "Sandbox.Component"
                   },
                   "UserData": {
@@ -909,8 +909,8 @@
                   "Id": 27,
                   "Type": "call",
                   "Properties": {
-                    "_name": "GetAllPlayers",
                     "_isStatic": false,
+                    "_name": "GetAllPlayers",
                     "_type": "GameSystems.GameController"
                   },
                   "UserData": {
@@ -1137,8 +1137,8 @@
                   "Id": 6,
                   "Type": "call",
                   "Properties": {
-                    "_name": "GetAllPlayers",
                     "_isStatic": false,
+                    "_name": "GetAllPlayers",
                     "_type": "GameSystems.GameController"
                   },
                   "UserData": {
@@ -1192,7 +1192,7 @@
         "__guid": "4cd83b94-b253-4955-8123-0a7e28793b4a",
         "Flags": 0,
         "Name": "Flashlight",
-        "Position": "7.786179,0,42.175",
+        "Position": "6.202,0,63.841",
         "Tags": "light_spot,light",
         "Enabled": true,
         "Components": [
@@ -1200,9 +1200,9 @@
             "__type": "Sandbox.SpotLight",
             "__guid": "316f73a0-a3e8-4aeb-a298-3cccc24f7fcf",
             "__enabled": false,
-            "Attenuation": 1,
-            "ConeInner": 20,
-            "ConeOuter": 30,
+            "Attenuation": 7.37,
+            "ConeInner": 64.88,
+            "ConeOuter": 22.95,
             "FogMode": "Enabled",
             "FogStrength": 1,
             "LightColor": "0.91373,0.98039,1,1",
