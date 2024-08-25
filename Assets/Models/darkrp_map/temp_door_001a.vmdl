@@ -14,12 +14,16 @@
 						remaps = 
 						[
 							{
-								from = "back.vmat"
-								to = "materials/models/props_street/urban_bench001a_back.vmat"
+								from = "black.vmat"
+								to = "materials/dev/black_cheap.vmat"
 							},
 							{
-								from = "poles.vmat"
-								to = "materials/models/props_street/urban_bench001a_poles.vmat"
+								from = "metal.001.vmat"
+								to = "materials/dev/dev_metal_rough40.vmat"
+							},
+							{
+								from = "door_wood.vmat"
+								to = "materials/dev/dev_nonmetal_rough50.vmat"
 							},
 						]
 						use_global_default = false
@@ -33,7 +37,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "models/props_street/urban_bench001a.fbx"
+						filename = "models/darkrp_map/temp_door_001a.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 0.3937
@@ -46,9 +50,8 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"urban_bench_01",
-								"urban_bench_02",
-								"urban_bench_01_001",
+								"Cube",
+								"Handle_Back",
 							]
 						}
 					},
@@ -59,10 +62,10 @@
 				children = 
 				[
 					{
-						_class = "PhysicsMeshFile"
-						name = "urban_bench001a"
+						_class = "PhysicsHullFile"
+						name = "TEMP_door_001a"
 						parent_bone = ""
-						surface_prop = "metal"
+						surface_prop = "default"
 						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
@@ -70,21 +73,27 @@
 						align_origin_x_type = "None"
 						align_origin_y_type = "None"
 						align_origin_z_type = "None"
-						filename = "models/props_street/urban_bench001a.fbx"
+						filename = "Models/darkrp_map/TEMP_door_001a.fbx"
 						import_scale = 0.3937
-						maxMeshVertices = 161
-						qemError = 0.0
+						faceMergeAngle = 80.0
+						maxHullVertices = 0
+						import_mode = "SingleHull"
+						optimization_algorithm = "QEM"
 						import_filter = 
 						{
 							exclude_by_default = false
-							exception_list = [  ]
+							exception_list = 
+							[
+								"Cube_001",
+								"Handle_Back",
+							]
 						}
 					},
 				]
 			},
 		]
-		model_archetype = "static_prop_model"
-		primary_associated_entity = "prop_static"
+		model_archetype = ""
+		primary_associated_entity = ""
 		anim_graph_name = ""
 		base_model_name = ""
 	}

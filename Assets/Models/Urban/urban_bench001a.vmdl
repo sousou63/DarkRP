@@ -14,16 +14,12 @@
 						remaps = 
 						[
 							{
-								from = "black.vmat"
-								to = "materials/dev/black_cheap.vmat"
+								from = "back.vmat"
+								to = "materials/models/urban/urban_bench001a_back.vmat"
 							},
 							{
-								from = "metal.001.vmat"
-								to = "materials/dev/dev_metal_rough40.vmat"
-							},
-							{
-								from = "door_wood.vmat"
-								to = "materials/dev/dev_nonmetal_rough50.vmat"
+								from = "poles.vmat"
+								to = "materials/models/urban/urban_bench001a_poles.vmat"
 							},
 						]
 						use_global_default = false
@@ -37,8 +33,8 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "models/props_doors/temp_door_001a_44_92.fbx"
-						import_translation = [ 0.0, -10.0, 0.0 ]
+						filename = "models/urban/urban_bench001a.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 0.3937
 						align_origin_x_type = "None"
@@ -50,9 +46,9 @@
 							exclude_by_default = true
 							exception_list = 
 							[
-								"Cube",
-								"Handle_Back",
-								"Door",
+								"urban_bench_01",
+								"urban_bench_02",
+								"urban_bench_01_001",
 							]
 						}
 					},
@@ -63,10 +59,10 @@
 				children = 
 				[
 					{
-						_class = "PhysicsHullFile"
-						name = "TEMP_door_001a"
+						_class = "PhysicsMeshFile"
+						name = "urban_bench001a"
 						parent_bone = ""
-						surface_prop = "wood"
+						surface_prop = "metal"
 						collision_tags = "solid"
 						recenter_on_parent_bone = false
 						offset_origin = [ 0.0, 0.0, 0.0 ]
@@ -74,29 +70,21 @@
 						align_origin_x_type = "None"
 						align_origin_y_type = "None"
 						align_origin_z_type = "None"
-						filename = "models/props_doors/temp_door_001a_44_92.fbx"
+						filename = "Models/Urban/urban_bench001a.fbx"
 						import_scale = 0.3937
-						faceMergeAngle = 80.0
-						maxHullVertices = 0
-						import_mode = "SingleHull"
-						optimization_algorithm = "QEM"
+						maxMeshVertices = 161
+						qemError = 0.0
 						import_filter = 
 						{
 							exclude_by_default = false
-							exception_list = 
-							[
-								"Cube_001",
-								"Handle_Back",
-								"Door",
-								"Door_Frame",
-							]
+							exception_list = [  ]
 						}
 					},
 				]
 			},
 		]
-		model_archetype = ""
-		primary_associated_entity = ""
+		model_archetype = "static_prop_model"
+		primary_associated_entity = "prop_static"
 		anim_graph_name = ""
 		base_model_name = ""
 	}

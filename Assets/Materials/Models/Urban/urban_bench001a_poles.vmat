@@ -8,9 +8,6 @@ Layer0
 	F_METALNESS_TEXTURE 1
 	F_SPECULAR 1
 
-	//---- Translucent ----
-	F_ALPHA_TEST 1
-
 	//---- Ambient Occlusion ----
 	g_flAmbientOcclusionDirectDiffuse "0.000"
 	g_flAmbientOcclusionDirectSpecular "0.000"
@@ -19,7 +16,7 @@ Layer0
 	//---- Color ----
 	g_flModelTintAmount "1.000"
 	g_vColorTint "[1.000000 1.000000 1.000000 0.000000]"
-	TextureColor "materials/models/props_street/urban_bench001a_back.png"
+	TextureColor "materials/models/urban/urban_bench001a_poles.png"
 
 	//---- Fade ----
 	g_flFadeExponent "1.000"
@@ -28,14 +25,14 @@ Layer0
 	g_bFogEnabled "1"
 
 	//---- Metalness ----
-	TextureMetalness "materials/models/props_street/urban_bench001a_back_metal.png"
+	TextureMetalness "materials/models/urban/urban_bench001a_poles_metal.png"
 
 	//---- Normal ----
-	TextureNormal "materials/models/props_street/urban_bench001a_back_normal.png"
+	TextureNormal "materials/models/urban/urban_bench001a_poles_normal.png"
 
 	//---- Roughness ----
 	g_flRoughnessScaleFactor "1.000"
-	TextureRoughness "materials/models/props_street/urban_bench001a_back_rough.png"
+	TextureRoughness "materials/models/urban/urban_bench001a_poles_rough.png"
 
 	//---- Texture Coordinates ----
 	g_nScaleTexCoordUByModelScaleAxis "0"
@@ -43,9 +40,4 @@ Layer0
 	g_vTexCoordOffset "[0.000 0.000]"
 	g_vTexCoordScale "[1.000 1.000]"
 	g_vTexCoordScrollSpeed "[0.000 0.000]"
-
-	//---- Translucent ----
-	g_flAlphaTestReference "0.500"
-	g_flAntiAliasedEdgeStrength "1.000"
-	TextureTranslucency "materials/models/props_street/urban_bench001a_alpha.png"
 }

@@ -37,7 +37,7 @@
 				[
 					{
 						_class = "RenderMeshFile"
-						filename = "models/props_doors/temp_door_001a_56_112.fbx"
+						filename = "models/darkrp_map/temp_door_001a.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
 						import_rotation = [ 0.0, 0.0, 0.0 ]
 						import_scale = 0.3937
@@ -51,7 +51,6 @@
 							exception_list = 
 							[
 								"Cube_001",
-								"Door_Frame",
 							]
 						}
 					},
@@ -64,29 +63,29 @@
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "wood"
+						surface_prop = "default"
 						collision_tags = "solid"
-						origin = [ -0.082589, 1.96845, 56.0 ]
+						origin = [ -0.082589, 1.968446, 41.149147 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 4.01758, 112.0 ]
+						dimensions = [ 6.166304, 4.017583, 82.577118 ]
 					},
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "wood"
+						surface_prop = "default"
 						collision_tags = "solid"
-						origin = [ 0.0, 54.240017, 56.0 ]
+						origin = [ -0.082589, -37.45813, 41.210571 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 4.14417, 112.0 ]
+						dimensions = [ 6.166304, 4.144167, 82.454269 ]
 					},
 					{
 						_class = "PhysicsShapeBox"
 						parent_bone = ""
-						surface_prop = "wood"
+						surface_prop = "default"
 						collision_tags = "solid"
-						origin = [ 0.0, 28.0, 109.877998 ]
+						origin = [ -0.082589, -17.74995, 80.666946 ]
 						angles = [ 0.0, 0.0, 0.0 ]
-						dimensions = [ 6.1663, 56.0, 3.6349 ]
+						dimensions = [ 6.166304, 43.56052, 3.5415 ]
 					},
 				]
 			},
