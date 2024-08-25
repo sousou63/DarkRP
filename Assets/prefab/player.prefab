@@ -171,7 +171,7 @@
         "__type": "Sandbox.HullCollider",
         "__guid": "b5306c3a-ceae-4fcc-a9db-94e9d8dac7b4",
         "BoxSize": "50,50,50",
-        "Center": "0,0,9.9",
+        "Center": "0,0,10",
         "Height": 20,
         "IsTrigger": false,
         "Radius": 10,
