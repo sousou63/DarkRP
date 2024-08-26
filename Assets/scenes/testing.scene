@@ -1,0 +1,291 @@
+{
+  "__guid": "e9eb83bf-f905-4e69-9ae3-f0e0652b710c",
+  "GameObjects": [
+    {
+      "__guid": "df0f847b-63a9-4a96-a2ab-d0c1e6e5cd6f",
+      "Flags": 0,
+      "Name": "Screen",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "93bb652a-0cbe-471b-963a-05affd4bc608",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Chat",
+          "__guid": "944efebf-2c42-4c28-8341-e7a7ad9cf99b"
+        }
+      ]
+    },
+    {
+      "__guid": "ddfe821b-bbb1-4ad2-8ecb-e7878ef39479",
+      "Flags": 0,
+      "Name": "Network Manager",
+      "Enabled": true,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "e6e09f88-7f73-4cf9-aae8-9c624b67446e",
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefab/player.prefab"
+          },
+          "SpawnPoints": [
+            {
+              "_type": "gameobject",
+              "go": "a9161927-36c4-47cf-839c-b85749cfd02d"
+            }
+          ],
+          "StartServer": true
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "a9161927-36c4-47cf-839c-b85749cfd02d",
+          "Flags": 0,
+          "Name": "Spawn",
+          "Position": "0,0,36.32593",
+          "Enabled": true
+        }
+      ]
+    },
+    {
+      "__guid": "504b7dd2-7807-4471-a314-a3399d8dc2fb",
+      "Flags": 0,
+      "Name": "Camera",
+      "Rotation": "0.0000000355345,0.3206144,-0.00000001202782,0.9472098",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "7ca95587-7153-4bdd-8681-fbd78fa6565d",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 25000,
+          "ZNear": 1
+        },
+        {
+          "__type": "Sandbox.Bloom",
+          "__guid": "0d3db28e-cc62-423e-ae54-8ebe6e3e7345",
+          "BloomColor": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 1,
+                "c": "1,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "BloomCurve": [
+            {
+              "y": 0.5
+            },
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "Mode": "Additive",
+          "Strength": 0.5,
+          "Threshold": 0.5,
+          "ThresholdWidth": 0.5
+        },
+        {
+          "__type": "Sandbox.Tonemapping",
+          "__guid": "86d63b65-99ea-45b1-bd40-229afaa7614d",
+          "__version": 1,
+          "ExposureBias": 2,
+          "ExposureCompensation": 0,
+          "ExposureMethod": "RGB",
+          "MaximumExposure": 2,
+          "MinimumExposure": 1,
+          "Mode": "Legacy",
+          "Rate": 1
+        },
+        {
+          "__type": "Sandbox.Sharpen",
+          "__guid": "d654a125-f4d1-44cb-9234-2de0b14f2a6f",
+          "Scale": 0.1
+        },
+        {
+          "__type": "Sandbox.Highlight",
+          "__guid": "2c3d4502-1478-4213-8b44-8db953602a3c"
+        }
+      ]
+    },
+    {
+      "__guid": "84c73386-c4d6-4a08-af44-f7114ce80452",
+      "Flags": 0,
+      "Name": "Game Controller",
+      "Enabled": true,
+      "NetworkOrphaned": 1,
+      "Components": [
+        {
+          "__type": "GameSystems.GameController",
+          "__guid": "d4222600-b3d5-47e6-850e-0a89f749e1be"
+        },
+        {
+          "__type": "Sandbox.GameSystems.Config.ConfigManager",
+          "__guid": "bdebd1d7-1d3c-4fc0-ac3b-fa3c77a38ae1",
+          "MoneyPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefab/money.prefab"
+          }
+        }
+      ]
+    },
+    {
+      "__guid": "ddb2e410-00ff-4248-a923-7fa07b5cd345",
+      "Flags": 0,
+      "Name": "2D Skybox",
+      "Position": "-149.6369,-177.4439,149.1681",
+      "Tags": "skybox",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SkyBox2D",
+          "__guid": "79f11ed7-447f-47cf-92b5-edc4764f155b",
+          "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
+          "Tint": "1,1,1,1"
+        }
+      ]
+    },
+    {
+      "__guid": "d560c5c9-8006-4cae-bac5-c033ae490345",
+      "Flags": 0,
+      "Name": "Plane",
+      "Scale": "1000,1000,1",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "35c5cfd9-6fca-4d7b-be63-f62677482982",
+          "BodyGroups": 18446744073709551615,
+          "MaterialOverride": "materials/default.vmat",
+          "Model": "models/dev/plane.vmdl",
+          "RenderType": "Off",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.PlaneCollider",
+          "__guid": "dffc87c7-922f-4f0b-b324-7df23c57df60",
+          "Center": "0,0,0",
+          "IsTrigger": false,
+          "Scale": "1000,1000",
+          "Static": true
+        }
+      ]
+    },
+    {
+      "__guid": "35394696-2185-45c3-8a39-a1de2e08995e",
+      "Flags": 0,
+      "Name": "Sun",
+      "Position": "-300.9765,-107.0175,275.1043",
+      "Rotation": "0,0.6087614,0,0.7933534",
+      "Tags": "light_directional,light",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "74acd2b5-2e74-4099-a045-b26152761b1b",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
+          "LightColor": "0.91373,0.98039,1,1",
+          "Shadows": true,
+          "SkyColor": "0,0,0,0"
+        }
+      ]
+    },
+    {
+      "__guid": "d2007ccb-0e81-41a9-9561-f0ac9e42b610",
+      "Flags": 0,
+      "Name": "door",
+      "Position": "127.0569,23.47697,0",
+      "Tags": "interact",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkOrphaned": 1,
+      "__Prefab": "prefab/door.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "e64073b8-04d7-4161-8500-f12d1372147f",
+      "Flags": 0,
+      "Name": "money",
+      "Position": "132.4809,-77.77626,0",
+      "Tags": "interact,money,grab",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "b711ddac-24f1-4fb3-aca8-d61118ee0d55",
+      "Flags": 0,
+      "Name": "printer",
+      "Position": "144.3693,117.8352,6",
+      "Tags": "printer,interact,grab",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/printer.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "4d0c1ad1-eeaa-4c65-837d-8b6b700d27ac",
+      "Flags": 0,
+      "Name": "prop",
+      "Position": "82.45676,193.2248,0.9999924",
+      "Tags": "prop,grab",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "OwnerTransfer": 0,
+      "__Prefab": "prefab/prop.prefab",
+      "__PrefabVariables": {}
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "testing",
+  "Description": "",
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

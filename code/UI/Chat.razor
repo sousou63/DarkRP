@@ -1,9 +1,8 @@
 @using Sandbox;
 @using Sandbox.UI;
 @using System;
-@using GameSystems;
-@using GameSystems.Config;
-@using GameSystems;
+@using Sandbox.GameSystems.Config;
+@using global::GameSystems
 @inherits PanelComponent
 @implements Component.INetworkListener
 
@@ -102,8 +101,8 @@
     {
         try
         {
-            ConfigManager = GameSystems.Config.ConfigManager.Instance;
-            GameController = GameSystems.GameController.Instance;
+            ConfigManager = ConfigManager.Instance;
+            GameController = GameController.Instance;
             
         }catch (Exception e)
         {
@@ -254,7 +253,7 @@
             try
             {
                 // Find the player executing the command
-                var player = GameController.GetPlayerByConnectionID( Rpc.Caller.Id );
+                var player = GameController.GetPlayerByConnectionId( Rpc.Caller.Id );
                 if ( player == null ) return false;
                 executeCommand(command, player.GameObject, args);
                 return true;

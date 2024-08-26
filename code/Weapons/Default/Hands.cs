@@ -1,5 +1,7 @@
 ﻿using System;
 using GameSystems.Player;
+using Sandbox.GameSystems.Player;
+using Scenebox;
 
 namespace Sandbox.Weapons.Default;
 
@@ -21,7 +23,7 @@ public class Hands : Weapon
     private Rotation _heldRotation = Rotation.Identity;
 
     // References
-    [Property] private MovementController MovementController { get; set; }
+    [Property] private GameSystems.Player.Player Player { get; set; }
     private CameraComponent _camera;
 	
 	private GameObject _held;
@@ -186,11 +188,11 @@ public class Hands : Weapon
 
 	private void RotateHeldObject()
 	{
-		MovementController.EyesLocked = true;
+		Player.EyesLocked = true;
 
 		var input = Input.MouseDelta * RotateSpeed;
     
-		var eyeRot = MovementController.EyeAngles.ToRotation();
+		var eyeRot = Player.EyeAngles.ToRotation();
     
 		// Create rotation around local X and Y axes
 		var rotX = Rotation.FromAxis(eyeRot * Vector3.Right, input.y);
@@ -210,6 +212,6 @@ public class Hands : Weapon
 
 	private void UnlockHeldObject()
 	{
-		MovementController.EyesLocked = false;
+		Player.EyesLocked = false;
 	}
 }

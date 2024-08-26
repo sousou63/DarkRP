@@ -87,16 +87,16 @@
       "NetworkOrphaned": 1,
       "Components": [
         {
-          "__type": "GameSystems.Config.ConfigManager",
-          "__guid": "5611e3a0-392e-4394-9f06-7a9e8195f060",
+          "__type": "GameSystems.GameController",
+          "__guid": "b1a2a595-dab4-4505-b927-07b149373d20"
+        },
+        {
+          "__type": "Sandbox.GameSystems.Config.ConfigManager",
+          "__guid": "4e32f08e-980f-4ba0-8be8-698dc0224e25",
           "MoneyPrefab": {
             "_type": "gameobject",
             "prefab": "prefab/money.prefab"
           }
-        },
-        {
-          "__type": "GameSystems.GameController",
-          "__guid": "b1a2a595-dab4-4505-b927-07b149373d20"
         }
       ]
     },
@@ -412,11 +412,11 @@
         {
           "__type": "Sandbox.TextRenderer",
           "__guid": "d122169b-6381-4bca-a513-a077c22f0487",
-          "Color": "0.45103,0.47149,0.5297,1",
+          "Color": "0.2093,0.42016,1,1",
           "FontFamily": "Poppins",
-          "FontSize": 64,
+          "FontSize": 54.19,
           "FontWeight": 800,
-          "Scale": 0.3,
+          "Scale": 0.43,
           "Text": "Turn Around \uD83E\uDD26\n(fix this)",
           "TextAlignment": "Center"
         }
