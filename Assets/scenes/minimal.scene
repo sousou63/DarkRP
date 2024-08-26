@@ -175,57 +175,10 @@
       ]
     },
     {
-      "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
-      "Flags": 0,
-      "Name": "Map Instance",
-      "Position": "2653.947,-933.2069,-601.2447",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.MapInstance",
-          "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
-          "__version": 1,
-          "EnableCollision": true,
-          "MapName": "map/downtownv2/rp_downtown_v2.vmap",
-          "NoOrigin": false,
-          "UseMapFromLaunch": false
-        }
-      ],
-      "Children": []
-    },
-    {
-      "__guid": "25b3bef3-0fda-43dc-9fef-773bc446096c",
-      "Flags": 0,
-      "Name": "Cube",
-      "Position": "-746.6805,-1382.88,187.7818",
-      "Rotation": "0,0,-0.7071069,0.7071066",
-      "Scale": "1,1,0.722172",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "473b76b5-65c1-42e2-802a-908e8f82b6f9",
-          "BodyGroups": 18446744073709551615,
-          "MaterialOverride": "materials/tile/tilefloor_001a.vmat",
-          "Model": "models/dev/box.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        },
-        {
-          "__type": "Sandbox.BoxCollider",
-          "__guid": "6cd7b75e-c224-441c-8d15-0dc070879748",
-          "Center": "0,0,0",
-          "IsTrigger": false,
-          "Scale": "50,50,50",
-          "Static": false
-        }
-      ]
-    },
-    {
       "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
       "Flags": 0,
       "Name": "printer",
-      "Position": "-758.0123,-1161.398,183.6531",
+      "Position": "-758.0124,-1161.398,186.4841",
       "Rotation": "0,0,-0.9238796,0.3826833",
       "Tags": "printer,interact,grab",
       "Enabled": true,
@@ -238,7 +191,7 @@
       "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
       "Flags": 0,
       "Name": "prop",
-      "Position": "-755.4432,-1376.336,208.3003",
+      "Position": "-698.1496,-1130.125,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -251,7 +204,7 @@
       "__guid": "bb58b9c8-18d5-4219-a01c-6a5464790caf",
       "Flags": 0,
       "Name": "prop (1)",
-      "Position": "-756.4454,-1365.935,208.3003",
+      "Position": "-699.1518,-1119.724,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -264,7 +217,7 @@
       "__guid": "83e07f29-9a65-449d-aae6-b7bb0562f39b",
       "Flags": 0,
       "Name": "prop (2)",
-      "Position": "-766.2936,-1370.135,208.3003",
+      "Position": "-709,-1123.924,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -277,7 +230,18 @@
       "__guid": "3d867b9c-2651-4dae-a5d4-d3952674f32a",
       "Flags": 0,
       "Name": "money",
-      "Position": "-751.1617,-1392.435,205.9034",
+      "Position": "-790.0078,-1235.786,182.8195",
+      "Rotation": "0,0,-0.7071069,0.7071066",
+      "Tags": "money,interactable,interact,grab",
+      "Enabled": true,
+      "__Prefab": "prefab/money.prefab",
+      "__PrefabVariables": {}
+    },
+    {
+      "__guid": "67c8bb67-2370-4f32-a1f7-ba2e564fca68",
+      "Flags": 0,
+      "Name": "money (2)",
+      "Position": "-790.0075,-1244.086,182.8195",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "money,interactable,interact,grab",
       "Enabled": true,
@@ -288,7 +252,7 @@
       "__guid": "f359e953-56c4-490a-96f4-ab9f3a000025",
       "Flags": 0,
       "Name": "money (1)",
-      "Position": "-751.1617,-1383.005,205.9034",
+      "Position": "-790.0078,-1226.356,182.8195",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "money,interactable,interact,grab",
       "Enabled": true,
@@ -396,73 +360,6 @@
       "__PrefabVariables": {}
     },
     {
-      "__guid": "9f43e73d-f763-45c6-877a-680b296fb3d4",
-      "Flags": 0,
-      "Name": "GameObject",
-      "Enabled": true
-    },
-    {
-      "__guid": "c74fbfea-c25a-425c-b9c4-52d0cb0b54d9",
-      "Flags": 0,
-      "Name": "TEMP SPAWN TEXT",
-      "Position": "-957.0762,-2772.121,219.8589",
-      "Rotation": "0,0,0.02617695,0.9996573",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.TextRenderer",
-          "__guid": "d122169b-6381-4bca-a513-a077c22f0487",
-          "Color": "0.2093,0.42016,1,1",
-          "FontFamily": "Poppins",
-          "FontSize": 54.19,
-          "FontWeight": 800,
-          "Scale": 0.43,
-          "Text": "Turn Around \uD83E\uDD26\n(fix this)",
-          "TextAlignment": "Center"
-        }
-      ]
-    },
-    {
-      "__guid": "aaed1c6a-c875-482b-b24f-ef574ecf6df8",
-      "Flags": 0,
-      "Name": "TEMP SPAWN TEXT",
-      "Position": "-957.0762,200.3775,219.8589",
-      "Rotation": "0,0,0.02617695,0.9996573",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.TextRenderer",
-          "__guid": "d958a8ee-e09f-47d0-9b9b-f3ededcd8f78",
-          "Color": "0.45103,0.47149,0.5297,1",
-          "FontFamily": "Poppins",
-          "FontSize": 64,
-          "FontWeight": 800,
-          "Scale": 0.3,
-          "Text": "Turn Around\uD83E\uDD26\n(fix this)",
-          "TextAlignment": "Center"
-        }
-      ]
-    },
-    {
-      "__guid": "adbc2951-be68-4d54-83c5-d94521a5b171",
-      "Flags": 0,
-      "Name": "skybox_apartment001a",
-      "Position": "3071.052,1579.945,166.9576",
-      "Rotation": "0,0,-0.7071067,0.7071068",
-      "Scale": "0.2314866,0.2314866,0.2314866",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ModelRenderer",
-          "__guid": "d2d407c7-1dd0-4c83-92b9-e6e0d453533a",
-          "BodyGroups": 18446744073709551615,
-          "Model": "models/skybox/skybox_apartment001a.vmdl",
-          "RenderType": "On",
-          "Tint": "1,1,1,1"
-        }
-      ]
-    },
-    {
       "__guid": "de0edb13-9840-4496-b871-472672086cae",
       "Flags": 0,
       "Name": "Sun",
@@ -481,6 +378,25 @@
           "SkyColor": "0,0,0,0"
         }
       ]
+    },
+    {
+      "__guid": "b1363f39-b9e5-4401-9df9-f33607e21b71",
+      "Flags": 0,
+      "Name": "Map Instance",
+      "Position": "2653.947,-933.2069,-601.2447",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "abfa78b9-4827-4e87-821e-abf6307fffe3",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "map/downtownv2/rp_downtown_v2.vmap",
+          "NoOrigin": false,
+          "UseMapFromLaunch": false
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
