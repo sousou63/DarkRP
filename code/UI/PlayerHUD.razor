@@ -1,11 +1,11 @@
+@using global::GameSystems
 @using Sandbox;
-@using Sandbox.UI;
-@using GameSystems.Player;
+@using Sandbox.GameSystems.Player;
 @inherits PanelComponent
 
 <root>
     @{
-        Stats stats = PlayerPrefab.Components.Get<Stats>();
+        Player stats = PlayerPrefab.Components.Get<Player>();
         float health = stats.Health.Floor(); 
         float maxHealth = stats.MaxHealth.Floor();
         int healthPercentage = (health / maxHealth * 100).FloorToInt();
@@ -20,7 +20,7 @@
         <div class="name">@Rpc.Caller.DisplayName</div>
         <div class="player-details-container">
             <div class="money">$ @(stats.Balance.ToString("N0"))</div>
-            <div class="job"> @(PlayerPrefab.Components.Get<Stats>().Job.Name) </div>
+            <div class="job"> @(GameController.Instance.GetMe().Job.Name) </div>
         </div>
         <div class="bars">
             <div class="bar">
@@ -58,19 +58,19 @@
         }
     </div>
     
-    <div class="inventory @(PlayerPrefab.Components.Get<Inventory>().isInventoryVisible ? "visible" : "")">
-        @for (int i = 1; i <= PlayerPrefab.Components.Get<Inventory>().maxSlots; i++)
+    <div class="inventory @(PlayerPrefab.Components.Get<Player>().IsInventoryVisible ? "visible" : "")">
+        @for (int i = 1; i <= Player.MaxSlots; i++)
         {
 
             // get the weapon from the inventory slot
-            var inventory = PlayerPrefab.Components.Get<Inventory>();
-            var weapon = inventory.inventorySlots[i - 1]; // arrays index start at 0
+            var inventory = PlayerPrefab.Components.Get<Player>();
+            var weapon = inventory.InventorySlots[i - 1]; // arrays index start at 0
 
 
             // Check if a weapon exist in this slot and assign an icon ( I need to use world model thumbnail instead of this )
             var thumbnail = weapon != null ? $"{weapon.WorldModel.Name.ToLower().Replace(".vmdl", "")}.vmdl_c.png" : "";
 
-            <div class="slot @(i == PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot ? "active" : "")">@i
+            <div class="slot @(i == PlayerPrefab.Components.Get<Player>().CurrentSelectedSlot ? "active" : "")">@i
                 <image src="@thumbnail" style="border-radius: 5px 5px 5px 5px;"></image>
             </div>
         }
@@ -119,5 +119,17 @@
     /// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(MyStringValue, PlayerPrefab.Components.Get<Stats>().Job, PlayerPrefab.Components.Get<Stats>().Balance, PlayerPrefab.Components.Get<Stats>().Hunger, PlayerPrefab.Components.Get<Stats>().Health, PlayerPrefab.Components.Get<Inventory>().isInventoryVisible, PlayerPrefab.Components.Get<Inventory>().currentSelectedSlot, Notifications.Count);
+    protected override int BuildHash()
+    {
+	    var player = PlayerPrefab.Components.Get<Player>();
+	    return System.HashCode.Combine( MyStringValue,
+		    GameController.Instance.GetMe().Job.Name,
+		    player.Balance,
+		    player.Hunger,
+		    player.Health,
+		    player.IsInventoryVisible,
+		    player.CurrentSelectedSlot,
+		    Notifications.Count
+	    );
+    }
 }

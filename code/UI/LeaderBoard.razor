@@ -1,55 +1,57 @@
 @using Sandbox;
-@using Sandbox.UI;
 @using System;
-@using GameSystems;
-@using GameSystems.Jobs;
-@using GameSystems.Player;
+@using global::GameSystems
+@using Sandbox.GameSystems.Player;
 @inherits PanelComponent
 
 <root>
-	<div class="TableContainer">
-		<!--<h2 class="TableTitle"> Current Players </h2>-->
-		<div class="TableRow">
-			<div class="TableHeader">Player Name</div>	
-			<div class="TableHeader">Job</div>	
-			<div class="TableHeader">Rank</div>	
-			<div class="TableHeader">Steam ID</div>
+	@if ( _showLeaderboard )
+	{
+		<div class="TableContainer">
+			<!--<h2 class="TableTitle"> Current Players </h2>-->
+			<div class="TableRow">
+				<div class="TableHeader">Player Name</div>
+				<div class="TableHeader">Job</div>
+				<div class="TableHeader">Rank</div>
+				<div class="TableHeader">Steam ID</div>
+			</div>
+			@foreach ( var player in GameController.Instance.Players )
+			{
+				<div class="TableRow">
+					<div class="TableCell" style="color:@GetColorForUser( @player.Value, true )">@player.Value.Connection.DisplayName</div>
+					<div class="TableCell" style="color:@GetColorForUser( @player.Value, true )">@GetJobNameForUser( @player.Value )</div>
+					<div class="TableCell" style="color:@GetColorForUser( @player.Value, true );text-align:center">@player.Value.GetHighestUserGroup().Name.ToUpper()</div>
+					<div class="TableCell" style="color:@GetColorForUser( @player.Value, true )">@player.Value.Connection.SteamId</div>
+				</div>
+			}
 		</div>
-		@foreach (var player in Players)
-		{
-		    <div class="TableRow">
-                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@player.Value.Connection.DisplayName</div>
-                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@GetJobNameForUser(@player.Value)</div>
-				<div class="TableCell" style="color:@GetColorForUser(@player.Value, true);text-align:center">@player.Value.GetHighestUserGroup().Name.ToUpper()</div>
-                <div class="TableCell" style="color:@GetColorForUser(@player.Value, true)">@player.Value.Connection.SteamId</div>
-		    </div>
-		}
-    </div>
+	}
 </root>
 
 @code
 {
-    // This players list is updated in the ACTION GRAPH [ON FIXED UPDATE] inside the screen panel and it use the gamecontroller instance
-    [Property] public NetDictionary<Guid, PlayerConnObject> Players = null;
+	private bool _showLeaderboard;
 
-	private string GetJobNameForUser(PlayerConnObject p)
+	protected override void OnUpdate()
 	{
-		return p.GameObject.Components.Get<Stats>().Job.Name;
+		_showLeaderboard = Input.Down( "menu" );
 	}
 
-	private string GetColorForUser(PlayerConnObject p, bool forceGroupColor = false)
+	private string GetJobNameForUser(NetworkPlayer p)
 	{
-		//if (p.GetHighestUserGroup().PermissionLevel == 0 || !forceGroupColor)
-		//{
-		//	return p.GameObject.Components.Get<Stats>().Job.Color.Hex;
-		//}
+		return p.Job.Name;
+	}
 
-        // this work better
+	private string GetColorForUser(NetworkPlayer p, bool forceGroupColor = false)
+	{
 		return p.GetHighestUserGroup().Color.Hex;
 	}
 
 	/// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(Players);
+    protected override int BuildHash() => HashCode.Combine(
+	    _showLeaderboard,
+	    GameController.Instance.Players
+	    );
 }
