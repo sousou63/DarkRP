@@ -1,0 +1,20 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "urban_bench_001_a",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "urban_bench_001_a",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "IsWhitelistDisabled": false,
+      "Metadata": {
+        "SingleAssetSource": "models/props_urban/urban_bench_001_a.vmap"
+      }
+    }
+  }
+}
