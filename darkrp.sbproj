@@ -5,7 +5,7 @@
   "Ident": "darkrp",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": "/ui/fonts/*",
+  "Resources": "/fonts/*\nui/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "IsWhitelistDisabled": false,
@@ -24,7 +24,9 @@
     "CsProjName": "",
     "StartupScene": "scenes/game.scene",
     "LaunchMode": "QuickPlay",
-    "ControlModes": {},
+    "ControlModes": {
+      "Keyboard": true
+    },
     "InputSettings": {
       "Actions": [
         {
@@ -179,7 +181,7 @@
         },
         {
           "Name": "Voice",
-          "KeyboardCode": "x",
+          "KeyboardCode": "v",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
@@ -214,31 +216,19 @@
           "GroupName": "Other"
         },
         {
-          "Name": "Use Special",
-          "KeyboardCode": "r",
-          "GamepadCode": "None",
-          "GroupName": "Other"
-        },
-        {
           "Name": "Undo",
-          "KeyboardCode": "z",
+          "KeyboardCode": "Z",
           "GamepadCode": "None",
           "GroupName": "Other"
         },
         {
-          "Name": "noclip",
-          "KeyboardCode": "v",
+          "Name": "Noclip",
+          "KeyboardCode": "B",
           "GamepadCode": "None",
           "GroupName": "Other"
-        },
-        {
-          "Name": "attack3",
-          "KeyboardCode": "mouse3",
-          "GamepadCode": "None",
-          "GroupName": "Actions"
         }
       ],
-      "__guid": "7cedfdbc-0fea-49a2-8803-40a706dfe287"
+      "__guid": "58437d8e-9387-4614-b03d-1a37ff9ef17a"
     },
     "MapStartupScene": "scenes/game.scene"
   }
