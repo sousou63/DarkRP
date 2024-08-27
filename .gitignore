@@ -18,7 +18,6 @@ code/Properties/*
 !*.shader_c
 *.los
 *.vpk
-!rp_minimal_city.vpk
 !rp_downtown_v2.vpk
 *launchSettings.json
 *.sln

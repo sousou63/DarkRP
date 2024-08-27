@@ -1,5 +1,5 @@
 {
-  "__guid": "493d58c2-7228-4471-a454-cd62f53b7d41",
+  "__guid": "23e43714-3250-4204-857e-cfffa9e98aae",
   "GameObjects": [
     {
       "__guid": "9d7e9196-6f6e-4de6-a95c-a3d0f74d3f66",
@@ -60,7 +60,7 @@
           "__guid": "0387219f-1e28-4a26-b78b-09a2c7246633"
         },
         {
-          "__type": "Scenebox.UI.PlayerHud",
+          "__type": "Scenebox.UI.PlayerHUD",
           "__guid": "5c45b843-a94c-4145-bbf0-d5658aaf1ebb"
         }
       ],
@@ -97,7 +97,7 @@
           "__guid": "0c3d64c7-c757-493f-b482-37093117bacf",
           "__version": 1,
           "EnableCollision": true,
-          "MapName": "facepunch.flatgrass",
+          "MapName": "maps/downtownv2/rp_downtown_v2.vmap",
           "NoOrigin": true,
           "UseMapFromLaunch": true
         }
