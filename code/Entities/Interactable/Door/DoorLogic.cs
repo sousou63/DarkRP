@@ -17,7 +17,8 @@ namespace Entity.Interactable.Door
 		[Property, Sync] public int Price { get; set; } = 100;
 
 		[Property] DoorMenu DoorMenu {get; set;}
-		public string DoorTitle = ""; 
+
+		[Sync, HostSync] public string DoorTitle { get; set; } = ""; 
 
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
@@ -88,6 +89,7 @@ namespace Entity.Interactable.Door
 			DoorOwner = null;
 		}
 
+		[Broadcast]
 		public void SetDoorTitle(string title)
 		{
 			DoorTitle = title;
@@ -121,6 +123,8 @@ namespace Entity.Interactable.Door
 			OwnerStats?.SendMessage( "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
+
+		[Broadcast]
 		private void KnockOnDoor()
 		{
 			Sound.Play( "audio/knock.sound", Door.Transform.World.Position );
