@@ -7,16 +7,15 @@ namespace Entity.Interactable.Door
 {
 	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
-		[Property]
-		public GameObject Door { get; set; }
-		[Property, Sync]
-		public bool IsUnlocked { get; set; } = true;
-		[Property, Sync]
-		public bool IsOpen { get; set; } = false;
+		[Property] public GameObject Door { get; set; }
+		[Property, Sync] public bool IsUnlocked { get; set; } = true;
+		[Property, Sync]public bool IsOpen { get; set; } = false;
 		public Player OwnerStats { get; set; }
 
-		[Property, Sync]
-		public int Price { get; set; } = 100;
+		[Property, Sync] public int Price { get; set; } = 100;
+
+		[Property] DoorMenu DoorMenu {get; set;}
+		public string DoorTitle = ""; 
 
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
@@ -31,15 +30,13 @@ namespace Entity.Interactable.Door
 		{
 			if ( Owner == null )
 			{
-				var playerStats = player.Components.Get<Player>();
-				playerStats.PurchaseDoor(Price ,this.Door);
+				PurchaseDoor(player, player.Components.Get<Player>());
+				return;
 			}
-			else
+
+			if (player.Id == Owner?.GameObject.Id)
 			{
-				if ( Owner.GameObject.Id == player.Id )
-				{
-					OwnerStats.SellDoor(this.Door);
-				}
+				DoorMenu.OpenDoorMenu(this.Door, player);
 			}
 		}
 
@@ -62,14 +59,29 @@ namespace Entity.Interactable.Door
 			OwnerStats = playerStats;
 		}
 
-		public void SellDoor() //This Function does no longer removes the Door in Player.Stats or checks if it's done
+		public void PurchaseDoor(GameObject player, Player playerStats)
 		{
-			if ( Owner == null )
+			if (playerStats.UpdateBalance(-Price))
 			{
-				return;
+				Sound.Play( "audio/notification.sound" );
+				playerStats.Doors.Add(Door);
+				UpdateDoorOwner(player, playerStats);
 			}
+		}
+
+		public void SellDoor(Player playerStats) //This Function does no longer removes the Door in Player.Stats or checks if it's done
+		{
 			IsUnlocked = true;
+			playerStats.Doors.Remove(this.Door);
+			playerStats.UpdateBalance(Price / 2);
+			DoorTitle = "";
+
 			UpdateDoorOwner();
+		}
+
+		public void SetDoorTitle(string title)
+		{
+			DoorTitle = title;
 		}
 
 		[Broadcast]
@@ -86,7 +98,7 @@ namespace Entity.Interactable.Door
 		}
 
 		[Broadcast]
-		private void LockDoor()
+		public void LockDoor()
 		{
 			IsUnlocked = false;
 			OwnerStats?.SendMessage( "Door has been locked." );
@@ -94,7 +106,7 @@ namespace Entity.Interactable.Door
 		}
 
 		[Broadcast]
-		private void UnlockDoor()
+		public void UnlockDoor()
 		{
 			IsUnlocked = true;
 			OwnerStats?.SendMessage( "Door has been unlocked." );

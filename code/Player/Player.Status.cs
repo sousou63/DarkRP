@@ -137,70 +137,15 @@ namespace Sandbox.GameSystems.Player
 		{
 			Hunger = Amount;
 		}
-		// DOOR LOGIC. Helps keep track of owned doors.
-		public void PurchaseDoor( float price, GameObject door )
-		{
-			Log.Info( $"Purchasing the door: {door.Id}" );
-			// Check if its a valid door
-			var doorLogic = door.Components.Get<DoorLogic>();
-			if ( doorLogic == null )
-			{
-				return;
-			}
-			// Check if the door is already owned
-			if ( Doors.Any( d => d.Id == door.Id ) )
-			{
-				return;
-			}
-
-			// If the player can afford it
-			if ( UpdateBalance( -price ) )
-			{
-				Doors.Add( door );
-				doorLogic.UpdateDoorOwner( GameObject, this );
-				SendMessage( "Door has been purchased." );
-				Sound.Play( "audio/notification.sound" );
-				return;
-			}
-			else
-			{
-				SendMessage( "Can't afford this door." );
-				return;
-			}
-		}
-
-		public void SellDoor( GameObject door )
-		{
-			Log.Info( $"Selling door: {door.Id}" );
-			// Check if its a valid door
-			var doorLogic = door.Components.Get<DoorLogic>();
-			if ( doorLogic == null )
-			{
-				return;
-			}
-
-			// Check if the door is owned
-			if ( !Doors.Any( d => d.Id == door.Id ) )
-			{
-				return;
-			}
-			// Remove the door from the list
-			Doors.Remove( door );
-			UpdateBalance( doorLogic.Price / 2 );
-			doorLogic.SellDoor();
-			Sound.Play( "audio/notification.sound" );
-			SendMessage( "Door has been sold." );
-			return;
-		}
 
 		public void SellAllDoors()
 		{
-			Int32 preRemoveCount = Doors.Count;
-			Log.Info( "Selling All " + preRemoveCount + " doors" );
-			for ( Int32 i = 0; i < preRemoveCount; i++ )
+			Log.Info( "Selling All " + Doors.Count + " doors" );
+			for (int i = 0; i < Doors.Count; i++)
 			{
-				var door = Doors[i];
-				SellDoor( door );
+				GameObject door = Doors[i];
+				DoorLogic doorLogic = door.Components.Get<DoorLogic>();
+				doorLogic.SellDoor(this);
 			}
 			SendMessage( "All doors have been sold." );
 		}
