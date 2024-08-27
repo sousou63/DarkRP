@@ -1,0 +1,254 @@
+@using System
+@using Sandbox;
+@using Sandbox.UI;
+@using System.Threading.Tasks;
+@using System.Text.RegularExpressions;
+@using System;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+
+<root>
+    <div class="title">Tab Menu</div>
+
+    <div class="main">
+        <div class="side-bar">
+
+            <div class="player-container">
+                <div class="name">@(Rpc.Caller.DisplayName.Truncate(13))</div>
+                    <div class="wallet"> MONEY VALUE HERE </div>
+                <div class="sub">Salary:<span> JOB SALARY HERE </span></div>
+            </div>
+
+            <div class="navigation">
+                <div class="buttoncontainer">
+                    <button class="button @(IsJobsVisible ? "active" : "")" onclick="@DisplayJobs">
+                        <i class="icon">work</i> Jobs
+                    </button>
+                    <button class="button @(IsDarkWebVisible ? "active" : "")" onclick="@DisplayDarkWeb">
+                        <i class="icon">store</i> Dark Web
+                    </button>
+                </div>
+
+                <div class="buttoncontainer">
+                    <button class="button @(IsAdminVisible ? "active" : "")" onclick="@DisplayAdmin">
+                        <i class="icon">local_police</i> Admin Tools
+                    </button>
+                    <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo">
+                        <i class="icon">info</i> Information
+                    </button>
+                    <button class="button" onclick=@GitHubLink style="color:#4078c0;">
+                        <i class="icon">web</i> @GitHub
+                    </button>
+                    <button class="button" onclick=@DiscordLink style="color:#7289da;">
+                        <i class="icon">discord</i> @Discord
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="main-container">
+            <!-- Dark Web Section -->
+            <div class="section" style="display: @(IsDarkWebVisible ? "flex" : "none");">
+                <div class="section-title">Dark Web</div>
+                <div class="section-contents">
+
+                <div class="button" onclick= >
+                              <div class="icon" style="background-color: #A52A2A"></div>
+                        <div class="label-container">
+                            <div class="label">Bronze Printer</div>
+                        <span class="description"></span>
+                            <span class="description">Slow</span>
+                            <div class="price">$500</div>
+                        </div>
+                    </div>
+
+                        <div class="button" onclick=  >
+                        <div class="icon" style="background-color: #DCDCDC"></div>
+                        <div class="label-container">
+                            <div class="label">Silver Printer</div>
+                        <span class="description">  </span>
+                            <span class="description">Average</span>
+                            <div class="price">$1,200</div>
+                        </div>
+                    </div>
+
+                        <div class="button" onclick=  >
+                        <div class="icon" style="background-color: #FFD700"></div>
+                        <div class="label-container">
+                            <div class="label">Gold Printer</div>
+                        <span class="description"> </span>
+                            <span class="description">Fast</span>
+                            <div class="price">$2,600</div>
+                        </div>
+                    </div>
+
+                        <div class="button" onclick= >
+                        <div class="icon" style="background-color: #40E0D0"></div>
+                        <div class="label-container">
+                            <div class="label">Diamond Printer</div>
+                            <span class="description"> </span>
+                            <span class="description">Super-fast</span>
+                            <div class="price">$4,200</div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <!-- Jobs Section -->
+            <div class="section" style="display: @(IsJobsVisible ? "flex" : "none");">
+                <div class="section-title">Jobs</div>
+                <div class="section-contents">
+            @*        @foreach (var group in JobProvider.JobGroups.Values)
+                    {
+                        <div class="section-job-group">
+                            <div class="section-job-title" style="background-color: rgba(@(group.Color.r * 255), @(group.Color.g * 255), @(group.Color.b * 255), @(group.Color.a * 255))">@group.Name</div>
+                            <div class="section-job-list">
+                                @foreach (var job in JobProvider.Jobs.Values.Where(x => x.Group == group))
+                                {
+                                    <div class="section-job button" onclick="@(() => GameController.SelectJob(Player.Network.OwnerId, job))">
+                                        <div class="icon"></div>
+                                        <div class="label-container">
+                                            <div class="label">@job.Name</div>
+                                            <div class="description">@job.Description</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }*@
+                </div> 
+            </div>
+
+            <!-- Information Section -->
+            <div class="section" style="display: @(IsInfoVisible ? "flex" : "none");">
+                <div class="section-title">Information</div>
+                <div class="section-contents">
+                    <div class="info" style="color: #556B2F;">
+                        <h1>Completed</h1>
+                        <p>@InfoDone</p>
+                    </div>
+                    <div class="info" style="color: #8B0000;">
+                        <h1>TODO</h1>
+                        <p>@InfoTodo</p>
+                    </div>
+                    <div class="info" style="color: #DAA520;">
+                        <h1>Notes</h1>
+                        <p>@InfoNotes</p>
+                    </div>
+                    <div class="info" style="color: #DCDCDC;">
+                        <h1>Credits</h1>
+                        <p>@InfoCredits</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Section -->
+            <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
+                <div class="section-title">Admin Tools</div>
+                <div class="section-contents">
+                    <div class="info" style="color: red;">
+                        <h1>TODO</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</root>
+
+@code {
+    /*  [Property] GameObject PrinterPrefab { get; set; }
+    [Property] Player Player { get; set; }
+
+    // Everything related to printers
+    int MaxPrinter = 5;
+        int CurrentPrinter = 0;
+        enum PrinterType { Bronze, Silver, Gold, Diamond }
+
+            // Generic method to purchase a printer
+        void BuyPrinter(PrinterType type, float price)
+        {
+        if (CurrentPrinter >= MaxPrinter)
+        {
+        Sound.Play("audio/error.sound");
+            return;
+            }
+
+            if (!Player.UpdateBalance(-price))
+            {
+            return; // Not enough money, error sound is handled elsewhere
+        }
+
+        Vector3 playerPos = GameObject.Parent.Transform.World.Position + GameObject.Parent.Transform.Local.Forward * 50;
+        GameObject printer = PrinterPrefab.Clone(playerPos);
+
+        // Set the printer type directly using a mapping if needed
+        printer.Components.Get<PrinterLogic>().SetPrinterType((PrinterLogic.PrinterType)type);
+
+        printer.NetworkSpawn(); // It spawns on all clients
+        CurrentPrinter++;
+    } */
+
+    // Information tab properties
+    [Property, TextArea] public string InfoDone { get; set; } = "Completed tasks...";
+    [Property, TextArea] public string InfoTodo { get; set; } = "Pending tasks...";
+    [Property, TextArea] public string InfoNotes { get; set; } = "Important notes...";
+    [Property, TextArea] public string InfoCredits { get; set; } = "Credits for the team...";
+
+    // Boolean properties to control visibility
+    bool IsDarkWebVisible = false, IsJobsVisible = false, IsInfoVisible = true, IsAdminVisible = false;
+
+    void DisplaySection(string section)
+    {
+        IsDarkWebVisible = section == "DarkWeb";
+        IsJobsVisible = section == "Jobs";
+        IsInfoVisible = section == "Info";
+        IsAdminVisible = section == "Admin";
+
+        Sound.Play("audio/select.sound");
+    }
+
+    void DisplayDarkWeb() { DisplaySection("DarkWeb"); }
+    void DisplayJobs() { DisplaySection("Jobs"); }
+    void DisplayInfo() { DisplaySection("Info"); }
+    void DisplayAdmin() { DisplaySection("Admin"); }
+
+    string Discord = "Discord";
+    string GitHub = "GitHub";
+
+    async void DiscordLink()
+    {
+        Sound.Play("audio/select.sound");
+        try
+        {
+            Clipboard.SetText("https://discord.gg/yBDk9Xr6VB");
+            Discord = "Discord - Copied!";
+            await Task.Delay(1500);
+            Discord = "Discord";
+            StateHasChanged();
+        }
+        catch
+        {
+            Log.Error("Failed to copy to clipboard");
+        }
+    }
+
+    async void GitHubLink()
+    {
+        Sound.Play("audio/select.sound");
+        try
+        {
+            Clipboard.SetText("https://github.com/sousou63/DarkRP");
+            GitHub = "GitHub - Copied!";
+            await Task.Delay(1500);
+            GitHub = "GitHub";
+            StateHasChanged();
+        }
+        catch
+        {
+            Log.Error("Failed to copy to clipboard");
+        }
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(InfoDone, InfoTodo, InfoNotes);
+}

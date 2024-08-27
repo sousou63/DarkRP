@@ -226,6 +226,18 @@
           "KeyboardCode": "B",
           "GamepadCode": "None",
           "GroupName": "Other"
+        },
+        {
+          "Name": "MainMenu",
+          "KeyboardCode": "f4",
+          "GamepadCode": "None",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "MainMenuTest",
+          "KeyboardCode": "i",
+          "GamepadCode": "None",
+          "GroupName": "Other"
         }
       ],
       "__guid": "58437d8e-9387-4614-b03d-1a37ff9ef17a"

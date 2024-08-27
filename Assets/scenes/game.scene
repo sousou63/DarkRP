@@ -47,6 +47,159 @@
           "__type": "Sandbox.ScreenPanel",
           "__guid": "6d1480e3-db30-4eb3-acfe-70c22ac36d05",
           "AutoScreenScale": true,
+          "OnComponentFixedUpdate": {
+            "__version": 7,
+            "__guid": "946a7897-60d2-4efa-93fd-f174f30c3feb",
+            "UserData": {
+              "Title": "On Component Fixed Update",
+              "ReferencedComponentTypes": [
+                "Scenebox.UI.BasicMenu"
+              ]
+            },
+            "Variables": [],
+            "Nodes": [
+              {
+                "Id": 0,
+                "Type": "input"
+              },
+              {
+                "Id": 1,
+                "Type": "input.down",
+                "UserData": {
+                  "Position": "16,64"
+                }
+              },
+              {
+                "Id": 3,
+                "Type": "op.or",
+                "UserData": {
+                  "Position": "272,112"
+                }
+              },
+              {
+                "Id": 4,
+                "Type": "input.down",
+                "UserData": {
+                  "Position": "16,176"
+                }
+              },
+              {
+                "Id": 7,
+                "Type": "if",
+                "UserData": {
+                  "Position": "432,0"
+                }
+              },
+              {
+                "Id": 8,
+                "Type": "scene.get",
+                "Properties": {
+                  "T": "Scenebox.UI.BasicMenu"
+                },
+                "UserData": {
+                  "Position": "432,112"
+                }
+              },
+              {
+                "Id": 9,
+                "Type": "property",
+                "Properties": {
+                  "_type": "Sandbox.Component",
+                  "_name": "Enabled"
+                },
+                "UserData": {
+                  "Position": "672,-48"
+                }
+              },
+              {
+                "Id": 11,
+                "Type": "property",
+                "Properties": {
+                  "_type": "Sandbox.Component",
+                  "_name": "Enabled"
+                },
+                "UserData": {
+                  "Position": "672,64"
+                }
+              }
+            ],
+            "Links": [
+              {
+                "Value": "MainMenuTest",
+                "DstId": 1,
+                "DstName": "action"
+              },
+              {
+                "SrcId": 1,
+                "SrcName": "_result",
+                "DstId": 3,
+                "DstName": "a"
+              },
+              {
+                "SrcId": 4,
+                "SrcName": "_result",
+                "DstId": 3,
+                "DstName": "b"
+              },
+              {
+                "Value": "MainMenu",
+                "DstId": 4,
+                "DstName": "action"
+              },
+              {
+                "SrcId": 0,
+                "SrcName": "_signal",
+                "DstId": 7,
+                "DstName": "_signal"
+              },
+              {
+                "SrcId": 3,
+                "SrcName": "_result",
+                "DstId": 7,
+                "DstName": "condition"
+              },
+              {
+                "SrcId": 0,
+                "SrcName": "_target",
+                "DstId": 8,
+                "DstName": "_this"
+              },
+              {
+                "SrcId": 7,
+                "SrcName": "true",
+                "DstId": 9,
+                "DstName": "_signal"
+              },
+              {
+                "SrcId": 8,
+                "SrcName": "_result",
+                "DstId": 9,
+                "DstName": "_target"
+              },
+              {
+                "Value": true,
+                "DstId": 9,
+                "DstName": "_value"
+              },
+              {
+                "SrcId": 7,
+                "SrcName": "false",
+                "DstId": 11,
+                "DstName": "_signal"
+              },
+              {
+                "SrcId": 8,
+                "SrcName": "_result",
+                "DstId": 11,
+                "DstName": "_target"
+              },
+              {
+                "Value": false,
+                "DstId": 11,
+                "DstName": "_value"
+              }
+            ]
+          },
           "Opacity": 1,
           "Scale": 1,
           "ZIndex": 100
@@ -62,6 +215,15 @@
         {
           "__type": "Scenebox.UI.PlayerHud",
           "__guid": "5c45b843-a94c-4145-bbf0-d5658aaf1ebb"
+        },
+        {
+          "__type": "Scenebox.UI.BasicMenu",
+          "__guid": "d88c8c97-72dd-4164-8b17-833662bb5cf1",
+          "__enabled": false,
+          "InfoCredits": "Credits for the team...",
+          "InfoDone": "Completed tasks...",
+          "InfoNotes": "Everything that you see here is subject to change and placeholders. You can help to develop the project here ( https://github.com/sousou63/DarkRP ) or ( https://discord.gg/yBDk9Xr6VB )",
+          "InfoTodo": ""
         }
       ],
       "Children": [

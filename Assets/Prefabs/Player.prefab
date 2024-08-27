@@ -3,7 +3,7 @@
     "__guid": "ec129907-216d-4f31-8944-32757a4e87fa",
     "Flags": 0,
     "Name": "player",
-    "Tags": "player,noblockaudio",
+    "Tags": "noblockaudio,player",
     "Enabled": true,
     "Components": [
       {
@@ -33,7 +33,7 @@
           "_type": "gameobject",
           "go": "95c037f7-2b69-4506-8007-d46329234109"
         },
-        "JumpForce": 400,
+        "JumpForce": 300,
         "ModelPhysics": {
           "_type": "component",
           "component_id": "bb648f00-b2e8-48c2-a8c1-0a22f94c8d31",
@@ -50,8 +50,8 @@
           "go": "55aa5245-c347-4da5-8c57-a3dc74df3800",
           "component_type": "BoxCollider"
         },
-        "RunSpeed": 340,
-        "Speed": 180,
+        "RunSpeed": 290,
+        "Speed": 160,
         "WalkSpeed": 90
       },
       {
@@ -851,7 +851,7 @@
                   },
                   {
                     "__guid": "96127678-4127-4cd1-bf76-ac84be28c626",
-                    "Flags": 0,
+                    "Flags": 4,
                     "Name": "leg_glute_helper_R",
                     "Position": "0,0,0",
                     "Rotation": "-0.000001053308,-0.0000006515999,-0.7071051,0.7071084",
@@ -933,13 +933,77 @@
                   },
                   {
                     "__guid": "58040aaa-ef6e-471d-b27c-bf153489481f",
-                    "Flags": 0,
+                    "Flags": 4,
                     "Name": "leg_glute_helper_L",
                     "Position": "0,0,0",
                     "Rotation": "-0.0000009340982,-0.0000007682515,-0.7071055,0.707108",
                     "Enabled": true
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "__guid": "0236770b-bdb5-4d6a-9210-a023946aeaa9",
+            "Flags": 4,
+            "Name": "root_IK",
+            "Position": "1.266575,0.0000071965,0",
+            "Enabled": true,
+            "Children": [
+              {
+                "__guid": "4018a5fa-108f-4818-a9c5-3803928ef9c0",
+                "Flags": 4,
+                "Name": "hand_R_IK_target",
+                "Position": "0.6939846,-20.39473,39.24799",
+                "Rotation": "0.2871271,0.2142481,-0.5281312,0.7698917",
+                "Enabled": true
+              },
+              {
+                "__guid": "c357daa5-de78-4742-b838-06bf1b61c9bf",
+                "Flags": 4,
+                "Name": "hand_L_IK_target",
+                "Position": "0.6941153,20.3947,39.24792",
+                "Rotation": "0.7698929,0.5281296,-0.2142482,0.2871265",
+                "Enabled": true
+              },
+              {
+                "__guid": "efb4a961-0857-4fbd-bbc7-3724eeb3d2f8",
+                "Flags": 4,
+                "Name": "aim_matrix_02a",
+                "Position": "4.638925,-0.0000008343591,9.8425",
+                "Enabled": true,
+                "Children": [
+                  {
+                    "__guid": "19a85b5f-3907-410a-b3c0-7f72f304a146",
+                    "Flags": 4,
+                    "Name": "aim_matrix_02b",
+                    "Position": "3.937002,-0.0000004822496,-0.0000009536743",
+                    "Enabled": true
+                  }
+                ]
+              },
+              {
+                "__guid": "a4e46c8c-0b28-4b49-aa85-f89e726b254b",
+                "Flags": 4,
+                "Name": "aim_matrix_01",
+                "Position": "4.638925,-0.0000008343591,11.811",
+                "Enabled": true
+              },
+              {
+                "__guid": "e5eb5be9-ade0-48c5-8ece-c1ba33dc57f5",
+                "Flags": 4,
+                "Name": "foot_R_IK_target",
+                "Position": "-0.8840668,-4.427395,3.807913",
+                "Rotation": "0.6508946,0.2762884,-0.2762875,0.6508964",
+                "Enabled": true
+              },
+              {
+                "__guid": "10c97ed0-8883-428e-8fdc-a1a48a160e8a",
+                "Flags": 4,
+                "Name": "foot_L_IK_target",
+                "Position": "-0.884093,4.427404,3.807924",
+                "Rotation": "0.650896,0.276287,-0.2762894,0.6508948",
+                "Enabled": true
               }
             ]
           }
