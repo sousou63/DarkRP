@@ -23,7 +23,7 @@ public class BaseEntity : Component, IInteractable
 	/// <summary>
 	/// Gets or sets the owner of the entity.
 	/// </summary>
-	public NetworkPlayer Owner { get; set; }
+	 public NetworkPlayer Owner { get; set; }
 
 	/// <summary>
 	/// Gets or sets whether the entity can be picked up by players.

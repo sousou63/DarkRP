@@ -10,7 +10,9 @@ namespace Entity.Interactable.Door
 		[Property] public GameObject Door { get; set; }
 		[Property, Sync] public bool IsUnlocked { get; set; } = true;
 		[Property, Sync]public bool IsOpen { get; set; } = false;
-		public Player OwnerStats { get; set; }
+		 public Player OwnerStats { get; set; }
+
+		[Sync, HostSync] public string DoorOwner { get; set; }
 
 		[Property, Sync] public int Price { get; set; } = 100;
 
@@ -28,13 +30,13 @@ namespace Entity.Interactable.Door
 		}
 		public override void InteractSpecial( SceneTraceResult tr, GameObject player )
 		{
-			if ( Owner == null )
+			if ( DoorOwner == null )
 			{
 				PurchaseDoor(player, player.Components.Get<Player>());
 				return;
 			}
 
-			if (player.Id == Owner?.GameObject.Id)
+			if (player.Network.OwnerConnection.DisplayName == DoorOwner)
 			{
 				DoorMenu.OpenDoorMenu(this.Door, player);
 			}
@@ -43,32 +45,38 @@ namespace Entity.Interactable.Door
 		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.GameObject.Id ) { LockDoor(); } else { KnockOnDoor(); }
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) { LockDoor(); } else { KnockOnDoor(); }
 		}
 
 		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if (player.Id == Owner?.GameObject.Id) { UnlockDoor(); } else { KnockOnDoor(); }
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
-		[Broadcast]
-		public void UpdateDoorOwner( GameObject player = null, Player playerStats = null )
+		
+		public void UpdateDoorOwner( Player playerStats = null )
 		{
-			Owner = player != null ? GameController.Instance.GetPlayerByGameObjectId( player.Id ) : null;
 			OwnerStats = playerStats;
 		}
 
+		[Broadcast]
 		public void PurchaseDoor(GameObject player, Player playerStats)
 		{
 			if (playerStats.UpdateBalance(-Price))
 			{
 				Sound.Play( "audio/notification.sound" );
 				playerStats.Doors.Add(Door);
-				UpdateDoorOwner(player, playerStats);
+				UpdateDoorOwner( playerStats );
+
+				// here we take the ownership of the door ( in the network )
+				playerStats.TakeDoorOwnership( this.GameObject );
+				DoorOwner = player.Network.OwnerConnection.DisplayName;
+				Log.Info( $"new door owner is : {DoorOwner}" );
 			}
 		}
 
+		[Broadcast]
 		public void SellDoor(Player playerStats) //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
 			IsUnlocked = true;
@@ -77,6 +85,7 @@ namespace Entity.Interactable.Door
 			DoorTitle = "";
 
 			UpdateDoorOwner();
+			DoorOwner = null;
 		}
 
 		public void SetDoorTitle(string title)

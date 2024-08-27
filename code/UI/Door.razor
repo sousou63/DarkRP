@@ -4,7 +4,7 @@
 
 
 <root class="root">
-  @if (DoorProperties != null && DoorProperties.Owner == null)
+    @if (DoorProperties.DoorOwner == null)
   {
     <div class="container">
       <div class="title">For Sale</div>
@@ -20,12 +20,12 @@
     {
       <div class="container">
         <div class="title">@(DoorProperties.DoorTitle)</div>
-      </div>
-    }
+            </div>
+        }
 
-    <div class="container">
-      <div class="title">Owned by</div>
-      <div class="title">@(DoorProperties.Owner.GameObject.Name.Replace("Player - ", "").Truncate(13))</div>
+        <div class="container">
+            <div class="title">Owned by</div>
+            <div class="title">@(DoorProperties.DoorOwner)</div>
     </div>
     <div class="container">
       <div class="sub-title">Hold R to open menu</div>
@@ -66,20 +66,19 @@
 </style>
 @code
 {
-  DoorLogic DoorProperties { get; set; }
-  [Property]
-  public GameObject DoorPrefab { get; set; }
+    DoorLogic DoorProperties { get; set; }
+    [Property]
+    public GameObject DoorPrefab { get; set; }
 
-  protected override void OnStart()
-  {
-    DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
-    Log.Info(DoorProperties);
-  }
+    protected override void OnStart()
+    {
+        DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
+    }
 
 
   /// <summary>
-  /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-  /// </summary>
-  protected override int BuildHash() => System.HashCode.Combine(DoorProperties?.Owner,
-  DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle);
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(
+    DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle, DoorProperties.DoorOwner);
 }

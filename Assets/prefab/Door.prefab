@@ -7,6 +7,7 @@
     "Enabled": true,
     "NetworkMode": 1,
     "NetworkOrphaned": 1,
+    "OwnerTransfer": 0,
     "Components": [
       {
         "__type": "Entity.Interactable.Door.DoorLogic",

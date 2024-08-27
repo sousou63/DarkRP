@@ -150,6 +150,15 @@ namespace Sandbox.GameSystems.Player
 			SendMessage( "All doors have been sold." );
 		}
 
+		public void TakeDoorOwnership( GameObject door )
+
+		{
+			door.Network.TakeOwnership();
+
+			Log.Info( $"TakeOwnership to door : {door}" );
+
+		}
+
 		// TODO this would need to go to its own class. PlayerController or some shit
 		public void SendMessage( string message )
 		{
