@@ -1,0 +1,41 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root class="@(Visible ? "" : "hidden")">
+    @if (!Inventory.IsValid()) return;
+    @for (int i = 0; i < 6; i++)
+    {
+        <div class="slot @(((Inventory?.HoveredWeapon?.Resource?.Slot ?? 0) == (i + 1)) ? "active" : "")">
+            @if (true)
+            {
+                var weapons = Inventory.Weapons.Where(x => x.Resource.Slot == i + 1);
+                if (weapons.Count() > 0)
+                {
+                    foreach (var weapon in weapons)
+                    {
+                        <InventoryBarEntry class="@(Inventory.HoveredWeapon == weapon ? "active" : "")" Slot=@(i + 1) Weapon=@weapon />
+                    }
+                }
+                else
+                {
+                    <InventoryBarEntry Slot=@(i + 1) />
+                }
+            }
+        </div>
+    }
+</root>
+
+@code
+{
+    Inventory Inventory
+    {
+        get => (!_inventory.IsValid()) ? (_inventory = Player.Local?.Inventory) : _inventory;
+    }
+    private Inventory _inventory;
+    bool Visible => (Inventory?.timeSinceLastHover ?? 10) < 1f;
+
+    protected override int BuildHash() => System.HashCode.Combine(Visible, Inventory?.HoveredIndex ?? 0);
+}

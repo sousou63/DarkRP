@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+
+<root>
+    <label class="slot-number">@Slot</label>
+    @if (Weapon.IsValid())
+    {
+        <label class="item-name">@Weapon.Resource.Name</label>
+        <Image class="item-icon" Texture=@(ThumbnailCache.Get(Weapon.Resource.WorldModel)) />
+        @* @if (Weapon.Resource.IconCharacter.Contains("/"))
+    {
+    <img class="item-icon" src=@Weapon.Resource.IconCharacter />
+    }
+    else
+    {
+    <label class="item-icon">@Weapon.Resource.IconCharacter</label>
+    } *@
+    }
+</root>
+
+@code
+{
+    public int Slot { get; set; }
+    public Weapon Weapon { get; set; }
+
+    protected override int BuildHash() => System.HashCode.Combine(Weapon?.Resource?.IconCharacter);
+}

@@ -1,0 +1,86 @@
+{
+  "__guid": "b2a864d7-a6cc-49e2-a704-741a77188c9b",
+  "GameObjects": [
+    {
+      "__guid": "e0ed06a2-dba9-4b24-8feb-d675c8809ba8",
+      "Flags": 0,
+      "Name": "Camera",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "39d6e556-574e-4ad8-80cb-90fadb0749db",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 10
+        }
+      ]
+    },
+    {
+      "__guid": "1132e2eb-48b7-4480-ad1c-e562173de724",
+      "Flags": 0,
+      "Name": "Screen",
+      "Position": "149.1419,175.3588,-190.2746",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "11cd47f5-6e0d-4d3d-9612-3f7cd61dd5d0",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Scenebox.UI.MainMenu",
+          "__guid": "9d5bcb4e-a1a2-4675-bff8-1c2ed8a2fba2",
+          "GameScene": "scenes/game.scene",
+          "IsPauseMenu": false,
+          "MenuScene": "scenes/menu.scene"
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "menu",
+  "Description": "",
+  "LastSaved": "2024-06-20T20:53:15.2561495-04:00",
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

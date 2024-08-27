@@ -1,0 +1,59 @@
+CurrentToolPanel
+{
+    position: absolute;
+    top: 32px;
+    left: 0;
+    min-width: 800px;
+    flex-direction: column;
+    font-family: Roboto;
+    font-weight: bold;
+
+    color: white;
+    border-left: 0px;
+
+    .header
+    {
+        flex-direction: column;
+        padding: 16px 52px;
+        background-image: linear-gradient(to right, rgba(black, 0.9), rgba(black, 0.75), rgba(black, 0.25), rgba(black, 0));
+        width: 100%;
+
+        .title
+        {
+            font-weight: black;
+            text-transform: none;
+            font-size: 80px;
+            text-shadow: 2px 2px rgba(black, 0.8);
+            mix-blend-mode: normal;
+        }
+    
+        .description
+        {
+            text-transform: none;
+            font-size: 24px;
+            opacity: 1;
+            text-shadow: 2px 2px rgba(black, 0.5);
+            mix-blend-mode: normal;
+            max-width: 500px;
+        }
+    }
+
+    .controls
+    {
+        width: 100%;
+        flex-direction: column;
+        background-image: linear-gradient(to right, rgba(black, 1), rgba(black, 0.85), rgba(black, 0.25), rgba(black, 0));
+        padding: 4px 52px;
+
+        .control
+        {
+            align-items: center;
+            gap: 8px;
+            Image
+            {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+<root class="@((!IsOpen && IsPauseMenu) ? "hidden" : "")">
+	@if (!IsPauseMenu)
+	{
+		<MainMenuBackgroundPanel />
+	}
+	<div class="background-gradient" />
+	<MainMenuPanel @ref="NavigationPanel" />
+	<MainMenuVersion />
+
+	<div class="navbar">
+		@if (NavigationPanel?.CurrentUrl != "/")
+		{
+			<button onclick=@(() => NavigationPanel?.Navigate("/"))>
+				<i>arrow_back</i>
+				Back to Main Menu
+			</button>
+		}
+	</div>
+</root>
+
+@code
+{
+	public static MainMenu Instance { get; private set; }
+
+	MainMenuPanel NavigationPanel { get; set; }
+
+	[Property] public bool IsPauseMenu { get; set; } = false;
+	[Property] public SceneFile MenuScene { get; set; }
+	[Property] public SceneFile GameScene { get; set; }
+
+	public bool IsOpen = false;
+
+	protected override void OnAwake()
+	{
+		Instance = this;
+	}
+
+	protected override void OnUpdate()
+	{
+		if (!IsPauseMenu) return;
+		if (Input.EscapePressed)
+		{
+			Input.EscapePressed = false;
+			IsOpen = !IsOpen;
+		}
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine(IsOpen, NavigationPanel?.CurrentUrl);
+}

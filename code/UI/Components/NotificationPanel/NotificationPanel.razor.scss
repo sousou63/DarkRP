@@ -1,0 +1,40 @@
+NotificationPanel {
+    position: absolute;
+    bottom: 142px;
+    right: 64px;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 0 black;
+    align-items: flex-end;
+    gap: 8px;
+    flex-direction: column;
+
+    NotificationPanelEntry {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        opacity: 1;
+        gap: 12px;
+        background-color: rgba(black, 0.5);
+        // in-out-bounce bezier
+        transition: all 0.4s elastic-in;
+        padding: 10px 20px;
+        border-radius: 4px;
+        align-items: center;
+
+
+        &:intro {
+            top: 32px;
+            left: 300px;
+            opacity: 0;
+        }
+
+        &:outro {
+            opacity: 0;
+            left: 300px;
+            transition: all 0.4s ease-in;
+        }
+    }
+}

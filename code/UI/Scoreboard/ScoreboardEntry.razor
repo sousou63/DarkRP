@@ -1,0 +1,36 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+
+<root class="@(Connection == Connection.Local ? "isme" : "")">
+    <img src=@($"avatar:" + @Connection.SteamId) />
+    <label class="name">@Connection.DisplayName</label>
+    <img class="mute" src=@(IsMuted ? "ui/volume_mute.png" : "ui/volume_unmute.png") onclick=@(() => IsMuted = !IsMuted) />
+</root>
+
+@code
+{
+    public Connection Connection { get; set; }
+
+    bool IsMuted
+    {
+        get
+        {
+            var player = Scene.GetAllComponents<Player>().FirstOrDefault(x => x.Network.OwnerId == Connection.Id);
+            return player?.Components?.Get<PlayerVoiceComponent>()?.IsMuted ?? false;
+        }
+        set
+        {
+            var player = Scene.GetAllComponents<Player>().FirstOrDefault(x => x.Network.OwnerId == Connection.Id);
+            var voice = player.Components.Get<PlayerVoiceComponent>();
+            if (voice is not null) voice.IsMuted = value;
+        }
+    }
+
+
+    protected override int BuildHash() => System.HashCode.Combine(
+    Connection
+    );
+
+}

@@ -1,0 +1,72 @@
+@using System
+@using Sandbox.Razor
+@using Sandbox.UI
+@namespace Scenebox.UI
+@inherits BaseControl
+@attribute [StyleSheet]
+
+<root class="switchcontrol @StateClass">
+
+    <div class="switch-frame">
+        <div class="switch-inner">
+        </div>
+    </div>
+
+    @if (Label != null)
+    {
+        <div class="switch-label">
+            @Label
+        </div>
+    }
+
+</root>
+
+@code
+{
+    public RenderFragment Label { get; set; }
+
+    public Action<bool> OnValueChanged { get; set; }
+
+    string StateClass => Value ? "active" : "inactive";
+
+    bool _value;
+
+    public bool Value
+    {
+        get => _value;
+
+        set
+        {
+            if (_value == value)
+                return;
+
+            _value = value;
+            StateHasChanged();
+        }
+    }
+
+    public SerializedProperty SerializedProperty
+    {
+        get => _property;
+        set
+        {
+            _property = value;
+            Value = _property.GetValue<bool>();
+        }
+    }
+    SerializedProperty _property;
+
+    public SwitchControl()
+    {
+
+    }
+
+    protected override void OnMouseDown(MousePanelEvent e)
+    {
+        base.OnMouseDown(e);
+
+        Value = !Value;
+        OnValueChanged?.Invoke(Value);
+        e.StopPropagation();
+    }
+}

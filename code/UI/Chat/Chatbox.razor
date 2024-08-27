@@ -1,0 +1,112 @@
+@using System.Collections.Generic;
+@using Sandbox;
+@using Sandbox.UI;
+@namespace Scenebox.UI
+@attribute [Icon("message", "red", "white")]
+@attribute [StyleSheet]
+@inherits PanelComponent
+@implements Component.INetworkListener
+
+<root>
+
+    <div class="chat_canvas" @ref="ChatCanvas">
+    </div>
+
+    <div class="input_canvas">
+        <label class="say">Say :</label>
+        <TextEntry @ref="InputBox" onsubmit=@ChatFinished AllowEmojiReplace=@(true) />
+        @* <button class="btn-settings" onclick=@SettingsPressed>⚙️</button> *@
+    </div>
+
+</root>
+
+@code
+{
+    public static Chatbox Instance { get; private set; }
+
+    TextEntry InputBox;
+    Panel ChatCanvas;
+
+    public record Entry(long SteamId, string Name, string Message, string Styles, RealTimeSince TimeSinceBorn);
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+        Instance = this;
+    }
+
+    protected override void OnUpdate()
+    {
+        base.OnUpdate();
+
+        if (InputBox is null) return;
+
+        Panel.AcceptsFocus = false;
+
+        if (Input.Pressed("Chat"))
+        {
+            InputBox.Focus();
+        }
+
+        SetClass("open", ChatCanvas.HasFocus || InputBox.HasFocus);
+    }
+
+    void ChatFinished()
+    {
+        string text = InputBox.Text.Trim();
+        InputBox.Text = "";
+
+        if (string.IsNullOrWhiteSpace(text)) return;
+        @*
+if (text.ToLower() == "!rtv" || text.ToLower() == "/rtv")
+{
+GameManager.Instance.RockTheVote(Client.Local.GameObject.Id);
+return;
+} *@
+
+        SendMessage(Sandbox.Utility.Steam.SteamId.ToString(), text);
+    }
+
+    [Broadcast]
+    public void SendMessage(string sender, string message, string styles = "")
+    {
+        if (string.IsNullOrWhiteSpace(message)) return;
+
+        AddEntry(sender, message, styles);
+    }
+
+    public void AddEntry(string sender, string message, string styles = "")
+    {
+        long steamId = 0;
+        string name = "";
+        if (long.TryParse(sender, out steamId))
+        {
+            var friend = new Friend(steamId);
+            name = friend.Name;
+            steamId = (long)friend.Id;
+        }
+        else
+        {
+            name = sender;
+        }
+
+        var entry = new ChatEntry();
+        entry.Entry = new Entry(steamId, name, message, styles, 0);
+        ChatCanvas.AddChild(entry);
+        StateHasChanged();
+    }
+
+    void Component.INetworkListener.OnConnected(Connection channel)
+    {
+        if (IsProxy) return;
+
+        SendMessage("🛎️", $"{channel.DisplayName} has joined the Server", "notification");
+    }
+
+    void Component.INetworkListener.OnDisconnected(Connection channel)
+    {
+        if (IsProxy) return;
+
+        SendMessage("💨", $"{channel.DisplayName} has left the Server", "notification");
+    }
+}

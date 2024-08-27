@@ -1,0 +1,23 @@
+{
+  "Name": "MP5",
+  "Description": "We shootin",
+  "Slot": 3,
+  "IconCharacter": "a",
+  "DamageCharacter": "x",
+  "HasAmmo": true,
+  "ClipSize": 45,
+  "StartingReserve": 256,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/mp5/mp5_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/mp5/mp5_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+  "__references": [
+    "facepunch.w_mp5"
+  ],
+  "__version": 0
+}

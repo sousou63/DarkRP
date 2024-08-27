@@ -1,0 +1,46 @@
+DefaultToolInspector
+{
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 4px;
+    font-family: Poppins;
+    font-size: 13px;
+
+    > .content
+    {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        padding: 4px;
+
+        > .description
+        {
+            padding: 4px 16px;
+        }
+
+        > .controls
+        {
+            flex-direction: column;
+            padding: 8px;
+            gap: 8px;
+
+            > .control
+            {
+                align-items: center;
+
+                SliderControl
+                {
+                    flex-shrink: 0;
+                }
+            }
+
+            > .description
+            {
+                color: #2F95F1;
+                margin-left: 32px;
+                margin-right: 24px;
+            }
+        }
+    }
+}

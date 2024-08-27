@@ -1,0 +1,94 @@
+@using System;
+@using System.Collections.Generic;
+@using System.Threading.Tasks;
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.Network;
+@inherits Panel
+@attribute [StyleSheet]
+
+@namespace Scenebox.UI
+
+<root>
+    <div class="left">
+        <label class="header">Server List</label>
+        <label>0 server(s) total</label>
+    </div>
+    <div class="right">
+        <div class="top">
+            <label class="header">Sandbox</label>
+            <label>Pick a server to join from the list below</label>
+        </div>
+        <div class="bottom">
+            <div class="left column">
+                <div class="header-bar">
+                    <label class="server-name">Server Name</label>
+                    <label class="map-name">Map Name</label>
+                    <label class="players">Players</label>
+                </div>
+
+                <div class="server-list">
+                    <div class="server">
+                    </div>
+                    @if (!refreshing && list.Count > 0)
+                    {
+                        @foreach (var lobby in list)
+                        {
+                            <div class="server" onclick=@(() => JoinLobby(lobby))>
+                                <label class="server-name">@lobby.Name</label>
+                                <label class="map-name">@lobby.Map</label>
+                                <label class="players">@lobby.Members / @lobby.MaxMembers</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="right column">
+
+            </div>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    List<LobbyInformation> list = new();
+    bool refreshing = true;
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+
+        if (firstTime)
+        {
+            _ = RefreshLobbyList();
+        }
+    }
+
+    async Task RefreshLobbyList()
+    {
+        while (true)
+        {
+            await Refresh();
+
+            await Task.DelayRealtimeSeconds(5f);
+        }
+    }
+
+    async Task Refresh()
+    {
+        refreshing = true;
+        StateHasChanged();
+
+        list = await Networking.QueryLobbies();
+
+        refreshing = false;
+        StateHasChanged();
+    }
+
+    void JoinLobby(LobbyInformation lobby)
+    {
+        GameNetworkSystem.Connect(lobby.LobbyId);
+    }
+}

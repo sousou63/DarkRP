@@ -1,0 +1,24 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+<root class="@(Input.Down("Score") ? "show" : "")">
+	<label class="header">Sandbox</label>
+	<div class="scoreboard">
+		@foreach (var connection in Connection.All)
+		{
+			<ScoreboardEntry Connection=@connection />
+		}
+	</div>
+</root>
+
+@code
+{
+
+
+	protected override int BuildHash() => System.HashCode.Combine(
+	Input.Down("Score"),
+	Connection.All.Count()
+	);
+}

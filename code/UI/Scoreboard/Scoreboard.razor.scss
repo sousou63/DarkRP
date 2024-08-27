@@ -1,0 +1,80 @@
+Scoreboard
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 92px;
+	font-style: Helvetica;
+	font-weight: bold;
+	font-size: 28px;
+	gap: 92px;
+	opacity: 0;
+	
+	.header
+	{
+		color: white;
+		text-shadow: 2px 2px 0px rgba(black, 0.75);
+		flex-shrink: 0;
+	}
+
+	.scoreboard
+	{
+		flex-direction: column;
+		width: 700px;
+		gap: 2px;
+		overflow-x: hidden;
+		overflow-y: scroll;
+
+		ScoreboardEntry
+		{
+			background-color: white;
+			flex-grow: 1;
+			padding: 2px;
+			border-radius: 2px;
+			color: rgba(0, 0, 0, 0.829);
+			font-size: 18px;
+			align-items: center;
+			gap: 8px;
+
+			img
+			{
+				width: 32px;
+				height: 32px;
+				border-radius: 2px;
+			}
+
+			.name
+			{
+				flex-grow: 1;
+			}
+
+			.mute
+			{
+				width: 24px;
+				height: 24px;
+				margin-right: 4px;
+				cursor: pointer;
+			}
+
+			&.isme
+            {
+                background-color: rgb(229, 255, 222);
+            }
+		}
+	}
+
+	&.show
+	{
+		opacity: 1;
+
+		.scoreboard
+		{
+			pointer-events: all;
+		}
+	}
+}

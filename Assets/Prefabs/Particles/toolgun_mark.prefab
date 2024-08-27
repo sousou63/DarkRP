@@ -1,0 +1,58 @@
+{
+  "RootObject": {
+    "__guid": "a0713400-41ec-4283-aef1-b8bf21aecd03",
+    "Flags": 0,
+    "Name": "toolgun_mark",
+    "Enabled": true,
+    "NetworkMode": 0,
+    "NetworkInterpolation": true,
+    "Components": [
+      {
+        "__type": "Scenebox.FadeAfter",
+        "__guid": "67a007f1-b775-417a-9665-be04cfce08c3",
+        "FadeTime": 0.75,
+        "Time": 0
+      },
+      {
+        "__type": "Scenebox.FixTransparency",
+        "__guid": "3b07096f-4259-4439-9ce0-0a7f915e55f9",
+        "modelRenderer": {
+          "_type": "component",
+          "component_id": "b3938a7b-dd45-4900-9835-d05fe0af5e51",
+          "go": "7d81d57a-37a8-443f-b097-96d92b294267",
+          "component_type": "ModelRenderer"
+        }
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "7d81d57a-37a8-443f-b097-96d92b294267",
+        "Flags": 0,
+        "Name": "Object",
+        "Rotation": "0,0.7071067,0,0.7071068",
+        "Scale": "0.08889522,0.08889522,0.08889522",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "NetworkInterpolation": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "b3938a7b-dd45-4900-9835-d05fe0af5e51",
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/toolgun_mark.vmat",
+            "Model": "models/dev/plane.vmdl",
+            "RenderType": "Off",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

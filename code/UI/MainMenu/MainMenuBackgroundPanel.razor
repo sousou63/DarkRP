@@ -1,0 +1,38 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+
+<root>
+</root>
+
+@code
+{
+    const int PhotoCount = 54;
+    int currentPhoto = 0;
+
+    TimeSince timeSinceLastPhoto = 30f;
+
+    public override void Tick()
+    {
+        base.Tick();
+
+        if (timeSinceLastPhoto >= 25f)
+        {
+            DeleteChildren();
+
+            int photo = 1;
+            do
+            {
+                photo = Random.Shared.Int(1, PhotoCount);
+            } while (photo == currentPhoto);
+
+            var img = new Image();
+            img.SetTexture("ui/backgrounds/" + photo + ".jpg");
+            AddChild(img);
+
+            timeSinceLastPhoto = 0f;
+        }
+    }
+}

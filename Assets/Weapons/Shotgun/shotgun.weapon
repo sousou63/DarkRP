@@ -1,0 +1,23 @@
+{
+  "Name": "Shotgun",
+  "Description": "Shottyyyy gun mc shooty",
+  "Slot": 4,
+  "IconCharacter": "b",
+  "DamageCharacter": "h/(",
+  "HasAmmo": true,
+  "ClipSize": 6,
+  "StartingReserve": 64,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/shotgun/shotgun_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/shotgun/shotgun_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
+  "__references": [
+    "facepunch.w_spaghellim4"
+  ],
+  "__version": 0
+}

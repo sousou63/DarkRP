@@ -1,0 +1,57 @@
+{
+  "RootObject": {
+    "__guid": "56fffd4a-7058-4879-b0c9-efc3e3bbce84",
+    "Flags": 0,
+    "Name": "camera_w",
+    "Tags": "player",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Scenebox.Camera",
+        "__guid": "72f1f696-337e-4251-bbab-afc4a768c28a",
+        "Damage": 20,
+        "Force": 20,
+        "HoldType": "HoldItem",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "75159716-da0e-4f6c-8d57-1f2eed674486",
+          "go": "f75daa0c-e771-4edc-a41a-fa2d9fee5982",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Resource": "weapons/camera/camera.weapon"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "f75daa0c-e771-4edc-a41a-fa2d9fee5982",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "1.361838,6.102353,-5.698759",
+        "Rotation": "-0.01346345,0.03985427,0.404689,0.9134879",
+        "Scale": "1.48724,1.48724,1.48724",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "75159716-da0e-4f6c-8d57-1f2eed674486",
+            "BodyGroups": 18446744073709551615,
+            "CreateBoneObjects": false,
+            "Model": "models/sbox_props/cctv/cctv.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.cctv"
+  ],
+  "__version": 1
+}

@@ -1,0 +1,38 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@attribute [StyleSheet]
+
+@namespace Scenebox.UI
+
+<root>
+    <div class="left">
+        <AssetList @ref="AssetList" Query="type:map sort:popular" />
+    </div>
+    <div class="right">
+        <div class="options">
+            <label class="header">Settings</label>
+            <div class="option">
+                <label>Host Multiplayer</label>
+                <SwitchControl Value:bind=@SceneboxPreferences.Settings.HostMultiplayer />
+            </div>
+        </div>
+        <div class="bottom">
+            <button class="start" onclick=@StartGame>Start Game</button>
+        </div>
+    </div>
+</root>
+
+@code
+{
+    AssetList AssetList { get; set; }
+
+    void StartGame()
+    {
+        if (AssetList.SelectedPackage == null) return;
+
+        LaunchArguments.Map = AssetList.SelectedPackage.FullIdent;
+        Scene.Load(MainMenu.Instance.GameScene);
+    }
+}

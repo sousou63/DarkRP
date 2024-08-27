@@ -1,0 +1,128 @@
+{
+  "RootObject": {
+    "__guid": "56fffd4a-7058-4879-b0c9-efc3e3bbce84",
+    "Flags": 0,
+    "Name": "physgun_w",
+    "Tags": "player,particles",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Scenebox.Physgun",
+        "__guid": "e7ee153b-0747-4668-804c-8e028bc0fd25",
+        "BeamParticles": {
+          "_type": "component",
+          "component_id": "482de65c-8d42-4614-b753-be04bfc400f3",
+          "go": "14fec249-7523-4dc1-878f-b3795f5dc202",
+          "component_type": "LineRenderer"
+        },
+        "Damage": 20,
+        "Force": 20,
+        "FreezeParticles": {
+          "_type": "gameobject",
+          "prefab": "prefabs/particles/particle_freeze.prefab"
+        },
+        "HoldType": "Pistol",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "48095363-89e0-45b7-a274-0bef66d3d673",
+          "go": "dfe85094-d61e-41a4-af87-34cbff10bb10",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "d9f05d0a-08b1-4dd3-8945-728406235242"
+        },
+        "Resource": "weapons/physgun/physgun.weapon"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "dfe85094-d61e-41a4-af87-34cbff10bb10",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "3.535849,0,-4.395255",
+        "Scale": "1.5,1.5,1.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "48095363-89e0-45b7-a274-0bef66d3d673",
+            "BodyGroups": 9493,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "d9f05d0a-08b1-4dd3-8945-728406235242",
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "4.320035,0,4.755252",
+            "Enabled": true
+          }
+        ]
+      },
+      {
+        "__guid": "14fec249-7523-4dc1-878f-b3795f5dc202",
+        "Flags": 0,
+        "Name": "Beam Particle",
+        "Scale": "0.5,0.5,0.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.LineRenderer",
+            "__guid": "482de65c-8d42-4614-b753-be04bfc400f3",
+            "__enabled": false,
+            "Color": {
+              "color": [
+                {
+                  "t": 0.5,
+                  "c": "0,1,1,1"
+                }
+              ],
+              "alpha": []
+            },
+            "EndCap": "None",
+            "Opaque": true,
+            "Points": [
+              null
+            ],
+            "SplineBias": 0,
+            "SplineContinuity": 0,
+            "SplineInterpolation": 5,
+            "SplineTension": 0,
+            "StartCap": "None",
+            "UseVectorPoints": true,
+            "VectorPoints": [
+              "0,0,0",
+              "350.4001,193.0997,18.09993",
+              "350.4,190.2,120.3"
+            ],
+            "Width": {
+              "rangey": "0,0.18",
+              "frames": [
+                {
+                  "x": 0.5,
+                  "y": 1
+                }
+              ]
+            },
+            "Wireframe": false
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_usp"
+  ],
+  "__version": 1
+}

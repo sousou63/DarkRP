@@ -1,0 +1,80 @@
+{
+  "RootObject": {
+    "__guid": "53356132-e6c5-46f3-90e7-8914ad69fce2",
+    "Flags": 0,
+    "Name": "crowbar_v",
+    "Tags": "player,viewmodel",
+    "Enabled": true,
+    "NetworkMode": 0,
+    "NetworkInterpolation": true,
+    "Components": [
+      {
+        "__type": "Scenebox.ViewModel",
+        "__guid": "e5bc7f90-eef4-4130-aa60-fd36dbdb75be",
+        "Arms": {
+          "_type": "component",
+          "component_id": "85b1f490-8fe5-4804-9843-b69b9901a5d8",
+          "go": "12635a27-971b-4bde-9ba3-13c7ca7996d7",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "a65e9fbe-236a-4b92-a8b8-26400da3b536",
+          "go": "53356132-e6c5-46f3-90e7-8914ad69fce2",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "53356132-e6c5-46f3-90e7-8914ad69fce2"
+        }
+      },
+      {
+        "__type": "Sandbox.SkinnedModelRenderer",
+        "__guid": "a65e9fbe-236a-4b92-a8b8-26400da3b536",
+        "BodyGroups": 18446744073709551615,
+        "CreateBoneObjects": false,
+        "Model": "models/weapons/sbox_melee_crowbar/v_crowbar.vmdl",
+        "RenderType": "Off",
+        "Tint": "1,1,1,1",
+        "UseAnimGraph": true
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "12635a27-971b-4bde-9ba3-13c7ca7996d7",
+        "Flags": 0,
+        "Name": "Object",
+        "Enabled": true,
+        "NetworkMode": 0,
+        "NetworkInterpolation": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "85b1f490-8fe5-4804-9843-b69b9901a5d8",
+            "BodyGroups": 18446744073709551383,
+            "BoneMergeTarget": {
+              "_type": "component",
+              "component_id": "a65e9fbe-236a-4b92-a8b8-26400da3b536",
+              "go": "53356132-e6c5-46f3-90e7-8914ad69fce2",
+              "component_type": "SkinnedModelRenderer"
+            },
+            "CreateBoneObjects": false,
+            "Model": "models/first_person/first_person_arms.vmdl",
+            "RenderType": "Off",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.v_crowbar"
+  ],
+  "__version": 1
+}

@@ -1,0 +1,81 @@
+{
+  "RootObject": {
+    "__guid": "bc32a5fb-cd1a-4efb-b34d-3792f4a472d2",
+    "Flags": 0,
+    "Name": "mp5_w",
+    "Tags": "player",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "Components": [
+      {
+        "__type": "Scenebox.TraceWeapon",
+        "__guid": "a9e0e764-46b7-4c8b-894d-152d527c645b",
+        "BulletCount": 1,
+        "Cooldown": 0.1,
+        "Damage": 12,
+        "Force": 10,
+        "HoldType": "Rifle",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "1c0445b5-3a8b-4193-b96c-63e380eb82c8",
+          "go": "1b9828fd-a540-44db-ab12-68e4a89d807f",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "897c2d58-8bf5-4a72-9ae6-5370b285aa1e"
+        },
+        "Range": 2000,
+        "Resource": "weapons/mp5/mp5.weapon",
+        "ShootSound": "sounds/weapons/rifle_light.sound",
+        "Spread": 1
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "1b9828fd-a540-44db-ab12-68e4a89d807f",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "3.535849,0,-7.21",
+        "Scale": "1.3,1.3,1.3",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "1c0445b5-3a8b-4193-b96c-63e380eb82c8",
+            "BodyGroups": 18446744073709551615,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "897c2d58-8bf5-4a72-9ae6-5370b285aa1e",
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "13.29764,0,8.152003",
+            "Scale": "0.7692308,0.7692308,0.7692308",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkInterpolation": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_mp5"
+  ],
+  "__version": 1
+}

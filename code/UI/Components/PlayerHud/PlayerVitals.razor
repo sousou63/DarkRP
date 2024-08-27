@@ -1,0 +1,32 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root>
+    @if (Player.Local?.Inventory?.CurrentWeapon?.Resource?.ResourceName == "camera") return;
+    <div class="crosshair" />
+    <div class="panel health">
+        <label class="header">HEALTH</label>
+        <label class="value">@(Player.Local?.Health ?? 0)</label>
+    </div>
+    @if (Player.Local?.Inventory?.CurrentWeapon?.Resource?.HasAmmo ?? false)
+    {
+        <div class="panel ammo">
+            <label class="header">AMMO</label>
+            <label class="value">@(Player.Local?.Inventory?.CurrentWeapon?.Ammo ?? 0)</label>
+            <label class="header"></label>
+            <label class="value small">@(Player.Local?.Inventory?.CurrentWeapon?.AmmoReserve ?? 0)</label>
+        </div>
+    }
+    @if(Player.Local?.Inventory?.CurrentWeapon?.Resource?.ResourceName == "toolgun")
+    {
+        <CurrentToolPanel />
+    }
+</root>
+
+@code
+{
+    protected override int BuildHash() => System.HashCode.Combine(Player.Local?.Health, Player.Local?.Inventory?.CurrentWeapon?.Resource?.ResourceName, Player.Local?.Inventory?.CurrentWeapon?.Ammo);
+}

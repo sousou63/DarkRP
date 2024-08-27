@@ -1,0 +1,31 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root style="opacity: @((timeSinceHurt < 1) ? (1 - timeSinceHurt)/2f : 0)">
+</root>
+
+@code
+{
+    public static HurtOverlay Instance { get; private set; }
+    TimeSince timeSinceHurt = 10;
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+
+        if (firstTime)
+        {
+            Instance = this;
+        }
+    }
+
+    public void Hurt()
+    {
+        timeSinceHurt = 0;
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(timeSinceHurt < 1 ? Time.Now : 1);
+}

@@ -1,0 +1,90 @@
+StartGamePage
+{
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    gap: 16px;
+    font-family: Poppins;
+    
+    > div
+    {
+        background-color: white;
+        border-radius: 6px;
+    }
+
+    > .left
+    {
+        flex-grow: 1;
+    }
+
+    > .right
+    {
+        width: 300px;
+        flex-shrink: 0;
+        flex-direction: column;
+        padding: 16px;
+
+        > .options
+        {
+            flex-grow: 1;
+            flex-direction: column;
+            gap: 12px;
+
+            .header
+            {
+                font-weight: 500;
+                font-size: 32px;
+                margin-bottom: 8px;
+            }
+
+
+            > .option
+            {
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-direction: row;
+                font-size: 16px;
+                align-items: center;
+
+                > label
+                {
+                    flex-grow: 1;
+                }
+
+                SwitchControl
+                {
+
+                }
+            }
+        }
+
+        > .bottom
+        {
+            flex-direction: column;
+            width: 100%;
+
+            button.start
+            {
+                background-image: linear-gradient(270deg, #0086CC 0%, #0086CC 49%, #0055CC 100%);
+                color: white;
+                font-size: 24px;
+                padding: 16px;
+                border-radius: 4px;
+                border: none;
+                cursor: pointer;
+                width: auto;
+                margin: 0px 16px;
+                justify-content: center;
+                align-items: center;
+                text-shadow: 0px 0px 1px rgba(black, 0.5);
+
+                &:hover
+                {
+                    background-image: linear-gradient(270deg, #22A8EE 0%, #22A8EE 49%, #2277EE 100%);
+                }
+            }
+        }
+    }
+
+
+}

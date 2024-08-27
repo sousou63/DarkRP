@@ -1,0 +1,41 @@
+
+.switchcontrol
+{
+    flex-direction: row;
+    align-items: center;
+    margin-right: 4px;
+    cursor: pointer;
+
+    .switch-frame
+    {
+        position: relative;
+        flex-grow: 0;
+        flex-shrink: 1;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #5D5D5D;
+        margin: 0px 5px;
+        align-items: center;
+        border-radius: 3px;
+        transition: all 0.4s linear;
+
+        .switch-inner
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 1px;
+            border-radius: 2px;
+        }
+    }
+
+    &.active
+    {
+        .switch-inner
+        {
+            background-color: #7CBEFF;
+        }
+    }
+}

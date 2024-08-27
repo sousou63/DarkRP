@@ -1,0 +1,38 @@
+@using Sandbox;
+@using Sandbox.Audio;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root>
+</root>
+
+@code
+{
+    public static NotificationPanel Instance { get; private set; }
+    TimeSince timeSinceHurt = 10;
+
+    public record Entry(string Icon, string Text, float Duration);
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+
+        if (firstTime)
+        {
+            Instance = this;
+        }
+    }
+
+    public void AddEntry(string icon, string text, float duration = 6f, bool playSound = true)
+    {
+        var entry = new NotificationPanelEntry();
+        entry.Entry = new Entry(icon, text, duration);
+        AddChild(entry);
+        StateHasChanged();
+        if (playSound) Sound.Play("ui.notification").TargetMixer = Mixer.FindMixerByName("UI");
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine("");
+}

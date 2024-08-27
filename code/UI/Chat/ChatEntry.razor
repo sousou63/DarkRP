@@ -1,0 +1,39 @@
+@using Sandbox;
+@using Sandbox.UI;
+@namespace Scenebox.UI
+@inherits Panel
+
+<root class="@(Entry.Styles)">
+
+    @* @if (Entry.SteamId != 0 && SceneboxPreferences.Chat.ShowAvatars)
+    {
+    <img class="avatar" src="@($"avatar:{Entry.SteamId}")" />
+    } *@
+    <label class="name">@Entry.Name</label>
+    <label class="colon">@((Entry.Styles.Split(" ").Contains("notification")) ? "" : ":")</label>
+    <div class="message-content">
+        <label class="message">@Entry.Message</label>
+    </div>
+
+</root>
+
+@code
+{
+    public Chatbox.Entry Entry { get; set; }
+
+    public override void Tick()
+    {
+        base.Tick();
+
+        if (Entry.TimeSinceBorn > 10 && !HasClass("fade"))
+        {
+            AddClass("fade");
+        }
+
+        if (Entry.TimeSinceBorn > 60 * 10f)
+        {
+            Delete();
+        }
+    }
+
+}

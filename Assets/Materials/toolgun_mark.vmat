@@ -1,0 +1,15 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "shaders/spritegraph.shader"
+
+	Color "Materials/toolgun_mark.png"
+
+	//---- Fog ----
+	g_bFogEnabled "1"
+
+	//---- Translucent ----
+	g_flAlphaTestReference "0.500"
+	g_flAntiAliasedEdgeStrength "1.000"
+}

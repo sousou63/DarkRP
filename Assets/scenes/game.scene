@@ -1,0 +1,231 @@
+{
+  "__guid": "493d58c2-7228-4471-a454-cd62f53b7d41",
+  "GameObjects": [
+    {
+      "__guid": "9d7e9196-6f6e-4de6-a95c-a3d0f74d3f66",
+      "Flags": 0,
+      "Name": "Game Manager",
+      "Position": "-131.6942,-107.1172,-4.868141",
+      "Enabled": true,
+      "NetworkMode": 1,
+      "Components": [
+        {
+          "__type": "Scenebox.GameManager",
+          "__guid": "33e40800-8030-4e51-a41a-7cd7a7119604",
+          "DecalObject": {
+            "_type": "gameobject",
+            "prefab": "prefabs/decal.prefab"
+          },
+          "ExplosionParticle": {
+            "_type": "gameobject",
+            "prefab": "prefabs/particles/particle_explosion.prefab"
+          },
+          "PlayerPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/player.prefab"
+          },
+          "RemoverDestroyParticle": {
+            "_type": "gameobject",
+            "prefab": "prefabs/particles/particle_destroy_object.prefab"
+          },
+          "SpawnPoints": []
+        },
+        {
+          "__type": "Scenebox.UndoManager",
+          "__guid": "ba7aa110-ad9d-49c2-a88f-964ec3dc1612"
+        }
+      ]
+    },
+    {
+      "__guid": "151ad676-4df2-4350-993b-280843c300c0",
+      "Flags": 0,
+      "Name": "Screen Panel",
+      "Position": "154.1167,45.3605,-35.97688",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "6d1480e3-db30-4eb3-acfe-70c22ac36d05",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "Scenebox.UI.SpawnMenu",
+          "__guid": "6e43bd4a-b4ee-45fa-8d9f-74fcb4028e92"
+        },
+        {
+          "__type": "Scenebox.UI.Scoreboard",
+          "__guid": "0387219f-1e28-4a26-b78b-09a2c7246633"
+        },
+        {
+          "__type": "Scenebox.UI.PlayerHud",
+          "__guid": "5c45b843-a94c-4145-bbf0-d5658aaf1ebb"
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "27c9228f-31f4-4184-be72-38bd6a5dbe38",
+          "Flags": 0,
+          "Name": "Chat and Kill Feed",
+          "Position": "0,0,0",
+          "Enabled": true,
+          "NetworkMode": 1,
+          "Components": [
+            {
+              "__type": "Scenebox.UI.KillFeed",
+              "__guid": "89718d3c-11bb-4de1-a478-d85b8ce580e7"
+            },
+            {
+              "__type": "Scenebox.UI.Chatbox",
+              "__guid": "a442125d-b5fe-42b6-80ef-eecd64f8e61a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "faa84601-8c46-4370-a9bf-448c85dd166e",
+      "Flags": 0,
+      "Name": "Map Instance",
+      "Tags": "map",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.MapInstance",
+          "__guid": "0c3d64c7-c757-493f-b482-37093117bacf",
+          "__version": 1,
+          "EnableCollision": true,
+          "MapName": "facepunch.flatgrass",
+          "NoOrigin": true,
+          "UseMapFromLaunch": true
+        }
+      ],
+      "Children": []
+    },
+    {
+      "__guid": "016021fd-f3f1-4fbd-843a-b387f6081efe",
+      "Flags": 0,
+      "Name": "Camera",
+      "Position": "108.252,-625.7141,64.03125",
+      "Rotation": "-0.06491296,0.0965289,0.5542424,0.8241868",
+      "Tags": "maincamera",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "92eff968-455b-4f15-ac40-3abffb25cb12",
+          "BackgroundColor": "0.33333,0.46275,0.52157,1",
+          "ClearFlags": "All",
+          "FieldOfView": 90,
+          "IsMainCamera": true,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "Priority": 1,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "Viewport": "0,0,1,1",
+          "ZFar": 10000,
+          "ZNear": 1
+        },
+        {
+          "__type": "Scenebox.AutoDspFilter",
+          "__guid": "3a5261b2-b3fa-4b8e-a904-bb1d5f9c8e2a",
+          "ConcreteMix": 0.43,
+          "ConcretePresets": [
+            "concrete.small",
+            "concrete.medium",
+            "concrete.large"
+          ],
+          "MetalMix": 0.47,
+          "MetalPresets": [
+            "tunnel.large",
+            "tunnel.medium",
+            "tunnel.small"
+          ],
+          "OutsideMix": 0.11,
+          "OutsidePresets": [
+            "outside.small",
+            "outside.medium",
+            "weird.2"
+          ],
+          "PlasterMix": 0.41,
+          "PlasterPresets": [
+            "room.diffuse.small",
+            "room.empty.small",
+            "room.empty.huge"
+          ],
+          "WoodMix": 0.5,
+          "WoodPresets": [
+            "room.diffuse.small",
+            "room.diffuse.huge",
+            "room.empty.huge"
+          ]
+        },
+        {
+          "__type": "Sandbox.Highlight",
+          "__guid": "ae485106-e443-4340-8aec-3c1ae7ed3ae6"
+        },
+        {
+          "__type": "Sandbox.AmbientOcclusion",
+          "__guid": "a390629f-4cbf-4b0c-b245-b36390a2e294",
+          "FalloffDistance": 1,
+          "Intensity": 8,
+          "Quality": "Medium",
+          "Radius": 20
+        }
+      ]
+    },
+    {
+      "__guid": "86b1fddd-e736-4b52-b2ca-e5e8d2f8c29c",
+      "Flags": 0,
+      "Name": "Pause Menu",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "7d97a953-dc46-415b-91be-09ba63842f10",
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 200
+        },
+        {
+          "__type": "Scenebox.UI.MainMenu",
+          "__guid": "92ba1061-0ecf-4928-a49f-2a570727ffd6",
+          "GameScene": "scenes/game.scene",
+          "IsPauseMenu": true,
+          "MenuScene": "scenes/menu.scene"
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 30,
+    "NetworkInterpolation": true,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
+  },
+  "Title": "Read this text to die instantly",
+  "Description": "",
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

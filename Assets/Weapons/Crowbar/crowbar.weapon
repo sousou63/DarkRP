@@ -1,0 +1,22 @@
+{
+  "Name": "Crowbar",
+  "Description": "Holy shit half-life reference",
+  "Slot": 1,
+  "IconCharacter": "c",
+  "DamageCharacter": "h/^",
+  "HasAmmo": false,
+  "ClipSize": 16,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/crowbar/crowbar_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/crowbar/crowbar_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_melee_crowbar/w_crowbar.vmdl",
+  "__references": [
+    "facepunch.w_crowbar"
+  ],
+  "__version": 0
+}

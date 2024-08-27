@@ -1,0 +1,64 @@
+PlayerVitals
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    .health
+    {
+        position: absolute;
+        bottom: 32px;
+        left: 32px;
+    }
+
+    .ammo
+    {
+        position: absolute;
+        bottom: 32px;
+        right: 32px;
+    }
+
+    .panel
+    {
+        justify-content: center;
+        align-items: center;
+        padding: 4px 12px;
+        color: rgb(223, 240, 255);
+        background-color: rgba(black, 0.35);
+        border-radius: 8px;
+        gap: 12px;
+        text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+
+        .header
+        {
+            position: relative;
+            font-family: Poppins;
+            font-weight: black;
+            font-size: 16px;
+            align-self: flex-end;
+            font-weight: bold;
+            bottom: 8px;
+        }
+
+        .value
+        {
+            font-family: Tahoma;
+            font-size: 64px;
+            min-width: 100px;
+            width: auto;
+            text-align: right;
+
+            
+            &.small
+            {
+                position: relative;
+                font-size: 32px;
+                align-self: flex-end;
+                bottom: 4px;
+                right: 16px;
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@attribute [StyleSheet]
+
+@namespace Scenebox.UI
+
+<root>
+    <div class="logo-container">
+        <div class="logo">&</div>
+        <label>sandbox</label>
+    </div>
+
+    <div class="menu">
+        <a href="/start">Start New Game</a>
+        <a href="/find">Find Multiplayer Game</a>
+        <div class="gap" />
+        <label class="btn" onclick=@(() => Game.Overlay.ShowBinds())>Options</label>
+        <div class="gap" />
+        @if (MainMenu.Instance.IsPauseMenu)
+        {
+            <label class="btn" onclick=@(() => Scene.Load(MainMenu.Instance.MenuScene))>Quit to Main Menu</label>
+        }
+        else
+        {
+            <label class="btn" onclick=@Game.Close>Quit</label>
+        }
+    </div>
+</root>
+
+@code
+{
+
+}

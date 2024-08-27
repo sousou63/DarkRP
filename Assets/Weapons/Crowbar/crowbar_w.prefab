@@ -1,0 +1,67 @@
+{
+  "RootObject": {
+    "__guid": "81aad6fd-250a-49ae-a765-2bdfb98cdc8e",
+    "Flags": 0,
+    "Name": "crowbar_w",
+    "Tags": "player",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkInterpolation": true,
+    "Components": [
+      {
+        "__type": "Scenebox.MeleeWeapon",
+        "__guid": "763d3c56-2957-436c-a9bb-5622a4022506",
+        "Cooldown": 0.5,
+        "Damage": 20,
+        "Force": 20,
+        "HoldType": "Swing",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "d569b625-3b78-4f1d-bbf2-3e905b360900",
+          "go": "1bdbe4de-1811-4ce7-b64d-a28744b913b5",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "1bdbe4de-1811-4ce7-b64d-a28744b913b5"
+        },
+        "Range": 100,
+        "Resource": "weapons/crowbar/crowbar.weapon"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "1bdbe4de-1811-4ce7-b64d-a28744b913b5",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "-0.5290617,-1.723749,-8.101356",
+        "Rotation": "-0.09996211,0.0260108,0.9606428,0.2578639",
+        "Scale": "1.20675,1.20675,1.20675",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "d569b625-3b78-4f1d-bbf2-3e905b360900",
+            "BodyGroups": 18446744073709551615,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_melee_crowbar/w_crowbar.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_crowbar"
+  ],
+  "__version": 1
+}

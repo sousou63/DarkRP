@@ -1,135 +1,21 @@
-@using global::GameSystems
 @using Sandbox;
-@using Sandbox.GameSystems.Player;
+@using Sandbox.UI;
+@namespace Scenebox.UI
 @inherits PanelComponent
 
 <root>
-    @{
-        Player stats = PlayerPrefab.Components.Get<Player>();
-        float health = stats.Health.Floor(); 
-        float maxHealth = stats.MaxHealth.Floor();
-        int healthPercentage = (health / maxHealth * 100).FloorToInt();
+	@if (!Player.Local.IsValid()) return;
 
-        float food = stats.Hunger.Floor(); 
-        float maxFood = stats.HungerMax.Floor();
-        int foodPercentage = ((food / maxFood) * 100).FloorToInt();
-    }
-    <div class="key-instructions">@MyStringValue</div>
+	<NotificationPanel />
 
-    <div class="player-card">
-        <div class="name">@Rpc.Caller.DisplayName</div>
-        <div class="player-details-container">
-            <div class="money">$ @(stats.Balance.ToString("N0"))</div>
-            <div class="job"> @(GameController.Instance.GetMe().Job.Name) </div>
-        </div>
-        <div class="bars">
-            <div class="bar">
-                <div class="fill fill--health" style="width:@(healthPercentage)%;"/>
-                <div class="bar-text">@(health.ToString("N0")) </div>
-            </div>
-            <div class="bar">
-                <div class="fill fill--food" style="width:@(foodPercentage)%;"/>
-                <div class="bar-text">@(food.ToString("N0"))</div>
-            </div>
-        </div>
-    </div>
+	<InventoryBar />
 
-    <div class="crosshair">
-    </div>
+	<PlayerVitals />
 
-    <div class="notifications">
-        @foreach (var notification in Notifications)
-        {
-            <div class="notification">
-                @if (notification.type == NotificationType.Info)
-                {
-                    <i class="icon" style="color:#3273eb;">info</i>
-                }
-                @if (notification.type == NotificationType.Warning)
-                {
-                    <i class="icon" style="color: yellow">warning</i>
-                }
-                @if (notification.type == NotificationType.Error)
-                {
-                    <i class="icon" style="color:red">warning</i>
-                }
-                <div class="message">@notification.message</div>
-            </div>
-        }
-    </div>
-    
-    <div class="inventory @(PlayerPrefab.Components.Get<Player>().IsInventoryVisible ? "visible" : "")">
-        @for (int i = 1; i <= Player.MaxSlots; i++)
-        {
-
-            // get the weapon from the inventory slot
-            var inventory = PlayerPrefab.Components.Get<Player>();
-            var weapon = inventory.InventorySlots[i - 1]; // arrays index start at 0
-
-
-            // Check if a weapon exist in this slot and assign an icon ( I need to use world model thumbnail instead of this )
-            var thumbnail = weapon != null ? $"{weapon.WorldModel.Name.ToLower().Replace(".vmdl", "")}.vmdl_c.png" : "";
-
-            <div class="slot @(i == PlayerPrefab.Components.Get<Player>().CurrentSelectedSlot ? "active" : "")">@i
-                <image src="@thumbnail" style="border-radius: 5px 5px 5px 5px;"></image>
-            </div>
-        }
-    </div>
-
+	<HurtOverlay />
 </root>
 
 @code
 {
-    [Property] GameObject PlayerPrefab { get; set; } // Reference my Player Prefab code to acces my component :@(PlayerPrefab.Components.Get<Stats>().Balance)
-
-    [Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
-
-    public enum NotificationType
-    {
-        Info,
-        Warning,
-        Error
-    }
-    record Notification(NotificationType type, string message, RealTimeSince timeSinceAdded);
-    List<Notification> Notifications { get; set; } = new();
-    public void Notify(NotificationType type, string message)
-    {
-        // TODO play sound from here
-        switch (type)
-        {
-            case NotificationType.Info:
-                Sound.Play("audio/select.sound");
-                break;
-            case NotificationType.Warning:
-                Sound.Play("audio/error.sound");
-                break;
-            case NotificationType.Error:
-                Sound.Play("audio/error.sound");
-                break;
-        }
-        Notifications.Add(new Notification(type, message, 0));
-    }
-
-    protected override void OnFixedUpdate()
-    {
-        Notifications.RemoveAll(x => x.timeSinceAdded > 3);
-
-    }
-
-    /// <summary>
-    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-    /// </summary>
-    protected override int BuildHash()
-    {
-	    var player = PlayerPrefab.Components.Get<Player>();
-	    return System.HashCode.Combine( MyStringValue,
-		    GameController.Instance.GetMe().Job.Name,
-		    player.Balance,
-		    player.Hunger,
-		    player.Health,
-		    player.IsInventoryVisible,
-		    player.CurrentSelectedSlot,
-		    Notifications.Count
-	    );
-    }
+	protected override int BuildHash() => System.HashCode.Combine(Player.Local.IsValid());
 }

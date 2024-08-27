@@ -1,0 +1,29 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+<root>
+	<img src="ui/toolgun_screen.png" />
+	@if (!Toolgun.IsValid()) return;
+	<div class="scrolling-text">
+		@if (true)
+		{
+			var toolName = Toolgun.CurrentTool.GetName();
+			<label>@toolName</label>
+			<label>@toolName</label>
+		}
+	</div>
+</root>
+
+@code
+{
+	Toolgun Toolgun;
+
+	protected override void OnStart()
+	{
+		Toolgun = Player.Local?.Components.Get<Toolgun>(FindMode.EverythingInSelfAndDescendants);
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine(Toolgun, Toolgun?.CurrentTool?.GetName());
+}

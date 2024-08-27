@@ -1,0 +1,124 @@
+{
+  "RootObject": {
+    "__guid": "56fffd4a-7058-4879-b0c9-efc3e3bbce84",
+    "Flags": 0,
+    "Name": "toolgun_w",
+    "Tags": "player,particles",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Scenebox.Toolgun",
+        "__guid": "cde37568-b873-4e81-a1cf-afa27e827908",
+        "Damage": 20,
+        "Force": 20,
+        "HoldType": "Pistol",
+        "LinePrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/particles/toolgun_line.prefab"
+        },
+        "MarkerPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/particles/toolgun_mark.prefab"
+        },
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "e40b4121-0851-4ade-a3ca-2d3802bcea02",
+          "go": "cc4d4b03-1b13-4136-8b21-c4a623c930d8",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "cf4feaa9-289a-4cbd-abda-1c5529cbf45a"
+        },
+        "Resource": "weapons/toolgun/toolgun.weapon",
+        "UseSound": "sounds/toolgun/toolgun.fire.sound"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "cc4d4b03-1b13-4136-8b21-c4a623c930d8",
+        "Flags": 0,
+        "Name": "Object",
+        "Position": "2.292478,0.0000001366423,-2.470606",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "e40b4121-0851-4ade-a3ca-2d3802bcea02",
+            "BodyGroups": 9493,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "cf4feaa9-289a-4cbd-abda-1c5529cbf45a",
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "4.357469,-0.00008210569,4.917149",
+            "Enabled": true
+          },
+          {
+            "__guid": "3bb35377-f292-41e0-a85a-0e579c7fa09c",
+            "Flags": 0,
+            "Name": "TV",
+            "Position": "-2.65287,0.000002091574,3.638014",
+            "Rotation": "0.1305262,-0.00000002541439,0.9914449,0.0000001930414",
+            "Scale": "0.1084927,0.1084927,0.1084927",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "Sandbox.ModelRenderer",
+                "__guid": "3f09b4c9-7180-4eb3-92c7-f6a5c80c6fa8",
+                "BodyGroups": 18446744073709551615,
+                "Model": "models/sbox_props/tv/tv.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "__guid": "14fec249-7523-4dc1-878f-b3795f5dc202",
+        "Flags": 0,
+        "Name": "Beam Particle",
+        "Scale": "0.5,0.5,0.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.LegacyParticleSystem",
+            "__guid": "eef0237a-e580-4473-8c57-6abbaff10fe1",
+            "__enabled": false,
+            "ControlPoints": [
+              {
+                "Value": "Vector3",
+                "StringCP": "0"
+              },
+              {
+                "Value": "Vector3",
+                "StringCP": "1"
+              }
+            ],
+            "Looped": false,
+            "Particles": "particles/physgun_beam.vpcf",
+            "PlaybackSpeed": 1
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.tv",
+    "facepunch.w_usp"
+  ],
+  "__version": 1
+}

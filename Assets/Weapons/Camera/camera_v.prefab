@@ -1,0 +1,16 @@
+{
+  "RootObject": {
+    "__guid": "5c49a6da-8f9c-46e1-9d1a-cc5395b7a28a",
+    "Flags": 0,
+    "Name": "camera_v",
+    "Enabled": true,
+    "Children": [],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}

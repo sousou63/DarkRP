@@ -1,0 +1,23 @@
+{
+  "Name": "Toolgun",
+  "Description": "It has all the tools",
+  "Slot": 6,
+  "IconCharacter": "ui/weapons/toolgun.png",
+  "DamageCharacter": "a",
+  "HasAmmo": false,
+  "ClipSize": 16,
+  "StartingReserve": 32,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/toolgun/toolgun_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/toolgun/toolgun_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+  "__references": [
+    "facepunch.w_usp"
+  ],
+  "__version": 0
+}

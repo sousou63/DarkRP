@@ -1,0 +1,74 @@
+{
+  "RootObject": {
+    "__guid": "fbe1099c-9a2d-4fc1-812c-ef6a5794e9ff",
+    "Flags": 0,
+    "Name": "shotgun_w",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Scenebox.TraceWeapon",
+        "__guid": "b137f570-6293-445c-a10b-8bcb8e96cf0c",
+        "BulletCount": 8,
+        "Cooldown": 1,
+        "Damage": 13,
+        "Force": 8,
+        "HoldType": "Shotgun",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "a04fe41c-20e8-44c0-98ef-fad39c3b64fd",
+          "go": "131955dc-db0f-421c-8a3c-82ac73c12ba5",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "74540792-fda8-4954-9bf1-49793a404eff"
+        },
+        "Range": 2000,
+        "ReloadTime": 3,
+        "Resource": "weapons/shotgun/shotgun.weapon",
+        "ShootSound": "sounds/weapons/shotgun_medium.sound",
+        "Spread": 3.5
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "131955dc-db0f-421c-8a3c-82ac73c12ba5",
+        "Flags": 0,
+        "Name": "Body",
+        "Position": "6.850192,0.3517741,-8.395621",
+        "Scale": "1.36468,1.36468,1.36468",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "a04fe41c-20e8-44c0-98ef-fad39c3b64fd",
+            "BodyGroups": 3,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_shotgun_spaghellim4/w_spaghellim4.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "74540792-fda8-4954-9bf1-49793a404eff",
+            "Flags": 0,
+            "Name": "Bullet Spawn",
+            "Position": "20.75325,0.00001211326,6.276853",
+            "Enabled": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_spaghellim4"
+  ],
+  "__version": 1
+}

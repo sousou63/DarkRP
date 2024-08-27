@@ -1,0 +1,14 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+<root>
+	@Name
+</root>
+
+@code
+{
+	string Name => GameObject?.Root?.Components?.Get<Player>()?.Network.OwnerConnection?.DisplayName ?? "Missingname.";
+	protected override int BuildHash() => System.HashCode.Combine(Name);
+}

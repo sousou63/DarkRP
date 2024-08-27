@@ -1,0 +1,77 @@
+{
+  "RootObject": {
+    "__guid": "56fffd4a-7058-4879-b0c9-efc3e3bbce84",
+    "Flags": 0,
+    "Name": "gravgun_w",
+    "Tags": "player,particles",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Scenebox.Gravgun",
+        "__guid": "ff6c54ea-d21c-4b25-879b-cace471910ee",
+        "CantPickupSound": "sounds/gravgun/gravgun.lookaway.sound",
+        "Damage": 20,
+        "DropSound": "sounds/gravgun/gravgun.drop.sound",
+        "DryFireSound": "sounds/gravgun/gravgun.dry.sound",
+        "Force": 20,
+        "GrabSound": "sounds/gravgun/gravgun.pickup.sound",
+        "HoldingSound": "sounds/gravgun/gravgun.loop.sound",
+        "HoldType": "Pistol",
+        "LookAtSound": "sounds/gravgun/gravgun.lookat.sound",
+        "LookAwaySound": "sounds/gravgun/gravgun.lookaway.sound",
+        "ModelRenderer": {
+          "_type": "component",
+          "component_id": "48095363-89e0-45b7-a274-0bef66d3d673",
+          "go": "dfe85094-d61e-41a4-af87-34cbff10bb10",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "Muzzle": {
+          "_type": "gameobject",
+          "go": "d9f05d0a-08b1-4dd3-8945-728406235242"
+        },
+        "Resource": "weapons/gravgun/gravgun.weapon",
+        "ThrowSound": "sounds/gravgun/gravgun.fire.sound"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "dfe85094-d61e-41a4-af87-34cbff10bb10",
+        "Flags": 0,
+        "Name": "Model",
+        "Position": "3.535849,0,-4.395255",
+        "Scale": "1.5,1.5,1.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "48095363-89e0-45b7-a274-0bef66d3d673",
+            "BodyGroups": 9493,
+            "CreateBoneObjects": false,
+            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
+          }
+        ],
+        "Children": [
+          {
+            "__guid": "d9f05d0a-08b1-4dd3-8945-728406235242",
+            "Flags": 0,
+            "Name": "Muzzle",
+            "Position": "4.320035,0,4.755252",
+            "Enabled": true
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.w_usp"
+  ],
+  "__version": 1
+}

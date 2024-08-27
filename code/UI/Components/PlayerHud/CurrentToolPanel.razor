@@ -1,0 +1,55 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root>
+    @if (Player.Local?.Inventory?.CurrentWeapon is Toolgun toolgun)
+    {
+        if (toolgun.CurrentTool is null) return;
+        <div class="header">
+            <label class="title">@toolgun.CurrentTool.GetName()</label>
+            <label class="description">@toolgun.CurrentTool.GetDescription()</label>
+        </div>
+        <div class="controls">
+            @if (true)
+            {
+                var controls = toolgun.CurrentTool.GetControls();
+                @foreach (var control in controls)
+                {
+                    <div class="control">
+                        <Image Texture=@Input.GetGlyph(control.Item1, InputGlyphSize.Small, GlyphStyle.Light) />
+                        @control.Item2
+                    </div>
+                }
+            }
+        </div>
+    }
+</root>
+
+@code
+{
+
+    string GetTool()
+    {
+        if (Player.Local?.Inventory?.CurrentWeapon is Toolgun toolgun)
+        {
+            return toolgun?.CurrentTool?.GetName();
+        }
+        return "";
+    }
+
+    string GetControls()
+    {
+        if (Player.Local?.Inventory?.CurrentWeapon is Toolgun toolgun)
+        {
+            return toolgun?.CurrentTool?.Attack1Control + toolgun?.CurrentTool?.Attack2Control + toolgun?.CurrentTool?.ReloadControl;
+        }
+
+        return "";
+    }
+
+
+    protected override int BuildHash() => System.HashCode.Combine(GetTool(), GetControls());
+}

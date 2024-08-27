@@ -1,0 +1,162 @@
+FindGamePage
+{
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    gap: 16px;
+    color: white;
+    font-family: Poppins;
+    font-weight: 800;
+
+    .header
+    {
+        font-size: 28px;
+    }
+    
+    
+    > .left
+    {
+        flex-shrink: 0;
+        width: 300px;
+        padding: 52px;
+        flex-direction: column;
+        gap: 8px;
+        text-shadow: 2px 2px 0px black;
+
+        .header
+        {
+            font-size: 36px;
+        }
+    }
+
+    > .right
+    {
+        flex-grow: 1;
+        gap: 16px;
+        flex-direction: column;
+
+        > .top
+        {
+            flex-shrink: 0;
+            text-shadow: 2px 2px 0px black;
+            align-items: flex-end;
+            font-size: 14px;
+            gap: 16px;
+
+            .header
+            {
+                position: relative;
+                top: 4px;
+            }
+        }
+
+        > .bottom
+        {
+            flex-grow: 1;
+            gap: 16px;
+
+            > .left
+            {
+                flex-grow: 1;
+                color: black;
+                font-weight: 500;
+                padding: 8px;
+                text-align: center;
+
+                > .header-bar
+                {
+                    background-color: #66AAFF;
+                    padding: 4px;
+                    border-radius: 4px 4px 0px 0px;
+                    color: white;
+                    font-size: 13px;
+                }
+
+                > .server-list
+                {
+                    flex-direction: column;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                    flex-grow: 1;
+                    pointer-events: all;
+
+                    .server
+                    {
+                        padding: 4px;
+                        font-size: 14px;
+                        color: #444444;
+                        background-color: #E7F0FF;
+                        cursor: pointer;
+
+                        .server-name
+                        {
+                            font-weight: 800;
+                            font-size: 14px;
+                        }
+
+                        .server-name, .map-name
+                        {
+                            text-align: left;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+
+                        &.active
+                        {
+                            background-color: #FFFFAA;
+                        }
+
+                        &:hover
+                        {
+                            background-color: #B7DDFD;
+                        }
+
+                        &:nth-child(odd)
+                        {
+                            background-color: #F1F6FF;
+
+                            &:hover
+                            {
+                                background-color: #B7DDFD;
+                            }
+
+                            &.active
+                            {
+                                background-color: #FFFFAA;
+                            }
+                        }
+                    }
+                }
+
+                .server-name
+                {
+                    width: 70%;
+                }
+
+                .map-name
+                {
+                    width: 20%;
+                }
+
+                .players
+                {
+                    width: 10%;
+                }
+            }
+
+            > .right
+            {
+                width: 350px;
+            }
+
+            > .column
+            {
+                background-color: white;
+                border-radius: 4px;
+                flex-direction: column;
+            }
+        }
+    }
+
+}

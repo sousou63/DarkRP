@@ -1,0 +1,11 @@
+{
+  "UI": false,
+  "Volume": "1.00,1.00,0",
+  "Pitch": "0.80,1.00,1",
+  "Decibels": 70,
+  "SelectionMode": "Random",
+  "Sounds": [
+    "sounds/weapons/flesh.impact.hit.vsnd"
+  ],
+  "__references": []
+}

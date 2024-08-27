@@ -1,0 +1,33 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+
+<root>
+    @VersionString
+</root>
+
+@code
+{
+    string VersionString = "";
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        base.OnAfterTreeRender(firstTime);
+
+        if (firstTime)
+        {
+            GetVersion();
+        }
+    }
+
+    async void GetVersion()
+    {
+        var versions = await Package.FetchVersions("carsonk.talker");
+        var version = versions.FirstOrDefault();
+        VersionString = version.Created.ToString("yyyy.MM.dd");
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(VersionString);
+}

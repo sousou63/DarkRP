@@ -1,0 +1,21 @@
+{
+  "Name": "Gravity Gun",
+  "Description": "gravgun type shit",
+  "Slot": 1,
+  "IconCharacter": "m",
+  "HasAmmo": false,
+  "ClipSize": 16,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/gravgun/gravgun_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/gravgun/gravgun_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+  "__references": [
+    "facepunch.w_usp"
+  ],
+  "__version": 0
+}

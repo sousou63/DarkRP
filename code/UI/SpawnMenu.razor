@@ -1,0 +1,87 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+
+<root class="@(IsVisible ? "open" : "")">
+	<div class="left">
+		<div class="tabs">
+			<div onclick=@(() => SetActiveLeft(CloudModelsPanel)) class="btn @(SelectedPanelLeft == CloudModelsPanel ? "active" : "")">
+				<i>cloud_download</i>
+				Cloud Models
+			</div>
+			<div onclick=@(() => SetActiveLeft(LocalModelsPanel)) class="btn @(SelectedPanelLeft == LocalModelsPanel ? "active" : "")">
+				<i>category</i>
+				Local Models
+			</div>
+		</div>
+		<div class="body">
+			<LocalModelList @ref="LocalModelsPanel" />
+			<CloudModelList @ref="CloudModelsPanel" />
+			@* <div @ref="CloudPrefabsPanel" /> *@
+		</div>
+	</div>
+	<div class="right">
+		<div class="tabs">
+			<div onclick=@(() => SetActiveRight(ToolsPanel)) class="btn @(SelectedPanelRight == ToolsPanel ? "active" : "")">
+				<i>construction</i>
+				Tools
+			</div>
+			<div onclick=@(() => SetActiveRight(UtilitiesPanel)) class="btn @(SelectedPanelRight == UtilitiesPanel ? "active" : "")">
+				<i>find_in_page</i>
+				Utilities
+			</div>
+		</div>
+		<div class="body">
+			<ToolMenu @ref="ToolsPanel" />
+			<UtilitiesMenu @ref="UtilitiesPanel" />
+		</div>
+	</div>
+</root>
+
+@code
+{
+
+	Panel LocalModelsPanel;
+	Panel CloudModelsPanel;
+	@* Panel CloudPrefabsPanel; *@
+
+	Panel ToolsPanel;
+	Panel UtilitiesPanel;
+
+	Panel SelectedPanelLeft;
+	Panel SelectedPanelRight;
+
+	public bool IsVisible => Input.Down("Menu") || Panel.Children.Any(x => x.HasFocus);
+
+	protected override void OnTreeFirstBuilt()
+	{
+		SetActiveLeft(CloudModelsPanel);
+		SetActiveRight(ToolsPanel);
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		if (Input.Pressed("Attack1"))
+		{
+			Panel.Blur();
+		}
+	}
+
+	void SetActiveLeft(Panel panel)
+	{
+		LocalModelsPanel.SetClass("hidden", LocalModelsPanel != panel);
+		CloudModelsPanel.SetClass("hidden", CloudModelsPanel != panel);
+		@* CloudPrefabsPanel.SetClass("hidden", CloudPrefabsPanel != panel); *@
+		SelectedPanelLeft = panel;
+	}
+
+	void SetActiveRight(Panel panel)
+	{
+		ToolsPanel.SetClass("hidden", ToolsPanel != panel);
+		UtilitiesPanel.SetClass("hidden", UtilitiesPanel != panel);
+		SelectedPanelRight = panel;
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine(SelectedPanelLeft ?? null, SelectedPanelRight ?? null, IsVisible);
+}

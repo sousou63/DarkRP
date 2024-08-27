@@ -1,0 +1,55 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+@namespace Scenebox.UI
+
+<root>
+    <label class="killer">@Entry.Killer</label>
+    <Image class="object" Texture=@GetTexture() />
+    <label class="victim">@Entry.Victim</label>
+</root>
+
+@code
+{
+    public KillFeed.Entry Entry { get; set; }
+
+    TimeSince timeSinceCreate = 0;
+
+    public override void Tick()
+    {
+        if (timeSinceCreate > 10)
+        {
+            Delete();
+        }
+    }
+
+    Texture GetTexture()
+    {
+        var val = Entry.DamageType;
+
+        if (val == 0)
+        {
+            // Default damage type
+        }
+        else if (val == 1)
+        {
+            // Prop damage type
+        }
+
+        var resource = ResourceLibrary.Get<WeaponResource>(val);
+        if (resource is null)
+        {
+            return Texture.Invalid;
+        }
+
+        var icon = resource.DamageIcon;
+        if (string.IsNullOrEmpty(icon))
+        {
+            return ThumbnailCache.Get(resource.WorldModel);
+        }
+
+        return Texture.Load(FileSystem.Mounted, icon);
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine("");
+}

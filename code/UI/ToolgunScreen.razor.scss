@@ -1,0 +1,61 @@
+ToolgunScreen
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	img
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	.scrolling-text
+	{
+		position: absolute;
+		top: 22.66%;
+		left: 0%;
+		width: 100%;
+		height: 35.55%;
+		overflow: hidden;
+		align-items: center;
+		font-family: Poppins;
+		font-size: 250px;
+		font-weight: 800;
+
+		> *
+		{
+			position: relative;
+			flex-shrink: 0;
+			animation: scrollleft 2s linear infinite;
+		}
+
+		label
+		{
+			width: 100%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			text-shadow: 16px 16px 0 black;
+		}
+	}
+}
+
+@keyframes scrollleft
+{
+	0%
+	{
+		left: 0%;
+	}
+	100%
+	{
+		left: -100%;
+	}
+}

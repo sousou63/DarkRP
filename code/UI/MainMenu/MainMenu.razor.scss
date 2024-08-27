@@ -1,0 +1,123 @@
+MainMenu
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	flex-direction: column;
+	pointer-events: all;
+
+	.background-gradient
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 25%, rgba(0, 0, 0, 0) 100%);
+	}
+
+	> .navbar
+	{
+		height: 52px;
+		max-height: 52px;
+		// background-color: rgba(black, 0.5);
+		padding: 4px;
+
+		button
+		{
+			background-color: white;
+			align-items: center;
+			gap: 6px;
+			padding: 0px 8px;
+			border-radius: 4px;
+			font-size: 13px;
+			cursor: pointer;
+			box-shadow: 0px 0px 0px transparent;
+			
+			&:hover
+            {
+                sound-in: ui.button.over;
+				box-shadow: 0px 0px 12px rgba(white, 0.4);
+			}
+
+			&:active
+			{
+				sound-out: ui.button.over;
+			}
+
+			img
+			{
+				width: 32px;
+				height: 15px;
+
+			}
+		}
+	}
+
+	.hidden
+	{
+		pointer-events: none;
+		display: none;
+	}
+
+	&.hidden
+	{
+		pointer-events: none;
+		display: none;
+	}
+}
+
+MainMenuBackgroundPanel
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	Image
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 1;
+		animation: zoom-in 30s;
+		background-size: cover;
+		transition: opacity 1s;
+		z-index: 0;
+
+		&:outro
+		{
+			z-index: 10;
+			opacity: 0;
+		}
+	}
+}
+
+MainMenuVersion
+{
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	font-family: Poppins;
+	font-size: 12px;
+	font-weight: bold;
+	color: #A9ABAC;
+	background-color: black;
+	border-radius: 3px;
+	padding: 4px;
+	z-index: 250;
+}
+
+@keyframes zoom-in {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.2);
+	}
+}

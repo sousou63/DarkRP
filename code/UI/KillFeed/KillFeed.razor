@@ -1,0 +1,32 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Scenebox.UI
+@attribute [StyleSheet]
+
+<root>
+</root>
+
+@code
+{
+    public static KillFeed Instance { get; private set; }
+    TimeSince timeSinceHurt = 10;
+
+    public record Entry(string Killer, int DamageType, string Victim);
+
+    protected override void OnStart()
+    {
+        Instance = this;
+    }
+
+    [Broadcast]
+    public void AddEntry(string killer, int damageType, string victim)
+    {
+        var entry = new KillFeedEntry();
+        entry.Entry = new Entry((killer == victim) ? "" : killer, damageType, victim);
+        Panel.AddChild(entry);
+        StateHasChanged();
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine("");
+}

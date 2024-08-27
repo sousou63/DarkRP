@@ -1,0 +1,23 @@
+{
+  "Name": "M4A1",
+  "Description": "A semi-automatic weapon capable of big damage",
+  "Slot": 3,
+  "IconCharacter": "l",
+  "DamageCharacter": "w",
+  "HasAmmo": true,
+  "ClipSize": 30,
+  "StartingReserve": 130,
+  "MainPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/m4a1/m4a1_w.prefab"
+  },
+  "ViewModelPrefab": {
+    "_type": "gameobject",
+    "prefab": "weapons/m4a1/m4a1_v.prefab"
+  },
+  "WorldModel": "models/weapons/sbox_assault_m4a1/w_m4a1.vmdl",
+  "__references": [
+    "facepunch.w_m4a1"
+  ],
+  "__version": 0
+}

@@ -1,0 +1,88 @@
+{
+  "RootObject": {
+    "__guid": "2763faf0-79f6-45cf-9cac-a2e3c0070b06",
+    "Flags": 0,
+    "Name": "toolgun_line",
+    "Enabled": true,
+    "NetworkMode": 0,
+    "NetworkInterpolation": true,
+    "Components": [
+      {
+        "__type": "Sandbox.LineRenderer",
+        "__guid": "ac1867fd-27f3-4291-9a99-5e20ed505180",
+        "Color": {
+          "color": [
+            {
+              "c": "1,1,1,1"
+            },
+            {
+              "t": 1,
+              "c": "0,1,1,1"
+            }
+          ],
+          "alpha": []
+        },
+        "EndCap": "None",
+        "Opaque": true,
+        "Points": [
+          {
+            "_type": "gameobject",
+            "go": "2763faf0-79f6-45cf-9cac-a2e3c0070b06"
+          },
+          {
+            "_type": "gameobject",
+            "go": "a3e87fa7-a796-4eb1-8fbc-88554eae2d89"
+          },
+          {
+            "_type": "gameobject",
+            "go": "d6ea0952-6473-46e1-856b-2996f7ecedf4"
+          }
+        ],
+        "SplineBias": 0,
+        "SplineContinuity": 0,
+        "SplineInterpolation": 2,
+        "SplineTension": 0.02,
+        "StartCap": "None",
+        "Width": [
+          {
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 0.31382978
+          }
+        ],
+        "Wireframe": false
+      },
+      {
+        "__type": "Scenebox.LineParticle",
+        "__guid": "c948c8fc-927d-4fcc-9109-da5ede42e988"
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "a3e87fa7-a796-4eb1-8fbc-88554eae2d89",
+        "Flags": 0,
+        "Name": "MidPoint",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true
+      },
+      {
+        "__guid": "d6ea0952-6473-46e1-856b-2996f7ecedf4",
+        "Flags": 0,
+        "Name": "EndPoint",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "NetworkInterpolation": true
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
