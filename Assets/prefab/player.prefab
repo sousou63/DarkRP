@@ -150,28 +150,28 @@
       {
         "__type": "Sandbox.Weapons.Default.Hands",
         "__guid": "91a6fe57-d4c1-4023-b32d-9c9599f246cb",
-        "Damage": 20,
-        "Force": 20,
         "GrabbableTag": "grab",
         "HoldDistance": 55,
-        "HoldType": "Pistol",
         "InteractRange": 150,
         "MaxReleaseVelocity": 500,
-        "ModelRenderer": {
-          "_type": "component",
-          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "SkinnedModelRenderer"
-        },
         "Player": {
           "_type": "component",
           "component_id": "10039fed-00a3-4ce6-8416-281a841a2ee3",
           "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
           "component_type": "Player"
         },
-        "Resource": "weapons/default/hands/hands.weapon",
         "RotateSpeed": 1,
         "ThrowForce": 450
+      },
+      {
+        "__type": "PlayerFootsteps",
+        "__guid": "be61e14b-6a30-4769-8e6c-0fbe22ca663c",
+        "Source": {
+          "_type": "component",
+          "component_id": "1c4f939a-38aa-4312-bd78-f2b09adba55d",
+          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
+          "component_type": "SkinnedModelRenderer"
+        }
       }
     ],
     "Children": [
@@ -423,6 +423,7 @@
             },
             "Opacity": 1,
             "Scale": 1,
+            "ScaleStrategy": "ConsistentHeight",
             "ZIndex": 100
           },
           {
