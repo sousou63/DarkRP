@@ -16,12 +16,19 @@
   }
   else
   {
+    if (DoorProperties.DoorTitle != "")
+    {
+      <div class="container">
+        <div class="title">@(DoorProperties.DoorTitle)</div>
+      </div>
+    }
+
     <div class="container">
       <div class="title">Owned by</div>
       <div class="title">@(DoorProperties.Owner.GameObject.Name.Replace("Player - ", "").Truncate(13))</div>
     </div>
     <div class="container">
-      <div class="sub-title">Press R to sell</div>
+      <div class="sub-title">Hold R to open menu</div>
       <div class="sub-title">Press Mouse1 to lock</div>
       <div class="sub-title">Press Mouse2 to unlock</div>
     </div>
@@ -74,5 +81,5 @@
   /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
   /// </summary>
   protected override int BuildHash() => System.HashCode.Combine(DoorProperties?.Owner,
-  DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price);
+  DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle);
 }

@@ -1,0 +1,130 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.UI.Construct;
+@using Entity.Interactable.Door;
+@using GameSystems.Player;
+@using Sandbox.GameSystems.Player;
+@inherits PanelComponent
+
+<root>
+		@if (addingTitle)
+		{
+			<div class="titlebox">
+				<label>Add door title</label>
+				<TextEntry class="createtitle" @ref="AddTitle" onsubmit=@(() => ChangeDoorTitle()) value=@doorLogic.DoorTitle></TextEntry>
+			</div>
+		}
+		else
+		{
+			<div class="circle centerbutton @(doorLogic.IsUnlocked ? "unlocked" : "locked")" onclick=@(() => OnCenterButtonPressed())>
+				@if (doorLogic.IsUnlocked)
+				{
+					<i class="icon">lock_open</i>
+				}
+				else
+				{
+					<i class="icon">lock</i>
+				}
+			</div>
+			<div icon="titleicon.png" class="circle addtitlebutton" onclick=@(() => OnAddTitleButtonPressed())>
+				<i class="icon">text_fields</i>
+			</div>
+			<div class="circle addownerbutton">
+				<i class="icon">group_add</i>
+			</div>
+			<div class="circle selldoorbutton" onclick=@(() => OnSellDoorButtonPressed())>
+				<i class="icon">payments</i>
+			</div>
+			<div class="circle upgradedoorbutton">
+				<i class="icon">upgrade</i>
+			</div>
+		}
+
+</root>
+
+@code
+{
+	TextEntry AddTitle {get; set;}
+	GameObject Door { get; set; }
+	DoorLogic doorLogic { get; set; }
+
+	GameObject Player {get; set;}
+	Player playerStats {get; set;}
+
+	bool addingTitle = false;
+
+
+    public void OpenDoorMenu(GameObject door, GameObject player)
+    {
+		this.Enabled = true;
+		Mouse.Position = new Vector2(Screen.Width/2, Screen.Height/2);
+		doorLogic = door.Components.Get<DoorLogic>();
+		Player = player;
+		playerStats = player.Components.Get<Player>();
+    }
+
+	void OnCenterButtonPressed()
+	{
+		if(doorLogic.IsUnlocked)
+		{
+			doorLogic.LockDoor();
+		}
+		else
+		{
+			doorLogic.UnlockDoor();
+		}
+	}
+
+	void OnSellDoorButtonPressed()
+	{
+		doorLogic.SellDoor(playerStats);
+		this.Enabled = false;
+	}
+
+	void OnAddTitleButtonPressed()
+	{
+		addingTitle = true;
+	}
+
+	void ChangeDoorTitle()
+	{
+		doorLogic.SetDoorTitle(AddTitle.Text);
+		addingTitle = false;
+		this.Enabled = false;
+	}
+
+    protected override void OnStart()
+    {
+        this.Enabled = false;
+    }
+
+	protected override void OnTreeBuilt()
+	{
+		if (addingTitle)
+		{
+			AddTitle.CaretColor = Color.Black;
+			AddTitle.MaxLength = 20;
+		}
+
+	}
+
+	protected override void OnUpdate()
+	{
+		if (Input.Released("Use Special") && !addingTitle)
+		{
+			this.Enabled = false;
+		}
+
+		if (Input.EscapePressed) 
+		{
+			this.Enabled = false;
+			addingTitle = false;
+		}
+	}
+
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( addingTitle );
+}
