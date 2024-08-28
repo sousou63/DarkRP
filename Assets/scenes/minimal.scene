@@ -177,23 +177,10 @@
       ]
     },
     {
-      "__guid": "396535a2-c872-4aa0-a88a-832bab9fe46c",
-      "Flags": 0,
-      "Name": "printer",
-      "Position": "-758.0124,-1161.398,186.4841",
-      "Rotation": "0,0,-0.9238796,0.3826833",
-      "Tags": "printer,interact,grab",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "OwnerTransfer": 0,
-      "__Prefab": "prefab/printer.prefab",
-      "__PrefabVariables": {}
-    },
-    {
       "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
       "Flags": 0,
       "Name": "prop",
-      "Position": "-698.1496,-1130.125,180.8667",
+      "Position": "-774.8804,-1139.849,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -206,7 +193,7 @@
       "__guid": "bb58b9c8-18d5-4219-a01c-6a5464790caf",
       "Flags": 0,
       "Name": "prop (1)",
-      "Position": "-699.1518,-1119.724,180.8667",
+      "Position": "-775.8826,-1129.448,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -219,7 +206,7 @@
       "__guid": "83e07f29-9a65-449d-aae6-b7bb0562f39b",
       "Flags": 0,
       "Name": "prop (2)",
-      "Position": "-709,-1123.924,180.8667",
+      "Position": "-785.7308,-1133.648,180.8667",
       "Rotation": "0,0,-0.7071069,0.7071066",
       "Tags": "prop,interact,grab",
       "Enabled": true,
@@ -227,99 +214,6 @@
       "OwnerTransfer": 0,
       "__Prefab": "prefab/prop.prefab",
       "__PrefabVariables": {}
-    },
-    {
-      "__guid": "3d867b9c-2651-4dae-a5d4-d3952674f32a",
-      "Flags": 0,
-      "Name": "money",
-      "Position": "-790.0078,-1235.786,182.8195",
-      "Rotation": "0,0,-0.7071069,0.7071066",
-      "Tags": "money,interactable,interact,grab",
-      "Enabled": true,
-      "__Prefab": "prefab/money.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "67c8bb67-2370-4f32-a1f7-ba2e564fca68",
-      "Flags": 0,
-      "Name": "money (2)",
-      "Position": "-790.0075,-1244.086,182.8195",
-      "Rotation": "0,0,-0.7071069,0.7071066",
-      "Tags": "money,interactable,interact,grab",
-      "Enabled": true,
-      "__Prefab": "prefab/money.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "f359e953-56c4-490a-96f4-ab9f3a000025",
-      "Flags": 0,
-      "Name": "money (1)",
-      "Position": "-790.0078,-1226.356,182.8195",
-      "Rotation": "0,0,-0.7071069,0.7071066",
-      "Tags": "money,interactable,interact,grab",
-      "Enabled": true,
-      "__Prefab": "prefab/money.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "e161b418-ea3e-4613-bb43-020edcd6c975",
-      "Flags": 0,
-      "Name": "door (1)",
-      "Position": "-733.3755,-1706.861,175.6885",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "ed25c923-66e2-44b0-a287-91ed582dbc3a",
-      "Flags": 0,
-      "Name": "temp_door_001a_frame (1)",
-      "Position": "-733.3744,-1706.809,174.6887",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "6266d29c-fe24-4c35-9936-2e16afb62bc1",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
-          "Tint": "0.05116,0.03197,0.02308,1"
-        }
-      ]
-    },
-    {
-      "__guid": "3979c2ce-8821-4ac8-a1ce-e0dd4f9839ec",
-      "Flags": 0,
-      "Name": "door (2)",
-      "Position": "-733.3757,-1598.793,175.6885",
-      "Tags": "interact",
-      "Enabled": true,
-      "NetworkMode": 1,
-      "NetworkOrphaned": 1,
-      "__Prefab": "prefab/door.prefab",
-      "__PrefabVariables": {}
-    },
-    {
-      "__guid": "048935d2-71c8-49ae-8c0d-551e35ae54eb",
-      "Flags": 0,
-      "Name": "temp_door_001a_frame (2)",
-      "Position": "-733.3747,-1598.742,174.6887",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.Prop",
-          "__guid": "a383dff1-d9da-417a-a200-ef64dcf51b66",
-          "BodyGroups": 18446744073709551615,
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/darkrp_map/temp_door_001a_frame.vmdl",
-          "Tint": "0.05116,0.03197,0.02308,1"
-        }
-      ]
     },
     {
       "__guid": "8fbc26de-68d3-465e-91d4-31c22c6282e9",
@@ -450,7 +344,8 @@
           "__guid": "e4d32644-577b-4dbc-ade9-e17dc34fd8c4",
           "Flags": 0,
           "Name": "chainlink_fence_3x3",
-          "Position": "6636.349,2624.006,-0.2625427",
+          "Position": "6569.124,2570.703,-1.468124",
+          "Rotation": "-0.258819,0,0,0.9659258",
           "Scale": "1.140925,1.140925,1.140925",
           "Enabled": true,
           "Components": [

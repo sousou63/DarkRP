@@ -104,7 +104,7 @@ namespace GameSystems
 				// Find the player in the list
 				if ( !Players.TryGetValue( connection.Id, out var player ) )
 				{
-					Log.Error( $"Player not found in the list: {connection.Id}" );
+					Log.Warning( $"Player not found in the list: {connection.Id}" );
 					return;
 				}
 
