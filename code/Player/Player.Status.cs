@@ -151,12 +151,18 @@ namespace Sandbox.GameSystems.Player
 		}
 
 		public void TakeDoorOwnership( GameObject door )
-
 		{
 			door.Network.TakeOwnership();
 
 			Log.Info( $"TakeOwnership to door : {door}" );
 
+		}
+
+		public void DropDoorOwnership( GameObject door )
+		{
+			door.Network.DropOwnership();
+
+			Log.Info( $"DropOwnership to door : {door}" );
 		}
 
 		// TODO this would need to go to its own class. PlayerController or some shit

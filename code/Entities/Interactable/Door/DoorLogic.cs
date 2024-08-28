@@ -70,7 +70,7 @@ namespace Entity.Interactable.Door
 				playerStats.Doors.Add(Door);
 				UpdateDoorOwner( playerStats );
 
-				// here we take the ownership of the door ( in the network )
+				// Take the ownership of the door when buying it
 				playerStats.TakeDoorOwnership( this.GameObject );
 				DoorOwner = player.Network.OwnerConnection.DisplayName;
 				Log.Info( $"new door owner is : {DoorOwner}" );
@@ -83,9 +83,12 @@ namespace Entity.Interactable.Door
 			IsUnlocked = true;
 			playerStats.Doors.Remove(this.Door);
 			playerStats.UpdateBalance(Price / 2);
-			DoorTitle = "";
+			DoorTitle = string.Empty;
 
 			UpdateDoorOwner();
+
+			// Drop the Ownership of the door when selling it
+			playerStats.DropDoorOwnership( this.GameObject );
 			DoorOwner = null;
 		}
 
