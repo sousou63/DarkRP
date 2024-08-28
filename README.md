@@ -27,18 +27,21 @@ To ensure code quality and maintainability, please adhere to the following guide
 - Error Handling: Implement error handling to handle exceptions. We prefer to have a low poop rating.
 - Consistency: Follow consistent coding style and formatting conventions. [See](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names)
 ## Credits
-- Sousou: Project initiation and management
-- QueenPM: Chat enhancements, UI improvements, door system, code optimization, user groups, no-clip system
-- HankKitts: Money, door and doorframe - 3d model 
-- dancore: Entity system, code optimization, Money Entity, Cloud Asset spawn system/Menu, ported rp_downtown_v2 to source 2, Chat enhancements
-- Bozy: Team/job system foundation
-- IRLadderGoat: Scoreboard foundation, code refactoring, physic handling 
-- Mangrogred: Money pickup, tweaks, base map 
-- Dada: Map Improvements
-- Red ([SebbeJohansson](https://github.com/SebbeJohansson)): UI work
-- goodmittens: Money printer 3d model
-- EuroBlue : Linux library implementation + Door fixes
-- Dimmer : Code fixes for Rider IDE
+- Sousou : Project initiation and management - general coding
+- QueenPM : Project management - Chat enhancements - UI improvements - doors system - code optimization - user groups - no-clip system - commands system
+- Stefan : Job system
+- HankKitts : Money, bench, building, door and doorframe 3d model - materials texturing  
+- dancore : Entity system - code optimization - Money Entity - Cloud Asset spawn system/Menu - ported rp_downtown_v2 to source 2 - Chat enhancements
+- Bozy : Job system contribution
+- IRLadderGoat : Scoreboard foundation - code refactoring - physic handling
+- Mangrogred : Money pickup - tweaks - general work  
+- Dada : Important texturing and props placement work on our map
+- Red ([SebbeJohansson](https://github.com/SebbeJohansson)) : UI refactoring and enhancement work 
+- goodmittens : Money printer 3d model and materials
+- EuroBlue : Linux library implementation - Door contribution - persistence ( save ) system
+- Dimmer : Code fixes for Rider IDE - props grab system - weapon ressources - code refactoring
+- Grepid : Flashlight system
+- Fnasp : Door radial menu and title system
 ## Links
 - S&Box Page: https://sbox.game/sousoup/darkrp
 - Discord: https://discord.com/invite/yBDk9Xr6VB
