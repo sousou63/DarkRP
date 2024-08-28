@@ -453,7 +453,7 @@
               "Door menu: Hold R"
             ],
             "InfoCredits": "We extend our thanks to all the contributors for their efforts: Sousou, QueenPM, Stefan, HankKitts, dancore, Bozy, IRLadderGoat, Mangrogred, Dada, Red (SebbeJohansson), goodmittens, EuroBlue, Dimmer, Grepid, and Fnasp.",
-            "InfoNotes": "Everything here is subject to change and may include placeholders. This open-source project aims to create a fun roleplay base inspired by DarkRP for Garry\u0027s Mod.\n\nContribute by joining our Discord or helping on GitHub. Your feedback and participation, whether as a developer, designer, or player, are valuable to us.",
+            "InfoNotes": "Everything here is subject to change and may include placeholders. This open-source project aims to create a fun roleplay base inspired by DarkRP for Garry\u0027s Mod.\n\nYou can contribute by joining our Discord or helping on GitHub. Your feedback and participation, whether as a developer, designer, or player, are valuable to us.",
             "OnComponentDisabled": {
               "__version": 7,
               "__guid": "86ae15ed-598d-40f6-8392-45ff34f3d151",
