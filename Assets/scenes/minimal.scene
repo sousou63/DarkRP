@@ -1,5 +1,5 @@
 {
-  "__guid": "e3c7aba6-ab93-4e2b-b849-062550483433",
+  "__guid": "12191bad-f595-48e6-96e0-00f3d13a9e8e",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -590,14 +590,33 @@
           "__guid": "e4d32644-577b-4dbc-ade9-e17dc34fd8c4",
           "Flags": 0,
           "Name": "chainlink_fence_3x3",
-          "Position": "6569.124,2570.703,-1.468124",
-          "Rotation": "-0.258819,0,0,0.9659258",
+          "Position": "6635.306,2631.755,-1.468124",
           "Scale": "1.140925,1.140925,1.140925",
           "Enabled": true,
           "Components": [
             {
               "__type": "Sandbox.Prop",
               "__guid": "94e60a49-43db-4fa7-bd06-e842df3c048c",
+              "BodyGroups": 18446744073709551615,
+              "Health": 0,
+              "IsStatic": true,
+              "Model": "models/rust_structures/fences_walls/chainlink_fence_3x3.vmdl",
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "__guid": "bdc13c7d-c97e-4d6a-9804-aa9742325e12",
+          "Flags": 0,
+          "Name": "chainlink_fence_3x3",
+          "Position": "6733.648,1691.002,-2.201828",
+          "Rotation": "0,0,-0.7071067,0.7071068",
+          "Scale": "1.140925,1.140925,1.140925",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.Prop",
+              "__guid": "969199d6-fdd5-434b-8c77-e8dcd973e665",
               "BodyGroups": 18446744073709551615,
               "Health": 0,
               "IsStatic": true,
