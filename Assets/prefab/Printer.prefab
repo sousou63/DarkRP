@@ -105,6 +105,15 @@
         "Scale": "35,35,10",
         "Static": false,
         "Surface": "surfaces/plastic.surface"
+      },
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "4c520a1d-93e7-49e2-9816-231be2e085e5",
+        "Color": "1,1,1,0",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "ObscuredColor": "0,0,0,0",
+        "Width": 0.25
       }
     ],
     "Children": [

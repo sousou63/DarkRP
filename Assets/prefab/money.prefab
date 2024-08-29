@@ -42,12 +42,11 @@
       {
         "__type": "Sandbox.HighlightOutline",
         "__guid": "4c520a1d-93e7-49e2-9816-231be2e085e5",
-        "__enabled": false,
-        "Color": "1,1,1,1",
+        "Color": "1,1,1,0",
         "InsideColor": "0,0,0,0",
         "InsideObscuredColor": "0,0,0,0",
-        "ObscuredColor": "0,0,0,0.4",
-        "Width": 0.1
+        "ObscuredColor": "0,0,0,0",
+        "Width": 0.25
       },
       {
         "__type": "Money",

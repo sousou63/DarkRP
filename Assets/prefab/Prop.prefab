@@ -3,7 +3,7 @@
     "__guid": "48f3c565-3343-41ad-9f4d-7f88b2478712",
     "Flags": 0,
     "Name": "prop",
-    "Tags": "prop,grab",
+    "Tags": "prop,grab,interact",
     "Enabled": true,
     "NetworkMode": 1,
     "OwnerTransfer": 0,
@@ -23,6 +23,15 @@
         "CanBePickedUp": true,
         "EntityName": "Prop Entity",
         "Health": 100
+      },
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "e9a3774e-3836-42a7-a0e0-73fa6f999947",
+        "Color": "1,1,1,0",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "ObscuredColor": "0,0,0,0",
+        "Width": 0.25
       }
     ],
     "Children": [],
