@@ -4,7 +4,7 @@
 
 
 <root class="root">
-    @if (DoorProperties.DoorOwner == null)
+  @if (DoorProperties.DoorOwner == null)
   {
     <div class="container">
       <div class="title">For Sale</div>
@@ -18,19 +18,17 @@
   {
     if (DoorProperties.DoorTitle != "")
     {
-      <div class="container">
+      <div class="container title-container">
         <div class="title">@(DoorProperties.DoorTitle)</div>
-            </div>
-        }
+      </div>
+    }
 
-        <div class="container">
-            <div class="title">Owned by</div>
-            <div class="title">@(DoorProperties.DoorOwner)</div>
+    <div class="container">
+      <div class="sub-title">Owned by</div>
+      <div class="sub-title">@(DoorProperties.DoorOwner)</div>
     </div>
     <div class="container">
       <div class="sub-title">Hold R to open menu</div>
-      <div class="sub-title">Press Mouse1 to lock</div>
-      <div class="sub-title">Press Mouse2 to unlock</div>
     </div>
   }
 </root>
@@ -42,7 +40,7 @@
     align-items: center;
     font-family: 'Times New Roman', serif;
     font-weight: 600;
-    color: white;
+    color: #c9c9c9;
     width: 100%;
     gap: 5px;
   }
@@ -56,6 +54,10 @@
     width: 100%;
   }
 
+  .title-container {
+    margin-bottom:15px;
+  }
+
   .title {
     font-size: 35px;
   }
@@ -66,19 +68,20 @@
 </style>
 @code
 {
-    DoorLogic DoorProperties { get; set; }
-    [Property]
-    public GameObject DoorPrefab { get; set; }
+  DoorLogic DoorProperties { get; set; }
+  [Property]
+  public GameObject DoorPrefab { get; set; }
 
-    protected override void OnStart()
-    {
-        DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
-    }
+  protected override void OnStart()
+  {
+    DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
+  }
 
 
   /// <summary>
-    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-    /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(
-    DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle, DoorProperties.DoorOwner);
+  /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+  /// </summary>
+  protected override int BuildHash() => System.HashCode.Combine(
+  DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle,
+  DoorProperties.DoorOwner);
 }
