@@ -30,16 +30,20 @@
 		</div>
 		<div icon="titleicon.png" class="circle addtitlebutton" onclick=@(() => OnAddTitleButtonPressed())>
 			<i class="icon">text_fields</i>
+			<div class="tooltip">Title</div>
 		</div>
-		<div class="circle addownerbutton">
+		@* <div class="circle addownerbutton">
 			<i class="icon">group_add</i>
-		</div>
+			<div class="tooltip">Add Owner</div>
+		</div> *@
 		<div class="circle selldoorbutton" onclick=@(() => OnSellDoorButtonPressed())>
 			<i class="icon">payments</i>
+			<div class="tooltip">Sell</div>
 		</div>
-		<div class="circle upgradedoorbutton">
+		@* <div class="circle upgradedoorbutton">
 			<i class="icon">upgrade</i>
-		</div>
+			<div class="tooltip">Upgrade</div>
+		</div> *@
 	}
 
 </root>
@@ -55,7 +59,7 @@
 
 	bool addingTitle = false;
 
-
+	string tooltip = "test";
 	public void OpenDoorMenu(GameObject door, GameObject player)
 	{
 		this.Enabled = true;
@@ -75,6 +79,16 @@
 		{
 			doorLogic.UnlockDoor();
 		}
+	}
+
+	void onHoverChangeToolTip(string tooltip)
+	{
+		this.tooltip = tooltip;
+	}
+
+	void removeToolTip()
+	{
+		this.tooltip = "";
 	}
 
 	void OnSellDoorButtonPressed()
@@ -128,5 +142,5 @@
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine(addingTitle);
+	protected override int BuildHash() => System.HashCode.Combine(addingTitle, tooltip);
 }

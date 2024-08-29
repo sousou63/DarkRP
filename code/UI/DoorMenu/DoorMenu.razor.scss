@@ -1,5 +1,4 @@
-DoorMenu
-{
+DoorMenu {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -12,8 +11,7 @@ DoorMenu
 	pointer-events: all;
 	font-family: Poppins;
 
-	.circle
-	{
+	.circle {
 		position: absolute;
 		height: 100px;
 		width: 100px;
@@ -24,12 +22,11 @@ DoorMenu
 		display: flex;
 		color: #727272;
 
-		&:hover{
+		&:hover {
 			background-color: #343434;
 		}
 
-		.icon
-		{
+		.icon {
 			width: 100px;
 			height: 100px;
 			justify-content: center;
@@ -38,70 +35,86 @@ DoorMenu
 			font-size: 60px;
 		}
 
+		.tooltip {
+			width: 120px;
+			background-color: #1e1e1e;
+			color: #fff;
+			text-align: center;
+			justify-content: center;
+			border-radius: 6px;
+			padding: 2px 0;
+			position: absolute;
+			z-index: 1;
+			bottom: 125%;
+			/* Position the tooltip above the circle */
+			left: 50%;
+			margin-left: -60px;
+			/* Center the tooltip */
+			opacity: 0;
+			transition: opacity 0.3s;
+		}
+
+		&:hover .tooltip {
+			opacity: 1;
+		}
 	}
 
-	.centerbutton
-	{
-		&:hover{
+	.centerbutton {
+		&:hover {
 			transform: scale(1.1);
 		}
 	}
 
-	.locked
-	{
+	.locked {
 		background-color: #a42121;
-		&:hover{
-		background-color: #b62525;
+
+		&:hover {
+			background-color: #b62525;
 		}
 	}
 
-	.unlocked
-	{
+	.unlocked {
 		background-color: #27741b;
-		&:hover{
+
+		&:hover {
 			background-color: #2c831f;
 		}
 	}
 
-	.addtitlebutton
-	{
+	.addtitlebutton {
 		transform: translateY(-150px);
 
-		&:hover{
+		&:hover {
 			transform: translateY(-150px) scale(1.1);
 		}
 
 	}
 
-	.addownerbutton
-	{
+	.addownerbutton {
 		transform: translateX(150px);
 
-		&:hover{
+		&:hover {
 			transform: translateX(150px) scale(1.1);
 		}
 	}
 
-	.selldoorbutton
-	{
+	.selldoorbutton {
 		transform: translateY(150px);
 
-		&:hover{
+		&:hover {
 			transform: translateY(150px) scale(1.1);
 		}
 	}
 
-	.upgradedoorbutton
-	{
+	.upgradedoorbutton {
 		transform: translateX(-150px);
 
-		&:hover{
+		&:hover {
 			transform: translateX(-150px) scale(1.1);
 		}
 	}
 
-	.titlebox
-	{
+	.titlebox {
 		position: relative;
 		width: 200px;
 		height: 100px;
@@ -115,17 +128,16 @@ DoorMenu
 		text-overflow: ellipsis;
 	}
 
-	.createtitle
-	{
+	.createtitle {
 		width: 180px;
 		height: 50px;
-		background-color:white;
+		background-color: white;
 		border-radius: 10px;
 		color: black;
 		flex-direction: column;
 	}
-	.icon
-	{
+
+	.icon {
 		width: 60px;
 		height: 60px;
 		justify-content: center;
