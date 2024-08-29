@@ -10,9 +10,12 @@
 	@if (addingTitle)
 	{
 		<div class="titlebox">
-			<label>Add door title</label>
+			<div class="title-container">
+				<label>Add door title</label>
+			</div>
 			<TextEntry class="createtitle" @ref="AddTitle" onsubmit=@(() => ChangeDoorTitle()) value=@doorLogic.DoorTitle>
 			</TextEntry>
+			<button class="cancel-button" onclick=@(()=> CancelDoorTitle())>Cancel</button>
 		</div>
 	}
 	else
@@ -95,6 +98,11 @@
 		doorLogic.SetDoorTitle(AddTitle.Text);
 		addingTitle = false;
 		this.Enabled = false;
+	}
+
+	void CancelDoorTitle()
+	{
+		addingTitle = false;
 	}
 
 	protected override void OnStart()
