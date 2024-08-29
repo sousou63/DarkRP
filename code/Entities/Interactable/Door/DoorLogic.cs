@@ -80,6 +80,14 @@ namespace Entity.Interactable.Door
 		[Broadcast]
 		public void SellDoor(Player playerStats) //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
+			if ( playerStats == null )
+			{
+
+				Log.Warning( "Trying to sell the door but playerstats not found" );
+
+			return;
+			}
+
 			IsUnlocked = true;
 			playerStats.Doors.Remove(this.Door);
 			playerStats.UpdateBalance(Price / 2);

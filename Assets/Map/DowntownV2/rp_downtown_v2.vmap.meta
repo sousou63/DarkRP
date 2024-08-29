@@ -119,7 +119,15 @@
         "facepunch.wall_concrete_painted_a#18711",
         "tridge.tile_white01#26833",
         "facepunch.metal_painted_black_a_hs#29194",
-        "rust.woodplanks_quarry#25257"
+        "rust.woodplanks_quarry#25257",
+        "facepunch.floor_lino#18664",
+        "facepunch.carpet_b#18623",
+        "facepunch.floor_tile_ceramic#18683",
+        "facepunch.carpet_a_blend#18622",
+        "facepunch.carpet_a#18621",
+        "facepunch.glass_c#70691",
+        "facepunch.glass_dotted_a#70692",
+        "facepunch.glass_a_hs#70687"
       ],
       "IsWhitelistDisabled": false,
       "Metadata": {

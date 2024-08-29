@@ -1,0 +1,76 @@
+{
+  "RootObject": {
+    "__guid": "647d5ff1-3a9b-48d0-bbc9-2ea4bed71db3",
+    "Flags": 0,
+    "Name": "light",
+    "Tags": "light_point,light",
+    "Enabled": true,
+    "Children": [
+      {
+        "__guid": "d0072d54-6624-4b8e-952e-e8cf781f52cf",
+        "Flags": 0,
+        "Name": "Model",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "38d4602b-6b90-476c-b703-0e42de80f392",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/sbox_props/ceiling_halogen/ceiling_halogen.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "__guid": "8076a26c-6bb4-499c-97e7-3017e866964f",
+        "Flags": 0,
+        "Name": "Point Light ( no shadows )",
+        "Position": "0.000007335601,0,4.03425",
+        "Rotation": "0,-0.7071068,0,0.7071068",
+        "Tags": "light_spot",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.PointLight",
+            "__guid": "1464acaf-28f0-4cbf-9e2e-850560ee5786",
+            "Attenuation": 5,
+            "FogMode": "Enabled",
+            "FogStrength": 1,
+            "LightColor": "0.91373,0.98039,1,1",
+            "Radius": 500,
+            "Shadows": false
+          }
+        ]
+      },
+      {
+        "__guid": "83c04d21-b17f-4d3b-b2aa-abfa7ba9e013",
+        "Flags": 0,
+        "Name": "Emissive Material",
+        "Position": "0,0,0.2784464",
+        "Scale": "0.065,0.065,0",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "20f40d70-8104-490b-a576-53605ebb5d4e",
+            "BodyGroups": 18446744073709551615,
+            "MaterialOverride": "materials/dev/primary_white_emissive.vmat",
+            "Model": "models/dev/sphere.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "facepunch.ceiling_halogen"
+  ],
+  "__version": 1
+}
