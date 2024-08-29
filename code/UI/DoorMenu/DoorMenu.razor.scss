@@ -52,6 +52,7 @@ DoorMenu {
 			/* Center the tooltip */
 			opacity: 0;
 			transition: opacity 0.3s;
+			font-size: 20px;
 		}
 
 		&:hover .tooltip {
@@ -127,6 +128,10 @@ DoorMenu {
 		gap: 5px;
 		text-overflow: ellipsis;
 		padding: 15px;
+
+		label {
+			font-size: 20px;
+		}
 
 		.cancel-button {
 			background-color: #1e1e1e;
