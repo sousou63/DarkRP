@@ -9,16 +9,16 @@ namespace Entity.Interactable.Door
 	{
 		[Property] public GameObject Door { get; set; }
 		[Property, Sync] public bool IsUnlocked { get; set; } = true;
-		[Property, Sync]public bool IsOpen { get; set; } = false;
-		 public Player OwnerStats { get; set; }
+		[Property, Sync] public bool IsOpen { get; set; } = false;
+		public Player OwnerStats { get; set; }
 
 		[Sync, HostSync] public string DoorOwner { get; set; }
 
 		[Property, Sync] public int Price { get; set; } = 100;
 
-		[Property] DoorMenu DoorMenu {get; set;}
+		[Property] DoorMenu DoorMenu { get; set; }
 
-		[Sync, HostSync] public string DoorTitle { get; set; } = ""; 
+		[Sync, HostSync] public string DoorTitle { get; set; } = "";
 
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
@@ -27,19 +27,19 @@ namespace Entity.Interactable.Door
 			if ( IsUnlocked == false ) return;
 
 			// Open / Close door
-			OpenCloseDoor();
+			OpenCloseDoor( player );
 		}
 		public override void InteractSpecial( SceneTraceResult tr, GameObject player )
 		{
 			if ( DoorOwner == null )
 			{
-				PurchaseDoor(player, player.Components.Get<Player>());
+				PurchaseDoor( player, player.Components.Get<Player>() );
 				return;
 			}
 
-			if (player.Network.OwnerConnection.DisplayName == DoorOwner)
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner )
 			{
-				DoorMenu.OpenDoorMenu(this.Door, player);
+				DoorMenu.OpenDoorMenu( this.Door, player );
 			}
 		}
 
@@ -55,19 +55,19 @@ namespace Entity.Interactable.Door
 			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) { UnlockDoor(); } else { KnockOnDoor(); }
 		}
 
-		
+
 		public void UpdateDoorOwner( Player playerStats = null )
 		{
 			OwnerStats = playerStats;
 		}
 
 		[Broadcast]
-		public void PurchaseDoor(GameObject player, Player playerStats)
+		public void PurchaseDoor( GameObject player, Player playerStats )
 		{
-			if (playerStats.UpdateBalance(-Price))
+			if ( playerStats.UpdateBalance( -Price ) )
 			{
 				Sound.Play( "audio/notification.sound" );
-				playerStats.Doors.Add(Door);
+				playerStats.Doors.Add( Door );
 				UpdateDoorOwner( playerStats );
 
 				// Take the ownership of the door when buying it
@@ -78,19 +78,19 @@ namespace Entity.Interactable.Door
 		}
 
 		[Broadcast]
-		public void SellDoor(Player playerStats) //This Function does no longer removes the Door in Player.Stats or checks if it's done
+		public void SellDoor( Player playerStats ) //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
 			if ( playerStats == null )
 			{
 
 				Log.Warning( "Trying to sell the door but playerstats not found" );
 
-			return;
+				return;
 			}
 
 			IsUnlocked = true;
-			playerStats.Doors.Remove(this.Door);
-			playerStats.UpdateBalance(Price / 2);
+			playerStats.Doors.Remove( this.Door );
+			playerStats.UpdateBalance( Price / 2 );
 			DoorTitle = string.Empty;
 
 			UpdateDoorOwner();
@@ -101,13 +101,13 @@ namespace Entity.Interactable.Door
 		}
 
 		[Broadcast]
-		public void SetDoorTitle(string title)
+		public void SetDoorTitle( string title )
 		{
 			DoorTitle = title;
 		}
 
 		[Broadcast]
-		private void OpenCloseDoor()
+		private void OpenCloseDoor( GameObject player )
 		{
 			if ( Door == null ) return;
 			IsOpen = !IsOpen;
@@ -115,7 +115,17 @@ namespace Entity.Interactable.Door
 			var currentRotation = Door.Transform.Rotation;
 			var rotationIncrement = Rotation.From( 0, 90, 0 );
 
-			Door.Transform.Rotation = IsOpen ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse;
+			var directionToDoor = (Door.Transform.Position - player.Transform.Position).Normal;
+
+			var forward = Door.Transform.Rotation.Forward;
+			var dotProduct = Vector3.Dot( forward, directionToDoor );
+
+			var shouldOpenForward = dotProduct > 0;
+
+			Door.Transform.Rotation = IsOpen
+					? (shouldOpenForward ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse)
+					: (shouldOpenForward ? currentRotation * rotationIncrement.Inverse : currentRotation * rotationIncrement);
+
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
 		}
 
