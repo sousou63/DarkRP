@@ -58,8 +58,6 @@
 	Player playerStats { get; set; }
 
 	bool addingTitle = false;
-
-	string tooltip = "test";
 	public void OpenDoorMenu(GameObject door, GameObject player)
 	{
 		this.Enabled = true;
@@ -79,16 +77,6 @@
 		{
 			doorLogic.UnlockDoor();
 		}
-	}
-
-	void onHoverChangeToolTip(string tooltip)
-	{
-		this.tooltip = tooltip;
-	}
-
-	void removeToolTip()
-	{
-		this.tooltip = "";
 	}
 
 	void OnSellDoorButtonPressed()
@@ -142,5 +130,5 @@
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine(addingTitle, tooltip);
+	protected override int BuildHash() => System.HashCode.Combine(addingTitle);
 }
