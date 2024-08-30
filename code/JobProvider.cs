@@ -1,5 +1,3 @@
-using GameSystems.Player;
-
 namespace GameSystems.Jobs
 {
 	public static class JobProvider

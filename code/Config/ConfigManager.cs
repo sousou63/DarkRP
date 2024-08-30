@@ -4,11 +4,10 @@ namespace Sandbox.GameSystems.Config;
 
 public sealed class ConfigManager : Component
 {
-
+	private static ConfigManager _instance;
 	// Property for the Money Prefab
 	[Property] public GameObject MoneyPrefab { get; set; }
-	private static ConfigManager _instance;
-
+	[Sync] public CommandConfig Commands { get; } = new();
 	public ConfigManager()
 	{
 		if ( _instance != null )
@@ -17,9 +16,7 @@ public sealed class ConfigManager : Component
 		}
 		_instance = this;
 	}
-
 	public static ConfigManager Instance => _instance;
-	[Sync] public CommandConfig Commands { get; } = new();
 
 	protected override void OnStart()
 	{

@@ -2,10 +2,9 @@ namespace Sandbox.Player.Systems;
 
 public class Flashlight : Component
 {
-	[Property] private GameSystems.Player.Player _player;
-	
-	[Property] private SpotLight _light;
-	[Property] private SoundPointComponent _soundPoint;
+	[Property] private GameSystems.Player.Player _player { get; set; }
+	[Property] private SpotLight _light { get; set; }
+	[Property] private SoundPointComponent _soundPoint { get; set; }
 
 	private void UpdateCameraTilt()
 	{
@@ -30,8 +29,8 @@ public class Flashlight : Component
 			UpdateCameraTilt();
 		}
 	}
-	
-	[Broadcast(NetPermission.OwnerOnly)]
+
+	[Broadcast( NetPermission.OwnerOnly )]
 	public void ToggleFlashlight()
 	{
 		//Inverts the state of the light

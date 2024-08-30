@@ -4,25 +4,16 @@ namespace Sandbox.GameSystems.Player;
 
 public partial class Player
 {
-
 	// define the default Items related to all players
 	[Property, Group("Inventory")] public List<WeaponResource> DefaultItems;
-
 	[Property, Group("Inventory")] public float InventoryVisibilityDelay { get; set; } = 3f;
-
-	private TimeSince timeSinceLastVisible = 0;
-
-	private bool _inputDetected;
-
 	public bool IsInventoryVisible;
-
 	public const int MaxSlots = 9;
-
 	public int CurrentSelectedSlot;
-
 	// Slots for storing weapon resources
 	public WeaponResource[] InventorySlots;
-
+	private TimeSince _timeSinceLastVisible = 0;
+	private bool _inputDetected;
 
 	private void OnStartInventory()
 	{
@@ -151,16 +142,16 @@ public partial class Player
 		}
 
 		// Hide inventory if the delay has passed and no input was detected
-		if ( timeSinceLastVisible >= InventoryVisibilityDelay && !_inputDetected )
+		if ( _timeSinceLastVisible >= InventoryVisibilityDelay && !_inputDetected )
 		{
 			IsInventoryVisible = false;
-			timeSinceLastVisible = 0;
+			_timeSinceLastVisible = 0;
 		}
 
 		// Reset the timer if an input was detected
 		if ( _inputDetected )
 		{
-			timeSinceLastVisible = 0;
+			_timeSinceLastVisible = 0;
 		}
 
 	}
@@ -173,7 +164,6 @@ public partial class Player
 	}
 
 	private void PlayInventoryOpenSound()
-
 	{	
 		Sound.Play( "audio/select.sound" );
 	}

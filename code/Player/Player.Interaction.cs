@@ -8,7 +8,6 @@ namespace Sandbox.GameSystems.Player
 		[Property, Group( "Interaction" )] public float InteractRange { get; set; } = 120f;
 		[Property, Group( "Interaction" )] public bool DrawDebugInteract { get; set; } = false;
 		[Property, Group( "Interaction" )] public string InteractTag { get; set; } = "Interact";
-
 		private SceneTraceResult _interactionTraceResult;
 		private GameObject _currentOutlinedObject;
 

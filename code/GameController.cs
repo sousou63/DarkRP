@@ -3,14 +3,13 @@ using GameSystems.Jobs;
 using GameSystems.Player;
 using Sandbox.GameSystems.Database;
 using Sandbox.GameSystems.Player;
-using Sandbox.UI;
 
 namespace GameSystems
 {
 	public sealed class GameController : Component, Component.INetworkListener
 	{
 		private static readonly ulong[] DevSteamIDs = new ulong[] {
-		    76561198844028104, // Sousou
+			76561198844028104, // Sousou
 		    76561198137204749, // QueenPM
 		    76561198161573319, // irlladdergoat
 		    76561198237485902, // Bozy
@@ -24,24 +23,13 @@ namespace GameSystems
 		};
 		private static GameController _instance;
 
-		public GameController()
-		{
-			if ( _instance != null )
-			{
-				Log.Warning( "Only one instance of GameController is allowed." );
-			}
-			
-			_instance = this;
-		}
-
-		public static GameController Instance => _instance;
 		Chat chat { get; set; }
 		private Database _database { get; set; } // Don't touch it's waiting when the time will come (when garry releases servers)
 
-		
+
 		// TODO: YOU CAN'T SYNC COMPLEX OBJECTS
 		[HostSync] public NetDictionary<Guid, NetworkPlayer> Players { get; set; } = new();
-		
+
 		[HostSync] public NetDictionary<string, UserGroup> UserGroups { get; set; } = new()
 		{
 			{ "user", new UserGroup( "user", "User", PermissionLevel.User, Color.White ) },
@@ -51,6 +39,18 @@ namespace GameSystems
 			{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 		};
 
+		public GameController()
+		{
+			if ( _instance != null )
+			{
+				Log.Warning( "Only one instance of GameController is allowed." );
+			}
+
+			_instance = this;
+		}
+
+		public static GameController Instance => _instance;
+
 		protected override void OnStart()
 		{
 			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
@@ -58,7 +58,7 @@ namespace GameSystems
 
 			if ( !FileSystem.Data.DirectoryExists( "playersdata" ) )
 			{
-			  FileSystem.Data.CreateDirectory( "playersdata" );
+				FileSystem.Data.CreateDirectory( "playersdata" );
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace GameSystems
 
 				//Saves player Data
 				Log.Info( $"Saving players data: {connection.Id} {connection.DisplayName}" );
-				SavedPlayer.SavePlayer( new SavedPlayer(player) );
+				SavedPlayer.SavePlayer( new SavedPlayer( player ) );
 
 				// Remove the player from the list
 				Players.Remove( connection.Id );
@@ -140,7 +140,7 @@ namespace GameSystems
 
 		public NetworkPlayer GetPlayerByConnectionId( Guid connection )
 		{
-			if (Players.TryGetValue(connection, out var player))
+			if ( Players.TryGetValue( connection, out var player ) )
 			{
 				return player;
 			}
@@ -161,16 +161,10 @@ namespace GameSystems
 
 		public NetworkPlayer GetPlayerByName( string name )
 		{
-			foreach ( var player in Players )
-			{
-				if ( player.Value.Connection.DisplayName.StartsWith(name, StringComparison.OrdinalIgnoreCase) )
-				{
-					return player.Value;
-				}
-			}
-			return null;
+			return Players.Values.FirstOrDefault(
+				player => player.Connection.DisplayName.StartsWith( name, StringComparison.OrdinalIgnoreCase ) );
 		}
-		
+
 		public NetworkPlayer GetMe()
 		{
 			return Players[Connection.Local.Id];
@@ -178,14 +172,7 @@ namespace GameSystems
 
 		public NetworkPlayer GetPlayerBySteamID( ulong steamID )
 		{
-			foreach ( var player in Players )
-			{
-				if ( player.Value.Connection.SteamId == steamID )
-				{
-					return player.Value;
-				}
-			}
-			return null;
+			return Players.Values.FirstOrDefault( player => player.Connection.SteamId == steamID );
 		}
 
 		/// <summary>
@@ -220,15 +207,13 @@ namespace GameSystems
 			{
 				foundNetworkPlayer = GetPlayerBySteamID( steamID );
 			}
-
 			// If not found by SteamID, try to find by name
 			foundNetworkPlayer ??= GetPlayerByName( input );
-
 			return foundNetworkPlayer;
 		}
 
 		[Broadcast]
-		public void SelectJob(Guid ownerId, JobResource job )
+		public void SelectJob( Guid ownerId, JobResource job )
 		{
 			var networkPlayer = GetPlayerByConnectionId( ownerId );
 			if ( networkPlayer != null )

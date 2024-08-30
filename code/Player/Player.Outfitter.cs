@@ -1,6 +1,4 @@
-﻿//using Softsplit;
-
-namespace Sandbox.GameSystems.Player;
+﻿namespace Sandbox.GameSystems.Player;
 
 /// <summary>
 /// A component that handles what a player wears.
@@ -16,17 +14,17 @@ public partial class Player
 	/// Grab the player's avatar data.
 	/// </summary>
 	/// <param name="owner"></param>
-	private void OnNetworkSpawnOutfitter(Connection owner)
+	private void OnNetworkSpawnOutfitter( Connection owner )
 	{
 		if ( !Components.TryGet<SkinnedModelRenderer>( out var model ) )
 		{
 			return;
 		}
 
-		Avatar = owner.GetUserData("avatar");
+		Avatar = owner.GetUserData( "avatar" );
 
 		var container = new ClothingContainer();
-		container.Deserialize(Avatar);
-		container.Apply(model);
+		container.Deserialize( Avatar );
+		container.Apply( model );
 	}
 }

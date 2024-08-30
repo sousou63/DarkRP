@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Entity.Interactable.Props;
-using Sandbox.UI;
 using Utils;
 
 namespace Sandbox.Entities.Interactable.Props
@@ -13,17 +11,13 @@ namespace Sandbox.Entities.Interactable.Props
 		[Property] public int PropLimit { get; set; } = 10;
 		[Property] public float SpawnProtectionTimeWindow { get; set; } = 1;
 		[Property] public bool UseCloudProps { get; set; } = true;
-
-		private CameraComponent _camera;
-
 		// List to store currently spawned props.
 		public List<GameObject> Props { get; set; } = new List<GameObject>();
-
+		private CameraComponent _camera;
 		// History for undo actions
-		private List<IUndoable> History { get; set; } = new List<IUndoable>();
-
+		private List<IUndoable> _history { get; set; } = new List<IUndoable>();
 		// for spawn protection
-		private TimeSince timeSinceLastClick;
+		private TimeSince _timeSinceLastClick;
 
 		protected override void OnAwake()
 		{
@@ -48,13 +42,13 @@ namespace Sandbox.Entities.Interactable.Props
 			}
 		}
 
-		public void SpawnProp( string modelname )
+		public void SpawnProp( string modelName )
 		{
 			// Check if the time since the last spawn is less than the allowed time window
-			if ( timeSinceLastClick <= SpawnProtectionTimeWindow )
+			if ( _timeSinceLastClick <= SpawnProtectionTimeWindow )
 			{
 
-				Log.Info( timeSinceLastClick );
+				Log.Info( _timeSinceLastClick );
 				// Trigger protection
 				TriggerSpawnProtection();
 				return;
@@ -68,7 +62,7 @@ namespace Sandbox.Entities.Interactable.Props
 			}
 
 			// Calculate spawn offset based on the player's camera position and orientation
-			var SpawnOffset = _camera.Transform.World.Forward * -50f;
+			var spawnOffset = _camera.Transform.World.Forward * -50f;
 
 			Vector3? nullablePlayerPos = TraceUtils.ForwardLineTrace( Scene, _camera.Transform, 100 );
 			var playerPos = nullablePlayerPos ?? Vector3.Zero;
@@ -78,30 +72,30 @@ namespace Sandbox.Entities.Interactable.Props
 				playerPos = GameObject.Transform.World.Position + GameObject.Transform.Local.Forward * 150;
 			}
 
-			playerPos += SpawnOffset;
+			playerPos += spawnOffset;
 
 			// Clone the prop prefab at the calculated position
-			var Prop = PropPrefab.Clone( playerPos );
-			Prop.Components.Get<PropLogic>().UpdatePropModel( modelname );
-			Prop.Components.Get<PropLogic>().UpdatePropCollider( modelname );
+			var prop = PropPrefab.Clone( playerPos );
+			prop.Components.Get<PropLogic>().UpdatePropModel( modelName );
+			prop.Components.Get<PropLogic>().UpdatePropCollider( modelName );
 
 			// Spawn the prop on all clients
-			Prop.NetworkSpawn();
-			Props.Add( Prop );
-			History.Add( new PropAction( this, Prop, modelname ) );
+			prop.NetworkSpawn();
+			Props.Add( prop );
+			_history.Add( new PropAction( this, prop, modelName ) );
 
 			// Notify the player
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Prop {modelname} spawné ({Props.Count}/{PropLimit})" );
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Prop {modelName} spawné ({Props.Count}/{PropLimit})" );
 
 			// Reset the timer 
-			timeSinceLastClick = 0;
+			_timeSinceLastClick = 0;
 		}
 
 		private void TriggerSpawnProtection()
 		{
 
 			// Reset the timer 
-			timeSinceLastClick = 0;
+			_timeSinceLastClick = 0;
 
 			// Log the protection trigger or notify the player
 			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, "Spawn protection activated, please slow down !" );
@@ -109,10 +103,10 @@ namespace Sandbox.Entities.Interactable.Props
 
 		public void UndoLastAction()
 		{
-			if ( History.Count > 0 )
+			if ( _history.Count > 0 )
 			{
-				History.Last().Undo();
-				History.RemoveAt( History.Count - 1 );
+				_history.Last().Undo();
+				_history.RemoveAt( _history.Count - 1 );
 			}
 		}
 
@@ -140,10 +134,10 @@ namespace Sandbox.Entities.Interactable.Props
 			Vector3 spawnOffset = GameObject.Transform.Local.Forward * 100f;
 			position += spawnOffset;
 
-			GameObject Prop = PropPrefab.Clone( position );
-			Prop.Transform.Rotation = rotation;
+			GameObject prop = PropPrefab.Clone( position );
+			prop.Transform.Rotation = rotation;
 
-			var PropHelper = Prop.Components.GetOrCreate<PropHelper>();
+			var PropHelper = prop.Components.GetOrCreate<PropHelper>();
 			if ( PropHelper != null )
 			{
 				PropHelper.SetCloudModel( cloudModel );
@@ -154,12 +148,12 @@ namespace Sandbox.Entities.Interactable.Props
 				return null;
 			}
 
-			if ( Prop.NetworkSpawn() )
+			if ( prop.NetworkSpawn() )
 			{
-				Props.Add( Prop );
-				History.Add( new PropAction( this, Prop, cloudModel ) );
+				Props.Add( prop );
+				_history.Add( new PropAction( this, prop, cloudModel ) );
 				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Modèle de nuage {cloudModel} spawné ({Props.Count}/{PropLimit})" );
-				return Prop;
+				return prop;
 			}
 			else
 			{
