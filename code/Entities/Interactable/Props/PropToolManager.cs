@@ -57,7 +57,7 @@ namespace Sandbox.Entities.Interactable.Props
 			// Check if the prop limit has been reached
 			if ( Props.Count >= PropLimit )
 			{
-				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"Vous avez atteint la limite de props ({PropLimit})" );
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"You have reached the prop limit ({PropLimit})" );
 				return;
 			}
 
@@ -85,7 +85,7 @@ namespace Sandbox.Entities.Interactable.Props
 			_history.Add( new PropAction( this, prop, modelName ) );
 
 			// Notify the player
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Prop {modelName} spawné ({Props.Count}/{PropLimit})" );
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Prop {modelName} spawned ({Props.Count}/{PropLimit})" );
 
 			// Reset the timer 
 			_timeSinceLastClick = 0;
@@ -98,7 +98,7 @@ namespace Sandbox.Entities.Interactable.Props
 			_timeSinceLastClick = 0;
 
 			// Log the protection trigger or notify the player
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, "Spawn protection activated, please slow down !" );
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, "Spam protection activated, please slow down !" );
 		}
 
 		public void UndoLastAction()
@@ -119,7 +119,7 @@ namespace Sandbox.Entities.Interactable.Props
 		{
 			Props.ForEach( prop => prop.Destroy() );
 
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, "Tous vos props ont été supprimés" );
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, "All your props have been deleted" );
 			Props.Clear();
 		}
 
@@ -127,7 +127,7 @@ namespace Sandbox.Entities.Interactable.Props
 		{
 			if ( Props.Count >= PropLimit )
 			{
-				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"Vous avez atteint la limite de props ({PropLimit})" );
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"You have reached the prop limit ({PropLimit})" );
 				return null;
 			}
 
@@ -144,7 +144,7 @@ namespace Sandbox.Entities.Interactable.Props
 			}
 			else
 			{
-				Log.Warning( $"Composant PropHelper non trouvé sur le prefab du prop." );
+				Log.Warning( $"PropHelper component not found on prop prefab." );
 				return null;
 			}
 
@@ -152,12 +152,12 @@ namespace Sandbox.Entities.Interactable.Props
 			{
 				Props.Add( prop );
 				_history.Add( new PropAction( this, prop, cloudModel ) );
-				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Modèle de nuage {cloudModel} spawné ({Props.Count}/{PropLimit})" );
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Cloud model {cloudModel} spawned ({Props.Count}/{PropLimit})" );
 				return prop;
 			}
 			else
 			{
-				Log.Warning( "Échec du spawn en réseau du modèle de nuage." );
+				Log.Warning( "Cloud model network spawn failed." );
 				return null;
 			}
 		}
