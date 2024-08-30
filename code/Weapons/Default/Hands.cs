@@ -114,6 +114,9 @@ namespace Sandbox.Weapons.Default
 			var angularVelocity = _heldBody.AngularVelocity;
 			Rotation.SmoothDamp( _heldBody.Rotation, _heldRotation, ref angularVelocity, 0.075f, Time.Delta );
 			_heldBody.AngularVelocity = angularVelocity;
+
+			// prevent the prop to collide with the player when we are holding it 
+			if ( _held.IsValid && _heldBody.Velocity != 0) { _held.Tags.Add( "nocollide" ); }
 		}
 
 		
@@ -202,6 +205,7 @@ namespace Sandbox.Weapons.Default
 				_heldBody.ApplyImpulse( _camera.Transform.World.Forward * _heldBody.Mass * throwingForce );
 			}
 
+			_held.Tags.Remove( "nocollide" );
 			_held = null;
 			_heldBody = null;
 		}

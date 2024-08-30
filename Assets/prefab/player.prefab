@@ -3,6 +3,7 @@
     "__guid": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
     "Flags": 0,
     "Name": "player",
+    "Tags": "noblockaudio",
     "Enabled": true,
     "Components": [
       {
@@ -22,7 +23,7 @@
         "Bounciness": 0.3,
         "GroundAngle": 45,
         "Height": 64,
-        "IgnoreLayers": "",
+        "IgnoreLayers": "nocollide",
         "Radius": 16,
         "StepHeight": 18,
         "UseCollisionRules": false
@@ -63,15 +64,6 @@
         "WorldspacePlayback": true
       },
       {
-        "__type": "Sandbox.CapsuleCollider",
-        "__guid": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
-        "End": "0,0,50",
-        "IsTrigger": false,
-        "Radius": 10,
-        "Start": "0,0,0",
-        "Static": false
-      },
-      {
         "__type": "Sandbox.Entities.Interactable.Props.PropToolManager",
         "__guid": "c88c69d7-76bc-4f09-8a4e-6b6c01da46ae",
         "PropLimit": 50,
@@ -103,12 +95,6 @@
           "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
           "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
           "component_type": "CharacterController"
-        },
-        "Collider": {
-          "_type": "component",
-          "component_id": "24cf163b-5de7-4510-a0ea-86bab3cf7f8e",
-          "go": "2f0c5e5d-2852-453b-8cda-f6bb92e65678",
-          "component_type": "CapsuleCollider"
         },
         "Dead": false,
         "Doors": [],
@@ -175,6 +161,22 @@
       }
     ],
     "Children": [
+      {
+        "__guid": "2e001bd4-644b-4c08-9c34-ebb6fba6c34e",
+        "Flags": 0,
+        "Name": "Collider",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.BoxCollider",
+            "__guid": "cfb0d94e-cd3d-487d-bba9-ae064622a37a",
+            "Center": "0,0,32",
+            "IsTrigger": false,
+            "Scale": "32,32,64",
+            "Static": false
+          }
+        ]
+      },
       {
         "__guid": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8",
         "Flags": 0,
