@@ -151,7 +151,7 @@
                         <!-- Cloud Assets -->
                         <div class="section-title">Cloud Assets</div>
                         <div style="flex-direction: row; flex-wrap:wrap; margin-top: 20px;">
-                            @if (CloudPackages != null && CloudPackages.Count > 0)
+                            @if (CloudPackages != null && CloudPackages.Count > 0 && PropManager.UseCloudProps)
                             {
                                 @foreach (var package in CloudPackages)
                                 {

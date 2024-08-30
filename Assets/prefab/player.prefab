@@ -66,7 +66,7 @@
       {
         "__type": "Sandbox.Entities.Interactable.Props.PropToolManager",
         "__guid": "c88c69d7-76bc-4f09-8a4e-6b6c01da46ae",
-        "PropLimit": 50,
+        "PropLimit": 25,
         "PropPrefab": {
           "_type": "gameobject",
           "prefab": "prefab/prop.prefab"
@@ -75,7 +75,8 @@
           "_type": "gameobject",
           "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8"
         },
-        "SpawnProtectionTimeWindow": 1
+        "SpawnProtectionTimeWindow": 1,
+        "UseCloudProps": false
       },
       {
         "__type": "Sandbox.GameSystems.Player.Player",
@@ -680,10 +681,7 @@
               "models/citizen_props/recyclingbin01.vmdl",
               "models/citizen_props/beachball.vmdl",
               "models/citizen_props/broom01.vmdl",
-              "models/citizen_props/balloonears01.vmdl",
-              "models/citizen_props/balloonheart01.vmdl",
-              "models/citizen_props/balloonregular01.vmdl",
-              "models/citizen_props/balloontall01.vmdl"
+              "models/citizen_props/balloonregular01.vmdl"
             ]
           },
           {

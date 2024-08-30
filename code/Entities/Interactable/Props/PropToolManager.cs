@@ -12,6 +12,7 @@ namespace Sandbox.Entities.Interactable.Props
 		[Property] public GameObject Screen { get; set; }
 		[Property] public int PropLimit { get; set; } = 10;
 		[Property] public float SpawnProtectionTimeWindow { get; set; } = 1;
+		[Property] public bool UseCloudProps { get; set; } = true;
 
 		private CameraComponent _camera;
 
