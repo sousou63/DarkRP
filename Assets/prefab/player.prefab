@@ -374,8 +374,8 @@
                   "Type": "call",
                   "Properties": {
                     "_type": "Sandbox.GameObject",
-                    "_isStatic": false,
-                    "_name": "Destroy"
+                    "_name": "Destroy",
+                    "_isStatic": false
                   },
                   "UserData": {
                     "Position": "16,896"
@@ -446,7 +446,7 @@
               "Voice chat: X",
               "No-clip : V (admin permissions required)",
               "Grab/Drop props: Left Mouse Button (LMB)",
-              "Throw props: Right Mouse Button (RMB)",
+              "Freeze Props: Right Mouse Button (RMB) (TODO: Only the owner can unfreeze it) )",
               "Rotate props: Middle Mouse Button (MMB)",
               "Inventory slot: Mouse Wheel, [1-9], or Mouse Button 3/4",
               "Door purchase: R",
