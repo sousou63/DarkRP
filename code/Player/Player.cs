@@ -8,14 +8,10 @@ namespace Sandbox.GameSystems.Player;
 /// </summary>
 public partial class Player : Component, Component.INetworkSpawn
 {
-	private CameraComponent _camera;
-	
-	
 	[Property, Group("References")] public PlayerHUD PlayerHud { get; set; }
 	[Property, Group("References")] public PlayerHUD PlayerTabMenu { get; set; }
 	[Property, Group("References")] public LeaderBoard LeaderBoard { get; set; }
-
-	
+	private CameraComponent _camera;
 	protected override void OnAwake()
 	{
 		_camera = Scene.GetAllComponents<CameraComponent>().FirstOrDefault( x => x.IsMainCamera );

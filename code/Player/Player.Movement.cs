@@ -18,20 +18,14 @@ public partial class Player
 	[Property, Group("Movement")] public Collider Collider { get; set; }
 	[Property, Group("Movement")] public CharacterController CharacterController { get; set; }
 	[Property, Group("Movement")] public CitizenAnimationHelper AnimationHelper { get; set; }
-
 	[Sync, HostSync] public bool IsNoClip { get; set; }
 	[Sync] public Angles EyeAngles { get; set; }
 	[Sync] public bool _crouching { get; set; }
 	[Sync] private Vector3 _wishVelocity { get; set; }
-
 	private bool _wishCrouch;
-
 	private float _eyeHeight = 64;
-
 	private RealTimeSince _lastGrounded;
-
 	private RealTimeSince _lastUngrounded;
-
 	private RealTimeSince _lastJump;
 
 	public void OnStartMovement()

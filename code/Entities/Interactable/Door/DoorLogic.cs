@@ -14,7 +14,6 @@ namespace Entity.Interactable.Door
 		[Property, Sync] public int Price { get; set; } = 100;
 		[Sync, HostSync] public string DoorOwner { get; private set; }
 		[Sync, HostSync] public string DoorTitle { get; private set; }
-
 		private Player _playerStats { get; set; }
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )

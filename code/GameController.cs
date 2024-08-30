@@ -24,17 +24,6 @@ namespace GameSystems
 		};
 		private static GameController _instance;
 
-		public GameController()
-		{
-			if ( _instance != null )
-			{
-				Log.Warning( "Only one instance of GameController is allowed." );
-			}
-			
-			_instance = this;
-		}
-
-		public static GameController Instance => _instance;
 		Chat chat { get; set; }
 		private Database _database { get; set; } // Don't touch it's waiting when the time will come (when garry releases servers)
 
@@ -50,6 +39,18 @@ namespace GameSystems
 			{ "superadmin", new UserGroup( "superadmin", "Super Admin", PermissionLevel.SuperAdmin, Color.Cyan ) },
 			{ "developer", new UserGroup( "developer", "Developer", PermissionLevel.Developer, Color.Orange ) }
 		};
+
+		public GameController()
+		{
+			if ( _instance != null )
+			{
+				Log.Warning( "Only one instance of GameController is allowed." );
+			}
+			
+			_instance = this;
+		}
+
+		public static GameController Instance => _instance;
 
 		protected override void OnStart()
 		{

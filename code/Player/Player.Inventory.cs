@@ -4,24 +4,15 @@ namespace Sandbox.GameSystems.Player;
 
 public partial class Player
 {
-
 	// define the default Items related to all players
 	[Property, Group("Inventory")] public List<WeaponResource> DefaultItems;
-
 	[Property, Group("Inventory")] public float InventoryVisibilityDelay { get; set; } = 3f;
-
-
 	public bool IsInventoryVisible;
-
 	public const int MaxSlots = 9;
-
 	public int CurrentSelectedSlot;
-
 	// Slots for storing weapon resources
 	public WeaponResource[] InventorySlots;
-
 	private TimeSince _timeSinceLastVisible = 0;
-
 	private bool _inputDetected;
 
 	private void OnStartInventory()

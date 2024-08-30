@@ -13,19 +13,17 @@ namespace Sandbox.Weapons.Default
 	public class Hands : Weapon
 	{
 		[Property] public string GrabbableTag { get; set; } = "grab";
-
 		[Property] private float InteractRange { get; set; } = 150f;
 		[Property] private float ThrowForce { get; set; } = 450f;
 		[Property] private float MaxReleaseVelocity { get; set; } = 500f;
 		[Property] private float RotateSpeed { get; set; } = 1f;
-
 		[Property] private float HoldDistance { get; set; } = 55f;
+		[Property] private GameSystems.Player.Player Player { get; set; }
 
 		private float _heldDistance;
 		private Rotation _heldRotation = Rotation.Identity;
 
 		// References
-		[Property] private GameSystems.Player.Player Player { get; set; }
 		private CameraComponent _camera;
 
 		private GameObject _held;

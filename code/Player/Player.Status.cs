@@ -10,32 +10,23 @@ namespace Sandbox.GameSystems.Player
 
 	public partial class Player
 	{
-		// DOORS
 		[Sync][Property, Group("Status")]  public List<GameObject> Doors { get; private set; } = new();
-
-		// BASE PLAYER PROPERTYS
 		[Sync, HostSync][Property, Group("Status")] public float Balance { get; set; } = 500f;
-
 		[Property, Group("Status")] public float Health { get; private set; } = 100f;
 		[Property, Group("Status")]  public float Hunger { get; private set; } = 100f;
 		[Property, Group("Status")]  public float MaxHealth { get; private set; } = 100f;
 		[Property, Group("Status")]  public float HungerMax { get; private set; } = 100f;
 		[Property, Group("Status")]  public bool Dead { get; private set; } = false;
 		[Property, Group("Status")]  public bool Starving { get; private set; } = false;
-
-		// TIMER PROPERTYS
 		[Property] private float _salaryTimerSeconds { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] private float _starvingTimerSeconds { get; set; } = 20f;
-
 		private Chat _chat { get; set; }
 		private GameController _controller { get; set; }
-
+		private static readonly uint _saveCooldown = 30;
 		private TimeSince _lastUsed = 0; // Set the timer
 		private TimeSince _lastUsedFood = 0;
-
 		//Pereodiocal player data save in seconds
 		private TimeSince _lastSaved = 0;
-		private static readonly uint _saveCooldown = 30;
 
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 

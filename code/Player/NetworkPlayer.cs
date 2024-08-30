@@ -10,14 +10,12 @@ namespace Sandbox.GameSystems.Player;
 /// </summary>
 public class NetworkPlayer
 {
-
 	public List<UserGroup> UserGroups { get; set; }
 	public GameObject GameObject { get; set; }
 	public Connection Connection { get; set; }
-	
 	public string Name { get; set; }
 	public JobResource Job { get; set; } = JobProvider.GetDefault();
-    
+
 	public NetworkPlayer( GameObject gameObject, Connection connection, List<UserGroup> userGroups )
 	{
 		GameObject = gameObject;

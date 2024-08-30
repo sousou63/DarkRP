@@ -13,7 +13,6 @@ namespace Sandbox.Entities.Interactable.Props
 		[Property] public int PropLimit { get; set; } = 10;
 		[Property] public float SpawnProtectionTimeWindow { get; set; } = 1;
 		[Property] public bool UseCloudProps { get; set; } = true;
-
 		// List to store currently spawned props.
 		public List<GameObject> Props { get; set; } = new List<GameObject>();
 

@@ -10,15 +10,11 @@ public partial class WeaponResource : GameResource
 	[Group( "General" )] public int Slot { get; set; } = 1;
 	[Group( "General" )] public string IconCharacter { get; set; } = "u";
 	[Group( "General" ), ImageAssetPath] public string Icon { get; set; }
-
-
 	[Group( "Ammo" )] public bool HasAmmo { get; set; } = true;
 	[Group( "Ammo" )] public int ClipSize { get; set; } = 16;
 	[Group( "Ammo" )] public int StartingReserve { get; set; } = 32;
-
 	[Group( "Prefabs" )] public GameObject MainPrefab { get; set; }
 	[Group( "Prefabs" )] public GameObject ViewModelPrefab { get; set; }
-
 	[Group( "Information" )] public Model WorldModel { get; set; }
 
 	protected override void PostLoad()

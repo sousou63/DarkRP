@@ -1,8 +1,6 @@
 using System;
 using GameSystems.Player;
 using Sandbox.GameSystems.Config;
-using Sandbox.GameSystems.Player;
-using Sandbox.UI;
 
 namespace GameSystems.Config
 {

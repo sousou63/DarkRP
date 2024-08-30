@@ -3,7 +3,6 @@ namespace Sandbox.Player.Systems;
 public class Flashlight : Component
 {
 	[Property] private GameSystems.Player.Player _player;
-	
 	[Property] private SpotLight _light;
 	[Property] private SoundPointComponent _soundPoint;
 

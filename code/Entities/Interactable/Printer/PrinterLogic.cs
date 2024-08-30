@@ -19,16 +19,12 @@ namespace Entity.Interactable.Printer
 	{
 		[Property] public GameObject PrinterFan { get; set; }
 		[Property] public float PrinterFanSpeed { get; set; } = 1000f;
-		// Define the different types of printers
-		public enum PrinterType { Bronze, Silver, Gold, Diamond };
-
-		[Property]
-		public Dictionary<PrinterType, PrinterConfiguration> PrinterConfig = new();
-
-		// Printer Timer Setup
+		[Property] public Dictionary<PrinterType, PrinterConfiguration> PrinterConfig = new();
 		[Property, Sync] public float PrinterCurrentMoney { get; set; } = 0f;
 		[Property] public float PrinterTimerMoney { get; set; } = 25f;
 		[Property] public float PrinterMaxMoney { get; set; } = 8000f;
+		// Define the different types of printers
+		public enum PrinterType { Bronze, Silver, Gold, Diamond };
 
 		private TimeSince _lastUsed = 0; // Set the timer
 
