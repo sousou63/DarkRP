@@ -1,40 +1,39 @@
 using System;
+using System.Collections.Generic;
 using Entity.Interactable.Props;
 using Sandbox.UI;
 using Utils;
 
 namespace Sandbox.Entities.Interactable.Props
 {
-	// Classes should inherit from this interface if they are undoable with the "Z" key by default
 	public sealed class PropToolManager : Component
 	{
 		[Property] public GameObject PropPrefab { get; set; }
 		[Property] public GameObject Screen { get; set; }
 		[Property] public int PropLimit { get; set; } = 10;
-		
-		private CameraComponent _camera;
+		[Property] public float SpawnProtectionTimeWindow { get; set; } = 1;
 
+		private CameraComponent _camera;
 
 		// List to store currently spawned props.
 		public List<GameObject> Props { get; set; } = new List<GameObject>();
 
-		/// <summary>
-		/// Stores a history of actions that can be undone.
-		/// </summary>
+		// History for undo actions
 		private List<IUndoable> History { get; set; } = new List<IUndoable>();
+
+		// for spawn protection
+		private TimeSince timeSinceLastClick;
 
 		protected override void OnAwake()
 		{
 			_camera = Scene.GetAllComponents<CameraComponent>().FirstOrDefault( x => x.IsMainCamera );
-
 		}
 
-
-		/// <summary>
-		/// Called every frame, listens for undo input and attempts to undo the last action if triggered.
-		/// </summary>
-		protected override void OnUpdate()
+		protected override void OnFixedUpdate()
 		{
+			base.OnFixedUpdate();
+
+			// Handle undo input
 			if ( Input.Pressed( "Undo" ) )
 			{
 				try
@@ -48,131 +47,65 @@ namespace Sandbox.Entities.Interactable.Props
 			}
 		}
 
-		/// <summary>
-		/// Returns the number of props currently spawned and owned by the player.
-		/// </summary>
-		/// <returns>Number of spawned props.</returns>
-		public int PropCount()
-		{
-			return Props.Count;
-		}
-
-		/// <summary>
-		/// Removes all props that the player has spawned.
-		/// </summary>
-		public void RemoveAllProps()
-		{
-			Props.ForEach( prop => prop.Destroy() );
-
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Removed all your props" );
-			Props.Clear();
-		}
-
-		/// <summary>
-		/// Attempts to spawn a prop at the player's forward line trace position, 
-		/// otherwise spawns it 50 units in front of the player.
-		/// </summary>
-		/// <param name="modelname">The name of the model to spawn.</param>
 		public void SpawnProp( string modelname )
 		{
+			// Check if the time since the last spawn is less than the allowed time window
+			if ( timeSinceLastClick <= SpawnProtectionTimeWindow )
+			{
+
+				Log.Info( timeSinceLastClick );
+				// Trigger protection
+				TriggerSpawnProtection();
+				return;
+			}
+
 			// Check if the prop limit has been reached
 			if ( Props.Count >= PropLimit )
 			{
-				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"You've reached the Prop Limit ({PropLimit})" );
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"Vous avez atteint la limite de props ({PropLimit})" );
 				return;
 			}
 
 			// Calculate spawn offset based on the player's camera position and orientation
 			var SpawnOffset = _camera.Transform.World.Forward * -50f;
 
-			// Attempt to get the player's forward line trace position
-			Vector3? nullablePlayerPos = TraceUtils.ForwardLineTrace(Scene, _camera.Transform, 100 );
+			Vector3? nullablePlayerPos = TraceUtils.ForwardLineTrace( Scene, _camera.Transform, 100 );
 			var playerPos = nullablePlayerPos ?? Vector3.Zero;
 
-			// If the line trace failed, use a fallback position in front of the player
 			if ( playerPos == Vector3.Zero )
 			{
 				playerPos = GameObject.Transform.World.Position + GameObject.Transform.Local.Forward * 150;
 			}
 
-			// TODO : MAKE A DYNAMIC OFFSET
-			// Apply the spawn offset to the final position 
-			playerPos = playerPos + SpawnOffset;
+			playerPos += SpawnOffset;
 
 			// Clone the prop prefab at the calculated position
 			var Prop = PropPrefab.Clone( playerPos );
-
-			// Update the prop's model and collider to match the specified model name
 			Prop.Components.Get<PropLogic>().UpdatePropModel( modelname );
 			Prop.Components.Get<PropLogic>().UpdatePropCollider( modelname );
-
-			// TODO: Consider wrapping the entire process in a try-catch to handle exceptions and clean up resources
 
 			// Spawn the prop on all clients
 			Prop.NetworkSpawn();
 			Props.Add( Prop );
 			History.Add( new PropAction( this, Prop, modelname ) );
 
-			// Notify the player that the prop has been spawned
-			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Spawned prop {modelname} ({Props.Count}/{PropLimit})" );
+			// Notify the player
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Prop {modelname} spawné ({Props.Count}/{PropLimit})" );
+
+			// Reset the timer 
+			timeSinceLastClick = 0;
 		}
-		
-		/// <summary>
-		/// Spawns a cloud-based model at a specified position and rotation.
-		/// </summary>
-		/// <param name="cloudModel">The identifier of the cloud model to spawn.</param>
-		/// <param name="position">The position in the world where the model should be spawned.</param>
-		/// <param name="rotation">The rotation to apply to the model after spawning.</param>
-		public GameObject SpawnCloudModel(string cloudModel, Vector3 position, Rotation rotation)
+
+		private void TriggerSpawnProtection()
 		{
-			if (Props.Count >= PropLimit)
-			{
-				Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Warning, $"You've reached the Prop Limit ({PropLimit})");
-				return null;
-			}
 
-			// Calculate a spawn position in front of the player
-			Vector3 spawnOffset = GameObject.Transform.Local.Forward * 100f;
-			position += spawnOffset;
+			// Reset the timer 
+			timeSinceLastClick = 0;
 
-			GameObject Prop = PropPrefab.Clone(position);
-			Prop.Transform.Rotation = rotation;
-
-			var PropHelper = Prop.Components.GetOrCreate<PropHelper>();
-			if (PropHelper != null)
-			{
-				PropHelper.SetCloudModel(cloudModel);
-			}
-			else
-			{
-				Log.Warning($"PropHelper component not found on the prop prefab.");
-				return null;
-			}
-
-			if (Prop.NetworkSpawn())
-			{
-				Props.Add(Prop);
-				History.Add(new PropAction(this, Prop, cloudModel));
-				Screen?.Components.Get<PlayerHUD>()?.Notify(PlayerHUD.NotificationType.Info, $"Spawned cloud model {cloudModel} ({Props.Count}/{PropLimit})");
-				return Prop;
-			}
-			else
-			{
-				Log.Warning("Failed to network spawn the cloud model.");
-				return null;
-			}
+			// Log the protection trigger or notify the player
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, "Spawn protection activated, please slow down !" );
 		}
 
-		public string GetPropThumbnail(string propName)
-		{
-			var thumbnailPath = $"{propName.ToLower().Replace(".vmdl", "")}.vmdl_c.png";
-			// Log.Info($"Thumbnail path for {propName}: {thumbnailPath}");
-			return thumbnailPath;
-		}
-
-		/// <summary>
-		/// Undoes the last action performed by the player.
-		/// </summary>
 		public void UndoLastAction()
 		{
 			if ( History.Count > 0 )
@@ -180,6 +113,64 @@ namespace Sandbox.Entities.Interactable.Props
 				History.Last().Undo();
 				History.RemoveAt( History.Count - 1 );
 			}
+		}
+
+		public int PropCount()
+		{
+			return Props.Count;
+		}
+
+		public void RemoveAllProps()
+		{
+			Props.ForEach( prop => prop.Destroy() );
+
+			Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, "Tous vos props ont été supprimés" );
+			Props.Clear();
+		}
+
+		public GameObject SpawnCloudModel( string cloudModel, Vector3 position, Rotation rotation )
+		{
+			if ( Props.Count >= PropLimit )
+			{
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Warning, $"Vous avez atteint la limite de props ({PropLimit})" );
+				return null;
+			}
+
+			Vector3 spawnOffset = GameObject.Transform.Local.Forward * 100f;
+			position += spawnOffset;
+
+			GameObject Prop = PropPrefab.Clone( position );
+			Prop.Transform.Rotation = rotation;
+
+			var PropHelper = Prop.Components.GetOrCreate<PropHelper>();
+			if ( PropHelper != null )
+			{
+				PropHelper.SetCloudModel( cloudModel );
+			}
+			else
+			{
+				Log.Warning( $"Composant PropHelper non trouvé sur le prefab du prop." );
+				return null;
+			}
+
+			if ( Prop.NetworkSpawn() )
+			{
+				Props.Add( Prop );
+				History.Add( new PropAction( this, Prop, cloudModel ) );
+				Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Modèle de nuage {cloudModel} spawné ({Props.Count}/{PropLimit})" );
+				return Prop;
+			}
+			else
+			{
+				Log.Warning( "Échec du spawn en réseau du modèle de nuage." );
+				return null;
+			}
+		}
+
+		public string GetPropThumbnail( string propName )
+		{
+			var thumbnailPath = $"{propName.ToLower().Replace( ".vmdl", "" )}.vmdl_c.png";
+			return thumbnailPath;
 		}
 	}
 }
