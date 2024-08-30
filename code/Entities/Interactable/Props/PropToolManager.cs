@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using Entity.Interactable.Props;
-using Sandbox.UI;
 using Utils;
 
 namespace Sandbox.Entities.Interactable.Props
@@ -15,12 +13,9 @@ namespace Sandbox.Entities.Interactable.Props
 		[Property] public bool UseCloudProps { get; set; } = true;
 		// List to store currently spawned props.
 		public List<GameObject> Props { get; set; } = new List<GameObject>();
-
 		private CameraComponent _camera;
-
 		// History for undo actions
 		private List<IUndoable> _history { get; set; } = new List<IUndoable>();
-
 		// for spawn protection
 		private TimeSince _timeSinceLastClick;
 

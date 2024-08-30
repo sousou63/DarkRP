@@ -1,8 +1,5 @@
 ﻿using System;
-using Sandbox.Player;
-using Sandbox.GameSystems.Player;
 using Scenebox;
-using static Sandbox.PhysicsContact;
 
 namespace Sandbox.Weapons.Default
 {
@@ -19,17 +16,12 @@ namespace Sandbox.Weapons.Default
 		[Property] private float RotateSpeed { get; set; } = 1f;
 		[Property] private float HoldDistance { get; set; } = 55f;
 		[Property] private GameSystems.Player.Player Player { get; set; }
-
 		private float _heldDistance;
 		private Rotation _heldRotation = Rotation.Identity;
-
-		// References
 		private CameraComponent _camera;
-
 		private GameObject _held;
 		private PhysicsBody _heldBody;
 		private Vector3 _heldCenter;
-
 		private float _lastPickupTime;
 		private const float DeltaPickupTime = 0.20f;
 
@@ -42,7 +34,6 @@ namespace Sandbox.Weapons.Default
 				Enabled = false;
 				return;
 			}
-
 			_camera = Scene.Camera;
 		}
 
@@ -72,8 +63,7 @@ namespace Sandbox.Weapons.Default
 					Release();
 				}
 			}
-
-			else if ( Input.Down( "attack1" ) || Input.Pressed( "attack2" ))
+			else if ( Input.Down( "attack1" ) || Input.Pressed( "attack2" ) )
 			{
 				AttemptGrab();
 			}
@@ -81,23 +71,16 @@ namespace Sandbox.Weapons.Default
 
 		protected override void OnFixedUpdate()
 		{
-			if ( _held == null )
-			{
-				return;
-			}
-
+			if ( _held == null ) { return; }
 			if ( !_held.IsValid )
 			{
 				Release();
 				return;
 			}
-
 			// Calculate the offset from the object's position to its center
 			var centerOffset = _heldBody.MassCenter - _heldBody.Position;
-
 			// Calculate the target position, adjusting for the center offset
 			var holdPosition = _camera.Transform.Position + _camera.Transform.World.Forward * _heldDistance - centerOffset;
-
 			// Check if the object is too far away from the hold position
 			var heldDistance = Vector3.DistanceBetween( _held.Transform.Position, holdPosition );
 			if ( heldDistance > InteractRange )
@@ -115,22 +98,19 @@ namespace Sandbox.Weapons.Default
 			_heldBody.AngularVelocity = angularVelocity;
 
 			// prevent the prop to collide with the player when we are holding it 
-			if ( _held.IsValid && _heldBody.Velocity != 0) { _held.Tags.Add( "nocollide" ); }
+			if ( _held.IsValid && _heldBody.Velocity != 0 ) { _held.Tags.Add( "nocollide" ); }
 		}
 
-		
+
 
 		private void AttemptGrab()
 		{
 			// Starting position of the line (camera position)
 			var start = _camera.Transform.Position;
-
 			// Direction of the line (the direction the camera is facing)
 			var direction = _camera.Transform.World.Forward;
-
 			// Calculate the end position based on direction and interact range
 			var end = start + direction * InteractRange;
-
 			// Perform a line trace (raycast) to detect objects in the line of sight (raycast ignore the player)
 			var tr = Scene.Trace.Ray( start, end )
 				.UseHitboxes()
@@ -154,11 +134,9 @@ namespace Sandbox.Weapons.Default
 					}
 				}
 			}
-
-			if ( !body.IsValid() ) return;
-
+			if ( !body.IsValid() ) { return; }
 			// Don't move keyframed
-			if ( body.BodyType == PhysicsBodyType.Keyframed ) return;
+			if ( body.BodyType == PhysicsBodyType.Keyframed ) { return; }
 
 			Grab( tr.GameObject, tr.Body );
 
@@ -168,19 +146,15 @@ namespace Sandbox.Weapons.Default
 
 		public void Grab( GameObject target, PhysicsBody targetBody )
 		{
-
 			target.Network.TakeOwnership();
 
 			var bounds = target.GetBounds();
 			var boundsExtents = bounds.Extents;
 			_heldDistance = HoldDistance + Math.Max( Math.Max( boundsExtents.x, boundsExtents.y ), boundsExtents.z );
 			_heldRotation = target.Transform.Rotation;
-
 			_held = target;
 			_heldBody = targetBody;
-
 			_heldCenter = bounds.Center;
-
 			_lastPickupTime = RealTime.Now;
 
 		}
@@ -200,10 +174,8 @@ namespace Sandbox.Weapons.Default
 					currentVelocity = currentVelocity.Normal * MaxReleaseVelocity;
 					_heldBody.Velocity = currentVelocity;
 				}
-
 				_heldBody.ApplyImpulse( _camera.Transform.World.Forward * _heldBody.Mass * throwingForce );
 			}
-
 			_held.Tags.Remove( "nocollide" );
 			_held = null;
 			_heldBody = null;
@@ -251,7 +223,6 @@ namespace Sandbox.Weapons.Default
 				Sound.Play( "audio/physiclock.sound" );
 				Log.Info( "props is freeze" );
 			}
-
 		}
 
 		private void AttemptUnFreeze()
@@ -266,7 +237,6 @@ namespace Sandbox.Weapons.Default
 				Sound.Play( "audio/physiclock.sound" );
 				Log.Info( "props is unfreeze" );
 			}
-
 		}
 	}
 }

@@ -1,4 +1,3 @@
-using GameSystems;
 using GameSystems.Jobs;
 using GameSystems.Player;
 using Sandbox.GameSystems.Database;
@@ -22,18 +21,18 @@ public class NetworkPlayer
 		Connection = connection;
 		Name = connection.DisplayName;
 		UserGroups = userGroups;
-      
+
 		Log.Info( "Loading saved data if exists" );
 		if ( FileSystem.Data.FileExists( "playersdata/" + Connection.SteamId ) )
 		{
 			Log.Info( "Loading savedPlayer" );
 			var savedPlayer = SavedPlayer.LoadSavedPlayer( Connection.SteamId );
-	      
-			Log.Info( "SavedPlayer SteamID: " + savedPlayer.SteamId +" Money: " + savedPlayer.Money );
-	     
+
+			Log.Info( "SavedPlayer SteamID: " + savedPlayer.SteamId + " Money: " + savedPlayer.Money );
+
 			//Overwriting default data with saved Data
 			GameObject.Components.Get<Player>().SetBalance( savedPlayer.Money );
-			Log.Info( "LoadedPlayer SteamID: " + Connection.SteamId +" Money: " + GameObject.Components.Get<Player>().Balance );
+			Log.Info( "LoadedPlayer SteamID: " + Connection.SteamId + " Money: " + GameObject.Components.Get<Player>().Balance );
 		}
 		Log.Info( "Ended player creation" );
 	}
@@ -53,7 +52,7 @@ public class NetworkPlayer
 		}
 		return false;
 	}
-	
+
 	public void SetRank( UserGroup userGroup )
 	{
 		UserGroups.Clear();

@@ -14,21 +14,18 @@ public class BaseEntity : Component, IInteractable
 	/// Gets or sets the health of the entity.
 	/// </summary>
 	[Property] public float Health { get; set; } = 100f;
-
 	/// <summary>
 	/// Gets or sets the name of the entity.
 	/// </summary>
 	[Property] public string EntityName { get; set; } = "Base Entity";
-
-	/// <summary>
-	/// Gets or sets the owner of the entity.
-	/// </summary>
-	 public NetworkPlayer Owner { get; set; }
-
 	/// <summary>
 	/// Gets or sets whether the entity can be picked up by players.
 	/// </summary>
 	[Property] public bool CanBePickedUp { get; set; } = true;
+	/// <summary>
+	/// Gets or sets the owner of the entity.
+	/// </summary>
+	public NetworkPlayer Owner { get; set; }
 
 	/// <summary>
 	/// Called when the component is first created and added to a GameObject.
@@ -53,10 +50,7 @@ public class BaseEntity : Component, IInteractable
 		Health -= damage;
 		Log.Info( $"{EntityName} took {damage} damage. Health is now {Health}." );
 
-		if ( Health <= 0 )
-		{
-			OnDestroyed();
-		}
+		if ( Health <= 0 ) { OnDestroyed(); }
 	}
 
 	/// <summary>

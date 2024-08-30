@@ -1,5 +1,3 @@
-using Sandbox;
-using GameSystems.Player;
 using Sandbox.Entity;
 using Sandbox.GameSystems.Player;
 

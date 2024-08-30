@@ -1,23 +1,21 @@
 using System;
 using Entity.Interactable.Door;
 using GameSystems;
-using GameSystems.Jobs;
 using Sandbox.GameSystems.Database;
-using Sandbox.UI;
 
 namespace Sandbox.GameSystems.Player
 {
 
 	public partial class Player
 	{
-		[Sync][Property, Group("Status")]  public List<GameObject> Doors { get; private set; } = new();
-		[Sync, HostSync][Property, Group("Status")] public float Balance { get; set; } = 500f;
-		[Property, Group("Status")] public float Health { get; private set; } = 100f;
-		[Property, Group("Status")]  public float Hunger { get; private set; } = 100f;
-		[Property, Group("Status")]  public float MaxHealth { get; private set; } = 100f;
-		[Property, Group("Status")]  public float HungerMax { get; private set; } = 100f;
-		[Property, Group("Status")]  public bool Dead { get; private set; } = false;
-		[Property, Group("Status")]  public bool Starving { get; private set; } = false;
+		[Sync][Property, Group( "Status" )] public List<GameObject> Doors { get; private set; } = new();
+		[Sync, HostSync][Property, Group( "Status" )] public float Balance { get; set; } = 500f;
+		[Property, Group( "Status" )] public float Health { get; private set; } = 100f;
+		[Property, Group( "Status" )] public float Hunger { get; private set; } = 100f;
+		[Property, Group( "Status" )] public float MaxHealth { get; private set; } = 100f;
+		[Property, Group( "Status" )] public float HungerMax { get; private set; } = 100f;
+		[Property, Group( "Status" )] public bool Dead { get; private set; } = false;
+		[Property, Group( "Status" )] public bool Starving { get; private set; } = false;
 		[Property] private float _salaryTimerSeconds { get; set; } = 60f; // SalaryTimer in seconds
 		[Property] private float _starvingTimerSeconds { get; set; } = 20f;
 		private Chat _chat { get; set; }
@@ -71,8 +69,8 @@ namespace Sandbox.GameSystems.Player
 				Health = 0;
 				Hunger = 0;
 			}
-			if ( Health > MaxHealth) {Health = MaxHealth;}
-			if ( Hunger > HungerMax) {Hunger = HungerMax;}
+			if ( Health > MaxHealth ) { Health = MaxHealth; }
+			if ( Hunger > HungerMax ) { Hunger = HungerMax; }
 			if ( Dead )
 			{
 				// TODO: Make ragdolls and die
@@ -87,7 +85,7 @@ namespace Sandbox.GameSystems.Player
 		{
 			return _controller.GetPlayerByGameObjectId( GameObject.Id );
 		}
-		
+
 		/// <summary>
 		/// Updates the player's balance. If the amount is negative, it checks if the player can afford it. Returns false if the player can't afford it.
 		/// </summary>
@@ -126,7 +124,7 @@ namespace Sandbox.GameSystems.Player
 			foreach ( var door in Doors )
 			{
 				DoorLogic doorLogic = door.Components.Get<DoorLogic>();
-				doorLogic.SellDoor(this);
+				doorLogic.SellDoor( this );
 			}
 			SendMessage( "All doors have been sold." );
 		}

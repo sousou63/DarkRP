@@ -1,5 +1,4 @@
 ﻿using GameSystems;
-using Sandbox.UI;
 
 namespace Sandbox.GameSystems.Player;
 
@@ -8,9 +7,9 @@ namespace Sandbox.GameSystems.Player;
 /// </summary>
 public partial class Player : Component, Component.INetworkSpawn
 {
-	[Property, Group("References")] public PlayerHUD PlayerHud { get; set; }
-	[Property, Group("References")] public PlayerHUD PlayerTabMenu { get; set; }
-	[Property, Group("References")] public LeaderBoard LeaderBoard { get; set; }
+	[Property, Group( "References" )] public PlayerHUD PlayerHud { get; set; }
+	[Property, Group( "References" )] public PlayerHUD PlayerTabMenu { get; set; }
+	[Property, Group( "References" )] public LeaderBoard LeaderBoard { get; set; }
 	private CameraComponent _camera;
 	protected override void OnAwake()
 	{
@@ -27,8 +26,8 @@ public partial class Player : Component, Component.INetworkSpawn
 
 	protected override void OnStart()
 	{
-		GameController.Instance.AddPlayer( GameObject, GameObject.Network.OwnerConnection);
-		
+		GameController.Instance.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
+
 		OnStartMovement();
 
 		if ( !Network.IsProxy )
@@ -42,7 +41,7 @@ public partial class Player : Component, Component.INetworkSpawn
 	{
 		OnUpdateMovement();
 	}
-	
+
 	protected override void OnFixedUpdate()
 	{
 		OnFixedUpdateMovement();
@@ -57,6 +56,6 @@ public partial class Player : Component, Component.INetworkSpawn
 
 	public void OnNetworkSpawn( Connection owner )
 	{
-		OnNetworkSpawnOutfitter(owner);
+		OnNetworkSpawnOutfitter( owner );
 	}
 }

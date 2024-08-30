@@ -1,5 +1,3 @@
-using GameSystems;
-using GameSystems.Player;
 using Sandbox.Entity;
 using Sandbox.GameSystems.Player;
 
@@ -19,7 +17,7 @@ namespace Entity.Interactable.Door
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
 			// Dont interact with the door if it is locked
-			if ( IsUnlocked == false ) return;
+			if ( IsUnlocked == false ) { return; }
 
 			// Open / Close door
 			OpenCloseDoor( player );
@@ -42,11 +40,11 @@ namespace Entity.Interactable.Door
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
 			if ( player.Network.OwnerConnection.DisplayName == DoorOwner )
-			{ 
+			{
 				LockDoor();
-			} 
-			else 
-			{ 
+			}
+			else
+			{
 				KnockOnDoor();
 			}
 		}
@@ -54,13 +52,13 @@ namespace Entity.Interactable.Door
 		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) 
-			{ 
-				UnlockDoor(); 
-			} 
-			else 
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner )
 			{
-				KnockOnDoor(); 
+				UnlockDoor();
+			}
+			else
+			{
+				KnockOnDoor();
 			}
 		}
 
@@ -112,7 +110,7 @@ namespace Entity.Interactable.Door
 		[Broadcast]
 		private void OpenCloseDoor( GameObject player )
 		{
-			if ( Door == null ) return;
+			if ( Door == null ) { return; }
 			IsOpen = !IsOpen;
 
 			var currentRotation = Door.Transform.Rotation;

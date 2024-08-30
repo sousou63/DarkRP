@@ -1,4 +1,3 @@
-
 namespace Entity.Interactable.Props{
 	public interface IUndoable
 	{

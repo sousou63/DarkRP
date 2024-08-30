@@ -1,7 +1,8 @@
 using System;
 using GameSystems.Player;
 
-namespace GameSystems.Config {
+namespace GameSystems.Config
+{
 	/// <summary>
 	/// Represents a command with a name, description, permission level, and a function to execute.
 	/// </summary>

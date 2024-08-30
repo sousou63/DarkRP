@@ -1,9 +1,7 @@
-using Sandbox;
 using Sandbox.Entities.Interactable.Props;
 using Sandbox.Entity;
-using Sandbox.UI;
 
-namespace Entity.Interactable.Props 
+namespace Entity.Interactable.Props
 {
 	/// <summary>
 	/// A sealed class that manages the prop logic and interaction .
