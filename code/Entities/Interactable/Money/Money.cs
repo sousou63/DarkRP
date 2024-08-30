@@ -35,7 +35,7 @@ public sealed class Money : BaseEntity
         if (playerStats != null)
         {
             playerStats.UpdateBalance(Amount);
-            Sound.Play("audio/money.sound");
+            Sound.Play("audio/money.sound", Transform.World.Position);
             DestroyMoney();
         }
     }

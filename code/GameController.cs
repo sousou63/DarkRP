@@ -161,14 +161,8 @@ namespace GameSystems
 
 		public NetworkPlayer GetPlayerByName( string name )
 		{
-			foreach ( var player in Players )
-			{
-				if ( player.Value.Connection.DisplayName.StartsWith(name, StringComparison.OrdinalIgnoreCase) )
-				{
-					return player.Value;
-				}
-			}
-			return null;
+			return Players.Values.FirstOrDefault( 
+				player => player.Connection.DisplayName.StartsWith( name, StringComparison.OrdinalIgnoreCase ) );
 		}
 		
 		public NetworkPlayer GetMe()
@@ -178,14 +172,7 @@ namespace GameSystems
 
 		public NetworkPlayer GetPlayerBySteamID( ulong steamID )
 		{
-			foreach ( var player in Players )
-			{
-				if ( player.Value.Connection.SteamId == steamID )
-				{
-					return player.Value;
-				}
-			}
-			return null;
+			return Players.Values.FirstOrDefault( player => player.Connection.SteamId == steamID );
 		}
 
 		/// <summary>

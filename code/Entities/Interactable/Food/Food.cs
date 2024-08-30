@@ -14,7 +14,7 @@ public sealed class Food : BaseEntity
     /// <summary>
     /// Amount of Food this entity represents.
     /// </summary>
-    [Property, Sync] public int Amount { get; set; } = 100;
+    [Property, Sync] public int Amount { get; private set; } = 100;
 
     /// <summary>
     /// Called when the component is first created and added to a GameObject.
@@ -24,7 +24,6 @@ public sealed class Food : BaseEntity
     {
         EntityName = "Food";
         base.OnStart();
-
     }
 
     /// <summary>
@@ -39,7 +38,7 @@ public sealed class Food : BaseEntity
         if (playerStats != null)
         {
             playerStats.UpdateHunger(Amount);
-            Sound.Play(""); // TODO: sound of eating
+            Sound.Play("", Transform.World.Position); // TODO: sound of eating
             DestroyFood();
         }
     }

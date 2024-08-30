@@ -14,7 +14,6 @@ namespace Sandbox.GameSystems.Player
 		[Sync][Property, Group("Status")]  public List<GameObject> Doors { get; private set; } = new();
 
 		// BASE PLAYER PROPERTYS
-
 		[Sync, HostSync][Property, Group("Status")] public float Balance { get; set; } = 500f;
 
 		[Property, Group("Status")] public float Health { get; private set; } = 100f;
@@ -25,63 +24,55 @@ namespace Sandbox.GameSystems.Player
 		[Property, Group("Status")]  public bool Starving { get; private set; } = false;
 
 		// TIMER PROPERTYS
+		[Property] private float _salaryTimerSeconds { get; set; } = 60f; // SalaryTimer in seconds
+		[Property] private float _starvingTimerSeconds { get; set; } = 20f;
 
-		[Property] public float SalaryTimerSeconds { get; set; } = 60f; // SalaryTimer in seconds
-		[Property] public float StarvingTimerSeconds { get; set; } = 20f;
+		private Chat _chat { get; set; }
+		private GameController _controller { get; set; }
 
-		private Chat chat { get; set; }
-		private GameController controller { get; set; }
-
-		TimeSince lastUsed = 0; // Set the timer
-		TimeSince lastUsedFood = 0;
+		private TimeSince _lastUsed = 0; // Set the timer
+		private TimeSince _lastUsedFood = 0;
 
 		//Pereodiocal player data save in seconds
-		private TimeSince lastSaved = 0;
-		private static uint saveCooldown = 30;
+		private TimeSince _lastSaved = 0;
+		private static readonly uint _saveCooldown = 30;
+
 		// TODO add a "/sellallowneddoors" command to sell all doors owned by the player
 
 		private void OnStartStatus()
 		{
-			chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
-			if ( chat is null ) Log.Error( "Chat component not found" );
-			try
-			{
-				controller = GameController.Instance;
-			}
-			catch ( Exception e )
-			{
-				Log.Error( e );
-				return;
-			}
+			_chat = Scene.Directory.FindByName( "Screen" )?.First()?.Components.Get<Chat>();
+			if ( _chat is null ) { Log.Error( "Chat component not found" ); }
+			_controller = GameController.Instance;
 		}
 
 		private void OnFixedUpdateStatus()
 		{
-			if ( lastUsed >= SalaryTimerSeconds && (Network.IsOwner) )
+			if ( _lastUsed >= _salaryTimerSeconds && (Network.IsOwner) )
 			{
-				Balance += GameController.Instance.GetPlayerByGameObjectId( GameObject.Id ).Job.Salary; // add Salary to the player Money
+				Balance += GetNetworkPlayer().Job.Salary; // add Salary to the player Money
 				Sound.Play( "sounds/kenney/ui/ui.upvote.sound" ); // play a basic ui sound
-				lastUsed = 0; // reset the timer
+				_lastUsed = 0; // reset the timer
 			}
 
-			if ( lastSaved >= saveCooldown && (Networking.IsHost) )
+			if ( _lastSaved >= _saveCooldown && (Networking.IsHost) )
 			{
 
 				if ( GetNetworkPlayer() != null )
 				{
 					SavedPlayer.SavePlayer( new SavedPlayer( this.GetNetworkPlayer() ) );
-					lastSaved = 0; // reset the timer
+					_lastSaved = 0; // reset the timer
 				}
 
 			}
 
-			if ( lastUsedFood >= StarvingTimerSeconds && (Network.IsOwner) && (Starving) )
+			if ( _lastUsedFood >= _starvingTimerSeconds && (Network.IsOwner) && (Starving) )
 			{
 				if ( Hunger > 0 )
 				{
 					Hunger -= 1;
 				}
-				lastUsedFood = 0; // reset the timer
+				_lastUsedFood = 0; // reset the timer
 			}
 			if ( Health < 1 || Hunger < 1 )
 			{
@@ -103,7 +94,7 @@ namespace Sandbox.GameSystems.Player
 		/// <returns></returns>
 		public NetworkPlayer GetNetworkPlayer()
 		{
-			return controller.GetPlayerByGameObjectId( GameObject.Id );
+			return _controller.GetPlayerByGameObjectId( GameObject.Id );
 		}
 		
 		/// <summary>
@@ -141,9 +132,8 @@ namespace Sandbox.GameSystems.Player
 		public void SellAllDoors()
 		{
 			Log.Info( "Selling All " + Doors.Count + " doors" );
-			for (int i = 0; i < Doors.Count; i++)
+			foreach ( var door in Doors )
 			{
-				GameObject door = Doors[i];
 				DoorLogic doorLogic = door.Components.Get<DoorLogic>();
 				doorLogic.SellDoor(this);
 			}
@@ -170,7 +160,7 @@ namespace Sandbox.GameSystems.Player
 		{
 			using ( Rpc.FilterInclude( c => c.Id == GameObject.Network.OwnerId ) )
 			{
-				chat?.NewSystemMessage( message );
+				_chat?.NewSystemMessage( message );
 			}
 		}
 	}

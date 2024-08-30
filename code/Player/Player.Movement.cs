@@ -10,32 +10,36 @@ namespace Sandbox.GameSystems.Player;
 /// </summary>
 public partial class Player
 {
-	[Property, Group("Movement")] public CharacterController CharacterController { get; set; }
-	[Property, Group("Movement")] public Collider Collider { get; set; }
+	[Property, Group("Movement")] public bool EyesLocked { get; set; } = false;
 	[Property, Group("Movement")] public float WalkMoveSpeed { get; set; } = 190.0f;
 	[Property, Group("Movement")] public float NoClipSpeed { get; set; } = 250.0f;
 	[Property, Group("Movement")] public float RunMoveSpeed { get; set; } = 190.0f;
 	[Property, Group("Movement")] public float SprintMoveSpeed { get; set; } = 320.0f;
-
+	[Property, Group("Movement")] public Collider Collider { get; set; }
+	[Property, Group("Movement")] public CharacterController CharacterController { get; set; }
 	[Property, Group("Movement")] public CitizenAnimationHelper AnimationHelper { get; set; }
 
-	[Sync] public bool Crouching { get; set; }
-	[Sync] public Angles EyeAngles { get; set; }
-	[Sync] public Vector3 WishVelocity { get; set; }
-
 	[Sync, HostSync] public bool IsNoClip { get; set; }
+	[Sync] public Angles EyeAngles { get; set; }
+	[Sync] public bool _crouching { get; set; }
+	[Sync] private Vector3 _wishVelocity { get; set; }
 
-	[Property, Group("Movement")] public bool EyesLocked { get; set; } = false;
+	private bool _wishCrouch;
 
-	public bool WishCrouch;
-	public float EyeHeight = 64;
+	private float _eyeHeight = 64;
+
+	private RealTimeSince _lastGrounded;
+
+	private RealTimeSince _lastUngrounded;
+
+	private RealTimeSince _lastJump;
 
 	public void OnStartMovement()
 	{
 		// Get the Player connection object
 		// TODO better way to do it?
 		var controller = GameController.Instance;
-		if (controller is null) return;
+		if ( controller is null ) { return; }
 	}
 
 	void OnUpdateMovement()
@@ -51,8 +55,7 @@ public partial class Player
 
 	protected void OnFixedUpdateMovement()
 	{
-		if (IsProxy)
-			return;
+		if ( IsProxy ) { return; }
 		NoClipInput();
 		CrouchingInput();
 		MovementInput();
@@ -60,7 +63,7 @@ public partial class Player
 
 	private void MouseInput()
 	{
-		if (EyesLocked) return;
+		if ( EyesLocked ) { return; }
 		var e = EyeAngles;
 		e += Input.AnalogLook;
 		e.pitch = e.pitch.Clamp(-90, 90);
@@ -94,45 +97,34 @@ public partial class Player
 	{
 		get
 		{
-			if (Crouching) return WalkMoveSpeed * 0.5f;
-			if (IsNoClip)
-			{
-				if (Input.Down("run")) return NoClipSpeed * 2.5f;
-				return NoClipSpeed;
-			}
-			if (Input.Down("run")) return SprintMoveSpeed;
-			if (Input.Down("walk")) return WalkMoveSpeed;
+			if ( _crouching ) { return WalkMoveSpeed * 0.5f; }
+			if ( IsNoClip )	  { return NoClipSpeed * (Input.Down("run") ? 2.5f : 1f);}
+			if ( Input.Down( "run" ) )  { return SprintMoveSpeed; }
+			if ( Input.Down( "walk" ) ) { return WalkMoveSpeed; }
 
 			return RunMoveSpeed;
 		}
 	}
 
-	RealTimeSince lastGrounded;
-	RealTimeSince lastUngrounded;
-	RealTimeSince lastJump;
 
 	float GetFriction()
 	{
-		if (CharacterController.IsOnGround) return 6.0f;
-
-		// air friction
-		return 0.2f;
+		// Ground or air friction
+		return CharacterController.IsOnGround ? 6.0f : 0.2f;
 	}
 	private void MovementInput()
 	{
-		if (CharacterController is null)
-			return;
-
 		var cc = CharacterController;
+		if ( cc is null ) { return; }
 
 		Vector3 halfGravity = Scene.PhysicsWorld.Gravity * Time.Delta * 0.5f;
 
-		WishVelocity = Input.AnalogMove;
+		_wishVelocity = Input.AnalogMove;
 
 		if (IsNoClip)
 		{
 			cc.IsOnGround = false;
-			if (!WishVelocity.IsNearlyZero() || Input.Down("jump") || Input.Down("duck"))
+			if (!_wishVelocity.IsNearlyZero() || Input.Down("jump") || Input.Down("duck"))
 			{
 				// Convert input to a movement vector using EyeAngles
 				var forward = EyeAngles.ToRotation().Forward;
@@ -140,23 +132,23 @@ public partial class Player
 				var up = EyeAngles.ToRotation().Up;
 
 				// Invert the right vector to fix reversed left and right movement
-				WishVelocity = forward * WishVelocity.x - right * WishVelocity.y + up * WishVelocity.z;
+				_wishVelocity = forward * _wishVelocity.x - right * _wishVelocity.y + up * _wishVelocity.z;
 
 				// Add upward movement if jump is pressed
 				if (Input.Down("jump"))
 				{
-					WishVelocity += Vector3.Up;
+					_wishVelocity += Vector3.Up;
 				}
 				else if (Input.Down("duck"))
 				{
-					WishVelocity -= Vector3.Up;
+					_wishVelocity -= Vector3.Up;
 				}
 
-				WishVelocity = WishVelocity.ClampLength(1);
-				WishVelocity *= CurrentMoveSpeed;
+				_wishVelocity = _wishVelocity.ClampLength(1);
+				_wishVelocity *= CurrentMoveSpeed;
 
 				// Accelerate towards the desired velocity
-				cc.Velocity = cc.Velocity + (WishVelocity - cc.Velocity) * Time.Delta * 10.0f;
+				cc.Velocity += (_wishVelocity - cc.Velocity) * Time.Delta * 10.0f;
 			}
 
 			// Apply friction to the velocity
@@ -164,28 +156,28 @@ public partial class Player
 			cc.Velocity *= 1.0f - (friction * Time.Delta);
 			cc.Velocity = cc.Velocity.ClampLength(CurrentMoveSpeed);
 
-			cc.Transform.Position += WishVelocity * Time.Delta;
+			cc.Transform.Position += _wishVelocity * Time.Delta;
 			// cc.Move();
 			return;
 		}
 
 		// Normal movement logic
-		if (lastGrounded < 0.2f && lastJump > 0.3f && Input.Pressed("jump"))
+		if (_lastGrounded < 0.2f && _lastJump > 0.3f && Input.Pressed("jump"))
 		{
-			lastJump = 0;
+			_lastJump = 0;
 			cc.Punch(Vector3.Up * 300);
 		}
 
-		if (!WishVelocity.IsNearlyZero())
+		if (!_wishVelocity.IsNearlyZero())
 		{
-			WishVelocity = new Angles(0, EyeAngles.yaw, 0).ToRotation() * WishVelocity;
-			WishVelocity = WishVelocity.WithZ(0);
-			WishVelocity = WishVelocity.ClampLength(1);
-			WishVelocity *= CurrentMoveSpeed;
+			_wishVelocity = new Angles(0, EyeAngles.yaw, 0).ToRotation() * _wishVelocity;
+			_wishVelocity = _wishVelocity.WithZ(0);
+			_wishVelocity = _wishVelocity.ClampLength(1);
+			_wishVelocity *= CurrentMoveSpeed;
 
 			if (!cc.IsOnGround)
 			{
-				WishVelocity = WishVelocity.ClampLength(50);
+				_wishVelocity = _wishVelocity.ClampLength(50);
 			}
 		}
 
@@ -193,13 +185,13 @@ public partial class Player
 
 		if (cc.IsOnGround)
 		{
-			cc.Accelerate(WishVelocity);
+			cc.Accelerate(_wishVelocity);
 			cc.Velocity = CharacterController.Velocity.WithZ(0);
 		}
 		else
 		{
 			cc.Velocity += halfGravity;
-			cc.Accelerate(WishVelocity);
+			cc.Accelerate(_wishVelocity);
 		}
 
 		// Don't walk through other players, let them push you out of the way
@@ -228,19 +220,19 @@ public partial class Player
 
 		if (cc.IsOnGround)
 		{
-			lastGrounded = 0;
+			_lastGrounded = 0;
 		}
 		else
 		{
-			lastUngrounded = 0;
+			_lastUngrounded = 0;
 		}
 	}
 	float DuckHeight = (64 - 36);
 
 	bool CanUncrouch()
 	{
-		if (!Crouching) return true;
-		if (lastUngrounded < 0.2f) return false;
+		if ( !_crouching ) { return true; }
+		if ( _lastUngrounded < 0.2f ) { return false; }
 
 		var tr = CharacterController.TraceDirection(Vector3.Up * DuckHeight);
 		return !tr.Hit; // hit nothing - we can!
@@ -249,17 +241,16 @@ public partial class Player
 	public void CrouchingInput()
 	{
 		// Dont run if noclipping
-		if (IsNoClip) return;
-		WishCrouch = Input.Down("duck");
+		if ( IsNoClip ) { return; }
+		_wishCrouch = Input.Down("duck");
 
-		if (WishCrouch == Crouching)
-			return;
+		if ( _wishCrouch == _crouching ) { return; }
 
 		// crouch
-		if (WishCrouch)
+		if (_wishCrouch)
 		{
 			CharacterController.Height = 36;
-			Crouching = WishCrouch;
+			_crouching = _wishCrouch;
 
 			// if we're not on the ground, slide up our bbox so when we crouch
 			// the bottom shrinks, instead of the top, which will mean we can reach
@@ -268,36 +259,33 @@ public partial class Player
 			{
 				CharacterController.MoveTo(Transform.Position += Vector3.Up * DuckHeight, false);
 				Transform.ClearInterpolation();
-				EyeHeight -= DuckHeight;
+				_eyeHeight -= DuckHeight;
 			}
-
 			return;
 		}
 
 		// uncrouch
-		if (!WishCrouch)
+		if ( !_wishCrouch )
 		{
-			if (!CanUncrouch()) return;
+			if ( !CanUncrouch() ) { return; }
 
 			CharacterController.Height = 64;
-			Crouching = WishCrouch;
+			_crouching = _wishCrouch;
 			return;
 		}
-
-
 	}
 
 	private void UpdateCamera()
 	{
-		if (_camera is null) return;
+		if ( _camera is null ) { return; }
 
-		var targetEyeHeight = Crouching ? 28 : 64;
-		EyeHeight = EyeHeight.LerpTo(targetEyeHeight, RealTime.Delta * 10.0f);
+		var targetEyeHeight = _crouching ? 28 : 64;
+		_eyeHeight = _eyeHeight.LerpTo(targetEyeHeight, RealTime.Delta * 10.0f);
 
-		var targetCameraPos = Transform.Position + new Vector3(0, 0, EyeHeight);
+		var targetCameraPos = Transform.Position + new Vector3(0, 0, _eyeHeight);
 
 		// smooth view z, so when going up and down stairs or ducking, it's smooth af
-		if (lastUngrounded > 0.2f)
+		if (_lastUngrounded > 0.2f)
 		{
 			targetCameraPos.z = _camera.Transform.Position.z.LerpTo(targetCameraPos.z, RealTime.Delta * 25.0f);
 		}
@@ -310,23 +298,21 @@ public partial class Player
 	protected override void OnPreRender()
 	{
 		UpdateBodyVisibility();
-
-		if (IsProxy)
-			return;
+		if ( IsProxy ) { return; }
 
 		UpdateCamera();
 	}
 
 	private void UpdateAnimation()
 	{
-		if (AnimationHelper is null) return;
+		if ( AnimationHelper is null ) { return; }
 
-		var wv = WishVelocity.Length;
+		var wv = _wishVelocity.Length;
 
-		AnimationHelper.WithWishVelocity(WishVelocity);
+		AnimationHelper.WithWishVelocity(_wishVelocity);
 		AnimationHelper.WithVelocity(CharacterController.Velocity);
 		AnimationHelper.IsGrounded = CharacterController.IsOnGround;
-		AnimationHelper.DuckLevel = Crouching ? 1.0f : 0.0f;
+		AnimationHelper.DuckLevel = _crouching ? 1.0f : 0.0f;
 
 		AnimationHelper.MoveStyle = wv < 160f ? CitizenAnimationHelper.MoveStyles.Walk : CitizenAnimationHelper.MoveStyles.Run;
 
@@ -336,21 +322,21 @@ public partial class Player
 
 	private void UpdateBodyVisibility()
 	{
-		if (AnimationHelper is null)
-			return;
+		if ( AnimationHelper is null ) { return; }
 
 		var renderMode = ModelRenderer.ShadowRenderType.On;
-		if (!IsProxy) renderMode = ModelRenderer.ShadowRenderType.ShadowsOnly;
+		if ( !IsProxy )
+		{ 
+			renderMode = ModelRenderer.ShadowRenderType.ShadowsOnly;
+		}
 
 		AnimationHelper.Target.RenderType = renderMode;
 
 		foreach (var clothing in AnimationHelper.Target.Components.GetAll<ModelRenderer>(FindMode.InChildren))
 		{
-			if (!clothing.Tags.Has("clothing"))
-				continue;
+			if ( !clothing.Tags.Has( "clothing" ) ) { continue; }
 
 			clothing.RenderType = renderMode;
 		}
 	}
-
 }

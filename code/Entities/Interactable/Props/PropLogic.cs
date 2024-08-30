@@ -43,19 +43,19 @@ namespace Entity.Interactable.Props
 	/// </summary>
 	public class PropAction : IUndoable
 	{
-		private readonly PropToolManager propToolManager;
-		private GameObject prop { get; }
-		private string name { get; }
-		private Vector3 position { get; }
-		private Rotation rotation { get; }
+		private readonly PropToolManager _propToolManager;
+		private GameObject _prop { get; }
+		private string _name { get; }
+		private Vector3 _position { get; }
+		private Rotation _rotation { get; }
 
-		public PropAction( PropToolManager PropToolManager, GameObject Prop, string Name )
+		public PropAction( PropToolManager propToolManager, GameObject prop, string name )
 		{
-			propToolManager = PropToolManager;
-			prop = Prop;
-			position = Prop.Transform.Position;
-			rotation = Prop.Transform.Rotation;
-			name = Name;
+			_propToolManager = propToolManager;
+			_prop = prop;
+			_position = prop.Transform.Position;
+			_rotation = prop.Transform.Rotation;
+			_name = name;
 		}
 
 		/// <summary>
@@ -63,9 +63,9 @@ namespace Entity.Interactable.Props
 		/// </summary>
 		public void Undo()
 		{
-			prop.Destroy();
-			propToolManager.Props.Remove( prop );
-			propToolManager.Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Undo prop {name}" );
+			_prop.Destroy();
+			_propToolManager.Props.Remove( _prop );
+			_propToolManager.Screen?.Components.Get<PlayerHUD>()?.Notify( PlayerHUD.NotificationType.Info, $"Undo prop {_name}" );
 		}
 	}
 }

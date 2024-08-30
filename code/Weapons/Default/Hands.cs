@@ -1,5 +1,5 @@
 ﻿using System;
-using GameSystems.Player;
+using Sandbox.Player;
 using Sandbox.GameSystems.Player;
 using Scenebox;
 using static Sandbox.PhysicsContact;
@@ -20,6 +20,7 @@ namespace Sandbox.Weapons.Default
 		[Property] private float RotateSpeed { get; set; } = 1f;
 
 		[Property] private float HoldDistance { get; set; } = 55f;
+
 		private float _heldDistance;
 		private Rotation _heldRotation = Rotation.Identity;
 

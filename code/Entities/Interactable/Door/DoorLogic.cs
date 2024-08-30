@@ -8,18 +8,14 @@ namespace Entity.Interactable.Door
 	public sealed class DoorLogic : BaseEntity, Component.INetworkListener
 	{
 		[Property] public GameObject Door { get; set; }
+		[Property] public DoorMenu DoorMenu { get; set; }
 		[Property, Sync] public bool IsUnlocked { get; set; } = true;
 		[Property, Sync] public bool IsOpen { get; set; } = false;
-		public Player OwnerStats { get; set; }
-
-		[Sync, HostSync] public string DoorOwner { get; set; }
-
 		[Property, Sync] public int Price { get; set; } = 100;
+		[Sync, HostSync] public string DoorOwner { get; private set; }
+		[Sync, HostSync] public string DoorTitle { get; private set; }
 
-		[Property] DoorMenu DoorMenu { get; set; }
-
-		[Sync, HostSync] public string DoorTitle { get; set; } = "";
-
+		private Player _playerStats { get; set; }
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
@@ -46,19 +42,33 @@ namespace Entity.Interactable.Door
 		public override void InteractAttack1( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) { LockDoor(); } else { KnockOnDoor(); }
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner )
+			{ 
+				LockDoor();
+			} 
+			else 
+			{ 
+				KnockOnDoor();
+			}
 		}
 
 		public override void InteractAttack2( SceneTraceResult tr, GameObject player )
 		{
 			// TODO The user should have a "keys" weapon select to do the following interactions to avoid input conflicts
-			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) { UnlockDoor(); } else { KnockOnDoor(); }
+			if ( player.Network.OwnerConnection.DisplayName == DoorOwner ) 
+			{ 
+				UnlockDoor(); 
+			} 
+			else 
+			{
+				KnockOnDoor(); 
+			}
 		}
 
 
 		public void UpdateDoorOwner( Player playerStats = null )
 		{
-			OwnerStats = playerStats;
+			_playerStats = playerStats;
 		}
 
 		[Broadcast]
@@ -66,7 +76,7 @@ namespace Entity.Interactable.Door
 		{
 			if ( playerStats.UpdateBalance( -Price ) )
 			{
-				Sound.Play( "audio/notification.sound" );
+				Sound.Play( "audio/notification.sound", Door.Transform.World.Position );
 				playerStats.Doors.Add( Door );
 				UpdateDoorOwner( playerStats );
 
@@ -80,13 +90,7 @@ namespace Entity.Interactable.Door
 		[Broadcast]
 		public void SellDoor( Player playerStats ) //This Function does no longer removes the Door in Player.Stats or checks if it's done
 		{
-			if ( playerStats == null )
-			{
-
-				Log.Warning( "Trying to sell the door but playerstats not found" );
-
-				return;
-			}
+			if ( playerStats == null ) { return; }
 
 			IsUnlocked = true;
 			playerStats.Doors.Remove( this.Door );
@@ -133,7 +137,7 @@ namespace Entity.Interactable.Door
 		public void LockDoor()
 		{
 			IsUnlocked = false;
-			OwnerStats?.SendMessage( "Door has been locked." );
+			_playerStats?.SendMessage( "Door has been locked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 
@@ -141,7 +145,7 @@ namespace Entity.Interactable.Door
 		public void UnlockDoor()
 		{
 			IsUnlocked = true;
-			OwnerStats?.SendMessage( "Door has been unlocked." );
+			_playerStats?.SendMessage( "Door has been unlocked." );
 			Sound.Play( "audio/lock.sound", Door.Transform.World.Position );
 		}
 
