@@ -42,6 +42,9 @@
                     <button class="button @(IsInfoVisible ? "active" : "")" onclick="@DisplayInfo">
                         <i class="icon">info</i> Information
                     </button>
+                    <button class="button @(IsListVisible ? "active" : "")" onclick="@DisplayList">
+                        <i class="icon">list_alt</i> Player List
+                    </button>
                     <button class="button" onclick=@GitHubLink style="color:#4078c0;">
                         <i class="icon">web</i> @GitHub
                     </button>
@@ -106,7 +109,7 @@
                     @foreach (var group in JobProvider.JobGroups.Values)
                     {
                         <div class="section-job-group">
-                            <div class="section-job-titel" style="background-color: rgba(@(group.Color.r * 255), @(group.Color.g * 255), @(group.Color.b * 255), @(group.Color.a * 255))">@group.Name</div>
+                            <div class="section-job-titel" style="background-color: rgba(@(group.Color.r * 100 + 80), @(group.Color.g * 100 + 80), @(group.Color.b * 100 + 80), @(group.Color.a * 100 + 80))">@group.Name</div>
                             <div class="section-job-list">
                                 @foreach (var job in JobProvider.Jobs.Values.Where(x => x.Group == group))
                                 {
@@ -192,6 +195,29 @@
                 </div>
             </div>
 
+            <!-- Player list Section -->
+            <div class="section" style="display: @(IsListVisible ? "flex" : "none");">
+                <div class="section-title">Player List</div>
+                <div class="section-contents">
+                    <div class="info" style="color: white;">
+			                @foreach ( var player in GameController.Instance.Players )
+			                {
+                                        <div class="section-job-list" >
+                                            <div class="section-job button" onclick="@(() => SteamIdLink(player.Value.Connection.SteamId))">
+                                                <div class="avatar" style="background-image: url( avatar:@player.Value.Connection.SteamId )"></div>
+                                                <div class="label-container">
+                                                    <div class="label" style="color:@GetColorForUser( @player.Value, true )">@player.Value.Connection.DisplayName</div>
+                                                    <div class="description" style="color:rgba(120,120,120)">@GetJobNameForUser( @player.Value )</div>
+                                                    <div class="steamId" style="color:rgba(100,100,100)">@player.Value.Connection.SteamId</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            }
+                            
+                    </div>
+                </div>
+            </div>
+
             <!-- Admin Section -->
             <div class="section" style="display: @(IsAdminVisible ? "flex" : "none");">
                 <div class="section-title">Admin Tools</div>
@@ -213,8 +239,16 @@
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
     enum PrinterType { Bronze, Silver, Gold, Diamond }
-
     // Generic method to purchase a printer
+    private string GetJobNameForUser(NetworkPlayer p)
+	{
+		return p.Job.Name;
+	}
+
+	private string GetColorForUser(NetworkPlayer p, bool forceGroupColor = false)
+	{
+		return p.GetHighestUserGroup().Color.Hex;
+	}
     void BuyPrinter(PrinterType type, float price)
     {
         if (CurrentPrinter >= MaxPrinter)
@@ -382,7 +416,8 @@
          IsJobsVisible = false,
          IsInfoVisible = true,
          IsAdminVisible = false,
-         IsPropsVisible = false;
+         IsPropsVisible = false,
+         IsListVisible = false;
 
     void DisplaySection(string section)
     {
@@ -391,6 +426,7 @@
         IsInfoVisible = section == "Info";
         IsAdminVisible = section == "Admin";
         IsPropsVisible = section == "Props";
+        IsListVisible = section == "List";
 
         Sound.Play("audio/select.sound");
     }
@@ -400,6 +436,7 @@
     void DisplayInfo() { DisplaySection("Info"); }
     void DisplayAdmin() { DisplaySection("Admin"); }
     void DisplayProps() { DisplaySection("Props"); }
+    void DisplayList() { DisplaySection("List"); }
 
     string Discord = "Discord";
     string GitHub = "GitHub";
@@ -437,6 +474,19 @@
             Log.Error("Failed to copy to clipboard");
         }
     }
-
-    protected override int BuildHash() => System.HashCode.Combine(PropManager?.PropCount());
+    bool SteamIdLink(ulong id)
+    {
+        Sound.Play("audio/select.sound");
+        try
+        {
+            Clipboard.SetText(id.ToString());
+            return true;
+        }
+        catch
+        {
+            Log.Error("Failed to copy to clipboard");
+            return false;
+        }                               
+    }
+    protected override int BuildHash() => System.HashCode.Combine(GameController.Instance.Players, PropManager?.PropCount());
 }

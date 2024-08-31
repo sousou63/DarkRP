@@ -85,6 +85,8 @@
           "weapons/default/hands/hands.weapon",
           "weapons/default/camera/camera.weapon"
         ],
+        "_salaryTimerSeconds": 60,
+        "_starvingTimerSeconds": 20,
         "AnimationHelper": {
           "_type": "component",
           "component_id": "5188302b-98ca-4e87-b8c6-54ec5cc7fdd1",
@@ -108,12 +110,6 @@
         "InteractRange": 120,
         "InteractTag": "Interact",
         "InventoryVisibilityDelay": 3,
-        "LeaderBoard": {
-          "_type": "component",
-          "component_id": "a85a180c-7fbf-44df-a018-2d27256c984c",
-          "go": "ad6ed4b5-d799-468d-a0e1-546cb904eaa8",
-          "component_type": "LeaderBoard"
-        },
         "MaxHealth": 100,
         "NoClipSpeed": 500,
         "PlayerHud": {
@@ -129,10 +125,8 @@
           "component_type": "PlayerHUD"
         },
         "RunMoveSpeed": 175,
-        "SalaryTimerSeconds": 60,
         "SprintMoveSpeed": 300,
         "Starving": false,
-        "StarvingTimerSeconds": 20,
         "WalkMoveSpeed": 175
       },
       {
@@ -683,11 +677,6 @@
               "models/citizen_props/broom01.vmdl",
               "models/citizen_props/balloonregular01.vmdl"
             ]
-          },
-          {
-            "__type": "LeaderBoard",
-            "__guid": "a85a180c-7fbf-44df-a018-2d27256c984c",
-            "__enabled": false
           }
         ]
       },
