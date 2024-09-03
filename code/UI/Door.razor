@@ -1,5 +1,6 @@
 @using global::Entity.Interactable.Door
 @using global::GameSystems
+@using Sandbox.GameSystems.Player;
 @using Sandbox;
 @inherits PanelComponent
 
@@ -27,7 +28,10 @@
       }
       <div class="container">
         <div class="title">Owned by</div>
-        <div class="title">@(door.DoorOwners[0].Name)</div>
+        @foreach(Player player in door.DoorOwners)
+        {
+          <div class="title">@(player.Name)</div>
+        }
       </div>
 
       if (door.ShowTextIfOwner)
