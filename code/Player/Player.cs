@@ -11,6 +11,9 @@ public partial class Player : Component, Component.INetworkSpawn
 	[Property, Group( "References" )] public PlayerHUD PlayerTabMenu { get; set; }
 	[Property, Group( "References" )] public LeaderBoard LeaderBoard { get; set; }
 	private CameraComponent _camera;
+
+	public string Name {get; set;} 
+	
 	protected override void OnAwake()
 	{
 		_camera = Scene.GetAllComponents<CameraComponent>().FirstOrDefault( x => x.IsMainCamera );
@@ -26,8 +29,9 @@ public partial class Player : Component, Component.INetworkSpawn
 
 	protected override void OnStart()
 	{
-		GameController.Instance.AddPlayer( GameObject, GameObject.Network.OwnerConnection );
-
+		GameController.Instance.AddPlayer( GameObject, GameObject.Network.OwnerConnection);
+		Name = this.Network.OwnerConnection.DisplayName;
+		
 		OnStartMovement();
 
 		if ( !Network.IsProxy )

@@ -9,6 +9,7 @@ namespace Sandbox.GameSystems.Player
 	public partial class Player
 	{
 		[Sync][Property, Group( "Status" )] public List<GameObject> Doors { get; private set; } = new();
+		[Sync][Property, Group("Status")]  public List<GameObject> CanOwnDoors { get; private set; } = new();
 		[Sync, HostSync][Property, Group( "Status" )] public float Balance { get; set; } = 500f;
 		[Property, Group( "Status" )] public float Health { get; private set; } = 100f;
 		[Property, Group( "Status" )] public float Hunger { get; private set; } = 100f;
@@ -124,7 +125,14 @@ namespace Sandbox.GameSystems.Player
 			foreach ( var door in Doors )
 			{
 				DoorLogic doorLogic = door.Components.Get<DoorLogic>();
-				doorLogic.SellDoor( this );
+				doorLogic.RemoveDoorOwner(this);
+			}
+
+			for (int i = 0; i < CanOwnDoors.Count; i++)
+			{
+				GameObject door = CanOwnDoors[i];
+				DoorLogic doorLogic = door.Components.Get<DoorLogic>();
+				doorLogic.RemoveDoorOwner(this);
 			}
 			SendMessage( "All doors have been sold." );
 		}
