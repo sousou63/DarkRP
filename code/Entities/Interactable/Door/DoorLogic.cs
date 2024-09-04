@@ -14,6 +14,8 @@ namespace Entity.Interactable.Door
 		[Property] public bool IsOpen { get; set; } = false;
 		[Property] public bool IsOwnable {get; set;} = true;
 
+		Rotation originalRotation;
+
 		[Property, HostSync] public NetList<Player> DoorOwners {get; set;} = new();
 		[Property, HostSync] public NetList<Player> CanOwn {get; set;} = new();
 
@@ -24,6 +26,11 @@ namespace Entity.Interactable.Door
 
 		public bool ShowTextIfOwner {get; set;} = false;
 		public bool ShowTextIfCanOwn {get; set;} = false;
+
+		protected override void OnAwake()
+		{
+			originalRotation = Door.Transform.Rotation;
+		}
 
 		public override void InteractUse( SceneTraceResult tr, GameObject player )
 		{
@@ -144,8 +151,6 @@ namespace Entity.Interactable.Door
 		private void OpenCloseDoor(GameObject player)
 		{
 			if ( Door == null ) { return; }
-			IsOpen = !IsOpen;
-
 			var currentRotation = Door.Transform.Rotation;
 			var rotationIncrement = Rotation.From( 0, 90, 0 );
 
@@ -157,8 +162,10 @@ namespace Entity.Interactable.Door
 			var shouldOpenForward = dotProduct > 0;
 
 			Door.Transform.Rotation = IsOpen
-					? (shouldOpenForward ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse)
-					: (shouldOpenForward ? currentRotation * rotationIncrement.Inverse : currentRotation * rotationIncrement);
+					? (Door.Transform.Rotation = originalRotation)
+					: (shouldOpenForward ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse);
+
+			IsOpen = !IsOpen;
 
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
 		}
