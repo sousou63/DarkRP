@@ -4,111 +4,181 @@
 @using Entity.Interactable.Door;
 @using GameSystems.Player;
 @using Sandbox.GameSystems.Player;
+@using global::GameSystems
 @inherits PanelComponent
 
 <root>
 	@if (addingTitle)
 	{
 		<div class="titlebox">
-			<div class="title-container">
-				<label>Add door title</label>
+			<label>Add door title</label>
+				<TextEntry class="createtitle" @ref="AddTitle" onsubmit=@(() => ChangeDoorTitle()) value=@Door.DoorTitle></TextEntry>
+				<button class="confirmbutton" onclick=@(() => ChangeDoorTitle())>
+					<i class="icon" style="color: rgba(255, 255, 255, 0.841);">check</i>
+				</button>
+				<button class="closebutton" onclick=@(() => CloseDoorMenu())>
+					<i class="icon" style="color: rgba(255, 255, 255, 0.841);">close</i>
+				</button>
+
+		</div>
+	}
+		else if (addingOwner)
+		{
+			<div class="addownerclose">
+				<div class="addowner">
+					<div class="playerlistbox">Door Owners
+						<ul>
+							<li style="border-color: rgba(255, 255, 0, 0.227); border-width: 1px;">
+								@Door.DoorOwners[0].Name
+							</li>
+						@foreach(Player player in Door.DoorOwners.Skip(1))
+						{
+							<li onclick=@(() => RemoveDoorOwner(player))>
+								@player.Name
+							</li>
+						}
+						</ul>
+
+						<div class="canown"> Can own door
+						<ul>
+						@foreach(Player player in Door.CanOwn)
+						{
+							<li onclick=@(() => Door.RemoveDoorOwner(player))>
+								@player.Name
+							</li>
+						}
+						</ul>
+						</div>
+					</div>
+					<div class="playerlistbox">Players
+						<ul class="players">
+						@foreach(var player in GameController.Instance.Players)
+						{
+							if (!Door.IsDoorOwner(player.Value.GameObject.Components.Get<Player>()))
+							{
+								if (!Door.CanOwn.Contains(player.Value.GameObject.Components.Get<Player>()))
+								{
+									<li onclick=@(() => AddDoorOwner(player.Value))>
+										@player.Value.Connection.DisplayName
+									</li>
+								}
+							}
+						}
+						</ul>
+					</div>
+				</div>
+				<button class="closebutton" onclick=@(() => CloseDoorMenu())>
+					<i class="icon" style="color: rgba(255, 255, 255, 0.841);">close</i>
+				</button>
 			</div>
-			<TextEntry class="createtitle" @ref="AddTitle" onsubmit=@(() => ChangeDoorTitle()) value=@doorLogic.DoorTitle>
-			</TextEntry>
-			<button class="cancel-button" onclick=@(()=> CancelDoorTitle())>Cancel</button>
-		</div>
-	}
-	else
-	{
-		<div class="circle centerbutton @(doorLogic.IsUnlocked ? "unlocked" : "locked")" onclick=@(() =>
-		OnCenterButtonPressed())>
-			@if (doorLogic.IsUnlocked)
-			{
-				<i class="icon">lock_open</i>
-			}
-			else
-			{
-				<i class="icon">lock</i>
-			}
-		</div>
-		<div icon="titleicon.png" class="circle addtitlebutton" onclick=@(() => OnAddTitleButtonPressed())>
-			<i class="icon">text_fields</i>
-			<div class="tooltip">Title</div>
-		</div>
-		@* <div class="circle addownerbutton">
-			<i class="icon">group_add</i>
-			<div class="tooltip">Add Owner</div>
-		</div> *@
-		<div class="circle selldoorbutton" onclick=@(() => OnSellDoorButtonPressed())>
-			<i class="icon">payments</i>
-			<div class="tooltip">Sell</div>
-		</div>
-		@* <div class="circle upgradedoorbutton">
-			<i class="icon">upgrade</i>
-			<div class="tooltip">Upgrade</div>
-		</div> *@
-	}
+		}
+		else
+		{
+			<div class="circle centerbutton @(Door.IsUnlocked ? "unlocked" : "locked")" onclick=@(() => OnCenterButtonPressed())>
+				@if (Door.IsUnlocked)
+				{
+					<i class="icon">lock_open</i>
+				}
+				else
+				{
+					<i class="icon">lock</i>
+				}
+			</div>
+			<div icon="titleicon.png" class="circle addtitlebutton" onclick=@(() => OnAddTitleButtonPressed())>
+				<i class="icon">text_fields</i>
+			</div>
+			<div class="circle addownerbutton" onclick=@(() => OnAddOwnerButtonPressed())>
+				<i class="icon">group_add</i>
+			</div>
+			<div class="circle selldoorbutton" onclick=@(() => OnSellDoorButtonPressed())>
+				<i class="icon">payments</i>
+			</div>
+			<div class="circle upgradedoorbutton" onclick=@(() => OnUpgradeDoorButtonPressed())>
+				<i class="icon">upgrade</i>
+			</div>
+		}
+	
 
 </root>
 
 @code
 {
-	TextEntry AddTitle { get; set; }
-	GameObject Door { get; set; }
-	DoorLogic doorLogic { get; set; }
-
-	GameObject Player { get; set; }
-	Player playerStats { get; set; }
-
+	TextEntry AddTitle {get; set;}
+	DoorLogic Door { get; set; }
+	Player Player {get; set;}
 	bool addingTitle = false;
-	public void OpenDoorMenu(GameObject door, GameObject player)
-	{
+	bool addingOwner = false;
+
+
+    public void OpenDoorMenu(DoorLogic door, Player player)
+    {
 		this.Enabled = true;
-		Mouse.Position = new Vector2(Screen.Width / 2, Screen.Height / 2);
-		doorLogic = door.Components.Get<DoorLogic>();
+		Mouse.Position = new Vector2(Screen.Width/2, Screen.Height/2);
+		Door = door;
 		Player = player;
-		playerStats = player.Components.Get<Player>();
-	}
+    }
 
 	void OnCenterButtonPressed()
 	{
-		if (doorLogic.IsUnlocked)
+		if(Door.IsUnlocked)
 		{
-			doorLogic.LockDoor();
+			Door.LockDoor();
 		}
 		else
 		{
-			doorLogic.UnlockDoor();
+			Door.UnlockDoor();
 		}
 	}
 
 	void OnSellDoorButtonPressed()
 	{
-		doorLogic.SellDoor(playerStats);
+		Door.SellDoor(Player);
 		this.Enabled = false;
 	}
 
 	void OnAddTitleButtonPressed()
 	{
-		addingTitle = true;
+		if (Player == Door.DoorOwners[0]) addingTitle = true;
 	}
 
 	void ChangeDoorTitle()
 	{
-		doorLogic.SetDoorTitle(AddTitle.Text);
+		Door.SetDoorTitle(AddTitle.Text);
 		addingTitle = false;
 		this.Enabled = false;
 	}
 
-	void CancelDoorTitle()
+	void OnAddOwnerButtonPressed()
 	{
-		addingTitle = false;
+		if (Player == Door.DoorOwners[0]) addingOwner = true;
 	}
 
-	protected override void OnStart()
+	void AddDoorOwner(NetworkPlayer player)
+	{
+		if (player != null) Door.AddDoorOwner(player.GameObject.Components.Get<Player>());
+	}
+
+	void RemoveDoorOwner(Player player)
+	{
+		Door.RemoveDoorOwner(player);
+	}
+
+	void OnUpgradeDoorButtonPressed()
+	{
+	
+	}
+
+	void CloseDoorMenu()
 	{
 		this.Enabled = false;
+		addingTitle = false;
+		addingOwner = false;
 	}
+
+    protected override void OnStart()
+    {
+        this.Enabled = false;
+    }
 
 	protected override void OnTreeBuilt()
 	{
@@ -117,20 +187,18 @@
 			AddTitle.CaretColor = Color.Black;
 			AddTitle.MaxLength = 20;
 		}
-
 	}
 
 	protected override void OnUpdate()
 	{
-		if (Input.Released("Use Special") && !addingTitle)
+		if (Input.Released("Use Special") && !addingTitle && !addingOwner)
 		{
 			this.Enabled = false;
 		}
 
 		if (Input.EscapePressed)
 		{
-			this.Enabled = false;
-			addingTitle = false;
+			CloseDoorMenu();
 		}
 	}
 
@@ -138,5 +206,5 @@
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine(addingTitle);
+	protected override int BuildHash() => System.HashCode.Combine( addingTitle, Door.DoorOwners.Count, Door.CanOwn.Count, Door.IsUnlocked);
 }

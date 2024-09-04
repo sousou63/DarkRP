@@ -13,26 +13,32 @@ DoorMenu {
 
 	.circle {
 		position: absolute;
-		height: 100px;
-		width: 100px;
+		height: 70px;
+		width: 70px;
 		border-radius: 50%;
-		background-color: #1e1e1e;
+		background-color: #24292ff4;
 		opacity: 1;
 		transition: all 0.2s ease;
 		display: flex;
 		color: #727272;
+		cursor: pointer;
 
-		&:hover {
-			background-color: #343434;
+		&:hover{
+			background-color: #2b3138f4;
+		}
+		&:active
+		{
+			background-color: #1e2227f4;
 		}
 
-		.icon {
-			width: 100px;
-			height: 100px;
+		.icon
+		{
+			width: 70px;
+			height: 70px;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-			font-size: 60px;
+			font-size: 40px;
 		}
 
 		.tooltip {
@@ -82,43 +88,47 @@ DoorMenu {
 		}
 	}
 
-	.addtitlebutton {
-		transform: translateY(-150px);
+	.addtitlebutton
+	{
+		transform: translateY(-100px);
 
-		&:hover {
-			transform: translateY(-150px) scale(1.1);
+		&:hover{
+			transform: translateY(-100px) scale(1.1);
 		}
 
 	}
 
-	.addownerbutton {
-		transform: translateX(150px);
+	.addownerbutton
+	{
+		transform: translateX(100px);
 
-		&:hover {
-			transform: translateX(150px) scale(1.1);
+		&:hover{
+			transform: translateX(100px) scale(1.1);
 		}
 	}
 
-	.selldoorbutton {
-		transform: translateY(150px);
+	.selldoorbutton
+	{
+		transform: translateY(100px);
 
-		&:hover {
-			transform: translateY(150px) scale(1.1);
+		&:hover{
+			transform: translateY(100px) scale(1.1);
 		}
 	}
 
-	.upgradedoorbutton {
-		transform: translateX(-150px);
+	.upgradedoorbutton
+	{
+		transform: translateX(-100px);
 
-		&:hover {
-			transform: translateX(-150px) scale(1.1);
+		&:hover{
+			transform: translateX(-100px) scale(1.1);
 		}
 	}
 
 	.titlebox {
 		position: relative;
-		width: 300px;
-		height: 200px;
+		width: 500px;
+		height: 100px;
 		background-color: #1e1e1e;
 		justify-content: center;
 		align-items: center;
@@ -127,46 +137,37 @@ DoorMenu {
 		color: white;
 		gap: 5px;
 		text-overflow: ellipsis;
-		padding: 15px;
 
-		label {
-			font-size: 20px;
+		.closebutton
+		{
+			margin-left: 118%;
 		}
 
-		.cancel-button {
-			background-color: #1e1e1e;
-			color: #E57473;
-			border-radius: 5px;
-			border: none;
-			cursor: pointer;
-			transition: all 0.2s ease;
-			padding: 5px;
-			margin-top: 5px;
-	
-			&:hover {
-				background-color: #343434;
-			}
+		.confirmbutton
+		{
+			margin-left: 103%;
 		}
 	}
 
-	.createtitle {
-		width: 100%;
-		background-color: #c9c9c9;
-		border-radius: 5px;
-		padding: 0;
-		color: black;
+	.createtitle
+	{
+		width: 90%;
+		height: 50px;
+		background-color:white;
+		border-radius: 10px;
 		flex-direction: column;
+		font-size: 20px;
+
+		label
+		{
+			position: absolute;
+			align-items: center;
+			color: black;
+		}
 	}
 
-	.title-container {
-		width: 100%;
-		flex: 0.6;
-		justify-content: center;
-		display: flex;
-
-	}
-	
-	.icon {
+	.icon
+	{
 		width: 60px;
 		height: 60px;
 		justify-content: center;
@@ -175,5 +176,148 @@ DoorMenu {
 		font-size: 60px;
 		opacity: 1;
 	}
+
+	.addownerclose
+	{
+		position: relative;
+		width: 40%;
+		height: 50%;
+		justify-content: center;
+		overflow: visible;
+		gap: 10px;
+
+		.closebutton
+		{
+			margin-left: 96%;
+		}
+	}
+
+	.closebutton
+	{
+		position: absolute;
+		justify-content: center;
+		align-items: center;
+		height: 60px;
+		width: 60px;
+		border-radius: 15px;
+		background-color: #b51c1cf0;
+		cursor: pointer;
+		margin-left: 96%;
+
+		&:hover
+		{
+			background-color: #c71f1ff2;
+			transform: scale(1.1);
+			transition: all 0.2s ease;
+		}
+		&:active
+		{
+			background-color: #bb1e1ef2;
+		}
+	}
+
+	.confirmbutton
+	{
+		position: absolute;
+		justify-content: center;
+		align-items: center;
+		height: 60px;
+		width: 60px;
+		border-radius: 15px;
+		background-color: #3db51cf0;
+		cursor: pointer;
+		margin-left: 96%;
+
+		&:hover
+		{
+			background-color: #41c01ef0;
+			transform: scale(1.1);
+			transition: all 0.2s ease;
+		}
+		&:active
+		{
+			background-color: #3aaa1bf0;
+		}
+	}
+
+	.addowner
+	{
+		position: relative;
+		width: 90%;
+		height: 100%;
+		background-color: #24292ff4;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		border-radius: 2px;
+		color: white;
+
+	}
+
+	.playerlistbox
+	{
+		position: relative;
+		width: 45%;
+		height: 90%;
+		background-color: #24292ff4;
+		border-radius: 2px;
+		align-items: center;
+		box-shadow: 2px 2px 30px 1px #000000;
+		flex-direction: column;
+
+		ul
+		{
+			flex-direction: column;
+			width: 90%;
+			align-items: center;
+			overflow-y: scroll;
+			height: 60%;
+		}
+
+		li
+		{
+			margin-top: 10px;
+			background-color: #1b1e22f4;
+			min-height: 32px;
+			width: 90%;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			border-width: 0;
+
+			label
+			{
+				border-bottom: 0;
+			}
+		}
+
+		.players
+		{
+			height: 90%;
+		}
+	}
+
+	.canown
+	{
+		border-radius: 3px;
+		text-align: center;
+		align-items: center;
+		position: absolute;
+		width: 90%;
+		height: 30%;
+		background-color: #24292ff4;
+		border-width: 1px;
+		border-color: rgb(62, 62, 62);
+		flex-direction: column;
+		bottom: 10px;
+		
+		label
+		{
+			border-color: rgb(62, 62, 62);
+			border-bottom: 1px;
+		}
+
+	}
+
 
 }

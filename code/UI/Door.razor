@@ -1,40 +1,62 @@
 @using global::Entity.Interactable.Door
+@using global::GameSystems
+@using Sandbox.GameSystems.Player;
 @using Sandbox;
 @inherits PanelComponent
 
 
 <root class="root">
-  @if (DoorProperties.DoorOwner == null)
-  {
-    <div class="container">
-      <div class="title">For Sale</div>
-      <div class="sub-title">$@(DoorProperties?.Price.ToString("N0"))</div>
-    </div>
-    <div class="container">
-      <div class="sub-title">Press R to purchase</div>
-    </div>
-  }
-  else
-  {
-    if (DoorProperties.DoorTitle != "")
+  @if (!door.IsOwnable) return;
+
+    @if (door != null && !door.IsDoorOwned())
     {
-      <div class="container title-container">
-        <div class="title">@(DoorProperties.DoorTitle)</div>
+      <div class="container">
+        <div class="title">For Sale</div>
+        <div class="sub-title">$@(door?.Price.ToString("N0"))</div>
+      </div>
+      <div class="container">
+        <div class="sub-title">Press R to purchase</div>
       </div>
     }
+    else
+    {
+      if (door.DoorTitle != "")
+      {
+        <div class="container">
+          <div class="title">@(door.DoorTitle)</div>
+        </div>
+      }
+      <div class="container">
+        <div class="title">Owned by</div>
+        @foreach(Player player in door.DoorOwners)
+        {
+          <div class="title">@(player.Name)</div>
+        }
+      </div>
 
-    <div class="container">
-      <div class="title">Owned by</div>
-      <div class="sub-title">@(DoorProperties.DoorOwner)</div>
-    </div>
-    <div class="container">
-      <div class="sub-title">Hold R to open menu</div>
-    </div>
-  }
+      if (door.ShowTextIfOwner)
+      {
+        <div class="container">
+          <div class="sub-title">Hold R to open menu</div>
+          <div class="sub-title">Press Mouse1 to lock</div>
+          <div class="sub-title">Press Mouse2 to unlock</div>
+        </div>
+      } 
+
+      if (door.ShowTextIfCanOwn)
+      {
+        <div class="container">
+          <div class="sub-title">You can own this door</div>
+        </div>
+      } 
+      
+
+    }
 </root>
 
 <style>
   .root {
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -68,20 +90,19 @@
 </style>
 @code
 {
-  DoorLogic DoorProperties { get; set; }
-  [Property]
-  public GameObject DoorPrefab { get; set; }
+  DoorLogic door { get; set; }
+  [Property] public GameObject DoorPrefab { get; set; }
 
   protected override void OnStart()
   {
-    DoorProperties = DoorPrefab.Components.Get<DoorLogic>();
+    door = DoorPrefab.Components.Get<DoorLogic>();
+    Log.Info(door);
   }
 
 
   /// <summary>
   /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
   /// </summary>
-  protected override int BuildHash() => System.HashCode.Combine(
-  DoorProperties?.IsOpen, DoorProperties?.IsUnlocked, DoorProperties?.Price, DoorProperties?.DoorTitle,
-  DoorProperties.DoorOwner);
+  protected override int BuildHash() => System.HashCode.Combine(door?.DoorOwners.Count,
+  door?.IsOpen, door?.IsUnlocked, door?.Price, door?.DoorTitle, door.ShowTextIfCanOwn);
 }
