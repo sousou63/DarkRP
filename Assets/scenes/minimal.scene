@@ -2081,7 +2081,7 @@
           "__guid": "3dd41e0a-6a39-41d9-b790-86bdc04c10df",
           "Flags": 0,
           "Name": "door (15)",
-          "Position": "1594.642,-839.7462,-263.4379",
+          "Position": "1594.642,-839.7463,-263.4379",
           "Rotation": "0,0,-0.7071067,0.7071068",
           "Scale": "1,1.31647,1.380445",
           "Tags": "interact",
@@ -2164,6 +2164,15 @@
           "__PrefabVariables": {}
         }
       ]
+    },
+    {
+      "__guid": "8efea9d7-428e-48ba-8acb-406f2fd0ef6a",
+      "Flags": 0,
+      "Name": "atm",
+      "Position": "522.0149,-1593.512,201.0187",
+      "Enabled": true,
+      "__Prefab": "prefab/atm.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

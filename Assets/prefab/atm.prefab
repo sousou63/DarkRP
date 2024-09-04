@@ -1,0 +1,84 @@
+{
+  "RootObject": {
+    "__guid": "c22459b3-bd16-4dce-a0fd-a50eca86179a",
+    "Flags": 0,
+    "Name": "atm",
+    "Tags": "interact",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.HighlightOutline",
+        "__guid": "4c520a1d-93e7-49e2-9816-231be2e085e5",
+        "Color": "1,1,1,0",
+        "InsideColor": "0,0,0,0",
+        "InsideObscuredColor": "0,0,0,0",
+        "ObscuredColor": "0,0,0,0",
+        "Width": 0.25
+      },
+      {
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "11241f57-4000-4a46-902f-390a9b75c230",
+        "Center": "0,0,18.23999",
+        "IsTrigger": false,
+        "Scale": "43.59996,50,86.32003",
+        "Static": false
+      },
+      {
+        "__type": "AtmLogic",
+        "__guid": "857f8055-54d9-4460-a960-7be3b2e6cbd1",
+        "AtmMenu": {
+          "_type": "component",
+          "component_id": "00c239d3-0e2c-4acc-832a-e85e2dbe0a42",
+          "go": "c22459b3-bd16-4dce-a0fd-a50eca86179a",
+          "component_type": "AtmMenu"
+        },
+        "CanBePickedUp": false,
+        "EntityName": "Atm",
+        "Health": 100
+      },
+      {
+        "__type": "AtmMenu",
+        "__guid": "00c239d3-0e2c-4acc-832a-e85e2dbe0a42",
+        "__enabled": false
+      },
+      {
+        "__type": "Sandbox.ScreenPanel",
+        "__guid": "d38aeb9c-cc71-4cae-b417-148c82aae580",
+        "AutoScreenScale": true,
+        "Opacity": 1,
+        "Scale": 1,
+        "ScaleStrategy": "ConsistentHeight",
+        "ZIndex": 100
+      }
+    ],
+    "Children": [
+      {
+        "__guid": "96186376-2bd7-475f-af86-6856796f326b",
+        "Flags": 0,
+        "Name": "Body",
+        "Rotation": "-0,0,-1,-0.00000004371139",
+        "Scale": "2.277872,2.277872,2.277872",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "e7c9e958-2fde-4f18-86d3-fc3b0e909608",
+            "BodyGroups": 18446744073709551615,
+            "Model": "models/3dmodelscc0/cityenvpack1/atm/atm.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ],
+    "__variables": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__references": [
+    "titanovsky.sbox_atm"
+  ],
+  "__version": 1
+}
