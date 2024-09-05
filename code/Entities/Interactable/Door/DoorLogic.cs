@@ -2,6 +2,7 @@
 using Sandbox.Entity;
 using Sandbox.GameSystems.Player;
 using Entity.Interactable.Door;
+using System;
 
 
 namespace Entity.Interactable.Door
@@ -96,7 +97,7 @@ namespace Entity.Interactable.Door
 				ShowCanOwn(false);
 			}
 			
-			if (DoorOwners.Count == 0)
+			if (DoorOwners.Count == 1)
 			{
 				UnlockDoor();
 				SetDoorTitle("");
@@ -151,23 +152,72 @@ namespace Entity.Interactable.Door
 		private void OpenCloseDoor(GameObject player)
 		{
 			if ( Door == null ) { return; }
-			var currentRotation = Door.Transform.Rotation;
-			var rotationIncrement = Rotation.From( 0, 90, 0 );
+			float yaw = Door.Transform.Rotation.Yaw();
+			Rotation rotationIncrement = Rotation.From( 0, 3, 0 );
 
-			var directionToDoor = (Door.Transform.Position - player.Transform.Position).Normal;
+			Vector3 directionToDoor = (Door.Transform.Position - player.Transform.Position).Normal;
 
-			var forward = Door.Transform.Rotation.Forward;
-			var dotProduct = Vector3.Dot( forward, directionToDoor );
+			Vector3 forward = Door.Transform.Rotation.Forward;
+			float dotProduct = Vector3.Dot( forward, directionToDoor );
 
 			var shouldOpenForward = dotProduct > 0;
 
-			Door.Transform.Rotation = IsOpen
-					? (Door.Transform.Rotation = originalRotation)
-					: (shouldOpenForward ? currentRotation * rotationIncrement : currentRotation * rotationIncrement.Inverse);
-
-			IsOpen = !IsOpen;
+			if ( IsOpen )
+			{
+				_rotationIncrement = yaw > originalRotation.Yaw() ? rotationIncrement.Inverse : rotationIncrement;
+				close = true;
+			}
+			else
+			{
+				_rotationIncrement = shouldOpenForward ? rotationIncrement : rotationIncrement.Inverse;
+				open = true;
+			}
 
 			Sound.Play( "audio/door.sound", Door.Transform.World.Position );
+		}
+
+		bool open = false;
+		bool close = false;
+
+		Rotation _rotationIncrement;
+
+		protected override void OnFixedUpdate()
+		{
+			base.OnFixedUpdate();
+			
+			if (open)
+			{
+				float yaw = Door.Transform.Rotation.Yaw();
+				
+				if (yaw < originalRotation.Yaw() + 90 && yaw > originalRotation.Yaw() - 90)
+				{
+					Door.Transform.Rotation *= _rotationIncrement;
+				}
+				else
+				{
+					IsOpen = true;
+					open = false;
+				}
+
+				
+			}
+
+			if (close)
+			{
+				float yaw = Door.Transform.Rotation.Yaw();
+
+				if (yaw < originalRotation.Yaw() + 3 && yaw > originalRotation.Yaw() - 3)
+				{
+					Door.Transform.Rotation = originalRotation;
+					IsOpen = false;
+					close = false;
+				}
+				else
+				{
+					Door.Transform.Rotation *= _rotationIncrement;
+				}
+			}
+
 		}
 
 
