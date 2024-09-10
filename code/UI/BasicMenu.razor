@@ -10,6 +10,8 @@
 @using global::GameSystems.Jobs
 @using Sandbox.Entities.Interactable.Props
 @using Sandbox.GameSystems.Player
+@using Sandbox.Resources
+@using Utils
 
 @inherits PanelComponent;
 
@@ -57,45 +59,18 @@
                 <div class="section-title">Dark Web</div>
                 <div class="section-contents">
 
-                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Bronze, 500))>
-                        <div class="icon" style="background-color: #A52A2A"></div>
-                        <div class="label-container">
-                            <div class="label">Bronze Printer</div>
-                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">Slow</span>
-                            <div class="price">$500</div>
-                        </div>
-                    </div>
-
-                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Silver, 1200))>
-                        <div class="icon" style="background-color: #DCDCDC"></div>
-                        <div class="label-container">
-                            <div class="label">Silver Printer</div>
-                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">Average</span>
-                            <div class="price">$1,200</div>
-                        </div>
-                    </div>
-
-                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Gold, 2600))>
-                        <div class="icon" style="background-color: #FFD700"></div>
-                        <div class="label-container">
-                            <div class="label">Gold Printer</div>
-                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">Fast</span>
-                            <div class="price">$2,600</div>
-                        </div>
-                    </div>
-
-                    <div class="button" onclick=@(() => BuyPrinter(PrinterType.Diamond, 4200))>
-                        <div class="icon" style="background-color: #40E0D0"></div>
-                        <div class="label-container">
-                            <div class="label">Diamond Printer</div>
-                            <span class="description">@CurrentPrinter / @MaxPrinter</span>
-                            <span class="description">Super-fast</span>
-                            <div class="price">$4,200</div>
-                        </div>
-                    </div>
+	                @foreach ( var printer in PrinterProvider.GetOrderedPrinterTypes() )
+	                {
+		                <div class="button" onclick=@(() => BuyPrinter(printer))>
+			                <div class="icon" style="background-color:@printer.DisplayColor.Hex"></div>
+			                <div class="label-container">
+				                <div class="label">@printer.Name</div>
+				                <span class="description">@CurrentPrinter / @MaxPrinter</span>
+				                <span class="description">@printer.Description</span>
+				                <div class="price">$@(NumberUtils.FormatNumberWithSuffix(printer.Price))</div>
+			                </div>
+		                </div>
+	                }
                 </div>
             </div>
 
@@ -212,10 +187,9 @@
     // Everything related to printers
     int MaxPrinter = 5;
     int CurrentPrinter = 0;
-    enum PrinterType { Bronze, Silver, Gold, Diamond }
 
     // Generic method to purchase a printer
-    void BuyPrinter(PrinterType type, float price)
+    void BuyPrinter(PrinterResource printerResource)
     {
         if (CurrentPrinter >= MaxPrinter)
         {
@@ -223,7 +197,7 @@
             return;
         }
 
-        if (!Player.UpdateBalance(-price))
+        if (!Player.UpdateBalance(-printerResource.Price))
         {
             return; // Not enough money, error sound is handled elsewhere
         }
@@ -232,7 +206,7 @@
         GameObject printer = PrinterPrefab.Clone(playerPos);
 
         // Set the printer type directly using a mapping if needed
-        printer.Components.Get<PrinterLogic>().SetPrinterType((PrinterLogic.PrinterType)type);
+        printer.Components.Get<PrinterLogic>().SetPrinterType(printerResource);
 
         printer.NetworkSpawn(); // It spawns on all clients
         CurrentPrinter++;

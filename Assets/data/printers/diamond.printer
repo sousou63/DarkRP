@@ -1,0 +1,12 @@
+{
+  "Name": "Diamond Printer",
+  "Description": "Super-fast",
+  "DisplayColor": "0.25098,0.87843,0.81569,1",
+  "Price": 4800,
+  "Order": 3,
+  "ModelColor": "0,0.85098,1,1",
+  "Material": "materials/darkrp_main/moneyprinter/base/diamond/clean_version/moneyprinter_base_diamond_clean.vmat",
+  "Timer": 5,
+  "__references": [],
+  "__version": 0
+}

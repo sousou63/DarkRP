@@ -1,0 +1,12 @@
+{
+  "Name": "Bronze Printer",
+  "Description": "Slow",
+  "DisplayColor": "0.64706,0.16471,0.16471,1",
+  "Price": 500,
+  "Order": 0,
+  "ModelColor": "0.33725,0.07843,0,1",
+  "Material": "materials/darkrp_main/moneyprinter/base/bronze/moneyprinter_base_bronze.vmat",
+  "Timer": 20,
+  "__references": [],
+  "__version": 0
+}

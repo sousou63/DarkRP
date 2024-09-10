@@ -1,32 +1,20 @@
 using Sandbox.Entity;
 using Sandbox.GameSystems.Player;
+using Sandbox.Resources;
 
 namespace Entity.Interactable.Printer
 {
-	public sealed class PrinterConfiguration
-	{
-		public Color Color { get; set; }
-		public Material Material { get; set; }
-		public float Price { get; set; }
-		/// <summary>
-		/// The timer for the printer to generate money in seconds
-		/// </summary>
-		public float Timer { get; set; }
-	}
 	public sealed class PrinterLogic : BaseEntity
 	{
 		[Property] public GameObject PrinterFan { get; set; }
 		[Property] public float PrinterFanSpeed { get; set; } = 1000f;
-		[Property] public Dictionary<PrinterType, PrinterConfiguration> PrinterConfig = new();
 		[Property, Sync] public float PrinterCurrentMoney { get; set; } = 0f;
 		[Property] public float PrinterTimerMoney { get; set; } = 25f;
 		[Property] public float PrinterMaxMoney { get; set; } = 8000f;
-		// Define the different types of printers
-		public enum PrinterType { Bronze, Silver, Gold, Diamond };
 
 		private TimeSince _lastUsed = 0; // Set the timer
 
-		private PrinterType _currentPrinterType; // Store the current printer type
+		private PrinterResource _currentPrinterType; // Store the current printer resource
 
 		/// <summary>
 		/// Interact with the printer. This comes from the IInteractable interface inherited from the Interactable class.
@@ -71,9 +59,9 @@ namespace Entity.Interactable.Printer
 		}
 
 		// Method to set the current printer type and update its color
-		public void SetPrinterType( PrinterType type )
+		public void SetPrinterType( PrinterResource resource )
 		{
-			_currentPrinterType = type;
+			_currentPrinterType = resource;
 			// Automatically update the color when the printer type is set
 			UpdatePrinterColor();
 		}
@@ -87,22 +75,13 @@ namespace Entity.Interactable.Printer
 		// Method to get the correct timer based on the printer type
 		private float GetPrinterTimer()
 		{
-			if ( PrinterConfig.TryGetValue( _currentPrinterType, out var config ) )
-			{
-				return config.Timer;
-			}
-			return 60f; // Default timer, in case something goes wrong
+			return _currentPrinterType.Timer;
 		}
 
 		// Method to update the printer color based on the printer type
 		private void UpdatePrinterColor()
 		{
-			Color newColor = Color.White;
-
-			if ( PrinterConfig.TryGetValue( _currentPrinterType, out var config ) )
-			{
-				newColor = config.Color;
-			}
+			Color newColor = _currentPrinterType.ModelColor;
 
 			// Assuming there's a component responsible for rendering the model
 			var ModelRenderer = GameObject.Components.Get<ModelRenderer>();
@@ -114,7 +93,7 @@ namespace Entity.Interactable.Printer
 
 			ModelRenderer.Tint = newColor;
 			// PrinterFan.Components.Get<ModelRenderer>().Tint = newColor;
-			ModelRenderer.MaterialOverride = config.Material;
+			ModelRenderer.MaterialOverride = _currentPrinterType.Material;
 		}
 	}
 }

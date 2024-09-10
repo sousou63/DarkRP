@@ -1,0 +1,12 @@
+{
+  "Name": "Silver Printer",
+  "Description": "Average",
+  "DisplayColor": "0.86275,0.86275,0.86275,1",
+  "Price": 1200,
+  "Order": 1,
+  "ModelColor": "0.94902,0.94118,0.93725,1",
+  "Material": "materials/darkrp_main/moneyprinter/base/silver/moneyprinter_base_silver.vmat",
+  "Timer": 15,
+  "__references": [],
+  "__version": 0
+}

@@ -1,0 +1,12 @@
+{
+  "Name": "Gold Printer",
+  "Description": "Fast",
+  "DisplayColor": "1,0.84314,0,1",
+  "Price": 2600,
+  "Order": 2,
+  "ModelColor": "1,0.78431,0,1",
+  "Material": "materials/darkrp_main/moneyprinter/base/gold/moneyprinter_base_gold.vmat",
+  "Timer": 10,
+  "__references": [],
+  "__version": 0
+}
