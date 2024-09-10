@@ -9,7 +9,6 @@ public partial class Player : Component, Component.INetworkSpawn
 {
 	[Property, Group( "References" )] public PlayerHUD PlayerHud { get; set; }
 	[Property, Group( "References" )] public PlayerHUD PlayerTabMenu { get; set; }
-	[Property, Group( "References" )] public LeaderBoard LeaderBoard { get; set; }
 	private CameraComponent _camera;
 
 	public string Name {get; set;} 
@@ -23,7 +22,6 @@ public partial class Player : Component, Component.INetworkSpawn
 			// TODO: This should be moved off of the player and moved globally
 			PlayerHud.Enabled = true;
 			PlayerTabMenu.Enabled = true;
-			LeaderBoard.Enabled = true;
 		}
 	}
 
