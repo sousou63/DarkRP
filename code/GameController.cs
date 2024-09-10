@@ -19,7 +19,8 @@ namespace GameSystems
 			76561199092626415, // Mangro
 			76561198243368782,  // Dada
 			76561198071517597, // Red
-			76561198047807813 // Dimmer
+			76561198047807813, // Dimmer
+			76561197992814320  // Fnasp
 		};
 		private static GameController _instance;
 
