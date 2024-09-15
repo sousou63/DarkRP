@@ -32,7 +32,7 @@
         "Height": 64,
         "IgnoreLayers": "nocollide",
         "Radius": 16,
-        "StepHeight": 1.18,
+        "StepHeight": 18,
         "UseCollisionRules": false
       },
       {

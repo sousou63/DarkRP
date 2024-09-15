@@ -1,5 +1,5 @@
 {
-  "__guid": "12191bad-f595-48e6-96e0-00f3d13a9e8e",
+  "__guid": "d89eae88-156c-4a4e-ab7b-cd4358296acb",
   "GameObjects": [
     {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
@@ -794,8 +794,8 @@
             {
               "__type": "Sandbox.SkyBox2D",
               "__guid": "764b6147-49cc-4f38-a9d8-49f3028b1724",
-              "SkyMaterial": "starmap20.vmat",
-              "Tint": "0.5,0.5,0.5,1"
+              "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
+              "Tint": "1,1,1,1"
             }
           ]
         },
@@ -872,7 +872,7 @@
           "Flags": 0,
           "Name": "Sun",
           "Position": "0,0,0",
-          "Rotation": "0,-0.3110732,0,0.9503859",
+          "Rotation": "0,0.4633212,0,0.8861905",
           "Tags": "light_directional,light",
           "Enabled": true,
           "Components": [
@@ -906,8 +906,8 @@
                 "go": "bb672938-0d3e-4cd8-baaa-7f91cf79cb98",
                 "component_type": "SkyBox2D"
               },
-              "SkyBoxMaterial": "starmap20.vmat",
-              "SpeedTime": 5
+              "SkyBoxMaterial": "materials/default/night.vmat",
+              "SpeedTime": 0.5
             }
           ]
         }
@@ -2280,7 +2280,7 @@
   "Description": "",
   "ResourceVersion": 1,
   "__references": [
-    "dopamine.starmap",
+    "agentab.night",
     "facepunch.fence_panel_large",
     "tfassets.stairs_wood001a",
     "titanovsky.sbox_atm"
