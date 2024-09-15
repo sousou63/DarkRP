@@ -17,6 +17,12 @@
             "__guid": "38d4602b-6b90-476c-b703-0e42de80f392",
             "BodyGroups": 18446744073709551615,
             "Model": "models/sbox_props/ceiling_halogen/ceiling_halogen.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }
@@ -57,6 +63,12 @@
             "BodyGroups": 18446744073709551615,
             "MaterialOverride": "materials/dev/primary_white_emissive.vmat",
             "Model": "models/dev/sphere.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }

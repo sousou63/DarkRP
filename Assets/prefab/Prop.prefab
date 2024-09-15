@@ -3,6 +3,7 @@
     "__guid": "48f3c565-3343-41ad-9f4d-7f88b2478712",
     "Flags": 0,
     "Name": "prop",
+    "Position": "0,0,-223237.8",
     "Tags": "prop,grab,interact",
     "Enabled": true,
     "NetworkMode": 1,

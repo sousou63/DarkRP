@@ -12,6 +12,13 @@
         "BodyGroups": 341,
         "CreateBoneObjects": false,
         "Model": "models/citizen/citizen.vmdl",
+        "Morphs": {},
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
         "RenderType": "On",
         "Tint": "1,1,1,1",
         "UseAnimGraph": true
@@ -25,7 +32,7 @@
         "Height": 64,
         "IgnoreLayers": "nocollide",
         "Radius": 16,
-        "StepHeight": 18,
+        "StepHeight": 1.18,
         "UseCollisionRules": false
       },
       {
@@ -85,6 +92,8 @@
           "weapons/default/hands/hands.weapon",
           "weapons/default/camera/camera.weapon"
         ],
+        "_salaryTimerSeconds": 60,
+        "_starvingTimerSeconds": 20,
         "AnimationHelper": {
           "_type": "component",
           "component_id": "5188302b-98ca-4e87-b8c6-54ec5cc7fdd1",
@@ -92,6 +101,7 @@
           "component_type": "CitizenAnimationHelper"
         },
         "Balance": 500,
+        "CanOwnDoors": [],
         "CharacterController": {
           "_type": "component",
           "component_id": "39ce14b1-1ab6-4e1b-8b09-c74bd89c4184",
@@ -129,10 +139,8 @@
           "component_type": "PlayerHUD"
         },
         "RunMoveSpeed": 175,
-        "SalaryTimerSeconds": 60,
         "SprintMoveSpeed": 300,
         "Starving": false,
-        "StarvingTimerSeconds": 20,
         "WalkMoveSpeed": 175
       },
       {
@@ -705,6 +713,12 @@
             "InteractionRange": 1000,
             "LookAtCamera": true,
             "PanelSize": "800,250",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderScale": 1.3,
             "VerticalAlign": "Center"
           },
