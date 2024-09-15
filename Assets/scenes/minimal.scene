@@ -59,6 +59,7 @@
           "__type": "Sandbox.Tonemapping",
           "__guid": "9d76f362-7227-40eb-a189-69353c780c46",
           "__version": 1,
+          "AutoExposureEnabled": true,
           "ExposureBias": 2,
           "ExposureCompensation": 0,
           "ExposureMethod": "RGB",
@@ -143,40 +144,6 @@
       ]
     },
     {
-      "__guid": "5927208e-97d3-47ce-86eb-a9b4a2937017",
-      "Flags": 0,
-      "Name": "Ambient Sound",
-      "Position": "0,0,-76.99061",
-      "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.SoundPointComponent",
-          "__guid": "670b706f-e550-415c-a260-f61a9274a464",
-          "DistanceAttenuation": false,
-          "DistanceAttenuationOverride": false,
-          "Force2d": true,
-          "MaxRepeatTime": 1,
-          "MinRepeatTime": 1,
-          "Occlusion": false,
-          "OcclusionOverride": false,
-          "OcclusionRadius": 32,
-          "Pitch": 1,
-          "PlayOnStart": true,
-          "ReflectionOverride": false,
-          "Reflections": false,
-          "Repeat": false,
-          "SoundEvent": "audio/ambient.sound",
-          "SoundOverride": false,
-          "StopOnNew": false,
-          "TargetMixer": {
-            "Name": "master",
-            "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
-          },
-          "Volume": 0.07
-        }
-      ]
-    },
-    {
       "__guid": "faaa4319-1cc1-474e-a21b-e7bab0437191",
       "Flags": 0,
       "Name": "prop",
@@ -229,6 +196,8 @@
           "EnableCollision": true,
           "MapName": "map/downtownv2/rp_downtown_v2.vmap",
           "NoOrigin": false,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
           "UseMapFromLaunch": false
         }
       ],
@@ -264,6 +233,7 @@
               "Health": 0,
               "IsStatic": true,
               "Model": "models/3dmodelscc0/cityenvpack1/atm/atm.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -284,6 +254,7 @@
               "Health": 0,
               "IsStatic": true,
               "Model": "models/3dmodelscc0/cityenvpack1/atm/atm.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -313,6 +284,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -333,6 +305,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -353,6 +326,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -373,6 +347,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -393,6 +368,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -413,6 +389,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -432,6 +409,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -451,6 +429,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -470,6 +449,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -489,6 +469,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -508,6 +489,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -527,6 +509,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -546,6 +529,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -565,6 +549,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -584,6 +569,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -603,6 +589,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -622,6 +609,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -641,6 +629,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -660,6 +649,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -679,6 +669,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -698,6 +689,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -717,6 +709,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -736,6 +729,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -755,6 +749,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -774,6 +769,7 @@
               "Health": 100,
               "IsStatic": true,
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
+              "StartAsleep": false,
               "Tint": "1,1,1,1"
             }
           ]
@@ -783,12 +779,12 @@
     {
       "__guid": "81716bae-a48e-4416-887c-0845b0070b3e",
       "Flags": 0,
-      "Name": "SkyBox",
+      "Name": "DayNightCircle",
       "Position": "-1190.669,-2630.772,859.4628",
       "Enabled": true,
       "Children": [
         {
-          "__guid": "1c2914dc-f5f4-4534-a880-633b87fec59e",
+          "__guid": "bb672938-0d3e-4cd8-baaa-7f91cf79cb98",
           "Flags": 0,
           "Name": "2D Skybox",
           "Position": "0,0,0",
@@ -797,29 +793,121 @@
           "Components": [
             {
               "__type": "Sandbox.SkyBox2D",
-              "__guid": "530bdc4d-72b9-40d7-9b26-48423a3d283c",
-              "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
-              "Tint": "0.89767,0.89767,0.89767,1"
+              "__guid": "764b6147-49cc-4f38-a9d8-49f3028b1724",
+              "SkyMaterial": "starmap20.vmat",
+              "Tint": "0.5,0.5,0.5,1"
             }
           ]
         },
         {
-          "__guid": "de0edb13-9840-4496-b871-472672086cae",
+          "__guid": "95704ef7-d701-4699-a9ef-a3e1bec276fe",
+          "Flags": 0,
+          "Name": "Day Sound",
+          "Position": "1190.669,2630.772,-936.4534",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SoundPointComponent",
+              "__guid": "82da2670-89ed-4c2b-8897-1de8b78fd568",
+              "DistanceAttenuation": false,
+              "DistanceAttenuationOverride": false,
+              "Force2d": true,
+              "MaxRepeatTime": 1,
+              "MinRepeatTime": 1,
+              "Occlusion": false,
+              "OcclusionOverride": false,
+              "OcclusionRadius": 32,
+              "Pitch": 1,
+              "PlayOnStart": true,
+              "ReflectionOverride": false,
+              "Reflections": false,
+              "Repeat": false,
+              "SoundEvent": "audio/ambient.sound",
+              "SoundOverride": false,
+              "StopOnNew": false,
+              "TargetMixer": {
+                "Name": "master",
+                "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
+              },
+              "Volume": 0.07
+            }
+          ]
+        },
+        {
+          "__guid": "0d18a376-6871-4b46-9ed3-47a01edabebd",
+          "Flags": 0,
+          "Name": "Night Sound",
+          "Position": "1190.669,2630.772,-936.4534",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.SoundPointComponent",
+              "__guid": "b84fcaff-ecaf-4f1c-874d-2f0d2ff7ecc0",
+              "DistanceAttenuation": false,
+              "DistanceAttenuationOverride": false,
+              "Force2d": true,
+              "MaxRepeatTime": 1,
+              "MinRepeatTime": 1,
+              "Occlusion": false,
+              "OcclusionOverride": false,
+              "OcclusionRadius": 32,
+              "Pitch": 1,
+              "PlayOnStart": true,
+              "ReflectionOverride": false,
+              "Reflections": false,
+              "Repeat": false,
+              "SoundEvent": "audio/nightambient.sound",
+              "SoundOverride": false,
+              "StopOnNew": false,
+              "TargetMixer": {
+                "Name": "master",
+                "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
+              },
+              "Volume": 0.07
+            }
+          ]
+        },
+        {
+          "__guid": "7875ed1d-2e23-4028-9dcc-6453c5f84d1e",
           "Flags": 0,
           "Name": "Sun",
-          "Position": "907.4341,131.1824,97.89801",
-          "Rotation": "0,0.7071068,0,0.7071068",
+          "Position": "0,0,0",
+          "Rotation": "0,-0.3110732,0,0.9503859",
           "Tags": "light_directional,light",
           "Enabled": true,
           "Components": [
             {
               "__type": "Sandbox.DirectionalLight",
-              "__guid": "c6f3226c-1c09-4b95-9cd4-db0a0d4ebb1c",
+              "__guid": "041d98b3-e37f-40c9-8877-ed0b900d0006",
               "FogMode": "Enabled",
               "FogStrength": 1,
-              "LightColor": "0.91373,0.98039,1,1",
+              "LightColor": "0.91373,0.97987,1,1",
               "Shadows": true,
               "SkyColor": "0,0,0,0"
+            },
+            {
+              "__type": "Sun",
+              "__guid": "4fc1cf8f-e2f1-401a-a40d-04928fd359e3",
+              "DaySoundAmbient": {
+                "_type": "component",
+                "component_id": "82da2670-89ed-4c2b-8897-1de8b78fd568",
+                "go": "95704ef7-d701-4699-a9ef-a3e1bec276fe",
+                "component_type": "SoundPointComponent"
+              },
+              "NightSoundAmbient": {
+                "_type": "component",
+                "component_id": "b84fcaff-ecaf-4f1c-874d-2f0d2ff7ecc0",
+                "go": "0d18a376-6871-4b46-9ed3-47a01edabebd",
+                "component_type": "SoundPointComponent"
+              },
+              "SkyBox": {
+                "_type": "component",
+                "component_id": "764b6147-49cc-4f38-a9d8-49f3028b1724",
+                "go": "bb672938-0d3e-4cd8-baaa-7f91cf79cb98",
+                "component_type": "SkyBox2D"
+              },
+              "SkyBoxMaterial": "starmap20.vmat",
+              "SpeedTime": 5
             }
           ]
         }
@@ -841,6 +929,7 @@
           "Health": 0,
           "IsStatic": true,
           "Model": "models/props_farm/stairs_wood001a.vmdl",
+          "StartAsleep": false,
           "Tint": "1,1,1,1"
         }
       ]
@@ -858,7 +947,7 @@
           "Name": "light",
           "Position": "95.87927,122.239,28.80505",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -869,7 +958,7 @@
           "Name": "light",
           "Position": "200.0619,382.4177,168.7368",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -880,7 +969,7 @@
           "Name": "light (2)",
           "Position": "146.3813,364.4674,156.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -891,7 +980,7 @@
           "Name": "light (3)",
           "Position": "143.8217,459.1069,288.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -902,7 +991,7 @@
           "Name": "light (5)",
           "Position": "145.1787,398.8788,28.80499",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -913,7 +1002,7 @@
           "Name": "light (6)",
           "Position": "10.74237,567.2889,28.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -924,7 +1013,7 @@
           "Name": "light (2)",
           "Position": "-288.2367,-246.6875,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -935,7 +1024,7 @@
           "Name": "light (3)",
           "Position": "355.4755,-16.82397,40.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -946,7 +1035,7 @@
           "Name": "light (4)",
           "Position": "588.9435,-21.10376,40.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -957,7 +1046,7 @@
           "Name": "light (7)",
           "Position": "2548.898,1188.491,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -968,7 +1057,7 @@
           "Name": "light (8)",
           "Position": "2490.443,1029.584,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -979,7 +1068,7 @@
           "Name": "light (9)",
           "Position": "2491.139,845.594,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -990,7 +1079,7 @@
           "Name": "light (14)",
           "Position": "92.03906,1264.242,25.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1001,7 +1090,7 @@
           "Name": "light (15)",
           "Position": "84.05548,985.4865,25.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1012,7 +1101,7 @@
           "Name": "light (1)",
           "Position": "419.6249,924.243,171.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1023,7 +1112,7 @@
           "Name": "light (2)",
           "Position": "64.47522,930.424,156.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1034,7 +1123,7 @@
           "Name": "light (3)",
           "Position": "80.85095,1180.313,157.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1045,7 +1134,7 @@
           "Name": "light (4)",
           "Position": "380.6909,917.937,299.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1056,7 +1145,7 @@
           "Name": "light (5)",
           "Position": "71.50244,933.683,293.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1067,7 +1156,7 @@
           "Name": "light (6)",
           "Position": "101.2065,1190.521,285.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1078,7 +1167,7 @@
           "Name": "light (7)",
           "Position": "479.2499,992.3669,427.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1089,7 +1178,7 @@
           "Name": "light (8)",
           "Position": "126.5094,1154.584,413.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1100,7 +1189,7 @@
           "Name": "light (9)",
           "Position": "207.829,1004.612,412.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1111,7 +1200,7 @@
           "Name": "light (10)",
           "Position": "386.856,998.9039,572.8048",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1122,7 +1211,7 @@
           "Name": "light (11)",
           "Position": "-604.8226,2086.389,20.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1133,7 +1222,7 @@
           "Name": "light (12)",
           "Position": "-588.4977,1831.124,20.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1144,7 +1233,7 @@
           "Name": "light (13)",
           "Position": "-937.7188,1951.887,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1155,7 +1244,7 @@
           "Name": "light (14)",
           "Position": "-873.2764,2161.34,328.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1166,7 +1255,7 @@
           "Name": "light (15)",
           "Position": "-1709,-469.446,48.92963",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1177,7 +1266,7 @@
           "Name": "light (16)",
           "Position": "-1702.689,2690.554,69.82111",
           "Rotation": "0.5,0.5,-0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1188,7 +1277,7 @@
           "Name": "light",
           "Position": "-665.9658,2425.339,72.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1199,7 +1288,7 @@
           "Name": "light (18)",
           "Position": "-703.718,2294.671,72.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1210,7 +1299,7 @@
           "Name": "light (17)",
           "Position": "-540.5757,2616.178,72.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1221,7 +1310,7 @@
           "Name": "light (19)",
           "Position": "-948.5416,2706.554,-21.10509",
           "Rotation": "0.5,0.5,-0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1232,7 +1321,7 @@
           "Name": "light (20)",
           "Position": "-801.4827,2462.554,4.249329",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1243,7 +1332,7 @@
           "Name": "light (21)",
           "Position": "-1375.938,2418.438,-2.905457",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1254,7 +1343,7 @@
           "Name": "light (22)",
           "Position": "-1051.325,2597.777,251.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1265,7 +1354,7 @@
           "Name": "light (23)",
           "Position": "-1240.562,2391.428,251.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1276,7 +1365,7 @@
           "Name": "light (24)",
           "Position": "-851.8394,2310.529,251.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1287,7 +1376,7 @@
           "Name": "light (25)",
           "Position": "-1327.938,2657.44,420.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1298,7 +1387,7 @@
           "Name": "light (26)",
           "Position": "-751.9381,2461.548,399.2174",
           "Rotation": "-0.7071068,0,0.7071068,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1309,7 +1398,7 @@
           "Name": "light (27)",
           "Position": "-1231.842,2295.699,420.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1320,7 +1409,7 @@
           "Name": "light (28)",
           "Position": "-646.2177,2560.878,251.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1331,7 +1420,7 @@
           "Name": "light (29)",
           "Position": "-904.7899,3273.621,32.98138",
           "Rotation": "0.5,0.5,-0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1342,7 +1431,7 @@
           "Name": "light (30)",
           "Position": "-1030.104,2724.554,19.34903",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1353,7 +1442,7 @@
           "Name": "light (31)",
           "Position": "-1439.938,3017.022,45.17075",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1364,7 +1453,7 @@
           "Name": "light (32)",
           "Position": "-473.938,3001.417,94.61725",
           "Rotation": "-0.7071068,0,0.7071068,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1375,7 +1464,7 @@
           "Name": "light (33)",
           "Position": "-257.9081,3321.554,18.91855",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1386,7 +1475,7 @@
           "Name": "light (34)",
           "Position": "-262.6216,3737.82,-215.195",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1397,7 +1486,7 @@
           "Name": "light (35)",
           "Position": "421.889,3330.554,120.6455",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1408,7 +1497,7 @@
           "Name": "light (36)",
           "Position": "491.811,3821.544,148.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1419,7 +1508,7 @@
           "Name": "light (37)",
           "Position": "496.6459,4255.348,148.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1430,7 +1519,7 @@
           "Name": "light (38)",
           "Position": "794.3029,4259.377,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1441,7 +1530,7 @@
           "Name": "light (39)",
           "Position": "859.1069,3959.622,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1452,7 +1541,7 @@
           "Name": "light (40)",
           "Position": "-127.9381,4420.228,54.19641",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1463,7 +1552,7 @@
           "Name": "light (41)",
           "Position": "628.166,3473.461,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1474,7 +1563,7 @@
           "Name": "light (42)",
           "Position": "799.9529,3404.704,36.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1485,7 +1574,7 @@
           "Name": "light (43)",
           "Position": "1660.145,3285.554,59.70221",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1496,7 +1585,7 @@
           "Name": "light (44)",
           "Position": "1478.062,3921.582,70.50732",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1507,7 +1596,7 @@
           "Name": "light (45)",
           "Position": "1585.613,4094.07,32.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1518,7 +1607,7 @@
           "Name": "light (47)",
           "Position": "2184.062,2643.213,-159.1371",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1529,7 +1618,7 @@
           "Name": "light (46)",
           "Position": "2283.818,2594.328,24.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1540,7 +1629,7 @@
           "Name": "light (48)",
           "Position": "2298.307,2630.797,144.8049",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1551,7 +1640,7 @@
           "Name": "light (49)",
           "Position": "1021.941,-21.53101,40.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1562,7 +1651,7 @@
           "Name": "light (50)",
           "Position": "512.869,2224.408,32.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1573,7 +1662,7 @@
           "Name": "light (51)",
           "Position": "2664.062,3371.703,34.39868",
           "Rotation": "0,0.7071068,0,0.7071068",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1584,7 +1673,7 @@
           "Name": "light (52)",
           "Position": "3280.062,3365.514,93.45493",
           "Rotation": "-0.7071068,0,0.7071068,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1595,7 +1684,7 @@
           "Name": "light (53)",
           "Position": "2929.996,2998.554,86.7702",
           "Rotation": "-0.5,0.5,0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1606,7 +1695,7 @@
           "Name": "light (54)",
           "Position": "3151.023,3772.862,20.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1617,7 +1706,7 @@
           "Name": "light (55)",
           "Position": "-643.3827,-205.1958,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1628,7 +1717,7 @@
           "Name": "light",
           "Position": "521.9405,1744.765,-103.195",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1639,7 +1728,7 @@
           "Name": "light (1)",
           "Position": "1028.617,1937.596,-87.19501",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1650,7 +1739,7 @@
           "Name": "light (2)",
           "Position": "624.0944,516.9351,-151.195",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1661,7 +1750,7 @@
           "Name": "light (3)",
           "Position": "140.5352,509.545,-151.1949",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1672,7 +1761,7 @@
           "Name": "light (4)",
           "Position": "-284.3252,477.7415,-151.1949",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1683,7 +1772,7 @@
           "Name": "light (5)",
           "Position": "-660.3196,470.6842,-151.195",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1694,7 +1783,7 @@
           "Name": "light (6)",
           "Position": "-987.3159,479.8768,-151.1949",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1705,7 +1794,7 @@
           "Name": "light (7)",
           "Position": "-1386.441,457.2966,-151.1949",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1716,7 +1805,7 @@
           "Name": "light (8)",
           "Position": "-1733.858,462.6162,-151.1949",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1727,7 +1816,7 @@
           "Name": "light (9)",
           "Position": "1227.012,4498.554,37.65698",
           "Rotation": "0.5,0.5,-0.5,0.5",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1738,7 +1827,7 @@
           "Name": "light (10)",
           "Position": "107.595,2606.987,40.80499",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1749,7 +1838,7 @@
           "Name": "light (11)",
           "Position": "76.88647,2611.439,164.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1760,7 +1849,7 @@
           "Name": "light (12)",
           "Position": "129.8727,2606.466,292.805",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1771,7 +1860,7 @@
           "Name": "light (13)",
           "Position": "1627.959,2666.924,36.80502",
           "Rotation": "0,0.9999999,0,0",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -1782,7 +1871,7 @@
           "Name": "light (14)",
           "Position": "1649.263,3625.928,212.6678",
           "Rotation": "0,0.9907249,0,0.1358832",
-          "Tags": "light_point,light",
+          "Tags": "light,light_point",
           "Enabled": true,
           "__Prefab": "prefab/light.prefab",
           "__PrefabVariables": {}
@@ -2081,7 +2170,7 @@
           "__guid": "3dd41e0a-6a39-41d9-b790-86bdc04c10df",
           "Flags": 0,
           "Name": "door (15)",
-          "Position": "1594.642,-839.7462,-263.4379",
+          "Position": "1594.642,-839.7463,-263.4379",
           "Rotation": "0,0,-0.7071067,0.7071068",
           "Scale": "1,1.31647,1.380445",
           "Tags": "interact",
@@ -2191,6 +2280,7 @@
   "Description": "",
   "ResourceVersion": 1,
   "__references": [
+    "dopamine.starmap",
     "facepunch.fence_panel_large",
     "tfassets.stairs_wood001a",
     "titanovsky.sbox_atm"
