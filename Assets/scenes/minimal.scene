@@ -2,6 +2,14 @@
   "__guid": "d89eae88-156c-4a4e-ab7b-cd4358296acb",
   "GameObjects": [
     {
+      "__guid": "020b0bff-a918-4691-bc31-8fd32f5c9c00",
+      "Flags": 0,
+      "Name": "day_night_cycle",
+      "Enabled": true,
+      "__Prefab": "prefab/day_night_cycle.prefab",
+      "__PrefabVariables": {}
+    },
+    {
       "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Flags": 0,
       "Name": "Camera",
@@ -771,143 +779,6 @@
               "Model": "models/props/temporary_fencing/fence_panel_large.vmdl",
               "StartAsleep": false,
               "Tint": "1,1,1,1"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "__guid": "81716bae-a48e-4416-887c-0845b0070b3e",
-      "Flags": 0,
-      "Name": "DayNightCircle",
-      "Position": "-1190.669,-2630.772,859.4628",
-      "Enabled": true,
-      "Children": [
-        {
-          "__guid": "bb672938-0d3e-4cd8-baaa-7f91cf79cb98",
-          "Flags": 0,
-          "Name": "2D Skybox",
-          "Position": "0,0,0",
-          "Tags": "skybox",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SkyBox2D",
-              "__guid": "764b6147-49cc-4f38-a9d8-49f3028b1724",
-              "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
-              "Tint": "1,1,1,1"
-            }
-          ]
-        },
-        {
-          "__guid": "95704ef7-d701-4699-a9ef-a3e1bec276fe",
-          "Flags": 0,
-          "Name": "Day Sound",
-          "Position": "1190.669,2630.772,-936.4534",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SoundPointComponent",
-              "__guid": "82da2670-89ed-4c2b-8897-1de8b78fd568",
-              "DistanceAttenuation": false,
-              "DistanceAttenuationOverride": false,
-              "Force2d": true,
-              "MaxRepeatTime": 1,
-              "MinRepeatTime": 1,
-              "Occlusion": false,
-              "OcclusionOverride": false,
-              "OcclusionRadius": 32,
-              "Pitch": 1,
-              "PlayOnStart": true,
-              "ReflectionOverride": false,
-              "Reflections": false,
-              "Repeat": false,
-              "SoundEvent": "audio/ambient.sound",
-              "SoundOverride": false,
-              "StopOnNew": false,
-              "TargetMixer": {
-                "Name": "master",
-                "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
-              },
-              "Volume": 0.07
-            }
-          ]
-        },
-        {
-          "__guid": "0d18a376-6871-4b46-9ed3-47a01edabebd",
-          "Flags": 0,
-          "Name": "Night Sound",
-          "Position": "1190.669,2630.772,-936.4534",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.SoundPointComponent",
-              "__guid": "b84fcaff-ecaf-4f1c-874d-2f0d2ff7ecc0",
-              "DistanceAttenuation": false,
-              "DistanceAttenuationOverride": false,
-              "Force2d": true,
-              "MaxRepeatTime": 1,
-              "MinRepeatTime": 1,
-              "Occlusion": false,
-              "OcclusionOverride": false,
-              "OcclusionRadius": 32,
-              "Pitch": 1,
-              "PlayOnStart": true,
-              "ReflectionOverride": false,
-              "Reflections": false,
-              "Repeat": false,
-              "SoundEvent": "audio/nightambient.sound",
-              "SoundOverride": false,
-              "StopOnNew": false,
-              "TargetMixer": {
-                "Name": "master",
-                "Id": "3790ad31-eb86-4de4-b9cd-6e9f62ca5c5f"
-              },
-              "Volume": 0.07
-            }
-          ]
-        },
-        {
-          "__guid": "7875ed1d-2e23-4028-9dcc-6453c5f84d1e",
-          "Flags": 0,
-          "Name": "Sun",
-          "Position": "0,0,0",
-          "Rotation": "0,0.4633212,0,0.8861905",
-          "Tags": "light_directional,light",
-          "Enabled": true,
-          "Components": [
-            {
-              "__type": "Sandbox.DirectionalLight",
-              "__guid": "041d98b3-e37f-40c9-8877-ed0b900d0006",
-              "FogMode": "Enabled",
-              "FogStrength": 1,
-              "LightColor": "0.91373,0.97987,1,1",
-              "Shadows": true,
-              "SkyColor": "0,0,0,0"
-            },
-            {
-              "__type": "Sun",
-              "__guid": "4fc1cf8f-e2f1-401a-a40d-04928fd359e3",
-              "DaySoundAmbient": {
-                "_type": "component",
-                "component_id": "82da2670-89ed-4c2b-8897-1de8b78fd568",
-                "go": "95704ef7-d701-4699-a9ef-a3e1bec276fe",
-                "component_type": "SoundPointComponent"
-              },
-              "NightSoundAmbient": {
-                "_type": "component",
-                "component_id": "b84fcaff-ecaf-4f1c-874d-2f0d2ff7ecc0",
-                "go": "0d18a376-6871-4b46-9ed3-47a01edabebd",
-                "component_type": "SoundPointComponent"
-              },
-              "SkyBox": {
-                "_type": "component",
-                "component_id": "764b6147-49cc-4f38-a9d8-49f3028b1724",
-                "go": "bb672938-0d3e-4cd8-baaa-7f91cf79cb98",
-                "component_type": "SkyBox2D"
-              },
-              "SkyBoxMaterial": "materials/default/night.vmat",
-              "SpeedTime": 0.5
             }
           ]
         }
@@ -2280,7 +2151,6 @@
   "Description": "",
   "ResourceVersion": 1,
   "__references": [
-    "agentab.night",
     "facepunch.fence_panel_large",
     "tfassets.stairs_wood001a",
     "titanovsky.sbox_atm"
