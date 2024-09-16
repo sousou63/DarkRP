@@ -2124,6 +2124,15 @@
           "__PrefabVariables": {}
         }
       ]
+    },
+    {
+      "__guid": "8efea9d7-428e-48ba-8acb-406f2fd0ef6a",
+      "Flags": 0,
+      "Name": "atm",
+      "Position": "522.0149,-1593.512,201.0187",
+      "Enabled": true,
+      "__Prefab": "prefab/atm.prefab",
+      "__PrefabVariables": {}
     }
   ],
   "SceneProperties": {

@@ -1,0 +1,27 @@
+@using global::GameSystems
+@using Sandbox;
+@using Sandbox.GameSystems.Player;
+@inherits PanelComponent
+
+<root>
+	@* <h1 class="title">-Welcome to the atm-</h1> *@
+	<div class="main-frame">
+		<div class="buttons-section">
+			<button class="button">Withdraw</button>
+			<button class="button">Deposit</button>
+			<button class="button">Payments</button>
+			<button class="button">Transfer</button>
+		</div>
+		<button class="close-button" onclick=@(() => CloseTab())>Close</button>
+	</div>
+
+
+</root>
+
+
+@code{
+	void CloseTab()
+	{
+		this.Enabled = false;
+	}
+}
